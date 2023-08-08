@@ -17,7 +17,7 @@
             return [
                 "view" => VIEW_DIR."wiki/playableCharacterList.php",
                 "data" => [
-                    "playableCharacterList" => $playableCharacterManager->findAll(["releaseDate", "DESC"])
+                    "playableCharacterList" => $playableCharacterManager->findAll(["releaseDate", "ASC"])
                 ]
             ];
         
