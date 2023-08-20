@@ -56,7 +56,7 @@
             </main>
         </div>
         <footer>
-            <p>&copy; 2023 - Star Rail Wiki - <a href="/home/WikiRules.html">Règlement du wiki</a> - <a href="">Mentions légales</a></p>
+            <p>&copy; 2023 - Star Rail Wiki - <a href="/home/WikiRules.html">Règlement du wiki </a> - <a href="">Mentions légales</a></p>
             <!--<button id="ajaxbtn">Surprise en Ajax !</button> -> cliqué <span id="nbajax">0</span> fois-->
         </footer>
     </div>
