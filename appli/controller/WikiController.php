@@ -10,7 +10,8 @@
     
     class WikiController extends AbstractController implements ControllerInterface{
 
-        public function index(){
+        public function index()
+        {
 
             $playableCharacterManager = new PlayableCharacterManager();
 
@@ -23,14 +24,17 @@
         
         }
 
-        public function playableCharacterDetails(){
+        public function biographyPlayableCharacter($id)
+        {
 
-            $playableCharacterManager = new PlayableCharacterManager();
+            $biographyPlayableCharacterManager = new PlayableCharacterManager();
+
+            $biographyPlayableCharacter = $biographyPlayableCharacterManager->findOneById($id);
 
             return [
-                "view" => VIEW_DIR."wiki/playableCharacterDetails.php",
+                "view" => VIEW_DIR."wiki/biographyPlayableCharacter.php",
                 "data" => [
-                    "playableCharacterDetails" => $playableCharacterManager->findAll()
+                    "biographyPlayableCharacter" => $biographyPlayableCharacter
                 ]
             ];
         

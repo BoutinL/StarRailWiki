@@ -12,7 +12,7 @@ foreach($playableCharacterList as $character){
     ?>
     <section class="card-container">
         <div class="card">
-            <a href="index.php?ctrl=wiki&action=playableCharacterDetails&id=<?= $character->getId() ?>"></a>">
+            <a href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $character->getId() ?>">
                 <figure>
                     <img src="<?=$character->getImage()?>" alt="<?=$character->getName()?>" />
                 </figure>
