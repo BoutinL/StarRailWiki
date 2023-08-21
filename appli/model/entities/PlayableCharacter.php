@@ -19,7 +19,7 @@
         private $path;
 
         public function __construct($data){         
-            $this->hydrate($data);        
+                $this->hydrate($data);        
         }
 
         // Getter and Setter
