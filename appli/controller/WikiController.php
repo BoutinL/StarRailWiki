@@ -22,5 +22,18 @@
             ];
         
         }
+
+        public function playableCharacterDetails(){
+
+            $playableCharacterManager = new PlayableCharacterManager();
+
+            return [
+                "view" => VIEW_DIR."wiki/playableCharacterDetails.php",
+                "data" => [
+                    "playableCharacterDetails" => $playableCharacterManager->findAll()
+                ]
+            ];
+        
+        }
         
     }

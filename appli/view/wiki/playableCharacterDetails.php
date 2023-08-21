@@ -7,9 +7,16 @@ $playableCharacterDetail = $result["data"]['playableCharacterDetails'];
 <h1>Character Details</h1>
 <!-- <ul>
     <li><a href="">Bio</a></li>
+        <section class="intro">
+        <section class="bio">
     <li><a href="">Abilities</a></li>
+        <section class="details-abilities">
+        <section class="details-trace">
     <li><a href="">Ascend</a></li>
+        <section class="details-eidolon">
+        <section class="details-ascension">
     <li><a href="">Reviews</a></li>
+        <section class="details-reviews">
 </ul> -->
 
 <?php
