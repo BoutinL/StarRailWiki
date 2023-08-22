@@ -5,7 +5,7 @@ $biographyPlayableCharacter = $result["data"]['biographyPlayableCharacter'];
 
 <h1>Character Details</h1>
 <section class="navbar-details">
-    <a href="index.php?ctrl=wiki&action=biographiePlayableCharacter">Biographie</a>
+    <a href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $biographyPlayableCharacter->getId() ?>">Biographie</a>
     <a href="index.php?ctrl=wiki&action=abilitiesPlayableCharacter">Abilities</a>
     <a href="index.php?ctrl=wiki&action=ascendPlayableCharacter">Ascend</a>
     <a href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
@@ -13,7 +13,7 @@ $biographyPlayableCharacter = $result["data"]['biographyPlayableCharacter'];
 <section class="introduction">
     <span><?= $biographyPlayableCharacter->getName() ?></span>
     <figure>
-        <img src="<?= $biographyPlayableCharacter->getImage() ?>" alt="<?=$biographyPlayableCharacter->getName()?>" />
+        <img src="<?= $biographyPlayableCharacter->getImage() ?>" alt="<?=$biographyPlayableCharacter->getName()?> splash art" />
     </figure>
     <span><?= $biographyPlayableCharacter->getRarity() ?></span>
 </section>

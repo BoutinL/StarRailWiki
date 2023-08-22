@@ -1,3 +1,31 @@
+
+.card-container{
+    background-color: dimgray;
+}
+
+.card-link{
+    margin: 1rem;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+}
+
 .card{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 400px;
+    height: 600px;
+    border-radius: 30px;
+    background-color: black;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-img{
+    width: 500px;
+    object-fit: cover;
 }
