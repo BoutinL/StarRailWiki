@@ -8,7 +8,7 @@
     <?php foreach($playableCharacterList as $character){ ?>
         <a class="card-link" href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $character->getId() ?>">
             <div class="card">
-                <h2><?=$character->getName()?></h2>
+                <h2 class="character-name"><strong><?=$character->getName()?></strong></h2>
                 <figure class="card-img-container">
                     <img class="card-img" src="<?=$character->getImage()?>" alt="<?=$character->getName()?> splash art" />
                 </figure>

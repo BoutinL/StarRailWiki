@@ -1,22 +1,53 @@
+/* Reset CSS */
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+}
 
+ol, ul {
+    list-style: none;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* Reset CSS fin */
+
+/* Layout */
+
+.main{
+    background-color: black;
+    color: white;
+}
+
+/* Layout fin */
 .card-container{
-    background-color: dimgray;
+    background-color: rgb(36, 36, 36);
     display: flex;
+    justify-content: center;
+    border-radius: 30px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
 .card-link{
     margin: 1rem;
+    height: auto;
     border-radius: 30px;
     text-decoration: none;
     color: white;
     display: block;
-    justify-content: center;
 }
 
 .card{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    width: 400px;
-    height: 600px;
+    width: 15rem;
+    height: auto;
     border-radius: 30px;
     background-color: black;
     overflow: hidden;
@@ -26,7 +57,27 @@
     align-items: center;
 }
 
+.character-name{
+    padding: 1rem;
+}
+
 .card-img{
-    width: 500px;
+    width: 30rem;
     object-fit: cover;
+}
+
+/* Biography Playable Character */
+
+.content{
+    background-color: rgb(36, 36, 36) !important;
+}
+
+.navbar-details{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.link-details{
+    text-decoration: none;
+    font-size: 1.5rem;
 }

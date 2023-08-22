@@ -10,8 +10,7 @@
     <title>Wiki</title>
 </head>
 <body>
-    <div id="wrapper"> 
-    
+    <div class="main" id="wrapper"> 
         <div id="mainpage">
             <!-- c'est ici que les messages (erreur ou succès) s'affichent-->
             <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
@@ -20,10 +19,11 @@
                 <nav>
                     <div id="nav-left">
                         <a href="/">Home</a>
+                        <a href="index.php?ctrl=wiki&action=characterList">Character List</a>
                         <?php
                         if(App\Session::isAdmin()){
                             ?>
-                            <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
+                            <a href="index.php?ctrl=home&action=users">User List</a>
                             <?php
                         }
                         ?>
@@ -41,7 +41,6 @@
                             ?>
                             <a href="./view/security/login.php">Connexion</a>
                             <a href="/security/register.html">Inscription</a>
-                            <a href="index.php?ctrl=wiki&action=characterList">Character</a>
                         <?php
                         }
                         
