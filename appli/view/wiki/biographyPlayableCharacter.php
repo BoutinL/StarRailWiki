@@ -15,18 +15,23 @@ $biographyPlayableCharacter = $result["data"]['biographyPlayableCharacter'];
         <figure class="portrait">
             <img src="<?= $biographyPlayableCharacter->getImage() ?>" alt="<?=$biographyPlayableCharacter->getName()?> splash art" />
         </figure>
-        <div class="bio-container">
-            <h2><strong><?= $biographyPlayableCharacter->getName() ?></strong></h2>
-            <span> 
-                <?php for ($i = 0; $i < $biographyPlayableCharacter->getRarity(); $i++) {
-                    echo '<img src="public/img/level_star.png' . '" alt="rarity level">';
-                }?>
-            </span>
-            <span>Sex: <?= $biographyPlayableCharacter->getSex() ?></span>
-            <span>Specie: <?= $biographyPlayableCharacter->getSpecie() ?></span>
-            <span>Faction: <?= $biographyPlayableCharacter->getfaction() ?></span>
-            <span>World: <?= $biographyPlayableCharacter->getWorld() ?></span>
-            <span>Release date: <?= $biographyPlayableCharacter->getReleaseDate() ?></span>
+        <div class="biography-container">
+            <div class="bio-container">
+                <h2 class="bio-character-name"><strong><?= $biographyPlayableCharacter->getName() ?></strong></h2>
+                <span> 
+                    <?php for ($i = 0; $i < $biographyPlayableCharacter->getRarity(); $i++) {
+                        echo '<img src="public/img/level_star.png' . '" alt="rarity level">';
+                    }?>
+                </span>
+                <span>Sex: <?= $biographyPlayableCharacter->getSex() ?></span>
+                <span>Specie: <?= $biographyPlayableCharacter->getSpecie() ?></span>
+                <span>Faction: <?= $biographyPlayableCharacter->getfaction() ?></span>
+                <span>World: <?= $biographyPlayableCharacter->getWorld() ?></span>
+                <span>Release date: <?= $biographyPlayableCharacter->getReleaseDate() ?></span>
+            </div>
+            <div class="introduction">
+                <p><?= $biographyPlayableCharacter->getIntroduction() ?></p>
+            </div>
         </div>
     </section>
 </div>

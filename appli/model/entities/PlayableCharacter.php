@@ -17,6 +17,7 @@
         private $rate;
         private $combatType;
         private $path;
+        private $introduction;
 
         public function __construct($data){         
                 $this->hydrate($data);        
@@ -167,4 +168,16 @@
 
                 return $this;
         }
-    }
+
+        public function getIntroduction()
+        {
+                return $this->introduction;
+        }
+
+        public function setIntroduction($introduction)
+        {
+                $this->introduction = $introduction;
+
+                return $this;
+        }
+}

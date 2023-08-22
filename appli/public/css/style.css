@@ -1,7 +1,7 @@
 /* Reset CSS */
 html {
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 1rem;
     font-family: 'Kanit', sans-serif;
 }
 
@@ -42,6 +42,8 @@ ol, ul {
 
 /* Layout fin */
 
+/* Character List */
+
 .card-container{
     background-color: rgb(36, 36, 36);
     display: flex;
@@ -81,7 +83,7 @@ ol, ul {
     align-items: center;
 }
 
-.character-name{
+.list-character-name{
     padding: 1rem;
 }
 
@@ -89,6 +91,8 @@ ol, ul {
     width: 30rem;
     object-fit: cover;
 }
+
+/* Fin Character List */
 
 /* Biography Playable Character */
 
@@ -104,6 +108,12 @@ ol, ul {
 .link-details{
     text-decoration: none;
     font-size: 1.5rem;
+    color: white;
+}
+
+.biography-container{
+    display: flex;
+    flex-direction: column;
 }
 
 .introduction{
@@ -113,6 +123,10 @@ ol, ul {
 .bio-container{
     display: flex;
     flex-direction: column;
+}
+
+.bio-character-name{
+    font-size: 4rem;
 }
 
 /* Fin Biography Playable Character */
