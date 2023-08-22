@@ -1,15 +1,11 @@
 <?php
-
-$playableCharacterList = $result["data"]['playableCharacterList'];
-    
+    $playableCharacterList = $result["data"]['playableCharacterList'];
 ?>
 
 <h1>Character list</h1>
 
 <section class="card-container">
-    <?php
-    foreach($playableCharacterList as $character){
-    ?>
+    <?php foreach($playableCharacterList as $character){ ?>
         <a class="card-link" href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $character->getId() ?>">
             <div class="card">
                 <h2><?=$character->getName()?></h2>

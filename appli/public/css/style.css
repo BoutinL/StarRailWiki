@@ -1,15 +1,16 @@
 
 .card-container{
     background-color: dimgray;
+    display: flex;
 }
 
 .card-link{
     margin: 1rem;
     border-radius: 30px;
-    display: flex;
-    justify-content: center;
     text-decoration: none;
     color: white;
+    display: block;
+    justify-content: center;
 }
 
 .card{
