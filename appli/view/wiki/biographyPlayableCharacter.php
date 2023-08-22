@@ -12,17 +12,21 @@ $biographyPlayableCharacter = $result["data"]['biographyPlayableCharacter'];
         <a class="link-details" href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
     </section>
     <section class="introduction">
-        <h2><strong><?= $biographyPlayableCharacter->getName() ?></strong></h2>
-        <figure>
+        <figure class="portrait">
             <img src="<?= $biographyPlayableCharacter->getImage() ?>" alt="<?=$biographyPlayableCharacter->getName()?> splash art" />
         </figure>
-        <span><?= $biographyPlayableCharacter->getRarity() ?></span>
-    </section>
-    <section class="bio">
-        <span><?= $biographyPlayableCharacter->getSex() ?></span>
-        <span><?= $biographyPlayableCharacter->getSpecie() ?></span>
-        <span><?= $biographyPlayableCharacter->getfaction() ?></span>
-        <span><?= $biographyPlayableCharacter->getWorld() ?></span>
-        <span><?= $biographyPlayableCharacter->getReleaseDate() ?></span>
+        <div class="bio-container">
+            <h2><strong><?= $biographyPlayableCharacter->getName() ?></strong></h2>
+            <span> 
+                <?php for ($i = 0; $i < $biographyPlayableCharacter->getRarity(); $i++) {
+                    echo '<img src="public/img/level_star.png' . '" alt="rarity level">';
+                }?>
+            </span>
+            <span>Sex: <?= $biographyPlayableCharacter->getSex() ?></span>
+            <span>Specie: <?= $biographyPlayableCharacter->getSpecie() ?></span>
+            <span>Faction: <?= $biographyPlayableCharacter->getfaction() ?></span>
+            <span>World: <?= $biographyPlayableCharacter->getWorld() ?></span>
+            <span>Release date: <?= $biographyPlayableCharacter->getReleaseDate() ?></span>
+        </div>
     </section>
 </div>

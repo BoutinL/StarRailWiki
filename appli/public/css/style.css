@@ -2,6 +2,7 @@
 html {
     box-sizing: border-box;
     font-size: 16px;
+    font-family: 'Kanit', sans-serif;
 }
 
 ol, ul {
@@ -22,7 +23,25 @@ ol, ul {
     color: white;
 }
 
+.nav{
+    
+}
+.nav-left{
+    display: flex;
+    width: 50%;
+    justify-content: space-around;  
+    padding: 1rem;
+    background-color: aqua;
+}
+
+.nav-links{
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: white;
+}
+
 /* Layout fin */
+
 .card-container{
     background-color: rgb(36, 36, 36);
     display: flex;
@@ -42,6 +61,11 @@ ol, ul {
     text-decoration: none;
     color: white;
     display: block;
+    transition: transform 0.3s;
+}
+
+.card-link:hover{
+    transform: scale(1.1);
 }
 
 .card{
@@ -81,3 +105,14 @@ ol, ul {
     text-decoration: none;
     font-size: 1.5rem;
 }
+
+.introduction{
+    display: inline-flex;
+}
+
+.bio-container{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Fin Biography Playable Character */

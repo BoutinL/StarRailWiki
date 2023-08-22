@@ -1,15 +1,15 @@
 <?php
-    namespace Model\Entities;
+namespace Model\Entities;
 
-    use App\Entity;
+use App\Entity;
 
-    final class Path extends Entity{
+final class Path extends Entity{
 
         private $id;
         private $type;
 
         public function __construct($data){         
-            $this->hydrate($data);        
+                $this->hydrate($data);        
         }
 
         // Getter and Setter
@@ -38,4 +38,4 @@
                 return $this;
         }
 
-    }
+}
