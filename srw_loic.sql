@@ -114,13 +114,21 @@ CREATE TABLE IF NOT EXISTS `playablecharacter` (
   KEY `path_id` (`path_id`),
   CONSTRAINT `FK-playableCharacter_combatType` FOREIGN KEY (`combatType_id`) REFERENCES `combattype` (`id_combatType`),
   CONSTRAINT `FK-playableCharacter_path` FOREIGN KEY (`path_id`) REFERENCES `path` (`id_path`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.playablecharacter : ~3 rows (environ)
+-- Listage des données de la table srw_loic.playablecharacter : ~11 rows (environ)
 INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarity`, `sex`, `specie`, `faction`, `world`, `releaseDate`, `rate`, `combatType_id`, `path_id`) VALUES
-	(1, 'Himeko', 'https://static.wikia.nocookie.net/houkai-star-rail/images/8/8e/Character_Himeko_Splash_Art.png/revision/latest/scale-to-width-down/1000?cb=20230525090036', 5, 'Female', 'Human', 'The Nameless', 'Astal Express', '2023-04-26', NULL, 2, 3),
-	(2, 'March 7th', 'https://static.wikia.nocookie.net/houkai-star-rail/images/1/18/Character_March_7th_Splash_Art.png/revision/latest/scale-to-width-down/1000?cb=20230525090156', 4, 'Female', '', 'The Nameless', 'Astral Express', '2023-04-26', NULL, 3, 6),
-	(3, 'Blade', 'https://static.wikia.nocookie.net/houkai-star-rail/images/1/16/Character_Blade_Splash_Art.png/revision/latest/scale-to-width-down/1000?cb=20230501004859', 5, 'Male', NULL, 'Stellaron Hunter', NULL, '2023-07-19', NULL, 5, 1);
+	(1, 'Himeko', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Himeko-Splash-Art-1024x877.png', 5, 'Female', 'Human', 'The Nameless', 'Astal Express', '2023-04-26', NULL, 2, 3),
+	(2, 'March 7th', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-March-7th-Splash-Art-1024x877.png', 4, 'Female', '', 'The Nameless', 'Astral Express', '2023-04-26', NULL, 3, 6),
+	(3, 'Blade', 'https://expertgamereviews.com/wp-content/uploads/2023/07/Honkai-Star-Rail-Blade-Splash-Art-1024x877.png', 5, 'Male', NULL, 'Stellaron Hunter', NULL, '2023-07-19', NULL, 5, 1),
+	(4, 'Kafka', 'https://expertgamereviews.com/wp-content/uploads/2023/08/Honkai-Star-Rail-Kafka-Splash-Art-768x658.png', 5, 'Female', 'Human', 'Stellaron Hunter', NULL, '2023-08-09', NULL, 4, 5),
+	(5, 'Dan Heng', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Dan-Heng-Splash-Art-1024x877.png', 4, 'Male', NULL, 'The Nameless', '(NULL)', '2023-04-26', NULL, 5, 2),
+	(6, 'Welt', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Welt-Splash-Art-1024x877.png', 5, 'Male', 'Human', 'The Nameless', 'Astral Express', '2023-04-26', NULL, 7, 5),
+	(7, 'Bailu', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Bailu-Splash-Art-1024x877.png', 5, 'Female', NULL, NULL, NULL, '2023-04-26', NULL, 4, 5),
+	(8, 'Jing Yuan', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Jing-Yuan-Splash-Art-1024x877.png', 5, 'Male', NULL, NULL, NULL, '2023-05-17', NULL, 4, 3),
+	(9, 'Seele', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Seele-Splash-Art-1024x877.png', 5, 'Female', 'Human', NULL, NULL, '2023-04-26', NULL, 6, 2),
+	(10, 'Gepard', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Gepard-Splash-Art-1024x877.png', 5, 'Male', 'Human', NULL, NULL, '2023-04-26', NULL, 3, 6),
+	(11, 'Bronya', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Bronya-Splash-Art-1024x877.png', 5, 'Female', NULL, NULL, NULL, '2023-04-26', NULL, 5, 4);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
