@@ -7,6 +7,7 @@
     use App\ControllerInterface;
     use Model\Managers\PlayableCharacterManager;
 
+
     
     class WikiController extends AbstractController implements ControllerInterface{
 
@@ -31,10 +32,12 @@
 
             $biographyPlayableCharacter = $biographyPlayableCharacterManager->findOneById($id);
 
+
             return [
                 "view" => VIEW_DIR."wiki/biographyPlayableCharacter.php",
                 "data" => [
-                    "biographyPlayableCharacter" => $biographyPlayableCharacter
+                    "biographyPlayableCharacter" => $biographyPlayableCharacter,
+
                 ]
             ];
         

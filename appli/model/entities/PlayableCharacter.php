@@ -1,9 +1,9 @@
 <?php
-    namespace Model\Entities;
+        namespace Model\Entities;
 
-    use App\Entity;
+        use App\Entity;
 
-    final class PlayableCharacter extends Entity{
+        final class PlayableCharacter extends Entity{
 
         private $id;
         private $name;
@@ -18,6 +18,7 @@
         private $combatType;
         private $path;
         private $introduction;
+        private $quote;
 
         public function __construct($data){         
                 $this->hydrate($data);        
@@ -177,6 +178,18 @@
         public function setIntroduction($introduction)
         {
                 $this->introduction = $introduction;
+
+                return $this;
+        }
+
+        public function getQuote()
+        {
+                return $this->quote;
+        }
+
+        public function setQuote($quote)
+        {
+                $this->quote = $quote;
 
                 return $this;
         }

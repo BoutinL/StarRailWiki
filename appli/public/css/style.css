@@ -31,11 +31,10 @@ ol, ul {
     width: 50%;
     justify-content: space-around;  
     padding: 1rem;
-    background-color: aqua;
 }
 
 .nav-links{
-    font-size: 1.8rem;
+    font-size: 2rem;
     text-decoration: none;
     color: white;
 }
@@ -46,13 +45,24 @@ ol, ul {
 
 .card-container{
     background-color: rgb(36, 36, 36);
-    display: flex;
-    justify-content: center;
     border-radius: 30px;
     margin-left: 1rem;
     margin-right: 1rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title{
+    margin: 2rem;
+    font-size: 3rem;
+}
+
+.card-only{
+    display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -97,12 +107,13 @@ ol, ul {
 /* Biography Playable Character */
 
 .content{
-    background-color: rgb(36, 36, 36) !important;
+    background-color: rgb(36, 36, 36);
 }
 
 .navbar-details{
     display: flex;
     justify-content: space-evenly;
+    padding: 2rem;
 }
 
 .link-details{
@@ -111,18 +122,27 @@ ol, ul {
     color: white;
 }
 
-.biography-container{
-    display: flex;
-    flex-direction: column;
-}
-
 .introduction{
     display: inline-flex;
+    justify-content: center;
 }
 
-.bio-container{
+.splash-art{
+    width: 60rem;
+    border-radius: 100%;
+}
+
+.biography-container{
+    width: 30%;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.bio-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .bio-character-name{
