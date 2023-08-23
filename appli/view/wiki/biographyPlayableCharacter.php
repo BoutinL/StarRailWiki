@@ -3,10 +3,9 @@
 
 ?>
 
-<h1>Character Details</h1>
-<div class="content">
-    <section class="navbar-details">
-        <a class="link-details" href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $biographyPlayableCharacter->getId() ?>">Biographie</a>
+<div class="content" style="<?= $biographyPlayableCharacter->combatTypeCss() ?>">
+    <section class="navbar-details" style="<?= $biographyPlayableCharacter->combatTypeCssBis() ?>">
+        <a class="link-details" href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $biographyPlayableCharacter->getId() ?>">Biography</a>
         <a class="link-details" href="index.php?ctrl=wiki&action=abilitiesPlayableCharacter">Abilities</a>
         <a class="link-details" href="index.php?ctrl=wiki&action=ascendPlayableCharacter">Ascend</a>
         <a class="link-details" href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
@@ -27,7 +26,7 @@
                 <div class="path-combatType-box">
                     <div class="path-box">
                         <?= $biographyPlayableCharacter->getImgPath() ?>
-                        <span><?=$biographyPlayableCharacter->getPath()->getType() ?></span>
+                        <span>The <?=$biographyPlayableCharacter->getPath()->getType() ?></span>
                     </div>
                     <div class="combatType-box">
                         <?= $biographyPlayableCharacter->getImgCombatType() ?>

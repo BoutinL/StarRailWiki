@@ -2,7 +2,6 @@
     $playableCharacterList = $result["data"]['playableCharacterList'];
 ?>
 <section class="card-container">
-    <h1 class="title">Character list</h1>
     <div class="card-only">
         <?php foreach($playableCharacterList as $character){ ?>
             <a class="card-link" href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $character->getId() ?>">

@@ -30,7 +30,7 @@
                         }
                         ?>
                     </div>
-                    <div id="nav-right">
+                    <div class="nav-right" id="nav-right">
                     <?php
                         
                         if(App\Session::getUser()){
@@ -41,8 +41,8 @@
                         }
                         else{
                             ?>
-                            <a href="./view/security/login.php">Connexion</a>
-                            <a href="/security/register.html">Inscription</a>
+                            <a class="nav-links" href="./view/security/login.php">Connexion</a>
+                            <a class="nav-links" href="/security/register.html">Inscription</a>
                         <?php
                         }
                         
@@ -56,7 +56,7 @@
             </main>
         </div>
         <footer>
-            <p>&copy; 2023 - Star Rail Wiki - <a href="/home/WikiRules.html">Rules </a> - <a href="">Legal Notice</a></p>
+            <p class="footer">&copy; 2023 - Star Rail Wiki - <a href="">Rules </a> - <a href="">Legal Notice</a></p>
             <!--<button id="ajaxbtn">Surprise en Ajax !</button> -> cliqué <span id="nbajax">0</span> fois-->
         </footer>
     </div>

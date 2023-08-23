@@ -260,4 +260,60 @@
                 }
                 return $result;
         }
+
+        public function combatTypeCss(){
+                $cssProperties = "";
+                switch ($this->combatType->getType()) {
+                        case "Physical":
+                                $cssProperties = "border: solid #b2adad;";
+                                break;
+                        case "Fire":
+                                $cssProperties = "border: solid #f84f36;";
+                                break;
+                        case "Ice":
+                                $cssProperties = "border: solid #47c7fd";
+                                break;
+                        case "Lightning":
+                                $cssProperties = "border: solid #df54ff";
+                                break;
+                        case "Wind":
+                                $cssProperties = "border: solid #46de9d";
+                                break;
+                        case "Quantum":
+                                $cssProperties = "border: solid #8880ff";
+                                break;
+                        case "Imaginary":
+                                $cssProperties = "border: solid #ffeb61";
+                                break;
+                }
+                return $cssProperties;
+        }
+
+        public function combatTypeCssBis(){
+                $cssProperties = "";
+                switch ($this->combatType->getType()) {
+                        case "Physical":
+                                $cssProperties = "border-bottom: solid #b2adad;";
+                                break;
+                        case "Fire":
+                                $cssProperties = "border-bottom: solid #f84f36;";
+                                break;
+                        case "Ice":
+                                $cssProperties = "border-bottom: solid #47c7fd";
+                                break;
+                        case "Lightning":
+                                $cssProperties = "border-bottom: solid #df54ff";
+                                break;
+                        case "Wind":
+                                $cssProperties = "border-bottom: solid #46de9d";
+                                break;
+                        case "Quantum":
+                                $cssProperties = "border-bottom: solid #8880ff";
+                                break;
+                        case "Imaginary":
+                                $cssProperties = "border-bottom: solid #ffeb61";
+                                break;
+                }
+                return $cssProperties;
+        }
 }
