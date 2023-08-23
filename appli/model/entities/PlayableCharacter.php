@@ -193,4 +193,62 @@
 
                 return $this;
         }
+
+        public function getImgCombatType()
+        {
+                $result = "";
+                switch ($this->combatType->getType()) {
+                case "Physical":
+                        $result = '<img src="public/img/physical.png" alt="Combat Type Physical">';
+                        break;
+                case "Fire":
+                        $result = '<img src="public/img/fire.png" alt="Combat Type Fire">';
+                        break;
+                case "Ice":
+                        $result = '<img src="public/img/ice.png" alt="Combat Type Ice">';
+                        break;
+                case "Lightning":
+                        $result = '<img src="public/img/lightning.png" alt="Combat Type Lightning">';
+                        break;
+                case "Wind":
+                        $result = '<img src="public/img/wind.png" alt="Combat Type Wind">';
+                        break;
+                case "Quantum":
+                        $result = '<img src="public/img/quantum.png" alt="Combat Type Quantum">';
+                        break;
+                case "Imaginary":
+                        $result = '<img src="public/img/imaginary.png" alt="Combat Type Imaginary">';
+                        break;
+                }
+                return $result;
+        }
+
+        public function getImgPath()
+        {
+                $result = "";
+                switch ($this->path->getType()) {
+                case "Destruction":
+                        $result = '<img src="public/img/destruction.png" alt="Path Destruction">';
+                        break;
+                case "Hunt":
+                        $result = '<img src="public/img/hunt.png" alt="Path Hunt">';
+                        break;
+                case "Erudition":
+                        $result = '<img src="public/img/erudition.png" alt="Path Erudition">';
+                        break;
+                case "Harmony":
+                        $result = '<img src="public/img/harmony.png" alt="Path Harmony">';
+                        break;
+                case "Nihility":
+                        $result = '<img src="public/img/nihility.png" alt="Path Nihility">';
+                        break;
+                case "Preservation":
+                        $result = '<img src="public/img/preservation.png" alt="Path Preservation">';
+                        break;
+                case "Abundance":
+                        $result = '<img src="public/img/abundance.png" alt="Path Abundance">';
+                        break;
+                }
+                return $result;
+        }
 }

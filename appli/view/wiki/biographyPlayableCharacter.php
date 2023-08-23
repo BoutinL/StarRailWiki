@@ -1,5 +1,6 @@
 <?php
     $biographyPlayableCharacter = $result["data"]['biographyPlayableCharacter'];
+
 ?>
 
 <h1>Character Details</h1>
@@ -23,8 +24,16 @@
                     }?>
                 </span>
                 <p><?= $biographyPlayableCharacter->getQuote() ?></p>
-                <span><?= $biographyPlayableCharacter->getPath()->getType() ?></span>
-                <span><?= $biographyPlayableCharacter->getCombatType()->getType() ?></span>
+                <div class="path-combatType-box">
+                    <div class="path-box">
+                        <?= $biographyPlayableCharacter->getImgPath() ?>
+                        <span><?=$biographyPlayableCharacter->getPath()->getType() ?></span>
+                    </div>
+                    <div class="combatType-box">
+                        <?= $biographyPlayableCharacter->getImgCombatType() ?>
+                        <span><?= $biographyPlayableCharacter->getCombatType()->getType() ?></span>
+                    </div>
+                </div>
             </div>
             <div class="bio-content">
                 <span>Sex: <?= $biographyPlayableCharacter->getSex() ?></span>

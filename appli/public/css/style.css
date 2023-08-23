@@ -124,7 +124,7 @@ ol, ul {
 
 .introduction{
     display: inline-flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .splash-art{
@@ -147,6 +147,16 @@ ol, ul {
 
 .bio-character-name{
     font-size: 4rem;
+}
+
+.path-combatType-box{
+    display: inline-flex;
+    align-content: flex-start;
+}
+
+.path-box, .combatType-box{
+    display: inline-flex;
+    align-items: center;
 }
 
 /* Fin Biography Playable Character */
