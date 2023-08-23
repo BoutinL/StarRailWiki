@@ -108,23 +108,33 @@ ol, ul {
 
 .content{
     background-color: rgb(36, 36, 36);
+    margin-left: 4rem;
+    margin-right: 4rem;
+    margin-top: 2rem;
+    border-radius: 30px;
+    border: solid;  
 }
 
 .navbar-details{
     display: flex;
     justify-content: space-evenly;
-    padding: 2rem;
+    padding: 1rem;
+    border-bottom: solid;
 }
 
 .link-details{
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: white;
 }
 
 .introduction{
     display: inline-flex;
     justify-content: space-around;
+}
+
+.portrait{
+    margin-top: 2rem;
 }
 
 .splash-art{
@@ -151,7 +161,8 @@ ol, ul {
 
 .path-combatType-box{
     display: inline-flex;
-    align-content: flex-start;
+    width: 70%;
+    justify-content: space-between;
 }
 
 .path-box, .combatType-box{

@@ -40,7 +40,7 @@
                 <span>Specie: <?= $biographyPlayableCharacter->getSpecie() ?></span>
                 <span>Faction: <?= $biographyPlayableCharacter->getfaction() ?></span>
                 <span>World: <?= $biographyPlayableCharacter->getWorld() ?></span>
-                <span>Release date: <?= $biographyPlayableCharacter->getReleaseDate() ?></span>
+                <span>Release date: <?= $biographyPlayableCharacter->getReleaseDateFormat(); ?></span>
             </div>
             <div class="bio-content">
                 <p><?= $biographyPlayableCharacter->getIntroduction() ?></p>

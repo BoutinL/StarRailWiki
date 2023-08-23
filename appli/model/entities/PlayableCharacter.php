@@ -134,6 +134,13 @@
                 return $this;
         }
 
+        // Anti-slash pour faire référence non à une classe mais à la fonction native
+        public function getReleaseDateFormat()
+        {
+                $date = new \DateTime($this->releaseDate);
+                return $date->format("d-m-Y");
+        }
+
         public function getRate()
         {
                 return $this->rate;
@@ -194,6 +201,7 @@
                 return $this;
         }
 
+        // Charger l'image de l'élément
         public function getImgCombatType()
         {
                 $result = "";
@@ -223,6 +231,7 @@
                 return $result;
         }
 
+        // Charger l'image de la voie
         public function getImgPath()
         {
                 $result = "";
