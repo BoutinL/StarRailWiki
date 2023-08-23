@@ -23,7 +23,8 @@
                     }?>
                 </span>
                 <p><?= $biographyPlayableCharacter->getQuote() ?></p>
-
+                <span><?= $biographyPlayableCharacter->getPath()->getType() ?></span>
+                <span><?= $biographyPlayableCharacter->getCombatType()->getType() ?></span>
             </div>
             <div class="bio-content">
                 <span>Sex: <?= $biographyPlayableCharacter->getSex() ?></span>
