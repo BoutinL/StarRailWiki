@@ -8,6 +8,9 @@
     use Model\Managers\PlayableCharacterManager;
     use Model\Managers\PathManager;
     use Model\Managers\CombatTypeManager;
+    use Model\Managers\AbilityManager;
+    use Model\Managers\TagAbilityManager;
+    use Model\Managers\TypeAbilityManager;
 
     
     class WikiController extends AbstractController implements ControllerInterface{
@@ -48,23 +51,26 @@
         
         }
 
-        public function abilitiesPlayableCharacter($id)
+        public function abilityPlayableCharacter($id)
         {
 
-            $abilitiesPlayableCharacterManager = new AbilitiesPlayableCharacterManager();
-            $typeAbilitiesManager = new TypeAbilitiesManager();
-            $tagAbilitiesManager = new TagAbilitiesManager();
+            $abilityPlayableCharacterManager = new AbilityManager();
+            $typeAbilityManager = new TypeAbilityManager();
+            $tagAbilityManager = new TagAbilityManager();
+            $combatTypeManager = new CombatTypeManager();
+            $playableCharacterManager = new PlayableCharacterManager();
+            
 
-            $biographyPlayableCharacter = $biographyPlayableCharacterManager->findOneById($id);
-            $path = $pathManager->findOneById($id);
-            $combatType = $combatTypeManager->findOneById($id);
-
+            $playableCharacter = $playableCharacterManager->findOneById($id);
+            $playableCharacterCombatType = $playableCharacterManager->findOneById($id)->getCombatType()->getType();
+           ;
             return [
-                "view" => VIEW_DIR."wiki/biographyPlayableCharacter.php",
+                "view" => VIEW_DIR."wiki/abilityPlayableCharacter.php",
                 "data" => [
-                    "biographyPlayableCharacter" => $biographyPlayableCharacter,
-                    "path" => $path,
-                    "combatType" => $combatType
+                    "playableCharacter" => $playableCharacter,
+                    // "typeAbility" => $typeAbility,
+                    // "tagAbility" => $tagAbility,
+                    "playableCharacterCombatType" => $playableCharacterCombatType
                 ]
             ];
         

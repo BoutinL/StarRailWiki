@@ -140,7 +140,7 @@ ol, ul {
 }
 
 /* Marqueur onglet qui s'adapte au combatType */
-.combatTypeCssLinkPhysical:visited{
+.combatTypeCssLinkPhysical{
     color: #b2adad;
 }
 .combatTypeCssLinkFire:visited{

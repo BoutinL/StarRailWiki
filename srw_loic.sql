@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `path` (
   PRIMARY KEY (`id_path`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.path : ~0 rows (environ)
+-- Listage des données de la table srw_loic.path : ~7 rows (environ)
 INSERT INTO `path` (`id_path`, `type`) VALUES
 	(1, 'Destruction'),
 	(2, 'Hunt'),
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `tagability` (
   PRIMARY KEY (`id_tagAbility`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.tagability : ~0 rows (environ)
+-- Listage des données de la table srw_loic.tagability : ~7 rows (environ)
 INSERT INTO `tagability` (`id_tagAbility`, `type`) VALUES
 	(1, 'Single Target'),
 	(2, 'AoE'),
@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `typeability` (
   PRIMARY KEY (`id_typeAbility`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.typeability : ~0 rows (environ)
+-- Listage des données de la table srw_loic.typeability : ~5 rows (environ)
 INSERT INTO `typeability` (`id_typeAbility`, `type`) VALUES
 	(1, '		Basic ATK'),
 	(2, '	Skill'),
