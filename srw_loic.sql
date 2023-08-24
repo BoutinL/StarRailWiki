@@ -14,7 +14,36 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+-- Listage de la structure de la base pour srw_loic
+CREATE DATABASE IF NOT EXISTS `srw_loic` /*!40100 DEFAULT CHARACTER SET latin1 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `srw_loic`;
+
+-- Listage de la structure de table srw_loic. ability
+CREATE TABLE IF NOT EXISTS `ability` (
+  `id_ability` int NOT NULL AUTO_INCREMENT,
+  `lvl` int NOT NULL DEFAULT '0',
+  `type` varchar(50) DEFAULT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `tag` varchar(50) DEFAULT NULL,
+  `energy` varchar(50) DEFAULT NULL,
+  `dmg` varchar(50) DEFAULT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `playableCharacter_id` int NOT NULL,
+  PRIMARY KEY (`id_ability`),
+  KEY `character_id` (`playableCharacter_id`) USING BTREE,
+  CONSTRAINT `FK-ability_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- Listage des données de la table srw_loic.ability : ~0 rows (environ)
+
+-- Listage de la structure de table srw_loic. combattype
+CREATE TABLE IF NOT EXISTS `combattype` (
+  `id_combatType` int NOT NULL AUTO_INCREMENT,
+  `type` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_combatType`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table srw_loic.combattype : ~7 rows (environ)
 INSERT INTO `combattype` (`id_combatType`, `type`) VALUES
@@ -26,6 +55,20 @@ INSERT INTO `combattype` (`id_combatType`, `type`) VALUES
 	(6, 'Quantum'),
 	(7, 'Imaginary');
 
+-- Listage de la structure de table srw_loic. eidolon
+CREATE TABLE IF NOT EXISTS `eidolon` (
+  `id_eidolon` int NOT NULL AUTO_INCREMENT,
+  `lvl` int NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `icon` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `playableCharacter_id` int NOT NULL,
+  PRIMARY KEY (`id_eidolon`),
+  KEY `character_id` (`playableCharacter_id`) USING BTREE,
+  CONSTRAINT `FK-eidolon_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
 -- Listage des données de la table srw_loic.eidolon : ~6 rows (environ)
 INSERT INTO `eidolon` (`id_eidolon`, `lvl`, `name`, `description`, `icon`, `image`, `playableCharacter_id`) VALUES
 	(1, 1, 'Chilhood', 'After "Victory Rush" is triggered, Himeko\'s SPD increases by 20% for 2 turn(s).', 'https://static.wikia.nocookie.net/houkai-star-rail/images/4/4d/Eidolon_Childhood.png/revision/latest?cb=20230430095516', NULL, 1),
@@ -34,6 +77,13 @@ INSERT INTO `eidolon` (`id_eidolon`, `lvl`, `name`, `description`, `icon`, `imag
 	(4, 4, 'Dedication', 'When Himeko\'s Skill inflicts Weakness Break on an enemy, she gains 1 extra point(s) of Charge.', 'https://static.wikia.nocookie.net/houkai-star-rail/images/3/38/Eidolon_Dedication.png/revision/latest?cb=20230430095721', NULL, 1),
 	(5, 5, 'Aspiration', 'Ultimate Lv. +2, up to a maximum of Lv. 15 / Talent Lv. +2, up to a maximum of Lv. 15.', 'https://static.wikia.nocookie.net/houkai-star-rail/images/3/37/Eidolon_Aspiration.png/revision/latest?cb=20230430095817', NULL, 1),
 	(6, 6, 'Trailblaze!', 'Ultimate deals DMG 2 extra times, each of which deals Fire DMG equal to 40% of the original DMG to a random enemy.', 'https://static.wikia.nocookie.net/houkai-star-rail/images/2/2f/Eidolon_Trailblaze%21.png/revision/latest?cb=20230430095830', NULL, 1);
+
+-- Listage de la structure de table srw_loic. path
+CREATE TABLE IF NOT EXISTS `path` (
+  `id_path` int NOT NULL AUTO_INCREMENT,
+  `type` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_path`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table srw_loic.path : ~7 rows (environ)
 INSERT INTO `path` (`id_path`, `type`) VALUES
@@ -45,7 +95,30 @@ INSERT INTO `path` (`id_path`, `type`) VALUES
 	(6, 'Preservation'),
 	(7, 'Abundance');
 
--- Listage des données de la table srw_loic.playablecharacter : ~30 rows (environ)
+-- Listage de la structure de table srw_loic. playablecharacter
+CREATE TABLE IF NOT EXISTS `playablecharacter` (
+  `id_playableCharacter` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `image` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `rarity` int NOT NULL,
+  `sex` varchar(50) DEFAULT NULL,
+  `specie` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT '???',
+  `faction` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT '???',
+  `world` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT '???',
+  `quote` varchar(255) DEFAULT '???',
+  `releaseDate` date NOT NULL,
+  `rate` int DEFAULT NULL,
+  `combatType_id` int NOT NULL,
+  `path_id` int NOT NULL,
+  `introduction` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+  PRIMARY KEY (`id_playableCharacter`) USING BTREE,
+  KEY `combatType_id` (`combatType_id`),
+  KEY `path_id` (`path_id`),
+  CONSTRAINT `FK-playableCharacter_combatType` FOREIGN KEY (`combatType_id`) REFERENCES `combattype` (`id_combatType`),
+  CONSTRAINT `FK-playableCharacter_path` FOREIGN KEY (`path_id`) REFERENCES `path` (`id_path`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+
+-- Listage des données de la table srw_loic.playablecharacter : ~11 rows (environ)
 INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarity`, `sex`, `specie`, `faction`, `world`, `quote`, `releaseDate`, `rate`, `combatType_id`, `path_id`, `introduction`) VALUES
 	(1, 'Himeko', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Himeko-Splash-Art-1024x877.png', 5, 'Female', 'Human', 'The Nameless', 'Astal Express', 'Alright, crew! This world is the target of our next trailblazing expedition!', '2023-04-26', NULL, 2, 3, 'An adventurous scientist who encountered and repaired a stranded train as a child, she now ventures across the universe with the Astral Express as its navigator. She is also an Emanator of the Trailblaze.'),
 	(2, 'March 7th', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-March-7th-Splash-Art-1024x877.png', 4, 'Female', '???', 'The Nameless', 'Astral Express', 'Well would you listen to that! I saved everyone without causing any trouble! You\'re pretty awesome, March 7th!', '2023-04-26', NULL, 3, 6, 'An enthusiastic girl who was saved from eternal ice by the Astral Express Crew, and has the unique ability of being able to use "Six-Phased Ice." When she awoke, she knew nothing of herself or her past, and decided to name herself after the date of her rebirth, "March 7th." She takes many photos using her camera in hopes of discovering a memento from her past.'),
