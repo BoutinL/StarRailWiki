@@ -316,4 +316,32 @@
                 }
                 return $cssProperties;
         }
+
+        public function combatTypeCssLink(){
+                $cssProperties = "";
+                switch ($this->combatType->getType()) {
+                        case "Physical":
+                                $cssProperties = "color: #b2adad;";
+                                break;
+                        case "Fire":
+                                $cssProperties = "color: #f84f36;";
+                                break;
+                        case "Ice":
+                                $cssProperties = "color: #47c7fd";
+                                break;
+                        case "Lightning":
+                                $cssProperties = "color: #df54ff";
+                                break;
+                        case "Wind":
+                                $cssProperties = "color: #46de9d";
+                                break;
+                        case "Quantum":
+                                $cssProperties = "color: #8880ff";
+                                break;
+                        case "Imaginary":
+                                $cssProperties = "color: #ffeb61";
+                                break;
+                }
+                return $cssProperties;
+        }
 }

@@ -5,10 +5,10 @@
 
 <div class="content" style="<?= $biographyPlayableCharacter->combatTypeCss() ?>">
     <section class="navbar-details" style="<?= $biographyPlayableCharacter->combatTypeCssBis() ?>">
-        <a class="link-details" href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $biographyPlayableCharacter->getId() ?>">Biography</a>
-        <a class="link-details" href="index.php?ctrl=wiki&action=abilitiesPlayableCharacter">Abilities</a>
-        <a class="link-details" href="index.php?ctrl=wiki&action=ascendPlayableCharacter">Ascend</a>
-        <a class="link-details" href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
+        <a class="link-details" style="<?= $biographyPlayableCharacter->combatTypeCssLink() ?>" href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $biographyPlayableCharacter->getId() ?>">Biography</a>
+        <a class="link-details" style="<?= $biographyPlayableCharacter->combatTypeCssLink() ?>" href="index.php?ctrl=wiki&action=abilitiesPlayableCharacter">Abilities</a>
+        <a class="link-details" style="<?= $biographyPlayableCharacter->combatTypeCssLink() ?>" href="index.php?ctrl=wiki&action=ascendPlayableCharacter">Ascend</a>
+        <a class="link-details" style="<?= $biographyPlayableCharacter->combatTypeCssLink() ?>" href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
     </section>
     <section class="introduction">
         <figure class="portrait">
@@ -22,8 +22,9 @@
                         echo '<img src="public/img/level_star.png' . '" alt="rarity level">';
                     }?>
                 </span>
-                <p><?= $biographyPlayableCharacter->getQuote() ?></p>
-                <div class="path-combatType-box">
+                <p>" <?= $biographyPlayableCharacter->getQuote() ?> "</p>
+            </div>
+            <div class="path-combatType-box">
                     <div class="path-box">
                         <?= $biographyPlayableCharacter->getImgPath() ?>
                         <span>The <?=$biographyPlayableCharacter->getPath()->getType() ?></span>
@@ -32,7 +33,6 @@
                         <?= $biographyPlayableCharacter->getImgCombatType() ?>
                         <span><?= $biographyPlayableCharacter->getCombatType()->getType() ?></span>
                     </div>
-                </div>
             </div>
             <div class="bio-content">
                 <span>Sex: <?= $biographyPlayableCharacter->getSex() ?></span>

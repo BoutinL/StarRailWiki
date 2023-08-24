@@ -139,6 +139,10 @@ ol, ul {
     color: white;
 }
 
+.link-details:visited{
+    color: red;
+}
+
 .introduction{
     display: inline-flex;
     justify-content: space-around;
