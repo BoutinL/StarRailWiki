@@ -47,4 +47,26 @@
             ];
         
         }
+
+        public function abilitiesPlayableCharacter($id)
+        {
+
+            $abilitiesPlayableCharacterManager = new AbilitiesPlayableCharacterManager();
+            $typeAbilitiesManager = new TypeAbilitiesManager();
+            $tagAbilitiesManager = new TagAbilitiesManager();
+
+            $biographyPlayableCharacter = $biographyPlayableCharacterManager->findOneById($id);
+            $path = $pathManager->findOneById($id);
+            $combatType = $combatTypeManager->findOneById($id);
+
+            return [
+                "view" => VIEW_DIR."wiki/biographyPlayableCharacter.php",
+                "data" => [
+                    "biographyPlayableCharacter" => $biographyPlayableCharacter,
+                    "path" => $path,
+                    "combatType" => $combatType
+                ]
+            ];
+        
+        }
     }

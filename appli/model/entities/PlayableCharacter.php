@@ -321,25 +321,25 @@
                 $cssProperties = "";
                 switch ($this->combatType->getType()) {
                         case "Physical":
-                                $cssProperties = "color: #b2adad;";
+                                $cssProperties = "combatTypeCssLinkPhysical";
                                 break;
                         case "Fire":
-                                $cssProperties = "color: #f84f36;";
+                                $cssProperties = "combatTypeCssLinkFire";
                                 break;
                         case "Ice":
-                                $cssProperties = "color: #47c7fd";
+                                $cssProperties = "combatTypeCssLinkIce";
                                 break;
                         case "Lightning":
-                                $cssProperties = "color: #df54ff";
+                                $cssProperties = "combatTypeCssLinkLightning";
                                 break;
                         case "Wind":
-                                $cssProperties = "color: #46de9d";
+                                $cssProperties = "combatTypeCssLinkWind";
                                 break;
                         case "Quantum":
-                                $cssProperties = "color: #8880ff";
+                                $cssProperties = "combatTypeCssLinkQuantum";
                                 break;
                         case "Imaginary":
-                                $cssProperties = "color: #ffeb61";
+                                $cssProperties = "combatTypeCssLinkImaginary";
                                 break;
                 }
                 return $cssProperties;

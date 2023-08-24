@@ -1,11 +1,16 @@
 <?php
-$playableCharacterDetail = $result["data"]['playableCharacterDetails'];
-    
+    $AbilitiesPlayableCharacter = $result["data"]['AbilitiesPlayableCharacter'];
+
 ?>
 
-<h1>Character Details</h1>
-
-<a href="index.php?ctrl=wiki&action=biographiePlayableCharacter">Biographie</a>
-<a href="index.php?ctrl=wiki&action=abilitiesPlayableCharacter">Abilities</a>
-<a href="index.php?ctrl=wiki&action=ascendPlayableCharacter">Ascend</a>
-<a href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
+<div class="content" style="<?= $AbilitiesPlayableCharacter->combatTypeCss() ?>">
+    <section class="navbar-details" style="<?= $AbilitiesPlayableCharacter->combatTypeCssBis() ?>">
+        <a class="link-details <?= $AbilitiesPlayableCharacter->combatTypeCssLink() ?>" style="" href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $AbilitiesPlayableCharacter->getId() ?>">Biography</a>
+        <a class="link-details <?= $AbilitiesPlayableCharacter->combatTypeCssLink() ?>" href="index.php?ctrl=wiki&action=abilitiesPlayableCharacter&id=<?= $AbilitiesPlayableCharacter->getId() ?>">Abilities</a>
+        <a class="link-details <?= $AbilitiesPlayableCharacter->combatTypeCssLink() ?>" href="index.php?ctrl=wiki&action=ascendPlayableCharacter">Ascend</a>
+        <a class="link-details <?= $AbilitiesPlayableCharacter->combatTypeCssLink() ?>" href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
+    </section>
+    <div class="abilities-content">
+        
+    </div>
+</div>

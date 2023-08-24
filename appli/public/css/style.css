@@ -139,8 +139,27 @@ ol, ul {
     color: white;
 }
 
-.link-details:visited{
-    color: red;
+/* Marqueur onglet qui s'adapte au combatType */
+.combatTypeCssLinkPhysical:visited{
+    color: #b2adad;
+}
+.combatTypeCssLinkFire:visited{
+    color: #f84f36
+}
+.combatTypeCssLinkIce:visited{
+    color: #47c7fd;
+}
+.combatTypeCssLinkLightning:visited{
+    color: #df54ff;
+}
+.combatTypeCssLinkWind:visited{
+    color: #46de9d;
+}
+.combatTypeCssLinkQuantum:visited{
+    color: #8880ff;
+}
+.combatTypeCssLinkImaginary:visited{
+    color: #ffeb61;
 }
 
 .introduction{
