@@ -13,17 +13,21 @@
     </section>
     <section class="abilities-content">
         <?php foreach($abilitiesPlayableCharacter as $ability){ ?>
-            <div class="ability">
+            <table>
                 <div class="ability-details">
-                    <span>Type: <?= $ability->getTypeAbility()->getType() ?></span>
-                    <span>Name: <?= $ability->getName() ?></span>
-                    <span>Energy Cost: <?= $ability->getEnergyCost() ?></span>
-                    <span>Energy Generation: <?= $ability->getEnergyGeneration() ?></span>
-                    <span>Dammage: <?= $ability->getDmg() ?></span>
-                    <span>Tag: <?= $ability->getTagAbility()->getType() ?></span>
+                    <tr>
+                        <td><?= $ability->getTypeAbility()->getType()?></td>
+                        <td><?= $ability->getName() ?></td>
+                        <td>Energy Cost: <?= $ability->getEnergyCost() ?></td>
+                        <td>Energy Generation: <?= $ability->getEnergyGeneration() ?></td>
+                        <td>Dammage: <?= $ability->getDmg() ?></td>
+                        <td><?= $ability->getTagAbility()->getType() ?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6"><?= $ability->getDescription() ?></td>
+                    </tr>
                 </div>
-                <p><?= $ability->getDescription() ?></p>
-            </div>
+            </table>
         <?php } ?>
     </section>
 </div>

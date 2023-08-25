@@ -20,7 +20,7 @@
             <header>
                 <nav class="nav">
                     <div class="nav-left" id="nav-left">
-                        <a class="nav-links" href="/">Home</a>
+                        <a class="nav-links" href="http://localhost/StarRailWiki/appli/">Home</a>
                         <a class="nav-links" href="index.php?ctrl=wiki&action=characterList">Character List</a>
                         <?php
                         if(App\Session::isAdmin()){
