@@ -14,16 +14,15 @@
     <section class="abilities-content">
         <?php foreach($abilitiesPlayableCharacter as $ability){ ?>
             <div class="ability">
-                <div>
-                    
+                <div class="ability-details">
+                    <span>Type: <?= $ability->getTypeAbility()->getType() ?></span>
                     <span>Name: <?= $ability->getName() ?></span>
-                    <span>Energy Cost:<?= $ability->getEnergyCost() ?></span>
+                    <span>Energy Cost: <?= $ability->getEnergyCost() ?></span>
                     <span>Energy Generation: <?= $ability->getEnergyGeneration() ?></span>
                     <span>Dammage: <?= $ability->getDmg() ?></span>
+                    <span>Tag: <?= $ability->getTagAbility()->getType() ?></span>
                 </div>
-                <div>
-                    <p><?= $ability->getDescription() ?></p>
-                </div>
+                <p><?= $ability->getDescription() ?></p>
             </div>
         <?php } ?>
     </section>

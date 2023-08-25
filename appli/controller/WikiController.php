@@ -56,10 +56,13 @@
             $abilitiesPlayableCharacterManager = new AbilityManager();
             $playableCharacterManager = new PlayableCharacterManager();
             $combatTypeManager = new CombatTypeManager();
+            // $typeAbilityManager = new TypeAbilityManager();
+            // $tagAbilityManager = new TagAbilityManager();
 
             $abilitiesPlayableCharacter = $abilitiesPlayableCharacterManager->getAbilitiesByPlayableCharacterId($id);
             $playableCharacter = $playableCharacterManager->findOneById($id);
             $playableCharacterCombatType = $playableCharacterManager->findOneById($id)->getCombatType()->getType();
+            // $typeAbility = $typeAbilityManager
 
             return [
                 "view" => VIEW_DIR."wiki/abilityPlayableCharacter.php",
