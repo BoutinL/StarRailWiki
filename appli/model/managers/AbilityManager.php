@@ -14,4 +14,16 @@
             parent::connect();
         }
 
+        public function getAbilitiesByPlayableCharacterId($id){
+
+            $sql = "SELECT a.*
+            FROM " .$this->tableName. " a
+            INNER JOIN playablecharacter p ON p.id_playableCharacter = a.playableCharacter_id
+            WHERE a.playableCharacter_id = :id";
+
+            return $this->getMultipleResults(
+                DAO::select($sql, ["id"=>$id]), 
+                $this->className
+            );
+        }
     }

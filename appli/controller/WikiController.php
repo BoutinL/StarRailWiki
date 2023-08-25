@@ -53,23 +53,22 @@
 
         public function abilityPlayableCharacter($id)
         {
-
-            $abilityPlayableCharacterManager = new AbilityManager();
-            $typeAbilityManager = new TypeAbilityManager();
-            $tagAbilityManager = new TagAbilityManager();
-            $combatTypeManager = new CombatTypeManager();
+            $abilitiesPlayableCharacterManager = new AbilityManager();
             $playableCharacterManager = new PlayableCharacterManager();
-            
+            $combatTypeManager = new CombatTypeManager();
 
+            $abilitiesPlayableCharacter = $abilitiesPlayableCharacterManager->getAbilitiesByPlayableCharacterId($id);
             $playableCharacter = $playableCharacterManager->findOneById($id);
             $playableCharacterCombatType = $playableCharacterManager->findOneById($id)->getCombatType()->getType();
-           ;
+
             return [
                 "view" => VIEW_DIR."wiki/abilityPlayableCharacter.php",
                 "data" => [
+                    // Abilities data
+                    "abilitiesPlayableCharacter" => $abilitiesPlayableCharacter, 
+                    // Character data
                     "playableCharacter" => $playableCharacter,
-                    // "typeAbility" => $typeAbility,
-                    // "tagAbility" => $tagAbility,
+                    // Combat Type of the current character
                     "playableCharacterCombatType" => $playableCharacterCombatType
                 ]
             ];
