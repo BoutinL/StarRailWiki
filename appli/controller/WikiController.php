@@ -57,12 +57,9 @@
         {
             $abilitiesPlayableCharacterManager = new AbilityManager();
             $playableCharacterManager = new PlayableCharacterManager();
-            $combatTypeManager = new CombatTypeManager();
 
             $abilitiesPlayableCharacter = $abilitiesPlayableCharacterManager->getAbilitiesByPlayableCharacterId($id);
             $playableCharacter = $playableCharacterManager->findOneById($id);
-            $playableCharacterCombatType = $playableCharacterManager->findOneById($id)->getCombatType()->getType();
-            // $typeAbility = $typeAbilityManager
 
             return [
                 "view" => VIEW_DIR."wiki/abilityPlayableCharacter.php",
@@ -71,27 +68,30 @@
                     "abilitiesPlayableCharacter" => $abilitiesPlayableCharacter, 
                     // Character data
                     "playableCharacter" => $playableCharacter,
-                    // Combat Type of the current character
-                    "playableCharacterCombatType" => $playableCharacterCombatType
                 ]
             ];
-        
         }
 
         public function ascendPlayableCharacter($id)
         {
+            $tracePlayableCharacterManager = new TraceManager();
+            $eidolonPlayableCharacterManager = new EidolonManager();
             $playableCharacterManager = new PlayableCharacterManager();
-            $combatTypeManager = new CombatTypeManager();
+
+            $tracePlayableCharacter = $tracePlayableCharacterManager->getTraceByPlayableCharacterId($id);
+            $eidolonPlayableCharacter = $eidolonPlayableCharacterManager->getEidolonByPlayableCharacterId($id);
+            $playableCharacter = $playableCharacterManager->findOneById($id);
 
             return [
                 "view" => VIEW_DIR."wiki/ascendPlayableCharacter.php",
                 "data" => [
+                    // Trace data
+                    "tracePlayableCharacter" => $tracePlayableCharacter,
+                    // eidolon data
+                    "eidolonPlayableCharacter" => $eidolonPlayableCharacter,
                     // Character data
                     "playableCharacter" => $playableCharacter,
-                    // Combat Type of the current character
-                    "playableCharacterCombatType" => $playableCharacterCombatType
                 ]
             ];
-        
         }
     }

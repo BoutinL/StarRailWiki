@@ -214,14 +214,11 @@ ol, ul {
     margin: 2rem;
 }
 
-.ability{
-
-}
-
 table {
     border-collapse: collapse;
     width: 100%;
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 td, tr{
@@ -231,3 +228,19 @@ td, tr{
 }
 
 /* Fin Abilities Playable Character */
+
+/* Début Ascend Playable Character */
+
+.ascend-content{
+    margin: 2rem;
+}
+
+.eidolon-nbr{
+    width: auto;
+}
+
+.eidolon-name{
+    width: 100%;
+}
+
+/* Fin Ascend Playable Character */

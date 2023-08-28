@@ -1,33 +1,45 @@
 <?php
-    $abilitiesPlayableCharacter = $result["data"]['abilitiesPlayableCharacter'];
+    $tracePlayableCharacter = $result["data"]['tracePlayableCharacter'];
+    $eidolonPlayableCharacter = $result["data"]['eidolonPlayableCharacter'];
     $playableCharacter = $result["data"]['playableCharacter'];
-    $playableCharacterCombatType = $result["data"]['playableCharacterCombatType'];
 ?>
 
 <div class="content" style="<?= $playableCharacter->combatTypeCss() ?>">
     <section class="navbar-details" style="<?= $playableCharacter->combatTypeCssBis() ?>">
         <a class="link-details" href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $playableCharacter->getId() ?>">Biography</a>
         <a class="link-details" href="index.php?ctrl=wiki&action=abilityPlayableCharacter&id=<?= $playableCharacter->getId() ?>">Abilities</a>
-        <a class="link-details <?= $playableCharacter->combatTypeCssLink() ?>" href="index.php?ctrl=wiki&action=ascendPlayableCharacter">Ascend</a>
+        <a class="link-details <?= $playableCharacter->combatTypeCssLink() ?>" href="index.php?ctrl=wiki&action=ascendPlayableCharacter&id=<?= $playableCharacter->getId() ?>">Ascend</a>
         <a class="link-details" href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
     </section>
     <section class="ascend-content">
-        <?php foreach($abilitiesPlayableCharacter as $ability){ ?>
-            <table>
-                <div class="ascend-details">
+        <div class="eidolon-container">
+            <h1>Eidolon</h1>
+            <?php foreach($eidolonPlayableCharacter as $eidolon){?>
+                <table class="eidolon-details">
                     <tr>
-                        <td><?= $ability->getTypeAbility()->getType()?></td>
-                        <td><?= $ability->getName() ?></td>
-                        <td>Energy Cost: <?= $ability->getEnergyCost() ?></td>
-                        <td>Energy Generation: <?= $ability->getEnergyGeneration() ?></td>
-                        <td>Dammage: <?= $ability->getDmg() ?></td>
-                        <td><?= $ability->getTagAbility()->getType() ?></td>
+                        <td class="eidolon-nbr"><?= $eidolon->getNbr() ?></td>
+                        <td class="eidolon-name"><?= $eidolon->getName() ?></td>
                     </tr>
                     <tr>
-                        <td colspan="6"><?= $ability->getDescription() ?></td>
+                        <td colspan="2"><?= $eidolon->getEffect() ?></td>
                     </tr>
-                </div>
-            </table>
-        <?php } ?>
+                </table>
+            <?php } ?>
+        </div>
+        <div class="trace-container">
+            <h1>Trace</h1>
+            <?php foreach($tracePlayableCharacter as $trace){?>
+                <table class="trace-details">
+                    <tr>
+                        <td><?= $trace->getName() ?></td>
+                        <td>Lvl: <?= $trace->getAscend()->getCapLvl() ?></td>
+                        <td>Ascend: <?= $trace->getAscend()->getNbr() ?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><?= $trace->getEffect() ?></td>
+                    </tr>
+                </table>
+            <?php } ?>
+        </div>
     </section>
 </div>

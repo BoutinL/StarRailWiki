@@ -8,7 +8,7 @@ final class Trace extends Entity{
         private $id;
         private $name;
         private $effect;
-        private $ascension;
+        private $ascend;
         private $playableCharacter;
 
         public function __construct($data){         
@@ -53,14 +53,14 @@ final class Trace extends Entity{
                 return $this;
         }
 
-        public function getAscension()
+        public function GetAscend()
         {
-                return $this->ascension;
+                return $this->ascend;
         }
 
-        public function setAscension($ascension)
+        public function setAscend($ascend)
         {
-                $this->ascension = $ascension;
+                $this->ascend = $ascend;
 
                 return $this;
         }
