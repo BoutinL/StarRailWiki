@@ -168,7 +168,8 @@ ol, ul {
 }
 
 .introduction{
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     margin: 1rem;
 }

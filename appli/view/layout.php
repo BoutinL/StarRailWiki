@@ -41,8 +41,8 @@
                         }
                         else{
                             ?>
-                            <a class="nav-links" href="./view/security/login.php">Connexion</a>
-                            <a class="nav-links" href="/security/register.html">Inscription</a>
+                            <a class="nav-links" href="index.php?ctrl=security&action=login">Login</a>
+                            <a class="nav-links" href="index.php?ctrl=security&action=register">Register</a>
                         <?php
                         }
                         
