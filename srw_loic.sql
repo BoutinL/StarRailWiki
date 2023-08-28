@@ -38,9 +38,9 @@ CREATE TABLE IF NOT EXISTS `ability` (
   CONSTRAINT `FK-ability_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`),
   CONSTRAINT `FK-ability_tagAbility` FOREIGN KEY (`tagAbility_id`) REFERENCES `tagability` (`id_tagAbility`),
   CONSTRAINT `FK-ability_typeAbility` FOREIGN KEY (`typeAbility_id`) REFERENCES `typeability` (`id_typeAbility`)
-) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.ability : ~148 rows (environ)
+-- Listage des données de la table srw_loic.ability : ~8 rows (environ)
 INSERT INTO `ability` (`id_ability`, `name`, `description`, `energyGeneration`, `energyCost`, `dmg`, `icon`, `playableCharacter_id`, `typeAbility_id`, `tagAbility_id`) VALUES
 	(1, 'Lightning Rush', 'Deals Lightning DMG equal to 50%–110% of Arlan\'s ATK to a single enemy.', 20, 0, 30, NULL, 13, 1, 1),
 	(2, 'Shackle Breaker', 'Consumes Arlan\'s HP equal to 15% of his Max HP to deal Lightning DMG equal to 120%–264% of Arlan\'s ATK to a single enemy. If Arlan does not have sufficient HP, his HP will be reduced to 1 after using his Skill.', 30, 0, 60, NULL, 13, 2, 1),
@@ -189,7 +189,33 @@ INSERT INTO `ability` (`id_ability`, `name`, `description`, `energyGeneration`, 
 	(145, 'RIP Home Run', 'Deals Physical DMG equal to 62.5%–137.5% of the Trailblazer\'s ATK to a single enemy and enemies adjacent to it.', 30, 0, 60, NULL, 29, 2, 3),
 	(146, 'Stardust Ace	', 'Choose between two attack modes to deliver a full strike.', 5, 120, 60, NULL, 29, 3, 3),
 	(147, 'Perfect Pickoff', 'Each time after this character inflicts Weakness Break on an enemy, ATK increases by 10%–22%. This effect stacks up to 2 time(s).', 0, 0, 0, NULL, 29, 4, 7),
-	(148, 'Immortal Third Strike', 'Immediately heals all allies for 15% of their respective Max HP after using this Technique.', 0, 0, 0, NULL, 29, 5, 4);
+	(148, 'Immortal Third Strike', 'Immediately heals all allies for 15% of their respective Max HP after using this Technique.', 0, 0, 0, NULL, 29, 5, 4),
+	(149, 'Ice-Breaking Light', 'Deals Fire DMG equal to 50%–110% of Trailblazer\'s ATK to a single enemy and gains 1 stack of Magma Will.', 20, 0, 30, NULL, 30, 1, 1),
+	(150, 'Ice-Breaking Light', 'Consumes 4 stacks of Magma Will to enhance Basic ATK, dealing Fire DMG equal to 90%–146.25% of the Trailblazer\'s ATK to a single enemy and Fire DMG to equal to 36%–58.5% of the Trailblazer\'s ATK to enemies adjacent to it.', 30, 0, 60, NULL, 30, 1, 3),
+	(151, 'Ever-Burning Amber', 'Increases the Trailblazer\'s DMG Reduction by 40%–52% and gains 1 stack of Magma Will, with a 100% base chance to Taunt all enemies for 1 turn(s).', 30, 0, 0, NULL, 30, 2, 5),
+	(152, '	War-Flaming Lance', 'Deals Fire DMG equal to 50%–110% of the Trailblazer\'s ATK plus 75%–165% of the Trailblazer\'s DEF to all enemies. The next Basic ATK will be automatically enhanced and does not cost Magma Will.', 5, 120, 0, NULL, 30, 3, 2),
+	(153, '	Treasure of the Architects', 'Each time the Trailblazer is hit, they gain 1 stack of Magma Will for a max of 8 stack(s).\r\nWhen Magma Will has no fewer than 4 stacks, the Trailblazer\'s Basic ATK becomes enhanced, dealing DMG to a single enemy and enemies adjacent to it.\r\nWhen the Trailblazer uses Basic ATK, Skill, or Ultimate, apply a Shield to all allies that absorbs DMG equal to 4%–6.4% of the Trailblazer\'s DEF plus 20–89. The Shield lasts for 2 turn(s).', 0, 0, 0, NULL, 30, 4, 7),
+	(154, 'Call of the Guardian', 'After using Technique, at the start of the next battle, gains a Shield that absorbs DMG equal to 30% of the Trailblazer\'s DEF plus 384 for 1 turn(s).', 0, 0, 0, NULL, 30, 5, 5);
+
+-- Listage de la structure de table srw_loic. ascend
+CREATE TABLE IF NOT EXISTS `ascend` (
+  `id_ascend` int NOT NULL AUTO_INCREMENT,
+  `capLvl` int DEFAULT NULL,
+  `nbr` int NOT NULL,
+  PRIMARY KEY (`id_ascend`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+-- Listage des données de la table srw_loic.ascend : ~8 rows (environ)
+INSERT INTO `ascend` (`id_ascend`, `capLvl`, `nbr`) VALUES
+	(1, 0, 1),
+	(2, 20, 2),
+	(3, 30, 3),
+	(4, 40, 4),
+	(5, 50, 5),
+	(6, 60, 6),
+	(7, 70, 7),
+	(8, 75, 7),
+	(9, 80, 7);
 
 -- Listage de la structure de table srw_loic. combattype
 CREATE TABLE IF NOT EXISTS `combattype` (
@@ -211,25 +237,37 @@ INSERT INTO `combattype` (`id_combatType`, `type`) VALUES
 -- Listage de la structure de table srw_loic. eidolon
 CREATE TABLE IF NOT EXISTS `eidolon` (
   `id_eidolon` int NOT NULL AUTO_INCREMENT,
-  `lvl` int NOT NULL,
+  `nbr` int NOT NULL,
   `name` varchar(50) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `icon` varchar(255) DEFAULT NULL,
+  `effect` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `icon` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `playableCharacter_id` int NOT NULL,
   PRIMARY KEY (`id_eidolon`),
   KEY `character_id` (`playableCharacter_id`) USING BTREE,
   CONSTRAINT `FK-eidolon_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table srw_loic.eidolon : ~6 rows (environ)
-INSERT INTO `eidolon` (`id_eidolon`, `lvl`, `name`, `description`, `icon`, `image`, `playableCharacter_id`) VALUES
+INSERT INTO `eidolon` (`id_eidolon`, `nbr`, `name`, `effect`, `icon`, `image`, `playableCharacter_id`) VALUES
 	(1, 1, 'Chilhood', 'After "Victory Rush" is triggered, Himeko\'s SPD increases by 20% for 2 turn(s).', 'https://static.wikia.nocookie.net/houkai-star-rail/images/4/4d/Eidolon_Childhood.png/revision/latest?cb=20230430095516', NULL, 1),
 	(2, 2, 'Convergence', 'Deals 15% more DMG to enemies whose HP percentage is 50% or less.', 'https://static.wikia.nocookie.net/houkai-star-rail/images/a/ac/Eidolon_Convergence.png/revision/latest?cb=20230430095605', NULL, 1),
 	(3, 3, 'Poised', 'Skill Lv. +2, up to a maximum of Lv. 15 / Basic ATK Lv. +1, up to a maximum of Lv. 10.', 'https://static.wikia.nocookie.net/houkai-star-rail/images/c/c4/Eidolon_Poised.png/revision/latest?cb=20230430095643', NULL, 1),
 	(4, 4, 'Dedication', 'When Himeko\'s Skill inflicts Weakness Break on an enemy, she gains 1 extra point(s) of Charge.', 'https://static.wikia.nocookie.net/houkai-star-rail/images/3/38/Eidolon_Dedication.png/revision/latest?cb=20230430095721', NULL, 1),
 	(5, 5, 'Aspiration', 'Ultimate Lv. +2, up to a maximum of Lv. 15 / Talent Lv. +2, up to a maximum of Lv. 15.', 'https://static.wikia.nocookie.net/houkai-star-rail/images/3/37/Eidolon_Aspiration.png/revision/latest?cb=20230430095817', NULL, 1),
-	(6, 6, 'Trailblaze!', 'Ultimate deals DMG 2 extra times, each of which deals Fire DMG equal to 40% of the original DMG to a random enemy.', 'https://static.wikia.nocookie.net/houkai-star-rail/images/2/2f/Eidolon_Trailblaze%21.png/revision/latest?cb=20230430095830', NULL, 1);
+	(6, 6, 'Trailblaze!', 'Ultimate deals DMG 2 extra times, each of which deals Fire DMG equal to 40% of the original DMG to a random enemy.', 'https://static.wikia.nocookie.net/houkai-star-rail/images/2/2f/Eidolon_Trailblaze%21.png/revision/latest?cb=20230430095830', NULL, 1),
+	(7, 1, 'To the Bitter End', 'When HP is lower than or equal to 50% of Max HP, increases Skill\'s DMG by 10%.', NULL, NULL, 13),
+	(8, 2, 'Breaking Free', 'Using Skill or Ultimate removes 1 debuff from oneself.', NULL, NULL, 13),
+	(9, 3, 'Power Through', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', NULL, NULL, 13),
+	(10, 4, 'Turn the Tables', 'When struck by a killing blow after entering battle, instead of becoming knocked down, Arlan immediately restores his HP to 25% of his Max HP. This effect is automatically removed after it is triggered once or after 2 turn(s) have elapsed.', NULL, NULL, 13),
+	(11, 5, 'Hammer and Tongs', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', NULL, NULL, 13),
+	(12, 6, 'Self-Sacrifice', 'When HP drops to 50% or below, Ultimate deals 20% more DMG. The DMG multiplier of DMG taken by the target enemy now applies to adjacent enemies as well.', NULL, NULL, 13),
+	(13, 1, 'The Higher You Fly, the Harder You Fall', 'When the target enemy\'s current HP percentage is greater than or equal to 50%, CRIT Rate increases by 12%.', NULL, NULL, 5),
+	(14, 2, 'Quell the Venom Octet, Quench the Vice O\'Flame', 'Reduces Talent cooldown by 1 turn.', NULL, NULL, 5),
+	(15, 3, 'Seen and Unseen', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', NULL, NULL, 5),
+	(16, 4, 'Roaring Dragon and Soaring Sun', 'When Dan Heng uses his Ultimate to defeat an enemy, he will immediately take action again.', NULL, NULL, 5),
+	(17, 5, 'A Drop of Rain Feeds a Torrent', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', NULL, NULL, 5),
+	(18, 6, 'The Troubled Soul Lies in Wait', 'The Slow state triggered by Skill reduces the enemy\'s SPD by an extra 8%.', NULL, NULL, 5);
 
 -- Listage de la structure de table srw_loic. path
 CREATE TABLE IF NOT EXISTS `path` (
@@ -271,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `playablecharacter` (
   CONSTRAINT `FK-playableCharacter_path` FOREIGN KEY (`path_id`) REFERENCES `path` (`id_path`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.playablecharacter : ~30 rows (environ)
+-- Listage des données de la table srw_loic.playablecharacter : ~0 rows (environ)
 INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarity`, `sex`, `specie`, `faction`, `world`, `quote`, `releaseDate`, `rate`, `introduction`, `combatType_id`, `path_id`) VALUES
 	(1, 'Himeko', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Himeko-Splash-Art-1024x877.png', 5, 'Female', 'Human', 'The Nameless', 'Astal Express', 'Alright, crew! This world is the target of our next trailblazing expedition!', '2023-04-26', NULL, 'An adventurous scientist who encountered and repaired a stranded train as a child, she now ventures across the universe with the Astral Express as its navigator. She is also an Emanator of the Trailblaze.', 2, 3),
 	(2, 'March 7th', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-March-7th-Splash-Art-1024x877.png', 4, 'Female', '???', 'The Nameless', 'Astral Express', 'Well would you listen to that! I saved everyone without causing any trouble! You\'re pretty awesome, March 7th!', '2023-04-26', NULL, 'An enthusiastic girl who was saved from eternal ice by the Astral Express Crew, and has the unique ability of being able to use "Six-Phased Ice." When she awoke, she knew nothing of herself or her past, and decided to name herself after the date of her rebirth, "March 7th." She takes many photos using her camera in hopes of discovering a memento from her past.', 3, 6),
@@ -311,7 +349,7 @@ CREATE TABLE IF NOT EXISTS `tagability` (
   PRIMARY KEY (`id_tagAbility`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.tagability : ~9 rows (environ)
+-- Listage des données de la table srw_loic.tagability : ~0 rows (environ)
 INSERT INTO `tagability` (`id_tagAbility`, `type`) VALUES
 	(1, 'Single Target'),
 	(2, 'AoE'),
@@ -322,6 +360,36 @@ INSERT INTO `tagability` (`id_tagAbility`, `type`) VALUES
 	(7, 'Enhance'),
 	(8, 'Bounce'),
 	(9, 'Impair');
+
+-- Listage de la structure de table srw_loic. trace
+CREATE TABLE IF NOT EXISTS `trace` (
+  `id_trace` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL DEFAULT '',
+  `effect` varchar(255) NOT NULL DEFAULT '',
+  `ascend_id` int DEFAULT NULL,
+  `playableCharacter_id` int DEFAULT NULL,
+  PRIMARY KEY (`id_trace`),
+  KEY `playableCharacter_id` (`playableCharacter_id`),
+  KEY `ascension_id` (`ascend_id`) USING BTREE,
+  CONSTRAINT `FK-trace_ascension` FOREIGN KEY (`ascend_id`) REFERENCES `ascend` (`id_ascend`),
+  CONSTRAINT `FK-trace_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+-- Listage des données de la table srw_loic.trace : ~0 rows (environ)
+INSERT INTO `trace` (`id_trace`, `name`, `effect`, `ascend_id`, `playableCharacter_id`) VALUES
+	(1, 'DMG Boost: Wind', 'Wind DMG increases by 3.2%', 1, 5),
+	(2, ' Hidden Dragon', 'When current HP percentage is 50% or lower, reduces the chance of being attacked by enemies.', 3, 5),
+	(3, ' ATK Boost', 'ATK increases by 4.0%', 3, 5),
+	(4, 'DMG Boost: Wind', 'Wind DMG increases by 3.2%', 4, 5),
+	(5, ' DEF Boost', 'DEF increases by 5.0%', 4, 5),
+	(6, ' Faster Than Light', 'After launching an attack, there is a 50% fixed chance to increase own SPD by 20% for 2 turn(s).', 5, 5),
+	(7, ' DMG Boost: Wind', 'Wind DMG increases by 4.8%', 5, 5),
+	(8, ' ATK Boost', 'ATK increases by 6.0%', 6, 5),
+	(9, ' DMG Boost: Wind', 'Wind DMG increases by 4.8%', 6, 5),
+	(10, ' High Gale', 'Basic ATK deals 40% more DMG to Slowed enemies.', 7, 5),
+	(11, ' DEF Boost', 'DEF increases by 7.5%', 7, 5),
+	(12, ' ATK Boost', 'ATK increases by 8.0%', 8, 5),
+	(13, ' DMG Boost: Wind', 'Wind DMG increases by 6.4%', 9, 5);
 
 -- Listage de la structure de table srw_loic. typeability
 CREATE TABLE IF NOT EXISTS `typeability` (
