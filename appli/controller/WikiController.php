@@ -11,7 +11,9 @@
     use Model\Managers\AbilityManager;
     use Model\Managers\TagAbilityManager;
     use Model\Managers\TypeAbilityManager;
-
+    use Model\Managers\AscendManager;
+    use Model\Managers\TraceManager;
+    use Model\Managers\EidolonManager;
     
     class WikiController extends AbstractController implements ControllerInterface{
 
@@ -56,8 +58,6 @@
             $abilitiesPlayableCharacterManager = new AbilityManager();
             $playableCharacterManager = new PlayableCharacterManager();
             $combatTypeManager = new CombatTypeManager();
-            // $typeAbilityManager = new TypeAbilityManager();
-            // $tagAbilityManager = new TagAbilityManager();
 
             $abilitiesPlayableCharacter = $abilitiesPlayableCharacterManager->getAbilitiesByPlayableCharacterId($id);
             $playableCharacter = $playableCharacterManager->findOneById($id);
@@ -69,6 +69,23 @@
                 "data" => [
                     // Abilities data
                     "abilitiesPlayableCharacter" => $abilitiesPlayableCharacter, 
+                    // Character data
+                    "playableCharacter" => $playableCharacter,
+                    // Combat Type of the current character
+                    "playableCharacterCombatType" => $playableCharacterCombatType
+                ]
+            ];
+        
+        }
+
+        public function ascendPlayableCharacter($id)
+        {
+            $playableCharacterManager = new PlayableCharacterManager();
+            $combatTypeManager = new CombatTypeManager();
+
+            return [
+                "view" => VIEW_DIR."wiki/ascendPlayableCharacter.php",
+                "data" => [
                     // Character data
                     "playableCharacter" => $playableCharacter,
                     // Combat Type of the current character
