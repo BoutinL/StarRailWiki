@@ -20,6 +20,10 @@
                 <th>Role:</th>
                 <td><?= $trailblazer->getRole() ?></td>
             </tr>
+            <tr>
+                <th>Date register:</th>
+                <td><?= $trailblazer->getDateRegister() ?></td>
+            </tr>
         </table>
     <?php } else { echo "<h1>No user connected</h1>"; } ?>
 </div>

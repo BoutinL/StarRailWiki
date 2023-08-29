@@ -35,8 +35,8 @@
                         
                         if(App\Session::getUser()){
                             ?>
-                            <a href="index.php?ctrl=security&action=viewProfile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
-                            <a href="index.php?ctrl=security&action=logout">Logout</a>
+                            <a class="nav-links" href="index.php?ctrl=security&action=viewProfil&id=<?= App\Session::getUser()->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
+                            <a class="nav-links" href="index.php?ctrl=security&action=logout">Logout</a>
                             <?php
                         }
                         else{
