@@ -17,5 +17,5 @@
             <b>Comfirm password</b>
             <input type="password" placeholder="Comfirm password" name="confirmPassword" required>
         </label>
-        <input type="submit" id='submit' value="S'inscrire" name="submitRegister">
+        <input type="submit" id='submit' value="Register" name="submitRegister">
 </form>

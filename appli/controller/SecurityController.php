@@ -5,7 +5,6 @@ namespace Controller;
 use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
-use Model\Entities\Trailblazer;
 use Model\Managers\TrailblazerManager;
 
 class HomeController extends AbstractController implements ControllerInterface
@@ -13,7 +12,7 @@ class HomeController extends AbstractController implements ControllerInterface
 
     public function register()
     {
-        $UserManager = new TrailblazerManager();
+        $trailblazerManager = new TrailblazerManager();
 
         if (isset($_POST['submitRegister'])) {
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -24,18 +23,17 @@ class HomeController extends AbstractController implements ControllerInterface
 
             // If filters alright
             if ($username && $email && $password) {
-                $TrailblazerManager = new TrailblazerManager();
-
+                $trailblazerManager = new TrailblazerManager();
                 // If email doesnt exist
-                if (!$TrailblazerManager->findOneByEmail($email)) {
+                if (!$trailblazerManager->findOneByEmail($email)) {
                     // If username doesnt exist
-                    if (!$TrailblazerManager->findOneByUser($username)) {
+                    if (!$trailblazerManager->findOneByUser($username)) {
                         // If both password are the same and higher than 10
                         if (($password == $confirmPassword) and strlen($password) >= 10) {
                             // Password Hash
                             $passwordHash = self::getPasswordHash($password);
                             // Inject in database
-                            $TrailblazerManager->add(["username" => $username, "email" => $email, "password" => $passwordHash, "role" => $role]);
+                            $trailblazerManager->add(["username" => $username, "email" => $email, "password" => $passwordHash, "role" => $role]);
                             $this->redirectTo("security", "login");
                         }
                     }
@@ -43,23 +41,20 @@ class HomeController extends AbstractController implements ControllerInterface
             }
         }
         return [
-            "view" => VIEW_DIR . "./security/register.php",
+            "view" => VIEW_DIR . "security/register.php",
             "data" => []
         ];
     }
 
-
     public function login()
     {
-        $TrailblazerManager = new TrailblazerManager();
+        $trailblazerManager = new TrailblazerManager();
 
         if (isset($_POST['submitLogin'])) {
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
             if ($email && $password) {
-                $dbUser = $TrailblazerManager->findOneByEmail($email);
-
+                $dbUser = $trailblazerManager->findOneByEmail($email);
                 if ($dbUser && password_verify($password, $dbUser->getPassword())) {
                     // if password correct do that
                     Session::setUser($dbUser);
@@ -83,15 +78,34 @@ class HomeController extends AbstractController implements ControllerInterface
         return password_hash($password, PASSWORD_DEFAULT);
     }
 
-
     public function logout()
     {
-        $user = null;
-        Session::setUser($user);
+        $trailblazer = null;
+        Session::setUser($trailblazer);
 
         return [
             "view" => VIEW_DIR . "security/login.php",
             "data" => []
         ];
+    }
+
+    public function viewProfil($id)
+    {
+        $trailblazerManager = new TrailblazerManager();
+        $trailblazer = $trailblazerManager->findOneById($id);
+        // var_dump($trailblazer);die;
+        if ($trailblazer) {
+            return [
+                "view" => VIEW_DIR . "security/viewProfil.php",
+                "data" => ["trailblazer" => $trailblazer]
+            ];
+        } else {
+            // when user doesnt exist
+            // redirect somewhere / return error
+            return [
+                "view" => VIEW_DIR . "security/login.php",
+                "data" => []
+            ];
+        }
     }
 }
