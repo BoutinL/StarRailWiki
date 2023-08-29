@@ -16,7 +16,7 @@
 
         public function getEidolonByPlayableCharacterId($id){
 
-            $sql = "SELECT e.nbr, e.name, e.effect
+            $sql = "SELECT e.nbr, e.name, e.effect, e.icon
             FROM " .$this->tableName. " e
             INNER JOIN playablecharacter p ON p.id_playableCharacter = e.playableCharacter_id
             WHERE e.playableCharacter_id = :id";

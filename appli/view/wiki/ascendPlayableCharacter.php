@@ -17,8 +17,9 @@
             <?php foreach($eidolonPlayableCharacter as $eidolon){?>
                 <table class="eidolon-details">
                     <tr>
+                        <td rowspan="2" class="center"><img src="<?= $eidolon->getIcon() ?>" alt="<?=$eidolon->getName()?> Icon" /></td>
                         <td class="eidolon-nbr"><?= $eidolon->getNbr() ?></td>
-                        <td class="eidolon-name"><?= $eidolon->getName() ?></td>
+                        <td class="eidolon-name "><?= $eidolon->getName() ?></td>
                     </tr>
                     <tr>
                         <td colspan="2"><?= $eidolon->getEffect() ?></td>
@@ -31,12 +32,13 @@
             <?php foreach($tracePlayableCharacter as $trace){?>
                 <table class="trace-details">
                     <tr>
+                        <td rowspan="2" class="center"><img src="<?= $trace->getIcon() ?>" alt="<?=$trace->getName()?> Icon" /></td>
                         <td><?= $trace->getName() ?></td>
                         <td>Lvl: <?= $trace->getAscend()->getCapLvl() ?></td>
                         <td>Ascend: <?= $trace->getAscend()->getNbr() ?></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><?= $trace->getEffect() ?></td>
+                        <td colspan="3"><?= $trace->getEffect() ?></td>
                     </tr>
                 </table>
             <?php } ?>

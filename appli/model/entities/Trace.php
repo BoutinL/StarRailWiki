@@ -8,6 +8,7 @@ final class Trace extends Entity{
         private $id;
         private $name;
         private $effect;
+        private $icon;
         private $ascend;
         private $playableCharacter;
 
@@ -49,6 +50,18 @@ final class Trace extends Entity{
         public function setEffect($effect)
         {
                 $this->effect = $effect;
+
+                return $this;
+        }
+
+        public function getIcon()
+        {
+                return $this->icon;
+        }
+
+        public function setIcon($icon)
+        {
+                $this->icon = $icon;
 
                 return $this;
         }

@@ -7,9 +7,9 @@ final class Eidolon extends Entity{
 
         private $id;
         private $name;
-        private $effect;
-        private $nbr;
+        private $effect;    
         private $icon;
+        private $nbr;
         private $playableCharacter;
 
         public function __construct($data){         

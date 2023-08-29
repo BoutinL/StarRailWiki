@@ -241,7 +241,8 @@ td, tr{
 }
 
 .eidolon-nbr{
-    width: auto;
+    width: 5%;
+    text-align: center;
 }
 
 .eidolon-name{

@@ -16,7 +16,7 @@
 
         public function getTraceByPlayableCharacterId($id){
 
-            $sql = "SELECT t.id_trace, t.name, t.effect, t.ascend_id
+            $sql = "SELECT t.id_trace, t.name, t.effect, t.ascend_id, t.icon
             FROM " .$this->tableName. " t
             INNER JOIN ascend a ON a.id_ascend = t.ascend_id
             INNER JOIN playablecharacter p ON p.id_playableCharacter = t.playableCharacter_id
