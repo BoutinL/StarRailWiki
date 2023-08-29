@@ -225,7 +225,11 @@ table {
 td, tr{
     border: solid 2px grey;
     padding: 0.5rem;
-    width: 15%;
+    width: 12%;
+}
+
+.center{
+    text-align: center;
 }
 
 /* Fin Abilities Playable Character */

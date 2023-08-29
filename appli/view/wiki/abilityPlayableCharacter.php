@@ -14,6 +14,7 @@
         <?php foreach($abilitiesPlayableCharacter as $ability){ ?>
             <table class="ability-details">
                 <tr>
+                    <td rowspan="2" class="center"><img src="<?= $ability->getIcon() ?>" alt="<?=$ability->getName()?> Icon" /></td>
                     <td><?= $ability->getTypeAbility()->getType()?></td>
                     <td><?= $ability->getName() ?></td>
                     <td>Energy Cost: <?= $ability->getEnergyCost() ?></td>
