@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `eidolon` (
   CONSTRAINT `FK-eidolon_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`)
 ) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.eidolon : ~180 rows (environ)
+-- Listage des données de la table srw_loic.eidolon : ~18 rows (environ)
 INSERT INTO `eidolon` (`id_eidolon`, `nbr`, `name`, `effect`, `icon`, `image`, `playableCharacter_id`) VALUES
 	(1, 1, 'Chilhood', 'After "Victory Rush" is triggered, Himeko\'s SPD increases by 20% for 2 turn(s).', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/5055f0d7efe7a6a0a7ab8643326c85d9_7226258822720332319.png', NULL, 1),
 	(2, 2, 'Convergence', 'Deals 15% more DMG to enemies whose HP percentage is 50% or less.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/9c81b39d06d7b2e4f218d273e1f70eec_244646985592578051.png', NULL, 1),
@@ -553,6 +553,27 @@ INSERT INTO `trace` (`id_trace`, `name`, `effect`, `icon`, `ascend_id`, `playabl
 	(11, ' DEF Boost', 'DEF increases by 7.5%', NULL, 7, 5),
 	(12, ' ATK Boost', 'ATK increases by 8.0%', NULL, 8, 5),
 	(13, ' DMG Boost: Wind', 'Wind DMG increases by 6.4%', NULL, 9, 5);
+
+-- Listage de la structure de table srw_loic. trailblazer
+CREATE TABLE IF NOT EXISTS `trailblazer` (
+  `id_trailblazer` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) NOT NULL DEFAULT '',
+  `username` varchar(20) NOT NULL DEFAULT '',
+  `password` varchar(255) NOT NULL DEFAULT '',
+  `dateRegister` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `role` varchar(20) NOT NULL DEFAULT 'user',
+  PRIMARY KEY (`id_trailblazer`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+-- Listage des données de la table srw_loic.trailblazer : ~7 rows (environ)
+INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `dateRegister`, `role`) VALUES
+	(1, 'test@test.fr', 'test', '$2y$10$atWdVFHyzoIlTgpaorwH2OcdDuRkMfR5krIUBeXAC0qftSsnkhmpa', '2023-08-29 13:57:23', 'ROLE_ADMIN'),
+	(2, 'test1@test1.fr', 'test1', '$2y$10$NlpSISkPHYXQv2gsztrWDeFOQY8InFXOtPdHqMhhQ0rQmJD0VnmRO', '2023-08-29 14:02:23', 'ROLE_MEMBRE'),
+	(3, 'micka@exemple.com', 'micka', '$2y$10$tlFTkI9uXDk/uidJmQTw3OPq.A1iH2z7VfcAJVrBIf9FVyXquivIC', '2023-08-29 14:04:39', 'ROLE_MEMBER'),
+	(4, 'quentin@exemple.com', 'quentin', '$2y$10$QmpRgbQbOKh6FhmOVrXIaehnMMT0dn0TRI0p0TF86m3PpCtzg0QlK', '2023-08-29 14:06:04', 'ROLE_MEMBER'),
+	(5, 'admin@admin.fr', 'admin', '$2y$10$r4QSd7uX4iXxhbPCVoikPOSjsHDkY0Z5pTinmA02w3NE1v/I6IRs.', '2023-08-29 15:00:44', 'ROLE_ADMIN'),
+	(6, 'test2@test.fr', 'test2', '$2y$10$dao2O70o53OJAeov2PTViOnTwpWOPI5ET7W9dp5H7.0eXeEG0X31G', '2023-08-29 16:07:42', 'ROLE_MEMBER'),
+	(7, 'test3@test.fr', 'test3', '$2y$10$qz2DD8sTZiYMyY9Z3Mm53OeAjzhjEWP0xvFYHrH8ocmZxwfyaox7m', '2023-08-29 16:24:47', 'ROLE_MEMBER');
 
 -- Listage de la structure de table srw_loic. typeability
 CREATE TABLE IF NOT EXISTS `typeability` (

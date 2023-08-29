@@ -125,6 +125,7 @@ ol, ul {
     margin: 2rem;
     border-radius: 30px;
     border: solid;  
+    width: auto;
 }
 
 .navbar-details{
@@ -218,7 +219,7 @@ table {
     margin-bottom: 2rem;
 }
 
-td, tr{
+td, tr, th{
     border: solid 2px grey;
     padding: 0.5rem;
     width: 12%;
@@ -276,4 +277,29 @@ input{
     border-radius: 4px;
     box-sizing: border-box;
 }
+
 /* Fin Login */
+
+/* Début profil */
+
+.profil-content{
+    display: flex;
+    justify-content: center;
+}
+
+.profil-container{
+    width: 30%;
+}
+
+/* Fin profil */
+
+/* Début userlist */
+
+    .userlist-container{
+        margin: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+/* Fin userlist */

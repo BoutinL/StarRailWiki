@@ -9,9 +9,6 @@
     use Model\Managers\PathManager;
     use Model\Managers\CombatTypeManager;
     use Model\Managers\AbilityManager;
-    use Model\Managers\TagAbilityManager;
-    use Model\Managers\TypeAbilityManager;
-    use Model\Managers\AscendManager;
     use Model\Managers\TraceManager;
     use Model\Managers\EidolonManager;
     

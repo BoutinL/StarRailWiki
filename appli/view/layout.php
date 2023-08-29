@@ -20,15 +20,11 @@
             <header>
                 <nav class="nav">
                     <div class="nav-left" id="nav-left">
-                        <a class="nav-links" href="http://localhost/StarRailWiki/appli/">Home</a>
+                        <a class="nav-links" href="./home.php">Home</a>
                         <a class="nav-links" href="index.php?ctrl=wiki&action=characterList">Character List</a>
-                        <?php
-                        if(App\Session::isAdmin()){
-                            ?>
-                            <a href="index.php?ctrl=home&action=users">User List</a>
-                            <?php
-                        }
-                        ?>
+                        <?php if(App\Session::isAdmin()){ ?>
+                            <a class="nav-links" href="index.php?ctrl=home&action=trailblazerList">User List</a>
+                            <?php } ?>
                     </div>
                     <div class="nav-right" id="nav-right">
                     <?php
@@ -45,7 +41,6 @@
                             <a class="nav-links" href="index.php?ctrl=security&action=register">Register</a>
                         <?php
                         }
-                        
                     ?>
                     </div>
                 </nav>
@@ -93,8 +88,6 @@
                 content_css: '//www.tiny.cloud/css/codepen.min.css'
             });
         })
-
-        
 
         /*
         $("#ajaxbtn").on("click", function(){
