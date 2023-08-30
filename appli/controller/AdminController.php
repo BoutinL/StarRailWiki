@@ -88,8 +88,8 @@ use Model\Managers\PathManager;
                             "quote" => $quote,
                             "releaseDate" => date('y-m-d'),
                             "introduction" => $introduction,
-                            "combatType" => $combatType,
-                            "path" => $path
+                            "combattype_id" => $combatType,
+                            "path_id" => $path
                         ]);
                         $this->redirectTo("wiki", "playableCharacterList");
                         exit;
