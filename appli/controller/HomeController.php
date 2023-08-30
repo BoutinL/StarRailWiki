@@ -6,7 +6,6 @@ namespace Controller;
 use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
-use Model\Managers\TrailblazerManager;
     
     class HomeController extends AbstractController implements ControllerInterface{
 
@@ -14,20 +13,6 @@ use Model\Managers\TrailblazerManager;
             
             return [
                 "view" => VIEW_DIR."home.php"
-            ];
-        }
-        
-        public function trailblazerList(){
-            $this->restrictTo("ROLE_ADMIN");
-
-            $manager = new TrailblazerManager();
-            $trailblazerList = $manager->findAll(['dateRegister', 'DESC']);
-
-            return [
-                "view" => VIEW_DIR."home/trailblazerList.php",
-                "data" => [
-                    "trailblazerList" => $trailblazerList
-                ]
             ];
         }
 

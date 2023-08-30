@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,400;0,600;1,100;1,200;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="public/css/style.css">
-    <title>Wiki</title>
+    <title>Star Rail Wiki</title>
 </head>
 <body>
     <div class="main" id="wrapper"> 

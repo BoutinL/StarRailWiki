@@ -282,7 +282,6 @@ input{
 
 /* Début profile */
 
-
     .profile-container{
         width: 100%;
         display: flex;
@@ -300,3 +299,28 @@ input{
     }
 
 /* Fin userlist */
+
+/* Début Add Character */
+
+    .addCharacter-container{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+
+        display: flex;
+        justify-content: center;
+    }
+
+    .form-half{
+        display: inline-flex;
+        width: 60%;
+        justify-content: space-around;
+    }
+
+    .input-required, .input-not-required{
+        width: 40%;
+    }
+
+    .add-submit{
+    
+    }
+/* Fin Add Character */
