@@ -22,16 +22,13 @@
                     <div class="nav-left" id="nav-left">
                         <a class="nav-links" href="http://localhost/StarRailWiki/appli/">Home</a>
                         <a class="nav-links" href="index.php?ctrl=wiki&action=characterList">Character List</a>
-                        <?php if(App\Session::isAdmin()){ ?>
-                            <a class="nav-links" href="index.php?ctrl=home&action=trailblazerList">User List</a>
-                            <?php } ?>
                     </div>
                     <div class="nav-right" id="nav-right">
                     <?php
                         
                         if(App\Session::getUser()){
                             ?>
-                            <a class="nav-links" href="index.php?ctrl=security&action=viewProfil&id=<?= App\Session::getUser()->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
+                            <a class="nav-links" href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
                             <a class="nav-links" href="index.php?ctrl=security&action=logout">Logout</a>
                             <?php
                         }

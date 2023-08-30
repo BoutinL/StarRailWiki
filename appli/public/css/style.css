@@ -280,23 +280,20 @@ input{
 
 /* Fin Login */
 
-/* Début profil */
+/* Début profile */
 
-.profil-content{
-    display: flex;
-    justify-content: center;
-}
 
-.profil-container{
-    width: 30%;
-}
+    .profile-container{
+        width: 100%;
+        display: flex;
+        justify-content: center;;
+    }
 
-/* Fin profil */
+/* Fin profile */
 
 /* Début userlist */
 
     .userlist-container{
-        margin: 2rem;
         width: 100%;
         display: flex;
         justify-content: center;

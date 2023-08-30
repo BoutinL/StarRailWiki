@@ -2,11 +2,19 @@
     $trailblazer = $result['data']['trailblazer'];
 ?>
 
-<div class="profil-content">
-    <?php if (isset($trailblazer)) { ?>
-        <table class="profil-container">
+<div class="content">
+    <?php if(App\Session::isAdmin()){ ?>
+        <section class="navbar-details">
+        <a class="link-details" href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>">Profile</a>
+        <a class="link-details" href="index.php?ctrl=home&action=trailblazerList">User List</a>
+        <a class="link-details" href="">Add Character</a>
+        <a class="link-details" href="">Add Abilities</a>
+        <a class="link-details" href="">Add Ascend</a>
+    </section>
+    <?php } if (isset($trailblazer)) { ?>
+        <table class="profile-container">
             <tr>
-                <th colspan="2">Profil</th>
+                <th colspan="2">Profile</th>
             </tr>
             <tr>
                 <th>Username</th>

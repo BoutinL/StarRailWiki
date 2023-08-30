@@ -3,22 +3,30 @@
 ?>
 
 <div class="content">
-    <table class="userlist-container">
-        <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Date register</th>
-            <th>Role</th>
-        </tr>
-        <?php foreach ($trailblazerList as $trailblazer) { ?>
+    <?php if(App\Session::isAdmin()){ ?>
+        <section class="navbar-details">
+            <a class="link-details" href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?> ">Profile</a>
+            <a class="link-details" href="index.php?ctrl=home&action=trailblazerList">User List</a>
+            <a class="link-details" href="">Add Character</a>
+            <a class="link-details" href="">Add Abilities</a>
+            <a class="link-details" href="">Add Ascend</a>
+        </section>
+        <table class="userlist-container">
             <tr>
-                <td class="center"><?= $trailblazer->getUsername() ?></td>
-                <td class="center"><?= $trailblazer->getEmail() ?></td>
-                <td class="center"><?= $trailblazer->getDateRegister() ?></td>
-                <td class="center"><?= $trailblazer->getRole() ?></td>
-                <td class="center"></td>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Date register</th>
+                <th>Role</th>
             </tr>
-        <?php } ?>    
-    </table>
+            <?php foreach ($trailblazerList as $trailblazer) { ?>
+                <tr>
+                    <td class="center"><?= $trailblazer->getUsername() ?></td>
+                    <td class="center"><?= $trailblazer->getEmail() ?></td>
+                    <td class="center"><?= $trailblazer->getDateRegister() ?></td>
+                    <td class="center"><?= $trailblazer->getRole() ?></td>
+                    <td class="center"></td>
+                </tr>
+            <?php } ?>    
+        </table>
+    <?php } ?>
 </div>
-

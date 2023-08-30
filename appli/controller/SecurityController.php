@@ -89,14 +89,14 @@ class HomeController extends AbstractController implements ControllerInterface
         ];
     }
 
-    public function viewProfil($id)
+    public function viewProfile($id)
     {
         $trailblazerManager = new TrailblazerManager();
         $trailblazer = $trailblazerManager->findOneById($id);
         // var_dump($trailblazer);die;
         if ($trailblazer) {
             return [
-                "view" => VIEW_DIR . "security/viewProfil.php",
+                "view" => VIEW_DIR . "security/viewProfile.php",
                 "data" => ["trailblazer" => $trailblazer]
             ];
         } else {
