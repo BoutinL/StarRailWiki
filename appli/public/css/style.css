@@ -268,7 +268,7 @@ td, tr, th{
     width: 30%;
 }
 
-input{
+input, select{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -310,7 +310,7 @@ input{
         align-items: center;
     }
 
-    .form-half{
+    .form{
         display: inline-flex;
         width: 60%;
         justify-content: space-around;

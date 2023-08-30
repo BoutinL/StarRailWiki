@@ -12,7 +12,6 @@ class HomeController extends AbstractController implements ControllerInterface
 
     public function register()
     {
-        $trailblazerManager = new TrailblazerManager();
 
         if (isset($_POST['submitRegister'])) {
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);

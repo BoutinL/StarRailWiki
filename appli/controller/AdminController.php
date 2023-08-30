@@ -53,14 +53,13 @@ use Model\Managers\PathManager;
 
         public function addCharacter(){
             $this->restrictTo("ROLE_ADMIN");
-
-            $playableCharacterManager = new PlayableCharacterManager();
-            $combatTypeManager = new CombatTypeManager();
-            $pathManager = new PathManager();
-    
+            
             if (isset($_POST['submit'])) {
-    
-                if (!empty($_POST['name']) && !empty($_POST['rarity']) && !empty($_POST['releaseDate']) && !empty($_POST['combatType']) && !empty($_POST['path'])) {
+                // var_dump($_POST['path']);die;
+                // Check if all required input arnt empty
+                if ((!empty($_POST['name'])) && (!empty($_POST['rarity'])) && (!empty($_POST['releaseDate'])) && (!empty($_POST['combatType'])) && (!empty($_POST['path']))) {
+                    
+                    // Sanitaze all input from the form
                     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $image = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $rarity = filter_input(INPUT_POST, "rarity", FILTER_SANITIZE_NUMBER_INT);
@@ -73,9 +72,12 @@ use Model\Managers\PathManager;
                     $introduction = filter_input(INPUT_POST, "introduction", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $combatType = filter_input(INPUT_POST, "combatType", FILTER_SANITIZE_NUMBER_INT);
                     $path = filter_input(INPUT_POST, "path", FILTER_SANITIZE_NUMBER_INT);
-    
-                    if ($name && $image && $rarity && $sex && $specie && $faction && $world && $quote && $releaseDate && $introduction && $combatType && $path) {
-                        $newPlayableCharacter = $playableCharacterManager->add([
+
+                    // !== false so if empty still work 
+                    if ($name !== false  && $image !== false && $rarity !== false && $sex !== false && $specie !== false && $faction !== false && $world !== false && $quote !== false && $releaseDate !== false && $introduction !== false && $combatType !== false && $path !== false) {
+
+                        $playableCharacterManager = new PlayableCharacterManager();
+                        $playableCharacterManager->add([
                             "name" => $name,
                             "image" => $image,
                             "rarity" => $rarity,
@@ -87,13 +89,15 @@ use Model\Managers\PathManager;
                             "releaseDate" => date('y-m-d'),
                             "introduction" => $introduction,
                             "combatType" => $combatType,
-                            "path" => $path,
+                            "path" => $path
                         ]);
-    
+                        $this->redirectTo("wiki", "playableCharacterList");
+                        exit;
+                    } else {
+                        $this->redirectTo("admin", "addCharacter");
+                        exit;
                     }
-    
-                    header("Location:index.php?ctrl=wiki&action=playableCharacterList");
-                    exit;
+
                 }
             }
         }
