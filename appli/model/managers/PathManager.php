@@ -14,4 +14,16 @@
             parent::connect();
         }
 
+        public function getPath(){
+
+            $sql = "SELECT *
+            FROM " .$this->tableName ;
+
+            return $this->getMultipleResults(
+                DAO::select($sql), 
+                $this->className
+            );
+        
+        }
+
     }

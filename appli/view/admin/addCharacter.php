@@ -1,5 +1,7 @@
 <?php
-
+    $combatTypeList = $result['data']['combatTypeList'];
+    $pathList = $result['data']['pathList'];
+    // var_dump($combatTypeList->current());die;
 ?>
 
 <div class="content">
@@ -12,8 +14,9 @@
             <a class="link-details" href="index.php?ctrl=admin&action=addAscend">Add Ascend</a>
         </section>
         <?php if (App\Session::getUser() && App\Session::getUser()->getId()) : ?>
+            
             <div class ="addCharacter-container">
-                <!-- Remettre le titre -->
+                <h1>Add a new character</h1>
                 <form class="form-half" id="addCharacter" action="index.php?ctrl=home&action=addCharacter" method="POST">
                     <div class="input-required">
                         <label for="name">Name :</label>
@@ -24,9 +27,25 @@
 
                         <label for="combatType">Combat type :</label>
                         <select name="combatType" id="combatType" required>
+                            <?php 
+                                foreach($combatTypeList as $combatType){
+                                    $id = $combatType->getId();
+                                    $type = $combatType->getType();
+                                    echo "<option value=\"$id\">$type</option>";
+                                }
+                            ?>
+                        </select>
 
                         <label for="path">Path :</label>
                         <select name="path" id="path" required>
+                            <?php 
+                                foreach($pathList as $path){
+                                    $id = $path->getId();
+                                    $type = $path->getType();
+                                    echo "<option value=\"$id\">$type</option>";
+                                }
+                            ?>
+                        </select>
 
                         <label for="realeaseDate">Release date :</label>
                         <input type="date" name="releaseDate" id="releaseDate" required>
@@ -56,5 +75,6 @@
                 </form>
                 <input class="add-submit" type="submit" id="addCharacter" name="submit" value="Add">
             </div>
+            
     <?php endif; } ?>
 </div>

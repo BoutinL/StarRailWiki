@@ -305,9 +305,9 @@ input{
     .addCharacter-container{
         margin-top: 2rem;
         margin-bottom: 2rem;
-
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
 
     .form-half{
@@ -321,6 +321,6 @@ input{
     }
 
     .add-submit{
-    
+        width: 30%; 
     }
 /* Fin Add Character */

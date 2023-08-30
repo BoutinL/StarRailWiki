@@ -14,4 +14,16 @@
             parent::connect();
         }
 
+        public function getCombatType(){
+
+            $sql = "SELECT *
+            FROM " .$this->tableName ;
+
+            return $this->getMultipleResults(
+                DAO::select($sql), 
+                $this->className
+            );
+        
+        }
+
     }

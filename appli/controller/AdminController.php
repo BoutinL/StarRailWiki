@@ -36,9 +36,18 @@ use Model\Managers\PathManager;
         public function addCharacterView(){
             $this->restrictTo("ROLE_ADMIN");
 
+            $combatTypeManager = new CombatTypeManager();
+            $pathManager = new PathManager();
+            
+            $combatTypeList = $combatTypeManager->getCombatType();
+            $pathList = $pathManager->getPath();
+
             return [
                 "view" => VIEW_DIR."admin/addCharacter.php",
-                "data" => []
+                "data" => [
+                    "combatTypeList" => $combatTypeList,
+                    "pathList" => $pathList,
+                ]
             ];
         }
 
