@@ -13,7 +13,7 @@ use Model\Managers\TrailblazerManager;
         public function index(){
             
             return [
-                "view" => VIEW_DIR."    .php"
+                "view" => VIEW_DIR."home.php"
             ];
         }
         
