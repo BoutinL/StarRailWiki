@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Hôte:                         127.0.0.1
+-- Hôte:                         localhost
 -- Version du serveur:           8.0.30 - MySQL Community Server - GPL
 -- SE du serveur:                Win64
 -- HeidiSQL Version:             12.1.0.6537
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `ability` (
   CONSTRAINT `FK-ability_typeAbility` FOREIGN KEY (`typeAbility_id`) REFERENCES `typeability` (`id_typeAbility`)
 ) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.ability : ~9 rows (environ)
+-- Listage des données de la table srw_loic.ability : ~154 rows (environ)
 INSERT INTO `ability` (`id_ability`, `name`, `description`, `energyGeneration`, `energyCost`, `dmg`, `icon`, `playableCharacter_id`, `typeAbility_id`, `tagAbility_id`) VALUES
 	(1, 'Lightning Rush', 'Deals Lightning DMG equal to 50%–110% of Arlan\'s ATK to a single enemy.', 20, 0, 30, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/97f31b5c7f456cadf844b45ee443c93f_4125532999287192258.png', 13, 1, 1),
 	(2, 'Shackle Breaker', 'Consumes Arlan\'s HP equal to 15% of his Max HP to deal Lightning DMG equal to 120%–264% of Arlan\'s ATK to a single enemy. If Arlan does not have sufficient HP, his HP will be reduced to 1 after using his Skill.', 30, 0, 60, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/d8c555f7f9f47b610f2a4b84678df64b_2458479177492742947.png', 13, 2, 1),
@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `eidolon` (
   CONSTRAINT `FK-eidolon_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`)
 ) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.eidolon : ~18 rows (environ)
+-- Listage des données de la table srw_loic.eidolon : ~180 rows (environ)
 INSERT INTO `eidolon` (`id_eidolon`, `nbr`, `name`, `effect`, `icon`, `image`, `playableCharacter_id`) VALUES
 	(1, 1, 'Chilhood', 'After "Victory Rush" is triggered, Himeko\'s SPD increases by 20% for 2 turn(s).', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/5055f0d7efe7a6a0a7ab8643326c85d9_7226258822720332319.png', NULL, 1),
 	(2, 2, 'Convergence', 'Deals 15% more DMG to enemies whose HP percentage is 50% or less.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/9c81b39d06d7b2e4f218d273e1f70eec_244646985592578051.png', NULL, 1),
@@ -268,48 +268,48 @@ INSERT INTO `eidolon` (`id_eidolon`, `nbr`, `name`, `effect`, `icon`, `image`, `
 	(16, 4, 'Roaring Dragon and Soaring Sun', 'When Dan Heng uses his Ultimate to defeat an enemy, he will immediately take action again.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/4e43d523fa7f247a76994aadd8f6abf5_4125643631056849026.png', NULL, 5),
 	(17, 5, 'A Drop of Rain Feeds a Torrent', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/06e5fe5d47f9ba7ae0c0d437c64d7b53_911755937249800616.png', NULL, 5),
 	(18, 6, 'The Troubled Soul Lies in Wait', 'The Slow state triggered by Skill reduces the enemy\'s SPD by an extra 8%.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/c163aecc6f8d93fca92d3d1295f1544c_911755937249800616.png', NULL, 5),
-	(19, 1, 'Star Sings Sans Verses or Vocals', 'When using Skill, deals DMG for 1 extra time to a random enemy.', NULL, NULL, 14),
-	(20, 2, 'Moon Speaks in Wax and Wane', 'After using her Ultimate, Asta\'s Charging stacks will not be reduced in the next turn.', NULL, NULL, 14),
-	(21, 3, 'Meteor Showers for Wish and Want', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', NULL, NULL, 14),
-	(22, 4, 'Aurora Basks in Beauty and Bliss', 'Asta\'s Energy Regeneration Rate increases by 15% when she has 2 or more Charging stacks.', NULL, NULL, 14),
-	(23, 5, 'Nebula Secludes in Runes and Riddles', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', NULL, NULL, 14),
-	(24, 6, 'Galaxy Dreams in Calm and Comfort', 'Charging stack(s) lost in each turn is reduced by 1.', NULL, NULL, 14),
-	(25, 1, 'Ambrosial Aqua', 'If the target ally\'s current HP is equal to their Max HP when Invigoration ends, regenerates 8 extra Energy for this target.', NULL, NULL, 7),
-	(26, 2, 'Sylphic Slumber', 'After using her Ultimate, Bailu\'s Outgoing Healing increases by an additional 15% for 2 turn(s).', NULL, NULL, 7),
-	(27, 3, 'Omniscient Opulence', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', NULL, NULL, 7),
-	(28, 4, 'Evil Excision', 'Every healing provided by the Skill makes the recipient deal 10% more DMG for 2 turn(s). This effect can stack up to 3 time(s).', NULL, NULL, 7),
-	(29, 5, 'Waning Worries', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', NULL, NULL, 7),
-	(30, 6, 'Drooling Drop of Draconic Divinity', 'Bailu can heal allies who received a killing blow 1 more time(s) in a single battle.', NULL, NULL, 7),
-	(31, 1, 'Blade Cuts the Deepest in Hell', 'Blade\'s Ultimate deals additionally increased DMG to a single enemy target, with the increased amount equal to 150% of Blade\'s total HP loss in the current battle.\r\nThe total HP Blade has lost in the current battle is capped at 90% of his Max HP. This value will be reset and re-accumulated after his Ultimate has been used.', NULL, NULL, 3),
-	(32, 2, 'Ten Thousand Sorrows From One Broken Dream', 'When Blade is in the Hellscape state, his CRIT Rate increases by 15%.', NULL, NULL, 3),
-	(33, 3, 'Hardened Blade Bleeds Coldest Shade', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', NULL, NULL, 3),
-	(34, 4, 'Rejected by Death, Infected With Life', 'When Blade\'s current HP drops to 50% or lower of his Max HP, increases his Max HP by 20%. Stacks up to 2 time(s).', NULL, NULL, 3),
-	(35, 5, 'Death By Ten Lords\' Gaze', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', NULL, NULL, 3),
-	(36, 6, 'Reborn Into an Empty Husk', 'The maximum number of Charge stacks is reduced to 4. The DMG of the follow-up attack triggered by Blade\'s Talent additionally increases by 50% of his Max HP.', NULL, NULL, 3),
-	(37, 1, 'Hone Your Strength', 'When using Skill, there is 50% fixed chance of recovering 1 Skill Point. This effect has a 1-turn cooldown.', NULL, NULL, 11),
-	(38, 2, 'Quick March', 'When using Skill, the target ally\'s SPD increases by 30% after taking action, lasting for 1 turn.', NULL, NULL, 11),
-	(39, 3, 'Bombardment', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', NULL, NULL, 11),
-	(40, 4, 'Take by Surprise', 'After an ally other than Bronya uses Basic ATK on an enemy with Wind Weakness, Bronya immediately launches a follow-up attack on the target, dealing Wind DMG equal to 80% of Bronya\'s Basic ATK DMG. This effect can only be triggered 1 time per turn.', NULL, NULL, 11),
-	(41, 5, 'Unstoppable', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', NULL, NULL, 11),
-	(42, 6, 'Piercing Rainbow', 'The duration of the DMG Boost effect placed by the Skill on the target ally increases by 1 turn(s).', NULL, NULL, 11),
-	(43, 1, 'A Tall Figure', 'Using Skill will not remove Marks of Counter on the enemy.', NULL, NULL, 22),
-	(44, 2, 'A Tight Embrace', 'After using the Ultimate, ATK increases by 30% for 2 turn(s).', NULL, NULL, 22),
-	(45, 3, 'Cold Steel Armor', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', NULL, NULL, 22),
-	(46, 4, 'Family\'s Warmth', 'After Clara is hit, the DMG taken by Clara is reduced by 30%. This effect lasts until the start of her next turn.', NULL, NULL, 22),
-	(47, 5, 'A Small Promise', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', NULL, NULL, 22),
-	(48, 6, 'Long Company', 'After other allies are hit, Svarog also has a 50% fixed chance to trigger a Counter on the attacker and mark them with a Mark of Counter. When using Ultimate, the number of Enhanced Counters increases by 1.', NULL, NULL, 22),
-	(49, 1, 'Due Diligence', 'When using Skill, increases the base chance to Freeze enemies by 35%.', NULL, NULL, 10),
-	(50, 2, 'Lingering Cold', 'After an enemy Frozen by Skill is unfrozen, their SPD is reduced by 20% for 1 turn(s).', NULL, NULL, 10),
-	(51, 3, 'Never Surrender', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', NULL, NULL, 10),
-	(52, 4, 'Faith Moves Mountains', 'When Gepard is in battle, all allies\' Effect RES increases by 20%.', NULL, NULL, 10),
-	(53, 5, 'Cold Iron Fist', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', NULL, NULL, 10),
-	(54, 6, 'Unyielding Resolve', 'When his Talent is triggered, Gepard immediately takes action again and restores extra HP equal to 50% of his Max HP.', NULL, NULL, 10),
-	(55, 1, 'Kick You When You\'re Down', 'If the enemy\'s HP percentage is at 50% or less, Herta\'s Basic ATK deals Additional Ice DMG equal to 40% of Herta\'s ATK.', NULL, NULL, 15),
-	(56, 2, 'Keep the Ball Rolling', 'Every time Talent is triggered, this character\'s CRIT Rate increases by 3%. This effect can stack up to 5 time(s).', NULL, NULL, 15),
-	(57, 3, 'That\'s the Kind of Girl I Am', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', NULL, NULL, 15),
-	(58, 4, 'Hit Where It Hurts', 'When Talent is triggered, DMG increases by 10%.', NULL, NULL, 15),
-	(59, 5, 'Cuss Big or Cuss Nothing', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', NULL, NULL, 15),
-	(60, 6, 'No One Can Betray Me', 'After using Ultimate, this character\'s ATK increases by 25% for 1 turn(s).', NULL, NULL, 15),
+	(19, 1, 'Star Sings Sans Verses or Vocals', 'When using Skill, deals DMG for 1 extra time to a random enemy.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/27cae19d9e727fef1f72eaa45ac023f9_1895058517391226750.png', NULL, 14),
+	(20, 2, 'Moon Speaks in Wax and Wane', 'After using her Ultimate, Asta\'s Charging stacks will not be reduced in the next turn.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/7b84164bd56bc11e8ca391463e57607d_4039909671596872526.png', NULL, 14),
+	(21, 3, 'Meteor Showers for Wish and Want', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/536e884bd14b5217fcefe8369235ebd6_2196928527429176668.png', NULL, 14),
+	(22, 4, 'Aurora Basks in Beauty and Bliss', 'Asta\'s Energy Regeneration Rate increases by 15% when she has 2 or more Charging stacks.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/ae65b049d5faa00f2767cefd98b59d59_4039909671596872526.png', NULL, 14),
+	(23, 5, 'Nebula Secludes in Runes and Riddles', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/2a92841afdb6db46cc06f5ebeeb7f2c8_6483244968225008309.png', NULL, 14),
+	(24, 6, 'Galaxy Dreams in Calm and Comfort', 'Charging stack(s) lost in each turn is reduced by 1.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/001017730a1109773efd5cc107b8e9ad_8443840165033391053.png', NULL, 14),
+	(25, 1, 'Ambrosial Aqua', 'If the target ally\'s current HP is equal to their Max HP when Invigoration ends, regenerates 8 extra Energy for this target.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/8bba6963265c1fa52db786f3f9c6dda4_4846210512706640419.png', NULL, 7),
+	(26, 2, 'Sylphic Slumber', 'After using her Ultimate, Bailu\'s Outgoing Healing increases by an additional 15% for 2 turn(s).', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/c0f0be44cf061d8e12e75eed72e5e7ab_4846210512706640419.png', NULL, 7),
+	(27, 3, 'Omniscient Opulence', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/2b5561d50c125d2431a00ead461fa8e8_666503982731773378.png', NULL, 7),
+	(28, 4, 'Evil Excision', 'Every healing provided by the Skill makes the recipient deal 10% more DMG for 2 turn(s). This effect can stack up to 3 time(s).', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/8eefb53f2b5f8d424dcde918742f9121_8397957194455769533.png', NULL, 7),
+	(29, 5, 'Waning Worries', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/2a1cf842ff8ac7a379e0ceabd5602e70_7937705608936377574.png', NULL, 7),
+	(30, 6, 'Drooling Drop of Draconic Divinity', 'Bailu can heal allies who received a killing blow 1 more time(s) in a single battle.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/b80857afaee9194b757441b5834a7f05_8397957194455769533.png', NULL, 7),
+	(31, 1, 'Blade Cuts the Deepest in Hell', 'Blade\'s Ultimate deals additionally increased DMG to a single enemy target, with the increased amount equal to 150% of Blade\'s total HP loss in the current battle.\r\nThe total HP Blade has lost in the current battle is capped at 90% of his Max HP. This value will be reset and re-accumulated after his Ultimate has been used.', 'https://upload-static.hoyoverse.com/hoyolab-wiki/2023/07/18/5308864/277f38331088c0da03c9c4bf65a8536b_5000139623176627188.png', NULL, 3),
+	(32, 2, 'Ten Thousand Sorrows From One Broken Dream', 'When Blade is in the Hellscape state, his CRIT Rate increases by 15%.', 'https://upload-static.hoyoverse.com/hoyolab-wiki/2023/07/18/5308864/3c951315363a510b6e57a92b3a42b42f_6152652043462430589.png', NULL, 3),
+	(33, 3, 'Hardened Blade Bleeds Coldest Shade', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', 'https://upload-static.hoyoverse.com/hoyolab-wiki/2023/07/18/5308864/7392bbe137436f1b1309cd5d780b3625_8328538768147720807.png', NULL, 3),
+	(34, 4, 'Rejected by Death, Infected With Life', 'When Blade\'s current HP drops to 50% or lower of his Max HP, increases his Max HP by 20%. Stacks up to 2 time(s).', 'https://upload-static.hoyoverse.com/hoyolab-wiki/2023/07/18/5308864/fecfa36b5db6b58a5011af636ae2fb08_5775987058057303053.png', NULL, 3),
+	(35, 5, 'Death By Ten Lords\' Gaze', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', 'https://upload-static.hoyoverse.com/hoyolab-wiki/2023/07/18/5308864/e616f8379d57dbbeb76d8e1a38e38665_1543515104780732169.png', NULL, 3),
+	(36, 6, 'Reborn Into an Empty Husk', 'The maximum number of Charge stacks is reduced to 4. The DMG of the follow-up attack triggered by Blade\'s Talent additionally increases by 50% of his Max HP.', 'https://upload-static.hoyoverse.com/hoyolab-wiki/2023/07/18/5308864/88605bc08c8ca58cba58ebc2fa9d7a5d_5945295101868649507.png', NULL, 3),
+	(37, 1, 'Hone Your Strength', 'When using Skill, there is 50% fixed chance of recovering 1 Skill Point. This effect has a 1-turn cooldown.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/126c3b9d181820c55bf7b71c782fa035_7297596633404176675.png', NULL, 11),
+	(38, 2, 'Quick March', 'When using Skill, the target ally\'s SPD increases by 30% after taking action, lasting for 1 turn.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/cfa4394b814be851726e3e300a04ec21_8897508852385138594.png', NULL, 11),
+	(39, 3, 'Bombardment', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/638108d773ad540cb227822f9bd008e5_5991972744052607848.png', NULL, 11),
+	(40, 4, 'Take by Surprise', 'After an ally other than Bronya uses Basic ATK on an enemy with Wind Weakness, Bronya immediately launches a follow-up attack on the target, dealing Wind DMG equal to 80% of Bronya\'s Basic ATK DMG. This effect can only be triggered 1 time per turn.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/755f741c42617d85710730d3e9191bdc_8897508852385138594.png', NULL, 11),
+	(41, 5, 'Unstoppable', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/3dbed434d0e3bd7ed504fa99bfcea9f7_2934588988406802098.png', NULL, 11),
+	(42, 6, 'Piercing Rainbow', 'The duration of the DMG Boost effect placed by the Skill on the target ally increases by 1 turn(s).', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/374f00212f11662e2302d56ee19358f0_1531343573592924769.png', NULL, 11),
+	(43, 1, 'A Tall Figure', 'Using Skill will not remove Marks of Counter on the enemy.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/ee7b1e2bb5a7841195f13c0ecc8621a1_7275694641237708807.png', NULL, 22),
+	(44, 2, 'A Tight Embrace', 'After using the Ultimate, ATK increases by 30% for 2 turn(s).', 'https://upload-static.hoyoverse.com/hoyolab-wiki/2023/03/17/5308864/6edd7ab79b31a018c8ccddc66e1e8346_5737902471066724528.png', NULL, 22),
+	(45, 3, 'Cold Steel Armor', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/68145c294d2463472fabf8407960365d_7228753759322171863.png', NULL, 22),
+	(46, 4, 'Family\'s Warmth', 'After Clara is hit, the DMG taken by Clara is reduced by 30%. This effect lasts until the start of her next turn.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/b26df9619f39c03fbb49503d9bcdb156_2854537462043295677.png', NULL, 22),
+	(47, 5, 'A Small Promise', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/e659f2d510bf6a552c82724fcc7c633d_7858461979939016923.png', NULL, 22),
+	(48, 6, 'Long Company', 'After other allies are hit, Svarog also has a 50% fixed chance to trigger a Counter on the attacker and mark them with a Mark of Counter. When using Ultimate, the number of Enhanced Counters increases by 1.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/b3f9c13be4fe837d88edc605ac3bf529_7858461979939016923.png', NULL, 22),
+	(49, 1, 'Due Diligence', 'When using Skill, increases the base chance to Freeze enemies by 35%.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/cbdcf8fd8d564b5f633926e56b2660c8_7460344659616510194.png', NULL, 10),
+	(50, 2, 'Lingering Cold', 'After an enemy Frozen by Skill is unfrozen, their SPD is reduced by 20% for 1 turn(s).', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/13016470d0e202a8c427ce58cbb86667_4934884593954878237.png', NULL, 10),
+	(51, 3, 'Never Surrender', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/6ae7a1aedecffcd3ff81b5f22c0926d8_5708703248236612710.png', NULL, 10),
+	(52, 4, 'Faith Moves Mountains', 'When Gepard is in battle, all allies\' Effect RES increases by 20%.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/7704e78e0a77ca813e6f252d2f9ccbf6_4934884593954878237.png', NULL, 10),
+	(53, 5, 'Cold Iron Fist', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/d38b4c2bef7bd12928c9ddd661101612_7460344659616510194.png', NULL, 10),
+	(54, 6, 'Unyielding Resolve', 'When his Talent is triggered, Gepard immediately takes action again and restores extra HP equal to 50% of his Max HP.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/1b3cc58c059cbdad4e5fe8f8e730637a_5031578313293207366.png', NULL, 10),
+	(55, 1, 'Kick You When You\'re Down', 'If the enemy\'s HP percentage is at 50% or less, Herta\'s Basic ATK deals Additional Ice DMG equal to 40% of Herta\'s ATK.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/dba51e18b1ecf22eb9e7b4f22403cd28_8769843336475300403.png', NULL, 15),
+	(56, 2, 'Keep the Ball Rolling', 'Every time Talent is triggered, this character\'s CRIT Rate increases by 3%. This effect can stack up to 5 time(s).', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/839957b081c952d89045145e723caf01_8685443574379551565.png', NULL, 15),
+	(57, 3, 'That\'s the Kind of Girl I Am', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/792d45104363047ccf319840de46e519_826024787053386357.png', NULL, 15),
+	(58, 4, 'Hit Where It Hurts', 'When Talent is triggered, DMG increases by 10%.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/87dbeeb8980a35626a7477a51113741c_4336635309391699200.png', NULL, 15),
+	(59, 5, 'Cuss Big or Cuss Nothing', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/e3547f7c51d2c93a27c09d826a5c63e0_826024787053386357.png', NULL, 15),
+	(60, 6, 'No One Can Betray Me', 'After using Ultimate, this character\'s ATK increases by 25% for 1 turn(s).', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/bb96544142a620b1130e99a74e82e6f1_8769843336475300403.png', NULL, 15),
 	(61, 1, 'Early to Bed, Early to Rise', 'Enhanced Skill deals 20% increased DMG.', NULL, NULL, 16),
 	(62, 2, 'Happy Tummy, Happy Body', 'Extends the duration of Burn caused by Skill by 1 turn(s).', NULL, NULL, 16),
 	(63, 3, 'Don\'t Be Picky, Nothing\'s Icky', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', NULL, NULL, 16),
@@ -563,9 +563,9 @@ CREATE TABLE IF NOT EXISTS `trailblazer` (
   `dateRegister` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `role` varchar(20) NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id_trailblazer`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.trailblazer : ~7 rows (environ)
+-- Listage des données de la table srw_loic.trailblazer : ~0 rows (environ)
 INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `dateRegister`, `role`) VALUES
 	(1, 'test@test.fr', 'test', '$2y$10$atWdVFHyzoIlTgpaorwH2OcdDuRkMfR5krIUBeXAC0qftSsnkhmpa', '2023-08-29 13:57:23', 'ROLE_ADMIN'),
 	(2, 'test1@test1.fr', 'test1', '$2y$10$NlpSISkPHYXQv2gsztrWDeFOQY8InFXOtPdHqMhhQ0rQmJD0VnmRO', '2023-08-29 14:02:23', 'ROLE_MEMBRE'),
@@ -573,7 +573,8 @@ INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `d
 	(4, 'quentin@exemple.com', 'quentin', '$2y$10$QmpRgbQbOKh6FhmOVrXIaehnMMT0dn0TRI0p0TF86m3PpCtzg0QlK', '2023-08-29 14:06:04', 'ROLE_MEMBER'),
 	(5, 'admin@admin.fr', 'admin', '$2y$10$r4QSd7uX4iXxhbPCVoikPOSjsHDkY0Z5pTinmA02w3NE1v/I6IRs.', '2023-08-29 15:00:44', 'ROLE_ADMIN'),
 	(6, 'test2@test.fr', 'test2', '$2y$10$dao2O70o53OJAeov2PTViOnTwpWOPI5ET7W9dp5H7.0eXeEG0X31G', '2023-08-29 16:07:42', 'ROLE_MEMBER'),
-	(7, 'test3@test.fr', 'test3', '$2y$10$qz2DD8sTZiYMyY9Z3Mm53OeAjzhjEWP0xvFYHrH8ocmZxwfyaox7m', '2023-08-29 16:24:47', 'ROLE_MEMBER');
+	(7, 'test3@test.fr', 'test3', '$2y$10$qz2DD8sTZiYMyY9Z3Mm53OeAjzhjEWP0xvFYHrH8ocmZxwfyaox7m', '2023-08-29 16:24:47', 'ROLE_MEMBER'),
+	(8, 'user4@user.fr', 'user4', '$2y$10$mTFe57onk3iOP/VCRZ/B3OwoBh/zN1Q15eZlx2SXxvAroGGatmP6.', '2023-08-30 16:15:09', 'ROLE_MEMBER');
 
 -- Listage de la structure de table srw_loic. typeability
 CREATE TABLE IF NOT EXISTS `typeability` (
