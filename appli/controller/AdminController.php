@@ -102,4 +102,16 @@ use Model\Managers\PathManager;
             }
         }
 
+        public function deleteCharacter($id){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            
+        }
+
+        public function updateCharacter($id){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            
+        }
+
     }
