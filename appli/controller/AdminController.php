@@ -260,13 +260,28 @@ use Model\Managers\TraceManager;
             }
         }
 
-        public function deleteCharacter($id){
+        public function deleteCharacterView(){
             $this->restrictTo("ROLE_ADMIN");
             
             $playableCharacterManager = new PlayableCharacterManager();
 
-            $playableCharacter = $playableCharacterManager->findOneById($id);
-            $playableCharacterManager->deletePlayableCharacter($id);
+            $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
+
+            // var_dump($ascendList->current());die;
+            return [
+                "view" => VIEW_DIR."admin/deleteCharacter.php",
+                "data" => [
+                    "playableCharacterList" => $playableCharacterList
+                ]
+            ];
+            
+        }
+
+        public function deleteCharacter($id){
+            $this->restrictTo("ROLE_ADMIN");
+
+            $playableCharacterManager = new PlayableCharacterManager();
+            $playableCharacterManager->deleteCharacter($id);
 
             $this->redirectTo("wiki", "playableCharacterList");
             

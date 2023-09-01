@@ -11,9 +11,8 @@
     class ForumController extends AbstractController implements ControllerInterface{
 
         public function index(){
-          
 
-           $topicManager = new TopicManager();
+            $topicManager = new TopicManager();
 
             return [
                 "view" => VIEW_DIR."forum/listTopics.php",

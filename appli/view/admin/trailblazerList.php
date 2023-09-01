@@ -4,13 +4,37 @@
 
 <div class="content">
     <?php if(App\Session::isAdmin()){ ?>
-        <section class="navbar-details">
-            <a class="link-details" href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?> ">Profile</a>
-            <a class="link-details" href="index.php?ctrl=admin&action=trailblazerList">User List</a>
-            <a class="link-details" href="index.php?ctrl=admin&action=addCharacterView">Add Character</a>
-            <a class="link-details" href="index.php?ctrl=admin&action=addAbilityView">Add Abilities</a>
-            <a class="link-details" href="index.php?ctrl=admin&action=addAscendView">Add Ascend</a>
-        </section>
+        <nav class="nav-admin">
+            <ul>
+                <li class="deroulant"><a href="#">Account Gestion &ensp;</a>
+                    <ul class="sous">
+                    <li><a href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>">Profile</a></li>
+                    <li><a href="index.php?ctrl=admin&action=trailblazerList">User List</a></li>
+                    </ul>
+                </li>
+                <li class="deroulant"><a href="#">Add &ensp;</a>
+                    <ul class="sous">
+                        <li><a href="index.php?ctrl=admin&action=addCharacterView">Add Character</a></li>
+                        <li><a href="index.php?ctrl=admin&action=addAbilityView">Add Abilities</a></li>
+                        <li><a href="index.php?ctrl=admin&action=addAscendView">Add Ascend</a></li>
+                    </ul>
+                </li>
+                <li class="deroulant"><a href="#">Update &ensp;</a>
+                <ul class="sous">
+                    <li><a href="#">Update Character</a></li>
+                    <li><a href="#">Update Ability</a></li>
+                    <li><a href="#">Update Ascend</a></li>
+                </ul>
+                </li>
+                <li class="deroulant"><a href="#">Delete &ensp;</a>
+                <ul class="sous">
+                    <li><a href="#">Delete Character</a></li>
+                    <li><a href="#">Delete Ability</a></li>
+                    <li><a href="#">Delete Ascend</a></li>
+                </ul>
+                </li>
+            </ul>
+        </nav>
         <table class="userlist-container">
             <tr>
                 <th>Username</th>

@@ -1,5 +1,5 @@
 <?php
-    $trailblazer = $result['data']['trailblazer'];
+    $playableCharacterList = $result['data']['playableCharacterList'];
 ?>
 
 <div class="content">
@@ -28,34 +28,31 @@
                 </li>
                 <li class="deroulant"><a href="#">Delete &ensp;</a>
                 <ul class="sous">
-                    <li><a href="index.php?ctrl=admin&action=deleteCharacterView">Delete Character</a></li>
+                    <li><a href="#">Delete Character</a></li>
                     <li><a href="#">Delete Ability</a></li>
                     <li><a href="#">Delete Ascend</a></li>
                 </ul>
                 </li>
             </ul>
         </nav>
-    <?php } if (isset($trailblazer)) { ?>
-        <table class="profile-container">
-            <tr>
-                <th colspan="2">Profile</th>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td><?= $trailblazer->getUsername() ?></td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td><?= $trailblazer->getEmail() ?></td>
-            </tr>
-            <tr>
-                <th>Role</th>
-                <td><?= $trailblazer->getRole() ?></td>
-            </tr>
-            <tr>
-                <th>Date register</th>
-                <td><?= $trailblazer->getDateRegister() ?></td>
-            </tr>
-        </table>
-    <?php } else { echo "<h1>No user connected</h1>"; } ?>
+        <?php if (App\Session::getUser() && App\Session::getUser()->getId()) : ?>
+            <div class ="form-admin-container">
+                <h1>Delete a playable character</h1>
+                <form class="form" id="deleteCharacter" action="index.php?ctrl=admin&action=deleteCharacter" method="POST">
+                <label for="playableCharacter">Character to delete :</label>
+                        <select name="playableCharacter" id="playableCharacter" required>
+                            <option>--Chose a character--</option>
+                            <?php 
+                                foreach($playableCharacterList as $playableCharacter){
+                                    $id = $playableCharacter->getId();
+                                    $name = $playableCharacter->getName();
+                                    echo "<option value=\"$id\">$id - $name</option>";
+                                }
+                            ?>
+                        </select>
+                        <input class="add-submit" type="submit" form="deleteCharacter" name="submit" value="Delete">
+                </form>
+            </div>
+        <?php endif; 
+    } ?>
 </div>

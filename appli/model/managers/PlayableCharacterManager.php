@@ -26,7 +26,7 @@
         
         }
 
-        public function deletePost($id){
+        public function deleteCharacter($id){
             $sql = "DELETE FROM " . $this->tableName . "
                     WHERE id_" . $this->tableName . " = :id";
 
