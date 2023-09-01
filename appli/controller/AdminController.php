@@ -6,13 +6,15 @@ use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\PathManager;
+use Model\Managers\AscendManager;
 use Model\Managers\AbilityManager;
 use Model\Managers\CombatTypeManager;
 use Model\Managers\TagAbilityManager;
 use Model\Managers\TrailblazerManager;
 use Model\Managers\TypeAbilityManager;
 use Model\Managers\PlayableCharacterManager;
-use Model\Managers\AscendManager;
+use Model\Managers\EidolonManager;
+use Model\Managers\TraceManager;
 
     class AdminController extends AbstractController implements ControllerInterface{
 
@@ -186,7 +188,7 @@ use Model\Managers\AscendManager;
                 "data" => [
                     "playableCharacterList" => $playableCharacterList,
                     "playableCharacterList2" => $playableCharacterList2,
-                    "ascendList" => $ascendList
+                    "ascendList" => $ascendList,
                 ]
             ];
         }
@@ -194,39 +196,28 @@ use Model\Managers\AscendManager;
         public function addAscendEidolon(){
             $this->restrictTo("ROLE_ADMIN");
             
-            if (isset($_POST['submit'])) {
+            if (isset($_POST['submitEidolon'])) {
                 // Check if all required input arnt empty
-                if ((!empty($_POST['name'])) && (!empty($_POST['description'])) && (!empty($_POST['playableCharacter'])) && (!empty($_POST['typeAbility'])) && (!empty($_POST['tagAbility']))) {
+                if ((!empty($_POST['nameEidolon'])) && (!empty($_POST['effectEidolon'])) && (!empty($_POST['playableCharacterEidolon'])) && (!empty($_POST['nbrEidolon']))) {
                     
-
                     // Sanitaze all input from the form
-                    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    
-                    $energyGeneration = filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) : 0; 
-                    $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) : 0;
-                    $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) : 0;
+                    $name = filter_input(INPUT_POST, "nameEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $effect = filter_input(INPUT_POST, "effectEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $nbr = filter_input(INPUT_POST, "nbrEidolon", FILTER_SANITIZE_NUMBER_INT); 
+                    $playableCharacter = filter_input(INPUT_POST, "playableCharacterEidolon", FILTER_SANITIZE_NUMBER_INT);
+                    $icon = filter_input(INPUT_POST, "image-urlEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
 
-                    $icon = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
-                    $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
-                    $typeAbility = filter_input(INPUT_POST, "typeAbility", FILTER_SANITIZE_NUMBER_INT);
-                    $tagAbility = filter_input(INPUT_POST, "tagAbility", FILTER_SANITIZE_NUMBER_INT);
-
-                    if ($name !== false && $description !== false && $playableCharacter && isset($energyGeneration)  && isset($energyCost) && isset($dmg) && $icon !== false && $typeAbility !== false && $tagAbility !== false) {
-
-                        $abilityManager = new AbilityManager();
-                        $abilityManager->add([
+                    if ($name !== false && $effect !== false && $nbr !== false && $playableCharacter !== false && $icon !== false) {
+                        // var_dump("$icon");die;
+                        $eidolonManager = new EidolonManager();
+                        $eidolonManager->add([
                             "name" => $name,
-                            "description" => $description,
-                            "energyGeneration" => $energyGeneration,
-                            "energyCost" => $energyCost,
-                            "dmg" => $dmg,
-                            "icon" => $icon,
+                            "effect" => $effect,
+                            "nbr" => $nbr,
                             "playableCharacter_id" => $playableCharacter,
-                            "typeAbility_id" => $typeAbility,
-                            "tagAbility_id" => $tagAbility
+                            "icon" => $icon,
                         ]);
-                        $this->redirectTo("admin", "addAbilityView");
+                        $this->redirectTo("admin", "addAscendView");
                     } else {
                         $this->redirectTo("wiki", "playableCharacterList");
                     }
@@ -235,16 +226,49 @@ use Model\Managers\AscendManager;
             }
         }
 
-        public function deleteCharacter($id){
+        public function addAscendTrace(){
             $this->restrictTo("ROLE_ADMIN");
             
-            
+            if (isset($_POST['submitTrace'])) {
+                // Check if all required input arnt empty
+                if ((!empty($_POST['nameTrace'])) && (!empty($_POST['effectTrace'])) && (!empty($_POST['playableCharacterTrace'])) && (!empty($_POST['nbrTrace']))) {
+                    
+                    // Sanitaze all input from the form
+                    $name = filter_input(INPUT_POST, "nameTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $effect = filter_input(INPUT_POST, "effectTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $ascendTrace = filter_input(INPUT_POST, "ascendTrace", FILTER_SANITIZE_NUMBER_INT); 
+                    $playableCharacter = filter_input(INPUT_POST, "playableCharacterTrace", FILTER_SANITIZE_NUMBER_INT);
+                    $icon = filter_input(INPUT_POST, "image-urlTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
+
+                    if ($name !== false && $effect !== false && $nbr !== false && $playableCharacter !== false && $icon !== false) {
+                        // var_dump("$icon");die;
+                        $traceManager = new TraceManager();
+                        $traceManager->add([
+                            "name" => $name,
+                            "effect" => $effect,
+                            "ascend_id" => $ascendTrace,
+                            "playableCharacter_id" => $playableCharacter,
+                            "icon" => $icon,
+                        ]);
+                        $this->redirectTo("admin", "addAscendView");
+                    } else {
+                        $this->redirectTo("wiki", "playableCharacterList");
+                    }
+
+                }
+            }
         }
 
-        public function updateCharacter($id){
-            $this->restrictTo("ROLE_ADMIN");
+        // public function deleteCharacter($id){
+        //     $this->restrictTo("ROLE_ADMIN");
             
             
-        }
+        // }
+
+        // public function updateCharacter($id){
+        //     $this->restrictTo("ROLE_ADMIN");
+            
+            
+        // }
 
     }

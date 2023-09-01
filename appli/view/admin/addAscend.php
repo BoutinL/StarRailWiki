@@ -18,7 +18,7 @@
             
             <div class ="form-admin-container">
                 <h1>Add a new Eidolon</h1>
-                <form class="form" id="addEidolon" action="index.php?ctrl=admin&action=addAscendEidolon" method="POST">
+                <form class="form" id="addAscendEidolon" action="index.php?ctrl=admin&action=addAscendEidolon" method="POST">
                     <div class="input-required">
                         <label for="playableCharacterEidolon">Character's Eidolon :</label>
                         <select name="playableCharacterEidolon" id="playableCharacterEidolon" required>
@@ -46,8 +46,10 @@
                         <input type="text" name="image-urlEidolon" id="image-urlEidolon" placeholder="https://star-rail-image-url.png">
                     </div>
                 </form>
-                <input class="add-submit" type="submit" form="addAscendEidolon" name="submit" value="Add that new Eidolon to a character">
+                <input class="add-submit" type="submit" form="addAscendEidolon" name="submitEidolon" value="Add that new Eidolon to a character">
+
                 <!-- Second form -->
+
                 <h1>Add a new Trace</h1>
                 <form class="form" id="addAscendTrace" action="index.php?ctrl=admin&action=addAscendTrace" method="POST">
                     <div class="input-required">
@@ -69,7 +71,8 @@
                         <label for="effectTrace">Effect :</label>
                         <input type="text" name="effectTrace" id="effectTrace" placeholder="What's the effect of that Eidolon" required>
 
-                        <select name="ascendNbrTrace" id="ascendNbrTrace">
+                        <label for="ascendTrace">Level of ascension :</label>
+                        <select name="ascendTrace" id="ascendTrace">
                             <option>--Choose a level of Ascension--</option>
                             <?php 
                                 foreach($ascendList as $ascend){
@@ -88,7 +91,7 @@
                         <input type="text" name="image-urlTrace" id="image-urlTrace" placeholder="https://star-rail-image-url.png">
                     </div>
                 </form>
-                <input class="add-submit" type="submit" form="addAscendTrace" name="submit" value="Add that new Trace to a character">
+                <input class="add-submit" type="submit" form="addAscendTrace" name="submitTrace" value="Add that new Trace to a character">
             </div>
         <?php endif; 
     } ?>
