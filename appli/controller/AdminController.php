@@ -64,7 +64,7 @@ use Model\Managers\TagAbilityManager;
                     
                     // Sanitaze all input from the form
                     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $image = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $image = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
                     $rarity = filter_input(INPUT_POST, "rarity", FILTER_SANITIZE_NUMBER_INT);
                     $sex = filter_input(INPUT_POST, "sex", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $specie = filter_input(INPUT_POST, "specie", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -94,10 +94,10 @@ use Model\Managers\TagAbilityManager;
                             "combattype_id" => $combatType,
                             "path_id" => $path
                         ]);
-                        $this->redirectTo("wiki", "playableCharacterList");
+                        $this->redirectTo("admin", "addAbilityView");
                         exit;
                     } else {
-                        $this->redirectTo("admin", "addCharacter");
+                        $this->redirectTo("admin", "addCharacterView");
                         exit;
                     }
 
@@ -141,15 +141,72 @@ use Model\Managers\TagAbilityManager;
                     $energyGeneration = filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) : 0; 
                     $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) : 0;
                     $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) : 0;
-                    
-                    $icon = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/400";
+
+                    $icon = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
                     $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
                     $typeAbility = filter_input(INPUT_POST, "typeAbility", FILTER_SANITIZE_NUMBER_INT);
                     $tagAbility = filter_input(INPUT_POST, "tagAbility", FILTER_SANITIZE_NUMBER_INT);
-                    // var_dump($_POST);die;
 
-                    // !== false so if empty still work 
-                    if ($name && $description && $playableCharacter && $energyGeneration && $energyCost && $dmg && $typeAbility  && $tagAbility && $icon) {
+                    if ($name !== false && $description !== false && $playableCharacter && isset($energyGeneration)  && isset($energyCost) && isset($dmg) && $icon !== false && $typeAbility !== false && $tagAbility !== false) {
+
+                        $abilityManager = new AbilityManager();
+                        $abilityManager->add([
+                            "name" => $name,
+                            "description" => $description,
+                            "energyGeneration" => $energyGeneration,
+                            "energyCost" => $energyCost,
+                            "dmg" => $dmg,
+                            "icon" => $icon,
+                            "playableCharacter_id" => $playableCharacter,
+                            "typeAbility_id" => $typeAbility,
+                            "tagAbility_id" => $tagAbility
+                        ]);
+                        $this->redirectTo("admin", "addAbilityView");
+                    } else {
+                        $this->redirectTo("wiki", "playableCharacterList");
+                    }
+
+                }
+            }
+        }
+
+        public function addAscendView(){
+            $this->restrictTo("ROLE_ADMIN");
+
+            $playableCharacterManager = new PlayableCharacterManager();
+
+            $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
+
+            return [
+                "view" => VIEW_DIR."admin/addAscend.php",
+                "data" => [
+                    "playableCharacterList" => $playableCharacterList
+                ]
+            ];
+        }
+
+        public function addAscendEidolon(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            if (isset($_POST['submit'])) {
+                // Check if all required input arnt empty
+                if ((!empty($_POST['name'])) && (!empty($_POST['description'])) && (!empty($_POST['playableCharacter'])) && (!empty($_POST['typeAbility'])) && (!empty($_POST['tagAbility']))) {
+                    
+
+                    // Sanitaze all input from the form
+                    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    
+                    $energyGeneration = filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) : 0; 
+                    $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) : 0;
+                    $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) : 0;
+
+                    $icon = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
+                    $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
+                    $typeAbility = filter_input(INPUT_POST, "typeAbility", FILTER_SANITIZE_NUMBER_INT);
+                    $tagAbility = filter_input(INPUT_POST, "tagAbility", FILTER_SANITIZE_NUMBER_INT);
+
+                    if ($name !== false && $description !== false && $playableCharacter && isset($energyGeneration)  && isset($energyCost) && isset($dmg) && $icon !== false && $typeAbility !== false && $tagAbility !== false) {
 
                         $abilityManager = new AbilityManager();
                         $abilityManager->add([
