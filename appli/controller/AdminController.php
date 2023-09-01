@@ -5,6 +5,7 @@ namespace Controller;
 use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
+use Model\Entities\PlayableCharacter;
 use Model\Managers\PathManager;
 use Model\Managers\AscendManager;
 use Model\Managers\AbilityManager;
@@ -259,11 +260,17 @@ use Model\Managers\TraceManager;
             }
         }
 
-        // public function deleteCharacter($id){
-        //     $this->restrictTo("ROLE_ADMIN");
+        public function deleteCharacter($id){
+            $this->restrictTo("ROLE_ADMIN");
             
+            $playableCharacterManager = new PlayableCharacterManager();
+
+            $playableCharacter = $playableCharacterManager->findOneById($id);
+            $playableCharacterManager->deletePlayableCharacter($id);
+
+            $this->redirectTo("wiki", "playableCharacterList");
             
-        // }
+        }
 
         // public function updateCharacter($id){
         //     $this->restrictTo("ROLE_ADMIN");
