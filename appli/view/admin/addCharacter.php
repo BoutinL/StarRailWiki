@@ -10,12 +10,12 @@
             <a class="link-details" href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?> ">Profile</a>
             <a class="link-details" href="index.php?ctrl=admin&action=trailblazerList">User List</a>
             <a class="link-details" href="index.php?ctrl=admin&action=addCharacterView">Add Character</a>
-            <a class="link-details" href="index.php?ctrl=admin&action=addAbilities">Add Abilities</a>
+            <a class="link-details" href="index.php?ctrl=admin&action=addAbilityView">Add Abilities</a>
             <a class="link-details" href="index.php?ctrl=admin&action=addAscend">Add Ascend</a>
         </section>
         <?php if (App\Session::getUser() && App\Session::getUser()->getId()) : ?>
             
-            <div class ="addCharacter-container">
+            <div class ="form-admin-container">
                 <h1>Add a new character</h1>
                 <form class="form" id="addCharacter" action="index.php?ctrl=admin&action=addCharacter" method="POST">
                     <div class="input-required">

@@ -14,4 +14,16 @@
             parent::connect();
         }
         
+        public function getPlayableCharacter(){
+
+            $sql = "SELECT id_playableCharacter, name
+            FROM " .$this->tableName ;
+
+            return $this->getMultipleResults(
+                DAO::select($sql), 
+                $this->className
+            );
+        
+        }
+
     }

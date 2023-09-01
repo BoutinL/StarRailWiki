@@ -8,7 +8,7 @@
         <a class="link-details" href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>">Profile</a>
         <a class="link-details" href="index.php?ctrl=admin&action=trailblazerList">User List</a>
         <a class="link-details" href="index.php?ctrl=admin&action=addCharacterView">Add Character</a>
-        <a class="link-details" href="">Add Abilities</a>
+        <a class="link-details" href="index.php?ctrl=admin&action=addAbilityView">Add Abilities</a>
         <a class="link-details" href="">Add Ascend</a>
     </section>
     <?php } if (isset($trailblazer)) { ?>

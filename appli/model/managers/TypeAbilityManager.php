@@ -14,4 +14,15 @@
             parent::connect();
         }
 
+        public function getTypeAbility(){
+
+            $sql = "SELECT id_typeAbility, type
+            FROM " .$this->tableName ;
+
+            return $this->getMultipleResults(
+                DAO::select($sql), 
+                $this->className
+            );
+        }
+
     }

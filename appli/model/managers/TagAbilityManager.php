@@ -14,4 +14,16 @@
             parent::connect();
         }
 
+        public function getTagAbility(){
+
+            $sql = "SELECT id_tagAbility, type
+            FROM " .$this->tableName ;
+
+            return $this->getMultipleResults(
+                DAO::select($sql), 
+                $this->className
+            );
+        
+        }
+
     }
