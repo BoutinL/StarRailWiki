@@ -1,5 +1,8 @@
 <?php
     $playableCharacterList = $result['data']['playableCharacterList'];
+    $playableCharacterList2 = $result['data']['playableCharacterList2'];
+    $ascendList = $result['data']['ascendList']; 
+    // var_dump($ascendList->current());die;
 ?>
 
 <div class="content">
@@ -17,40 +20,42 @@
                 <h1>Add a new Eidolon</h1>
                 <form class="form" id="addEidolon" action="index.php?ctrl=admin&action=addAscendEidolon" method="POST">
                     <div class="input-required">
-                        <select name="playableCharacter" id="playableCharacter" required>
+                        <label for="playableCharacterEidolon">Character's Eidolon :</label>
+                        <select name="playableCharacterEidolon" id="playableCharacterEidolon" required>
                             <option>--Chose a character--</option>
                             <?php 
                                 foreach($playableCharacterList as $playableCharacter){
                                     $id = $playableCharacter->getId();
                                     $name = $playableCharacter->getName();
-                                    echo "<option value=\"$id\">$id - $name</option>";
+                                        echo "<option value=\"$id\">$id - $name</option>";
                                 }
                             ?>
                         </select>
-
-                        <label for="nbr">Number :</label>
-                        <input type="int" name="nbr" id="nbr" required>
-
-                        <label for="name">Name :</label>
-                        <input type="text" name="name" id="name" placeholder="Enter Eidolon name" required>
-
-                        <label for="effect">Effect :</label>
-                        <input type="text" name="effect" id="effect" placeholder="What's the effect of that Eidolon" required>
+                        
+                        <label for="nbrEidolon">Number :</label>
+                        <input type="number" name="nbrEidolon" id="nbrEidolon" required>
+                        
+                        <label for="nameEidolon">Name :</label>
+                        <input type="text" name="nameEidolon" id="nameEidolon" placeholder="Enter Eidolon name" required>
+                        
+                        <label for="effectEidolon">Effect :</label>
+                        <input type="text" name="effectEidolon" id="effectEidolon" placeholder="What's the effect of that Eidolon" required>
                     </div>
                     <div class="input-not-required">
-                        <label for="image-url">Image url :</label>
-                        <input type="text" name="image-url" id="image-url" placeholder="https://star-rail-image-url.png">
+                        <label for="image-urlEidolon">Image url :</label>
+                        <input type="text" name="image-urlEidolon" id="image-urlEidolon" placeholder="https://star-rail-image-url.png">
                     </div>
                 </form>
                 <input class="add-submit" type="submit" form="addAscendEidolon" name="submit" value="Add that new Eidolon to a character">
-<!-- Second form -->
+                <!-- Second form -->
                 <h1>Add a new Trace</h1>
                 <form class="form" id="addAscendTrace" action="index.php?ctrl=admin&action=addAscendTrace" method="POST">
                     <div class="input-required">
-                        <select name="playableCharacter" id="playableCharacter" required>
+                        <label for="playableCharacterTrace">Character's Trace :</label>
+                        <select name="playableCharacterTrace" id="playableCharacterTrace" required>
                             <option>--Chose a character--</option>
                             <?php 
-                                foreach($playableCharacterList as $playableCharacter){
+                                foreach($playableCharacterList2 as $playableCharacter){
                                     $id = $playableCharacter->getId();
                                     $name = $playableCharacter->getName();
                                     echo "<option value=\"$id\">$id - $name</option>";
@@ -58,15 +63,29 @@
                             ?>
                         </select>
 
-                        <label for="name">Name :</label>
-                        <input type="text" name="name" id="name" required>
+                        <label for="nameTrace">Name :</label>
+                        <input type="text" name="nameTrace" id="nameTrace" required>
 
-                        <label for="effect">Effect :</label>
-                        <input type="text" name="effect" id="effect" placeholder="What's the effect of that Eidolon" required>
+                        <label for="effectTrace">Effect :</label>
+                        <input type="text" name="effectTrace" id="effectTrace" placeholder="What's the effect of that Eidolon" required>
+
+                        <select name="ascendNbrTrace" id="ascendNbrTrace">
+                            <option>--Choose a level of Ascension--</option>
+                            <?php 
+                                foreach($ascendList as $ascend){
+                                    // var_dump("$ascend->getNbr()");die;
+                                    $nbr = $ascend->getNbr();
+                                    $id = $ascend->getId();
+                                    $lvlCap = $ascend->getCapLvl();
+                                    // var_dump("$nbr");die;
+                                    echo "<option value=\"$id\">Ascend $nbr - Lvl $lvlCap </option>";
+                                }
+                            ?>
+                        </select>
                     </div>
                     <div class="input-not-required">
-                        <label for="image-url">Image url :</label>
-                        <input type="text" name="image-url" id="image-url" placeholder="https://star-rail-image-url.png">
+                        <label for="image-urlTrace">Image url :</label>
+                        <input type="text" name="image-urlTrace" id="image-urlTrace" placeholder="https://star-rail-image-url.png">
                     </div>
                 </form>
                 <input class="add-submit" type="submit" form="addAscendTrace" name="submit" value="Add that new Trace to a character">

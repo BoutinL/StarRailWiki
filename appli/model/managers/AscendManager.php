@@ -14,4 +14,16 @@
             parent::connect();
         }
 
+        public function getAscend(){
+
+            $sql = "SELECT id_ascend, capLvl, nbr
+            FROM " .$this->tableName ;
+
+            return $this->getMultipleResults(
+                DAO::select($sql), 
+                $this->className
+            );
+        
+        }
+
     }

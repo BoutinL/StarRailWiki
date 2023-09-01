@@ -5,13 +5,14 @@ namespace Controller;
 use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
-use Model\Managers\TrailblazerManager;
-use Model\Managers\PlayableCharacterManager;
-use Model\Managers\CombatTypeManager;
 use Model\Managers\PathManager;
 use Model\Managers\AbilityManager;
-use Model\Managers\TypeAbilityManager;
+use Model\Managers\CombatTypeManager;
 use Model\Managers\TagAbilityManager;
+use Model\Managers\TrailblazerManager;
+use Model\Managers\TypeAbilityManager;
+use Model\Managers\PlayableCharacterManager;
+use Model\Managers\AscendManager;
 
     class AdminController extends AbstractController implements ControllerInterface{
 
@@ -174,13 +175,18 @@ use Model\Managers\TagAbilityManager;
             $this->restrictTo("ROLE_ADMIN");
 
             $playableCharacterManager = new PlayableCharacterManager();
+            $ascendManager = new AscendManager();
 
             $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
-
+            $playableCharacterList2 = $playableCharacterManager->getPlayableCharacter();
+            $ascendList = $ascendManager->getAscend();
+            // var_dump($ascendList->current());die;
             return [
                 "view" => VIEW_DIR."admin/addAscend.php",
                 "data" => [
-                    "playableCharacterList" => $playableCharacterList
+                    "playableCharacterList" => $playableCharacterList,
+                    "playableCharacterList2" => $playableCharacterList2,
+                    "ascendList" => $ascendList
                 ]
             ];
         }

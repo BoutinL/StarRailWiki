@@ -8,7 +8,6 @@
         private $id;
         private $capLvl;
         private $nbr;
-        private $lvl;
 
         public function __construct($data){         
             $this->hydrate($data);        
@@ -50,18 +49,6 @@
                 $this->nbr = $nbr;
 
                 return $nbr;
-        }
-
-        public function getLvl()
-        {
-                return $this->lvl;
-        }
-
-        public function setLvl($lvl)
-        {
-                $this->lvl = $lvl;
-
-                return $lvl;
         }
 
     }
