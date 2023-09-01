@@ -58,6 +58,7 @@
             /*
                 INSERT INTO user (username,password,email) VALUES ('Squalli', 'dfsyfshfbzeifbqefbq', 'sql@gmail.com') 
             */
+            // var_dump($sql);die;
             try{
                 return DAO::insert($sql);
             }

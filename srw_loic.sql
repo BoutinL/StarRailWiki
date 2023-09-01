@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `ability` (
   `icon` varchar(255) DEFAULT NULL,
   `playableCharacter_id` int NOT NULL,
   `typeAbility_id` int NOT NULL,
-  `tagAbility_id` int DEFAULT NULL,
+  `tagAbility_id` int NOT NULL,
   PRIMARY KEY (`id_ability`),
   KEY `character_id` (`playableCharacter_id`) USING BTREE,
   KEY `typeAbility_id` (`typeAbility_id`),
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `ability` (
   CONSTRAINT `FK-ability_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`),
   CONSTRAINT `FK-ability_tagAbility` FOREIGN KEY (`tagAbility_id`) REFERENCES `tagability` (`id_tagAbility`),
   CONSTRAINT `FK-ability_typeAbility` FOREIGN KEY (`typeAbility_id`) REFERENCES `typeability` (`id_typeAbility`)
-) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table srw_loic.ability : ~154 rows (environ)
 INSERT INTO `ability` (`id_ability`, `name`, `description`, `energyGeneration`, `energyCost`, `dmg`, `icon`, `playableCharacter_id`, `typeAbility_id`, `tagAbility_id`) VALUES
@@ -469,7 +469,7 @@ CREATE TABLE IF NOT EXISTS `playablecharacter` (
   KEY `path_id` (`path_id`),
   CONSTRAINT `FK-playableCharacter_combatType` FOREIGN KEY (`combatType_id`) REFERENCES `combattype` (`id_combatType`),
   CONSTRAINT `FK-playableCharacter_path` FOREIGN KEY (`path_id`) REFERENCES `path` (`id_path`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table srw_loic.playablecharacter : ~30 rows (environ)
 INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarity`, `sex`, `specie`, `faction`, `world`, `quote`, `releaseDate`, `rate`, `introduction`, `combatType_id`, `path_id`) VALUES

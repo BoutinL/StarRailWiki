@@ -133,19 +133,23 @@ use Model\Managers\TagAbilityManager;
                 // Check if all required input arnt empty
                 if ((!empty($_POST['name'])) && (!empty($_POST['description'])) && (!empty($_POST['playableCharacter'])) && (!empty($_POST['typeAbility'])) && (!empty($_POST['tagAbility']))) {
                     
+
                     // Sanitaze all input from the form
                     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $energyGeneration = filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT);
-                    $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT);
-                    $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT);
-                    $icon = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    
+                    $energyGeneration = filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) : 0; 
+                    $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) : 0;
+                    $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) : 0;
+                    
+                    $icon = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/400";
                     $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
                     $typeAbility = filter_input(INPUT_POST, "typeAbility", FILTER_SANITIZE_NUMBER_INT);
                     $tagAbility = filter_input(INPUT_POST, "tagAbility", FILTER_SANITIZE_NUMBER_INT);
+                    // var_dump($_POST);die;
 
                     // !== false so if empty still work 
-                    if ($name !== false  && $description !== false && $energyGeneration !== false && $energyCost !== false && $dmg !== false && $icon !== false && $playableCharacter !== false && $typeAbility !== false && $tagAbility !== false) {
+                    if ($name && $description && $playableCharacter && $energyGeneration && $energyCost && $dmg && $typeAbility  && $tagAbility && $icon) {
 
                         $abilityManager = new AbilityManager();
                         $abilityManager->add([
@@ -159,7 +163,7 @@ use Model\Managers\TagAbilityManager;
                             "typeAbility_id" => $typeAbility,
                             "tagAbility_id" => $tagAbility
                         ]);
-                        $this->redirectTo("admin", "addAbility");
+                        $this->redirectTo("admin", "addAbilityView");
                     } else {
                         $this->redirectTo("wiki", "playableCharacterList");
                     }
