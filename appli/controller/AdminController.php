@@ -231,22 +231,22 @@ use Model\Managers\TraceManager;
             
             if (isset($_POST['submitTrace'])) {
                 // Check if all required input arnt empty
-                if ((!empty($_POST['nameTrace'])) && (!empty($_POST['effectTrace'])) && (!empty($_POST['playableCharacterTrace'])) && (!empty($_POST['nbrTrace']))) {
+                if ((!empty($_POST['nameTrace'])) && (!empty($_POST['effectTrace'])) && (!empty($_POST['playableCharacterTrace'])) && (!empty($_POST['ascendTrace']))) {
                     
                     // Sanitaze all input from the form
                     $name = filter_input(INPUT_POST, "nameTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $effect = filter_input(INPUT_POST, "effectTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $ascendTrace = filter_input(INPUT_POST, "ascendTrace", FILTER_SANITIZE_NUMBER_INT); 
+                    $ascend_id = filter_input(INPUT_POST, "ascendTrace", FILTER_SANITIZE_NUMBER_INT); 
                     $playableCharacter = filter_input(INPUT_POST, "playableCharacterTrace", FILTER_SANITIZE_NUMBER_INT);
                     $icon = filter_input(INPUT_POST, "image-urlTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
 
-                    if ($name !== false && $effect !== false && $nbr !== false && $playableCharacter !== false && $icon !== false) {
+                    if ($name !== false && $effect !== false && $ascend_id !== false && $playableCharacter !== false && $icon !== false) {
                         // var_dump("$icon");die;
                         $traceManager = new TraceManager();
                         $traceManager->add([
                             "name" => $name,
                             "effect" => $effect,
-                            "ascend_id" => $ascendTrace,
+                            "ascend_id" => $ascend_id,
                             "playableCharacter_id" => $playableCharacter,
                             "icon" => $icon,
                         ]);
