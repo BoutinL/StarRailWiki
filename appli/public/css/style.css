@@ -28,20 +28,21 @@ ol, ul {
     background-color: rgb(36, 36, 36);
     margin-bottom: 1rem;
     display: inline-flex;
+    justify-content: space-between; 
     width: 100%;
 }
 .nav-left{
     display: flex;
-    width: 50%;
-    justify-content: space-around;  
-    padding: 1rem;
+    width: 25%;
+    justify-content: space-around; 
+    align-items: center;
 }
 
 .nav-right{
     display: flex;
-    width: 50%;
-    justify-content: space-around;  
-    padding: 1rem;
+    width: 25%;
+    justify-content: space-around;
+    align-items: center; 
 }
 
 .nav-links{
@@ -49,6 +50,12 @@ ol, ul {
     text-decoration: none;
     color: white;
 }
+
+.icon-nav{
+    width: 12rem;
+    height: auto;
+}
+
 
 .footer{
     padding: 1rem;
@@ -336,8 +343,8 @@ input, select{
     width: 100%;
     margin: 0 auto;
     background-color: white;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 }
 
 nav ul{
