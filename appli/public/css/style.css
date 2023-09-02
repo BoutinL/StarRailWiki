@@ -56,6 +56,11 @@ ol, ul {
     justify-content: center;
     align-items: center;
     background-color: rgb(36, 36, 36);
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 /* Layout fin */
@@ -112,7 +117,7 @@ ol, ul {
 }
 
 .card-img{
-    width: 30rem;
+    max-height: 30rem;
     object-fit: cover;
 }
 

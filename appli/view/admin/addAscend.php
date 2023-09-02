@@ -31,7 +31,7 @@
                 </li>
                 <li class="deroulant"><a href="#">Delete &ensp;</a>
                 <ul class="sous">
-                    <li><a href="#">Delete Character</a></li>
+                    <li><a href="index.php?ctrl=admin&action=deleteCharacterView">Delete Character</a></li>
                     <li><a href="#">Delete Ability</a></li>
                     <li><a href="#">Delete Ascend</a></li>
                 </ul>
