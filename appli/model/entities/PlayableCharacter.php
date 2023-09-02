@@ -14,7 +14,6 @@
         private $faction;
         private $world;
         private $releaseDate;
-        private $rate;
         private $combatType;
         private $path;
         private $introduction;
@@ -141,17 +140,6 @@
                 return $date->format("d-m-Y");
         }
 
-        public function getRate()
-        {
-                return $this->rate;
-        }
-
-        public function setRate($rate)
-        {
-                $this->rate = $rate;
-
-                return $this;
-        }
 
         public function getCombatType()
         {

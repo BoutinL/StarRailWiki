@@ -33,14 +33,14 @@ ol, ul {
 }
 .nav-left{
     display: flex;
-    width: 25%;
+    width: 45%;
     justify-content: space-around; 
     align-items: center;
 }
 
 .nav-right{
     display: flex;
-    width: 25%;
+    width: 15%;
     justify-content: space-around;
     align-items: center; 
 }
