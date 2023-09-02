@@ -26,4 +26,24 @@
                 $this->className
             );
         }
+
+        public function getAbilities(){
+
+            $sql = "SELECT id_ability, name
+            FROM " .$this->tableName ;
+
+            return $this->getMultipleResults(
+                DAO::select($sql), 
+                $this->className
+            );
+        
+        }
+
+        public function deleteAbility($id){
+            $sql = "DELETE FROM " . $this->tableName . "
+                    WHERE id_" . $this->tableName . " = :id";
+
+            DAO::delete($sql, ['id' => $id]);
+        }
+
     }

@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Hôte:                         localhost
+-- Hôte:                         127.0.0.1
 -- Version du serveur:           8.0.30 - MySQL Community Server - GPL
 -- SE du serveur:                Win64
 -- HeidiSQL Version:             12.1.0.6537
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `ability` (
   KEY `character_id` (`playableCharacter_id`) USING BTREE,
   KEY `typeAbility_id` (`typeAbility_id`),
   KEY `tag_id` (`tagAbility_id`) USING BTREE,
-  CONSTRAINT `FK-ability_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`),
+  CONSTRAINT `FK-ability_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE,
   CONSTRAINT `FK-ability_tagAbility` FOREIGN KEY (`tagAbility_id`) REFERENCES `tagability` (`id_tagAbility`),
   CONSTRAINT `FK-ability_typeAbility` FOREIGN KEY (`typeAbility_id`) REFERENCES `typeability` (`id_typeAbility`)
 ) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=latin1;
@@ -244,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `eidolon` (
   `playableCharacter_id` int NOT NULL,
   PRIMARY KEY (`id_eidolon`),
   KEY `character_id` (`playableCharacter_id`) USING BTREE,
-  CONSTRAINT `FK-eidolon_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`)
+  CONSTRAINT `FK-eidolon_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table srw_loic.eidolon : ~180 rows (environ)
@@ -534,7 +534,7 @@ CREATE TABLE IF NOT EXISTS `trace` (
   KEY `playableCharacter_id` (`playableCharacter_id`),
   KEY `ascension_id` (`ascend_id`) USING BTREE,
   CONSTRAINT `FK-trace_ascension` FOREIGN KEY (`ascend_id`) REFERENCES `ascend` (`id_ascend`),
-  CONSTRAINT `FK-trace_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`)
+  CONSTRAINT `FK-trace_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table srw_loic.trace : ~13 rows (environ)
@@ -562,9 +562,12 @@ CREATE TABLE IF NOT EXISTS `trailblazer` (
   `dateRegister` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `role` varchar(20) NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id_trailblazer`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.trailblazer : ~0 rows (environ)
+-- Listage des données de la table srw_loic.trailblazer : ~1 rows (environ)
+INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `dateRegister`, `role`) VALUES
+	(1, 'admin@admin.fr', 'admin', '$2y$10$lHnQ5WhncortI53C6ELAieP6wBYV7r67mWajL2pLfSMWezyx7g1M.', '2023-09-01 21:18:13', 'ROLE_ADMIN'),
+	(2, 'user@user.fr', 'user', '$2y$10$DTMyjO5x4.NNR5XhU4/zsuBlWjr8xhyACatfLscEq20fhmrYKSx/y', '2023-09-02 22:50:45', 'ROLE_MEMBER');
 
 -- Listage de la structure de table srw_loic. typeability
 CREATE TABLE IF NOT EXISTS `typeability` (

@@ -336,8 +336,6 @@ input, select{
     width: 100%;
     margin: 0 auto;
     background-color: white;
-    position: sticky;
-    top: 0px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
@@ -365,7 +363,6 @@ nav a{
     color: black;
     border-bottom: 2px solid transparent;
     padding: 10px 0px;
-
 }
 
 .sous{
@@ -393,7 +390,7 @@ nav > ul li:hover .sous{
     background-color: RGBa(200,200,200,0.1);
 }
 .deroulant > a::after{
-    content:" ▼";
+    content:"▼";
     font-size: 12px;
     border-radius: 30px;
 }

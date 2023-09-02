@@ -29,4 +29,24 @@
 
         }
 
+        public function getTrace(){
+
+            $sql = "SELECT id_trace, name, effect
+            FROM " .$this->tableName ;
+
+            return $this->getMultipleResults(
+                DAO::select($sql), 
+                $this->className
+            );
+        
+        }
+
+        public function deleteTrace($id){
+            $sql = "DELETE FROM " . $this->tableName . "
+                    WHERE id_" . $this->tableName . " = :id";
+
+            DAO::delete($sql, ['id' => $id]);
+        }
+
+
     }

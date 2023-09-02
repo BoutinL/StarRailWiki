@@ -1,5 +1,5 @@
 <?php
-    $trailblazerList = $result["data"]['trailblazerList'];
+    $traceList = $result['data']['traceList'];
 ?>
 
 <div class="content">
@@ -38,22 +38,25 @@
                 </li>
             </ul>
         </nav>
-        <table class="userlist-container">
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>DateRegister</th>
-                <th>Role</th>
-            </tr>
-            <?php foreach ($trailblazerList as $trailblazer) { ?>
-                <tr>
-                    <td class="center"><?= $trailblazer->getUsername() ?></td>
-                    <td class="center"><?= $trailblazer->getEmail() ?></td>
-                    <td class="center"><?= $trailblazer->getDateRegister() ?></td>
-                    <td class="center"><?= $trailblazer->getRole() ?></td>
-                    <td class="center"></td>
-                </tr>
-            <?php } ?>    
-        </table>
-    <?php } ?>
+        <?php if (App\Session::getUser() && App\Session::getUser()->getId()) : ?>
+            <div class ="form-admin-container">
+                <h1>Delete a Trace</h1>
+                <form class="form" id="deleteTrace" action="index.php?ctrl=admin&action=deleteTrace" method="POST">
+                <label for="trace">Trace to delete :</label>
+                    <select name="trace" id="trace" required>
+                        <option>--Chose a Trace--</option>
+                        <?php 
+                            foreach($traceList as $trace){
+                                $id = $trace->getId();
+                                $name = $trace->getName();
+                                $effect = $trace->getEffect();
+                                echo "<option value=\"$id\">$id - $name - $effect</option>";
+                            }
+                        ?>
+                    </select>
+                    <input class="add-submit" type="submit" form="deleteTrace" name="submit" value="Delete">
+                </form>
+            </div>
+        <?php endif; 
+    } ?>
 </div>

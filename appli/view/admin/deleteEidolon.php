@@ -1,5 +1,5 @@
 <?php
-    $trailblazerList = $result["data"]['trailblazerList'];
+    $eidolonList = $result['data']['eidolonList'];
 ?>
 
 <div class="content">
@@ -38,22 +38,24 @@
                 </li>
             </ul>
         </nav>
-        <table class="userlist-container">
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>DateRegister</th>
-                <th>Role</th>
-            </tr>
-            <?php foreach ($trailblazerList as $trailblazer) { ?>
-                <tr>
-                    <td class="center"><?= $trailblazer->getUsername() ?></td>
-                    <td class="center"><?= $trailblazer->getEmail() ?></td>
-                    <td class="center"><?= $trailblazer->getDateRegister() ?></td>
-                    <td class="center"><?= $trailblazer->getRole() ?></td>
-                    <td class="center"></td>
-                </tr>
-            <?php } ?>    
-        </table>
-    <?php } ?>
+        <?php if (App\Session::getUser() && App\Session::getUser()->getId()) : ?>
+            <div class ="form-admin-container">
+                <h1>Delete an eidolon</h1>
+                <form class="form" id="deleteEidolon" action="index.php?ctrl=admin&action=deleteEidolon" method="POST">
+                <label for="eidolon">Eidolon to delete :</label>
+                    <select name="eidolon" id="eidolon" required>
+                        <option>--Chose an Eidolon--</option>
+                        <?php 
+                            foreach($eidolonList as $eidolon){
+                                $id = $eidolon->getId();
+                                $name = $eidolon->getName();
+                                echo "<option value=\"$id\">$id - $name</option>";
+                            }
+                        ?>
+                    </select>
+                    <input class="add-submit" type="submit" form="deleteEidolon" name="submit" value="Delete">
+                </form>
+            </div>
+        <?php endif; 
+    } ?>
 </div>
