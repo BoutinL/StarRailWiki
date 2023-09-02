@@ -277,14 +277,28 @@ use Model\Managers\TraceManager;
             
         }
 
-        public function deleteCharacter($id){
+        public function deleteCharacter(){
             $this->restrictTo("ROLE_ADMIN");
-
-            $playableCharacterManager = new PlayableCharacterManager();
-            $playableCharacterManager->deleteCharacter($id);
-
-            $this->redirectTo("wiki", "playableCharacterList");
             
+            if (isset($_POST['submit'])) {
+                // Check if all required input arnt empty
+                if ((!empty($_POST['playableCharacter'])) && (!empty($_POST['playableCharacter']))) {
+                    
+                    // Sanitaze all input from the form
+                    $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
+
+                    if ($playableCharacter !== false) {
+                        $playableCharacterManager = new PlayableCharacterManager();
+                        $playableCharacterManager->deleteCharacter($playableCharacter);
+
+                        $this->redirectTo("wiki", "playableCharacterList");
+                    } else {
+                        $this->redirectTo("admin", "deleteCharacterView");
+                    }
+
+                }
+
+            }
         }
 
         // public function updateCharacter($id){
