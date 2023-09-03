@@ -16,7 +16,7 @@
         
         public function getPlayableCharacter(){
 
-            $sql = "SELECT id_playableCharacter, name
+            $sql = "SELECT id_playableCharacter, name, image, rarity, sex, specie, faction, world, quote, releaseDate, rate, introduction, combatType_id, path_id
             FROM " .$this->tableName ;
 
             return $this->getMultipleResults(

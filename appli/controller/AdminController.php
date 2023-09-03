@@ -295,7 +295,7 @@ use Model\Managers\TraceManager;
             
             if (isset($_POST['submit'])) {
                 // Check if all required input arnt empty
-                if ((!empty($_POST['playableCharacter'])) && (!empty($_POST['playableCharacter']))) {
+                if ((!empty($_POST['playableCharacter']))) {
                     
                     // Sanitaze all input from the form
                     $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
@@ -336,7 +336,7 @@ use Model\Managers\TraceManager;
             
             if (isset($_POST['submit'])) {
                 // Check if all required input arnt empty
-                if ((!empty($_POST['ability'])) && (!empty($_POST['ability']))) {
+                if ((!empty($_POST['ability']))) {
                     
                     // Sanitaze all input from the form
                     $ability = filter_input(INPUT_POST, "ability", FILTER_SANITIZE_NUMBER_INT);
@@ -377,7 +377,7 @@ use Model\Managers\TraceManager;
             
             if (isset($_POST['submit'])) {
                 // Check if all required input arnt empty
-                if ((!empty($_POST['eidolon'])) && (!empty($_POST['eidolon']))) {
+                if ((!empty($_POST['eidolon']))) {
                     
                     // Sanitaze all input from the form
                     $eidolon = filter_input(INPUT_POST, "eidolon", FILTER_SANITIZE_NUMBER_INT);
@@ -417,7 +417,7 @@ use Model\Managers\TraceManager;
             
             if (isset($_POST['submit'])) {
                 // Check if all required input arnt empty
-                if ((!empty($_POST['trace'])) && (!empty($_POST['trace']))) {
+                if ((!empty($_POST['trace']))) {
                     
                     // Sanitaze all input from the form
                     $trace = filter_input(INPUT_POST, "trace", FILTER_SANITIZE_NUMBER_INT);
@@ -436,10 +436,45 @@ use Model\Managers\TraceManager;
             }
         }
 
-        // public function updateCharacter($id){
-        //     $this->restrictTo("ROLE_ADMIN");
+        public function updateCharacterView(){
+            $this->restrictTo("ROLE_ADMIN");
             
+            $playableCharacterManager = new PlayableCharacterManager();
+
+            $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
+
+            // var_dump($ascendList->current());die;
+            return [
+                "view" => VIEW_DIR."admin/updateCharacterSelect.php",
+                "data" => [
+                    "playableCharacterList" => $playableCharacterList
+                ]
+            ];
             
-        // }
+        }
+
+        public function updateCharacter($id){
+            $this->restrictTo("ROLE_ADMIN");
+
+            $playableCharacterManager = new PlayableCharacterManager;
+            $playableCharacter = $playableCharacterManager->findOneById($id)->getPlayableCharacter();
+    
+            if (isset($_POST['submit'])) {
+                if ((!empty($_POST['playableCharacter']))) {
+                    $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
+                    // Mettre à jour le contenu d'un message spécifique dans un sujet de discussion
+                    $playableCharacterManager->updateCharacter($playableCharacter, intval($id));
+                    $topic_id = $playableCharacterManager->findOneByid($id)->getTopic()->getId();
+                    $this->redirectTo("forum", "listPostsByTopic", $topic_id);
+                }
+    
+                return [
+                    "view" => VIEW_DIR . "admin/updateCharacter.php",
+                    "data" => [
+                        "content" => $playableCharacter
+                    ]
+                ];
+            }
+        }
 
     }

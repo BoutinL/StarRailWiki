@@ -39,7 +39,7 @@
             </ul>
         </nav>
     <?php } if (isset($trailblazer)) { ?>
-        <table class="profile-container">
+        <table class="profile-container table-profile">
             <tr>
                 <th colspan="2">Profile</th>
             </tr>

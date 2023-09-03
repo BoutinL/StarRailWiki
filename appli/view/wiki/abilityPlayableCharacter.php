@@ -12,7 +12,7 @@
     </section>
     <section class="abilities-content">
         <?php foreach($abilitiesPlayableCharacter as $ability){ ?>
-            <table class="ability-details">
+            <table class="ability-details table-sizing">
                 <tr>
                     <td rowspan="2" class="center"><img src="<?= $ability->getIcon() ?>" alt="<?=$ability->getName()?> Icon" /></td>
                     <td><?= $ability->getTypeAbility()->getType()?></td>

@@ -1,5 +1,5 @@
 <?php
-    $trailblazerList = $result["data"]['trailblazerList'];
+    $playableCharacterList = $result['data']['playableCharacterList'];
 ?>
 
 <div class="content">
@@ -38,22 +38,24 @@
                 </li>
             </ul>
         </nav>
-        <table class="userlist-container table-profile">
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>DateRegister</th>
-                <th>Role</th>
-            </tr>
-            <?php foreach ($trailblazerList as $trailblazer) { ?>
-                <tr>
-                    <td class="center"><?= $trailblazer->getUsername() ?></td>
-                    <td class="center"><?= $trailblazer->getEmail() ?></td>
-                    <td class="center"><?= $trailblazer->getDateRegister() ?></td>
-                    <td class="center"><?= $trailblazer->getRole() ?></td>
-                    <td class="center"></td>
-                </tr>
-            <?php } ?>    
-        </table>
-    <?php } ?>
+        <?php if (App\Session::getUser() && App\Session::getUser()->getId()) : ?>
+            <div class ="form-admin-container">
+                <h1>Update a character</h1>
+                <form class="form" id="updateCharacter" action="index.php?ctrl=admin&action=updateCharacter" method="POST">
+                <label for="playableCharacter">Character to update :</label>
+                    <select name="playableCharacter" id="playableCharacter" required>
+                        <option>--Chose a character--</option>
+                        <?php 
+                            foreach($playableCharacterList as $playableCharacter){
+                                $id = $playableCharacter->getId();
+                                $name = $playableCharacter->getName();
+                                echo "<option value=\"$id\">$id - $name</option>";
+                            }
+                        ?>
+                    </select>
+                    <input class="add-submit" type="submit" form="updateCharacter" name="submit" value="Delete">
+                </form>
+            </div>
+        <?php endif; 
+    } ?>
 </div>

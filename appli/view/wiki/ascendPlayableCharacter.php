@@ -15,7 +15,7 @@
         <div class="eidolon-container">
             <h1>Eidolon</h1>
             <?php foreach($eidolonPlayableCharacter as $eidolon){?>
-                <table class="eidolon-details">
+                <table class="eidolon-details table-sizing">
                     <tr>
                         <td rowspan="2" class="center"><img src="<?= $eidolon->getIcon() ?>" alt="<?=$eidolon->getName()?> Icon" /></td>
                         <td class="eidolon-nbr"><?= $eidolon->getNbr() ?></td>
@@ -30,7 +30,7 @@
         <div class="trace-container">
             <h1>Trace</h1>
             <?php foreach($tracePlayableCharacter as $trace){?>
-                <table class="trace-details">
+                <table class="trace-details table-sizing">
                     <tr>
                         <td rowspan="2" class="center"><img src="<?= $trace->getIcon() ?>" alt="<?=$trace->getName()?> Icon" /></td>
                         <td><?= $trace->getName() ?></td>

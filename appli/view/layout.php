@@ -20,7 +20,7 @@
             <header>
                 <nav class="nav">
                     <div class="nav-left" id="nav-left">
-                        <a class="nav-links" href="http://localhost/StarRailWiki/appli/"><img class="icon-nav" src="https://upload.wikimedia.org/wikipedia/fr/b/b1/Honkai-Star-Rail.png" alt="Home Star rail icon" /></a>
+                        <a class="nav-links" href="http://localhost/StarRailWiki/appli/"><img class="icon-nav" src="/StarRailWiki/appli/public/img/Honkai-Star-Rail-icon.png" alt="Home Star rail icon" /></a>
                         <a class="nav-links" href="index.php?ctrl=wiki&action=characterList">Character List</a>
                         <a class="nav-links" href="">Topic List</a>
                         <a class="nav-links" href="">Banners</a>

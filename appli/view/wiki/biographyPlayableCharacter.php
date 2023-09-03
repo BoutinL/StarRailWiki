@@ -13,9 +13,6 @@
         <figure class="portrait">
             <img class="splash-art" src="<?= $biographyPlayableCharacter->getImage() ?>" alt="<?=$biographyPlayableCharacter->getName()?> splash art" />
         </figure>
-        <?php if(App\Session::isAdmin()){ ?>
-            
-        <?php } ?>
         <div class="biography-container">
             <div class="bio-content">
                 <h2 class="bio-character-name"><strong><?= $biographyPlayableCharacter->getName() ?></strong></h2>
