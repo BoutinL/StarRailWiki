@@ -20,3 +20,6 @@
         <?php } ?>
     </div>
 </section>
+<div class="scroll-container">
+    <a href="#top"><i class="fa-solid fa-arrow-up circle" style="color: #ffffff;"></i></a>
+</div>
