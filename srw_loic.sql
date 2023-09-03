@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `ability` (
   CONSTRAINT `FK-ability_typeAbility` FOREIGN KEY (`typeAbility_id`) REFERENCES `typeability` (`id_typeAbility`)
 ) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.ability : ~154 rows (environ)
+-- Listage des données de la table srw_loic.ability : ~155 rows (environ)
 INSERT INTO `ability` (`id_ability`, `name`, `description`, `energyGeneration`, `energyCost`, `dmg`, `icon`, `playableCharacter_id`, `typeAbility_id`, `tagAbility_id`) VALUES
 	(1, 'Lightning Rush', 'Deals Lightning DMG equal to 50%–110% of Arlan\'s ATK to a single enemy.', 20, 0, 30, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/97f31b5c7f456cadf844b45ee443c93f_4125532999287192258.png', 13, 1, 1),
 	(2, 'Shackle Breaker', 'Consumes Arlan\'s HP equal to 15% of his Max HP to deal Lightning DMG equal to 120%–264% of Arlan\'s ATK to a single enemy. If Arlan does not have sufficient HP, his HP will be reduced to 1 after using his Skill.', 30, 0, 60, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/d8c555f7f9f47b610f2a4b84678df64b_2458479177492742947.png', 13, 2, 1),
@@ -247,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `eidolon` (
   CONSTRAINT `FK-eidolon_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.eidolon : ~180 rows (environ)
+-- Listage des données de la table srw_loic.eidolon : ~181 rows (environ)
 INSERT INTO `eidolon` (`id_eidolon`, `nbr`, `name`, `effect`, `icon`, `playableCharacter_id`) VALUES
 	(1, 1, 'Chilhood', 'After "Victory Rush" is triggered, Himeko\'s SPD increases by 20% for 2 turn(s).', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/5055f0d7efe7a6a0a7ab8643326c85d9_7226258822720332319.png', 1),
 	(2, 2, 'Convergence', 'Deals 15% more DMG to enemies whose HP percentage is 50% or less.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/9c81b39d06d7b2e4f218d273e1f70eec_244646985592578051.png', 1),
@@ -470,7 +470,7 @@ CREATE TABLE IF NOT EXISTS `playablecharacter` (
   CONSTRAINT `FK-playableCharacter_path` FOREIGN KEY (`path_id`) REFERENCES `path` (`id_path`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.playablecharacter : ~30 rows (environ)
+-- Listage des données de la table srw_loic.playablecharacter : ~31 rows (environ)
 INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarity`, `sex`, `specie`, `faction`, `world`, `quote`, `releaseDate`, `rate`, `introduction`, `combatType_id`, `path_id`) VALUES
 	(1, 'Himeko', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Himeko-Splash-Art-1024x877.png', 5, 'Female', 'Human', 'The Nameless', 'Astal Express', 'Alright, crew! This world is the target of our next trailblazing expedition!', '2023-04-26', NULL, 'An adventurous scientist who encountered and repaired a stranded train as a child, she now ventures across the universe with the Astral Express as its navigator. She is also an Emanator of the Trailblaze.', 2, 3),
 	(2, 'March 7th', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-March-7th-Splash-Art-1024x877.png', 4, 'Female', '???', 'The Nameless', 'Astral Express', 'Well would you listen to that! I saved everyone without causing any trouble! You\'re pretty awesome, March 7th!', '2023-04-26', NULL, 'An enthusiastic girl who was saved from eternal ice by the Astral Express Crew, and has the unique ability of being able to use "Six-Phased Ice." When she awoke, she knew nothing of herself or her past, and decided to name herself after the date of her rebirth, "March 7th." She takes many photos using her camera in hopes of discovering a memento from her past.', 3, 6),
@@ -564,7 +564,7 @@ CREATE TABLE IF NOT EXISTS `trailblazer` (
   PRIMARY KEY (`id_trailblazer`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.trailblazer : ~1 rows (environ)
+-- Listage des données de la table srw_loic.trailblazer : ~0 rows (environ)
 INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `dateRegister`, `role`) VALUES
 	(1, 'admin@admin.fr', 'admin', '$2y$10$lHnQ5WhncortI53C6ELAieP6wBYV7r67mWajL2pLfSMWezyx7g1M.', '2023-09-01 21:18:13', 'ROLE_ADMIN'),
 	(2, 'user@user.fr', 'user', '$2y$10$DTMyjO5x4.NNR5XhU4/zsuBlWjr8xhyACatfLscEq20fhmrYKSx/y', '2023-09-02 22:50:45', 'ROLE_MEMBER');
