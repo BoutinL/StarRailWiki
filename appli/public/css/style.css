@@ -1,7 +1,7 @@
 /* Reset CSS */
 html {
     box-sizing: border-box;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: 'Kanit', sans-serif;
 }
 
@@ -89,16 +89,16 @@ ol, ul {
 
 .card-link{
     margin: 1rem;
-    height: auto;
     border-radius: 30px;
     text-decoration: none;
     color: white;
     display: block;
-    transition: transform 0.3s;
+    transition: transform 0.5s;
 }
 
 .card-link:hover{
-    transform: scale(1.1);
+    transform: scale(1.08);
+    box-shadow: 0 1px 15px 2px rgb(255, 255, 255);
 }
 
 .card{
@@ -147,6 +147,7 @@ ol, ul {
     color: white;
 }
 
+
 /* Marqueur onglet qui s'adapte au combatType */
 .combatTypeCssLinkPhysical{
     color: #b2adad;
@@ -174,7 +175,6 @@ ol, ul {
     display: flex;
     justify-content: space-evenly;
     margin: 1rem;
-
 }
 
 .splash-art{
@@ -201,7 +201,7 @@ ol, ul {
 
 .path-combatType-box{
     display: inline-flex;
-    width: 80%;
+    width: 60%;
     justify-content: space-between;
 }
 

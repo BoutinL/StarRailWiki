@@ -69,23 +69,38 @@
             ];
         }
 
-        public function ascendPlayableCharacter($id)
+        public function eidolonPlayableCharacter($id)
         {
-            $tracePlayableCharacterManager = new TraceManager();
             $eidolonPlayableCharacterManager = new EidolonManager();
             $playableCharacterManager = new PlayableCharacterManager();
 
-            $tracePlayableCharacter = $tracePlayableCharacterManager->getTraceByPlayableCharacterId($id);
             $eidolonPlayableCharacter = $eidolonPlayableCharacterManager->getEidolonByPlayableCharacterId($id);
             $playableCharacter = $playableCharacterManager->findOneById($id);
 
             return [
-                "view" => VIEW_DIR."wiki/ascendPlayableCharacter.php",
+                "view" => VIEW_DIR."wiki/eidolonPlayableCharacter.php",
+                "data" => [
+                    // eidolon data
+                    "eidolonPlayableCharacter" => $eidolonPlayableCharacter,
+                    // Character data
+                    "playableCharacter" => $playableCharacter,
+                ]
+            ];
+        }
+
+        public function tracePlayableCharacter($id)
+        {
+            $tracePlayableCharacterManager = new TraceManager();
+            $playableCharacterManager = new PlayableCharacterManager();
+
+            $tracePlayableCharacter = $tracePlayableCharacterManager->getTraceByPlayableCharacterId($id);
+            $playableCharacter = $playableCharacterManager->findOneById($id);
+
+            return [
+                "view" => VIEW_DIR."wiki/tracePlayableCharacter.php",
                 "data" => [
                     // Trace data
                     "tracePlayableCharacter" => $tracePlayableCharacter,
-                    // eidolon data
-                    "eidolonPlayableCharacter" => $eidolonPlayableCharacter,
                     // Character data
                     "playableCharacter" => $playableCharacter,
                 ]
