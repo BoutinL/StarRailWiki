@@ -26,11 +26,34 @@
         
         }
 
+        public function getPlayableCharacterById($id){
+
+            $sql = "SELECT id_playableCharacter, name, image, rarity, sex, specie, faction, world, quote, releaseDate, rate, introduction, combatType_id, path_id
+            FROM " .$this->tableName. "
+            WHERE id_playableCharacter = :id";
+
+            return $this->getOneorNullResult(
+                DAO::select($sql, ['id' => $id]), 
+                $this->className
+            );
+        
+        }
+
         public function deleteCharacter($id){
             $sql = "DELETE FROM " . $this->tableName . "
                     WHERE id_" . $this->tableName . " = :id";
 
             DAO::delete($sql, ['id' => $id]);
+        }
+
+        public function updateCharacter($name, $image, $rarity, $sex, $specie, $faction, $world, $quote, $releaseDate, $introduction, $combatType, $path, $id)
+        {
+        
+            $sql = "UPDATE ".$this->tableName."
+                    SET content = :name, image, rarity, sex, specie, faction, world, quote, releaseDate, introduction, combatType_id, path_id 
+                    WHERE id_".$this->tableName." = :id";
+            
+            DAO::update($sql, ['name' => $name,'image' => $image,'rarity' => $rarity,'sex' => $sex,'specie' => $specie,'faction' => $faction,'world' => $world, 'quote' => $quote, 'releaseDate' => $releaseDate,'introduction' => $introduction, 'combatType_id' => $combatType, 'path_id' => $path, 'id' => $id]);
         }
 
     }

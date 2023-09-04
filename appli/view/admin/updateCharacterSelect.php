@@ -1,5 +1,6 @@
 <?php
     $playableCharacterList = $result['data']['playableCharacterList'];
+
 ?>
 
 <div class="content">
@@ -41,7 +42,7 @@
         <?php if (App\Session::getUser() && App\Session::getUser()->getId()) : ?>
             <div class ="form-admin-container">
                 <h1>Update a character</h1>
-                <form class="form" id="updateCharacter" action="index.php?ctrl=admin&action=updateCharacter" method="POST">
+                <form class="form" id="updateCharacterSelect" action="index.php?ctrl=admin&action=updateCharacterSelect" method="POST">
                 <label for="playableCharacter">Character to update :</label>
                     <select name="playableCharacter" id="playableCharacter" required>
                         <option>--Chose a character--</option>
@@ -53,7 +54,7 @@
                             }
                         ?>
                     </select>
-                    <input class="add-submit" type="submit" form="updateCharacter" name="submit" value="Delete">
+                    <input class="add-submit" type="submit" form="updateCharacterSelect" name="submit" value="Select">
                 </form>
             </div>
         <?php endif; 

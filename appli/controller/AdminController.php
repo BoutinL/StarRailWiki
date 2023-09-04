@@ -443,7 +443,6 @@ use Model\Managers\TraceManager;
 
             $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
 
-            // var_dump($ascendList->current());die;
             return [
                 "view" => VIEW_DIR."admin/updateCharacterSelect.php",
                 "data" => [
@@ -453,28 +452,64 @@ use Model\Managers\TraceManager;
             
         }
 
-        public function updateCharacter($id){
+        public function updateCharacterSelect(){
             $this->restrictTo("ROLE_ADMIN");
 
-            $playableCharacterManager = new PlayableCharacterManager;
-            $playableCharacter = $playableCharacterManager->findOneById($id)->getPlayableCharacter();
-    
+            $id = filter_input(INPUT_POST,"playableCharacter", FILTER_VALIDATE_INT);
             if (isset($_POST['submit'])) {
                 if ((!empty($_POST['playableCharacter']))) {
-                    $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
-                    // Mettre à jour le contenu d'un message spécifique dans un sujet de discussion
-                    $playableCharacterManager->updateCharacter($playableCharacter, intval($id));
-                    $topic_id = $playableCharacterManager->findOneByid($id)->getTopic()->getId();
-                    $this->redirectTo("forum", "listPostsByTopic", $topic_id);
+                    $playableCharacterManager = new PlayableCharacterManager;
+                    $combatTypeManager = new CombatTypeManager();
+                    $pathManager = new PathManager();
+
+                    $playableCharacter = $playableCharacterManager->findOneById($id);
+                    $combatTypeList = $combatTypeManager->getCombatType();
+                    $pathList = $pathManager->getPath();
+            
+                    return [
+                        "view" => VIEW_DIR."admin/updateCharacter.php",
+                        "data" => [
+                            "playableCharacter" => $playableCharacter,
+                            "combatTypeList" => $combatTypeList,
+                            "pathList" => $pathList
+                        ]
+                    ];
                 }
-    
-                return [
-                    "view" => VIEW_DIR . "admin/updateCharacter.php",
-                    "data" => [
-                        "content" => $playableCharacter
-                    ]
-                ];
             }
         }
 
+        public function updateCharacter(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            if (isset($_POST['submit'])) {
+                // var_dump($_POST['path']);die;
+                // Check if all required input arnt empty
+                if ((!empty($_POST['name'])) && (!empty($_POST['rarity'])) && (!empty($_POST['releaseDate'])) && (!empty($_POST['combatType'])) && (!empty($_POST['path']))) {
+                    
+                    // Sanitaze all input from the form
+                    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $image = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/1024x877";
+                    $rarity = filter_input(INPUT_POST, "rarity", FILTER_SANITIZE_NUMBER_INT);
+                    $sex = filter_input(INPUT_POST, "sex", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $specie = filter_input(INPUT_POST, "specie", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $faction = filter_input(INPUT_POST, "faction", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $world = filter_input(INPUT_POST, "world", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $quote = filter_input(INPUT_POST, "quote", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $releaseDate = filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $introduction = filter_input(INPUT_POST, "introduction", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $combatType = filter_input(INPUT_POST, "combatType", FILTER_SANITIZE_NUMBER_INT);
+                    $path = filter_input(INPUT_POST, "path", FILTER_SANITIZE_NUMBER_INT);
+
+                    // !== false so if empty still work 
+                    if ($name !== false  && $image !== false && $rarity !== false && $sex !== false && $specie !== false && $faction !== false && $world !== false && $quote !== false && $releaseDate !== false && $introduction !== false && $combatType !== false && $path !== false) {
+                        $playableCharacterManager = new PlayableCharacterManager();
+                        $playableCharacterManager->updateCharacter($name,$image,$rarity,$sex,$specie,$faction,$world,$quote,$releaseDate,$introduction,$combatType,$path,$id);
+                        $this->redirectTo("wiki", "playableCharacterList");
+                    } else {
+                        $this->redirectTo("admin", "addCharacterView");
+                    }
+
+                }
+            }
+        }
     }
