@@ -513,4 +513,82 @@ use Model\Managers\TraceManager;
                 }
             }
         }
+
+        public function updateAbilityView(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            $abilityManager = new AbilityManager();
+
+            $abilityList = $abilityManager->getAbilities();
+
+            return [
+                "view" => VIEW_DIR."admin/updateAbilitySelect.php",
+                "data" => [
+                    "abilityList" => $abilityList
+                ]
+            ];
+            
+        }
+
+        public function updateAbilitySelect(){
+            $this->restrictTo("ROLE_ADMIN");
+
+            $id = filter_input(INPUT_POST,"ability", FILTER_VALIDATE_INT);
+            if (isset($_POST['submit'])) {
+                if ((!empty($_POST['ability']))) {
+                    $abilityManager = new AbilityManager;
+                    $playableCharacterManager = new PlayableCharacterManager;
+                    $typeAbilityManager = new TypeAbilityManager();
+                    $tagAbilityManager = new TagAbilityManager();
+
+                    $ability = $abilityManager->findOneById($id);
+                    $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
+                    $typeAbilityList = $typeAbilityManager->getTypeAbility();
+                    $tagAbilityList = $tagAbilityManager->getTagAbility();
+            
+                    return [
+                        "view" => VIEW_DIR."admin/updateAbility.php",
+                        "data" => [
+                            "ability" => $ability,
+                            "playableCharacterList" => $playableCharacterList,
+                            "typeAbilityList" => $typeAbilityList,
+                            "tagAbilityList" => $tagAbilityList
+                        ]
+                    ];
+                }
+            }
+        }
+
+        public function updateAbility($id){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            if (isset($_POST['submit'])) {
+                // Check if all required input arnt empty
+                if ((!empty($_POST['playableCharacter'])) && (!empty($_POST['name'])) && (!empty($_POST['description'])) && (!empty($_POST['typeAbility'])) && (!empty($_POST['tagAbility']))) {
+                    
+                    // Sanitaze all input from the form
+                    $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
+                    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $energyGeneration = filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) ? $energyGeneration = filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) : 0;
+                    $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) ? $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) : 0;
+                    $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) ? $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) : 0;
+                    $image = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/1024x877";
+                    $typeAbility = filter_input(INPUT_POST, "typebility", FILTER_SANITIZE_NUMBER_INT);
+                    $tagAbility = filter_input(INPUT_POST, "tagAbility", FILTER_SANITIZE_NUMBER_INT);
+
+
+                    // !== false so if empty still work 
+                    if ($playableCharacter !== false  && $name !== false && $description !== false && $energyGeneration && $energyCost && $dmg && $image !== false && $typeAbility !== false && $tagAbility) {
+                        $abilityManager = new AbilityManager();
+                        $abilityManager->updateAbility($id, $playableCharacter, $name, $description, $energyGeneration, $energyCost, $dmg, $image, $typeAbility, $tagAbility);
+                        // var_dump($id);die;
+                        $this->redirectTo("admin", "updateAbilityView");
+                    } else {
+                        $this->redirectTo("security", "viewProfile");
+                    }
+
+                }
+            }
+        }
     }

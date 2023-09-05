@@ -46,4 +46,25 @@
             DAO::delete($sql, ['id' => $id]);
         }
 
+        public function updateAbility($id, $playableCharacter, $name, $description, $energyGeneration, $energyCost, $dmg, $image, $typeAbility, $tagAbility)
+        {
+            // combatType_id = :combatType / 'combatType' => $combatType,
+            $sql = "UPDATE ".$this->tableName." 
+                    SET playableCharacter = :playableCharacter, name = :name, description = :description, energyGeneration = :energyGeneration, energyCost = :energyCost, dmg = :dmg, image = :icon, typeAbility = :typeAbility, tagAbility = :tagAbility
+                    WHERE id_".$this->tableName." = :id";
+                    
+            DAO::update($sql, [
+                                'id' => $id,
+                                'playableCharacter' => $playableCharacter,
+                                'name' => $name,
+                                'description' => $description,
+                                'energyGeneration' => $energyGeneration,
+                                'energyCost' => $energyCost,
+                                'dmg' => $dmg,
+                                'icon' => $image,
+                                'typeAbility' => $typeAbility,
+                                'tagAbility' => $tagAbility
+                            ]);  
+        }
+
     }

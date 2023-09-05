@@ -51,7 +51,7 @@
             $sql = "UPDATE ".$this->tableName." 
                     SET name = :name, image = :image, rarity = :rarity, sex = :sex, specie = :specie, faction = :faction, world = :world, quote = :quote, releaseDate = :releaseDate, introduction = :introduction, combatType_id = :combatType, path_id = :path
                     WHERE id_".$this->tableName." = :id";
-            
+                    
             DAO::update($sql, [
                                 'id' => $id,
                                 'name' => $name,
@@ -66,7 +66,6 @@
                                 'introduction' => $introduction,
                                 'combatType' => $combatType,
                                 'path' => $path,
-                            ]);
-             
+                            ]);  
         }
     }   
