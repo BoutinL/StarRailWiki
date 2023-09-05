@@ -44,7 +44,7 @@
                 <form class="form" id="deleteCharacter" action="index.php?ctrl=admin&action=deleteCharacter" method="POST">
                 <label for="playableCharacter">Character to delete :</label>
                         <select name="playableCharacter" id="playableCharacter" required>
-                            <option>--Chose a character--</option>
+                            <option hidden disabled selected>--Choose a character--</option>
                             <?php 
                                 foreach($playableCharacterList as $playableCharacter){
                                     $id = $playableCharacter->getId();

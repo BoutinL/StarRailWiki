@@ -44,7 +44,7 @@
                 <form class="form" id="deleteEidolon" action="index.php?ctrl=admin&action=deleteEidolon" method="POST">
                 <label for="eidolon">Eidolon to delete :</label>
                     <select name="eidolon" id="eidolon" required>
-                        <option>--Chose an Eidolon--</option>
+                        <option hidden disabled selected>--Choose an Eidolon--</option>
                         <?php 
                             foreach($eidolonList as $eidolon){
                                 $id = $eidolon->getId();

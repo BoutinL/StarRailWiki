@@ -47,7 +47,7 @@
                     <div class="input-required">
                         <label for="playableCharacterEidolon">Character's Eidolon :</label>
                         <select name="playableCharacterEidolon" id="playableCharacterEidolon" required>
-                            <option>--Chose a character--</option>
+                            <option hidden disabled selected>--Choose a character--</option>
                             <?php 
                                 foreach($playableCharacterList as $playableCharacter){
                                     $id = $playableCharacter->getId();

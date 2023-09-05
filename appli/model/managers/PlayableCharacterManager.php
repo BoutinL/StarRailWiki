@@ -46,14 +46,15 @@
             DAO::delete($sql, ['id' => $id]);
         }
         
-        public function updateCharacter($name, $image, $rarity, $sex, $specie, $faction, $world, $quote, $releaseDate, $introduction, $combatType, $path, $id)
+        public function updateCharacter($id, $name, $image, $rarity, $sex, $specie, $faction, $world, $quote, $releaseDate, $introduction, $combatType, $path)
         {
             // var_dump($releaseDate);die;
             $sql = "UPDATE ".$this->tableName."
-                    SET name = :name, image = :image, rarity = :rarity, sex = :sex, specie = :specie, faction = :faction, world = :world, quote = :quote, releaseDate = :releaseDate, introduction = :introduction, combatType_id = :combatType, path_id = :path 
+                    SET id = :id, name = :name, image = :image, rarity = :rarity, sex = :sex, specie = :specie, faction = :faction, world = :world, quote = :quote, releaseDate = :releaseDate, introduction = :introduction, combatType_id = :combatType, path_id = :path
                     WHERE id_".$this->tableName." = :id";
             
             DAO::update($sql, [
+                                // 'id_playableCharacter' => $id,
                                 'name' => $name,
                                 'image' => $image,
                                 'rarity' => $rarity,
@@ -65,7 +66,7 @@
                                 'releaseDate' => $releaseDate,
                                 'introduction' => $introduction,
                                 'combatType_id' => $combatType,
-                                'path_id' => $path
+                                'path_id' => $path,
                             ]);
         }
-    }
+    }   

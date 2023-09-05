@@ -48,7 +48,7 @@
                     <div class="input-required">
                         <label for="playableCharacterTrace">Character's Trace :</label>
                         <select name="playableCharacterTrace" id="playableCharacterTrace" required>
-                            <option>--Chose a character--</option>
+                            <option hidden disabled selected>--Choose a character--</option>
                             <?php 
                                 foreach($playableCharacterList as $playableCharacter){
                                     $id = $playableCharacter->getId();
@@ -66,7 +66,7 @@
 
                         <label for="ascendTrace">Level of ascension :</label>
                         <select name="ascendTrace" id="ascendTrace">
-                            <option>--Choose a level of Ascension--</option>
+                            <option hidden disabled selected>--Choose a level of Ascension--</option>
                             <?php 
                                 foreach($ascendList as $ascend){
                                     // var_dump("$ascend->getNbr()");die;

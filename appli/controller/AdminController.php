@@ -502,8 +502,9 @@ use Model\Managers\TraceManager;
                     // !== false so if empty still work 
                     if ($name !== false  && $image !== false && $rarity !== false && $sex !== false && $specie !== false && $faction !== false && $world !== false && $quote !== false && $releaseDate !== false && $introduction !== false && $combatType !== false && $path !== false) {
                         $playableCharacterManager = new PlayableCharacterManager();
-                        $playableCharacterManager->updateCharacter($name, $image, $rarity, $sex, $specie, $faction, $world, $quote, $releaseDate, $introduction, $combatType, $path, $id);
-                        var_dump($name);
+
+                        $playableCharacterManager->updateCharacter($id, $name, $image, $rarity, $sex, $specie, $faction, $world, $quote, $releaseDate, $introduction, $combatType, $path);
+                        // var_dump($id);die;
                         $this->redirectTo("admin", "updateCharacterView");
                     } else {
                         $this->redirectTo("security", "viewProfile");

@@ -44,7 +44,7 @@
                 <form class="form" id="deleteTrace" action="index.php?ctrl=admin&action=deleteTrace" method="POST">
                 <label for="trace">Trace to delete :</label>
                     <select name="trace" id="trace" required>
-                        <option>--Chose a Trace--</option>
+                        <option hidden disabled selected>--Choose a Trace--</option>
                         <?php 
                             foreach($traceList as $trace){
                                 $id = $trace->getId();

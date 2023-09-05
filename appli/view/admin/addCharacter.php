@@ -54,7 +54,7 @@
 
                         <label for="combatType">Combat type :</label>
                         <select name="combatType" id="combatType" required>
-                            <option></option>
+                            <option hidden disabled selected>--Choose a combat type--</option>
                             <?php 
                                 foreach($combatTypeList as $combatType){
                                     $id = $combatType->getId();
@@ -66,7 +66,7 @@
 
                         <label for="path">Path :</label>
                         <select name="path" id="path" required>
-                            <option></option>
+                            <option hidden disabled selected>--Choose a path--</option>
                             <?php 
                                 foreach($pathList as $path){
                                     $id = $path->getId();

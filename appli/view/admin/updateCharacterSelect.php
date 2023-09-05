@@ -45,7 +45,7 @@
                 <form class="form" id="updateCharacterSelect" action="index.php?ctrl=admin&action=updateCharacterSelect" method="POST">
                 <label for="playableCharacter">Character to update :</label>
                     <select name="playableCharacter" id="playableCharacter" required>
-                        <option>--Chose a character--</option>
+                        <option hidden disabled selected>--Chose a character--</option>
                         <?php 
                             foreach($playableCharacterList as $playableCharacter){
                                 $id = $playableCharacter->getId();

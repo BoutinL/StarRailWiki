@@ -44,7 +44,7 @@
                 <form class="form" id="deleteAbility" action="index.php?ctrl=admin&action=deleteAbility" method="POST">
                 <label for="ability">Ability to delete :</label>
                     <select name="ability" id="ability" required>
-                        <option>--Chose an ability--</option>
+                        <option hidden disabled selected>--Choose an ability--</option>
                         <?php 
                             foreach($abilityList as $ability){
                                 $id = $ability->getId();

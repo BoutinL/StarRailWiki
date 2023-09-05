@@ -48,7 +48,7 @@
                     <div class="input-required">
                         <label for="playableCharacter">Character's ability :</label>
                         <select name="playableCharacter" id="playableCharacter" required>
-                            <option>--Chose a character--</option>
+                            <option hidden disabled selected>--Choose a character--</option>
                             <?php 
                                 foreach($playableCharacterList as $playableCharacter){
                                     $id = $playableCharacter->getId();
@@ -66,7 +66,7 @@
 
                         <label for="typeAbility">Ability Type :</label>
                         <select name="typeAbility" id="typeAbility" required>
-                            <option>--Chose a type ability--</option>
+                            <option hidden disabled selected>--Choose a type ability--</option>
                             <?php 
                                 foreach($typeAbilityList as $typeAbility){
                                     $id = $typeAbility->getId();
@@ -78,7 +78,7 @@
 
                         <label for="tagAbility">Ability Tag :</label>
                         <select name="tagAbility" id="tagAbility" required>
-                            <option>--Chose a tag ability--</option>
+                            <option hidden disabled selected>--Choose a tag ability--</option>
                             <?php 
                                 foreach($tagAbilityList as $tagAbility){
                                     $id = $tagAbility->getId();
