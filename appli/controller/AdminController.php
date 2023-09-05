@@ -478,11 +478,10 @@ use Model\Managers\TraceManager;
             }
         }
 
-        public function updateCharacter(){
+        public function updateCharacter($id){
             $this->restrictTo("ROLE_ADMIN");
             
             if (isset($_POST['submit'])) {
-                // var_dump($_POST['path']);die;
                 // Check if all required input arnt empty
                 if ((!empty($_POST['name'])) && (!empty($_POST['rarity'])) && (!empty($_POST['releaseDate'])) && (!empty($_POST['combatType'])) && (!empty($_POST['path']))) {
                     
@@ -503,10 +502,11 @@ use Model\Managers\TraceManager;
                     // !== false so if empty still work 
                     if ($name !== false  && $image !== false && $rarity !== false && $sex !== false && $specie !== false && $faction !== false && $world !== false && $quote !== false && $releaseDate !== false && $introduction !== false && $combatType !== false && $path !== false) {
                         $playableCharacterManager = new PlayableCharacterManager();
-                        $playableCharacterManager->updateCharacter($name,$image,$rarity,$sex,$specie,$faction,$world,$quote,$releaseDate,$introduction,$combatType,$path,$id);
-                        $this->redirectTo("wiki", "playableCharacterList");
+                        $playableCharacterManager->updateCharacter($name, $image, $rarity, $sex, $specie, $faction, $world, $quote, $releaseDate, $introduction, $combatType, $path, $id);
+                        var_dump($name);
+                        $this->redirectTo("admin", "updateCharacterView");
                     } else {
-                        $this->redirectTo("admin", "addCharacterView");
+                        $this->redirectTo("security", "viewProfile");
                     }
 
                 }

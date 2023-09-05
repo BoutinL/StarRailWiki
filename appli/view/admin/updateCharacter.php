@@ -2,7 +2,7 @@
     $playableCharacter = $result['data']['playableCharacter'];
     $combatTypeList = $result['data']['combatTypeList'];
     $pathList = $result['data']['pathList'];
-    // var_dump($playableCharacter);die;
+    // var_dump($playableCharacter->getId());die;
 ?>
 
 <div class="content">
@@ -44,8 +44,8 @@
         <?php if (App\Session::getUser() && App\Session::getUser()->getId()) : ?>
             
             <div class ="form-admin-container">
-                <h1>Update <?php  ?></h1>
-                <form class="form" id="updateCharacter" action="index.php?ctrl=admin&action=updateCharacter" method="POST">
+                <h1>Update <?= $playableCharacter->getName(); ?> <?php  ?></h1>
+                <form class="form" id="updateCharacter" action="index.php?ctrl=admin&action=updateCharacter&id=<?= $playableCharacter->getId(); ?>" method="POST">
                     <div class="input-required">
                         <label for="name">Name :</label>
                         <input type="text" name="name" id="name" value="<?php  echo $playableCharacter->getName(); ?>" placeholder="Enter Character name" required>
@@ -103,7 +103,7 @@
                         <input type="text" name="introduction" id="introduction" value="<?php  echo $playableCharacter->getIntroduction(); ?>" placeholder="Something about the character">
                     </div>
                 </form>
-                <input class="add-submit" type="submit" form="updateCharacter" name="submit" value="Update character">
+                <input class="add-submit" type="submit" form="updateCharacter" name="submit" value="Update <?= $playableCharacter->getName(); ?>">
             </div>
         <?php endif; } ?>
 </div>

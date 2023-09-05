@@ -8,7 +8,7 @@
     class PlayableCharacterManager extends Manager{
 
         protected $className = "Model\Entities\PlayableCharacter";
-        protected $tableName = "playableCharacter";
+        protected $tableName = "playablecharacter";
 
         public function __construct(){
             parent::connect();
@@ -16,7 +16,7 @@
         
         public function getPlayableCharacter(){
 
-            $sql = "SELECT id_playableCharacter, name, image, rarity, sex, specie, faction, world, quote, releaseDate, rate, introduction, combatType_id, path_id
+            $sql = "SELECT id_playableCharacter, name, image, rarity, sex, specie, faction, world, quote, releaseDate, introduction, combatType_id, path_id
             FROM " .$this->tableName ;
 
             return $this->getMultipleResults(
@@ -28,7 +28,7 @@
 
         public function getPlayableCharacterById($id){
 
-            $sql = "SELECT id_playableCharacter, name, image, rarity, sex, specie, faction, world, quote, releaseDate, rate, introduction, combatType_id, path_id
+            $sql = "SELECT id_playableCharacter, name, image, rarity, sex, specie, faction, world, quote, releaseDate, introduction, combatType_id, path_id
             FROM " .$this->tableName. "
             WHERE id_playableCharacter = :id";
 
@@ -45,15 +45,27 @@
 
             DAO::delete($sql, ['id' => $id]);
         }
-
+        
         public function updateCharacter($name, $image, $rarity, $sex, $specie, $faction, $world, $quote, $releaseDate, $introduction, $combatType, $path, $id)
         {
-        
+            // var_dump($releaseDate);die;
             $sql = "UPDATE ".$this->tableName."
-                    SET content = :name, image, rarity, sex, specie, faction, world, quote, releaseDate, introduction, combatType_id, path_id 
+                    SET name = :name, image = :image, rarity = :rarity, sex = :sex, specie = :specie, faction = :faction, world = :world, quote = :quote, releaseDate = :releaseDate, introduction = :introduction, combatType_id = :combatType, path_id = :path 
                     WHERE id_".$this->tableName." = :id";
             
-            DAO::update($sql, ['name' => $name,'image' => $image,'rarity' => $rarity,'sex' => $sex,'specie' => $specie,'faction' => $faction,'world' => $world, 'quote' => $quote, 'releaseDate' => $releaseDate,'introduction' => $introduction, 'combatType_id' => $combatType, 'path_id' => $path, 'id' => $id]);
+            DAO::update($sql, [
+                                'name' => $name,
+                                'image' => $image,
+                                'rarity' => $rarity,
+                                'sex' => $sex,
+                                'specie' => $specie,
+                                'faction' => $faction,
+                                'world' => $world,
+                                'quote' => $quote,
+                                'releaseDate' => $releaseDate,
+                                'introduction' => $introduction,
+                                'combatType_id' => $combatType,
+                                'path_id' => $path
+                            ]);
         }
-
     }
