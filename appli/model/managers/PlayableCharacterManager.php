@@ -3,7 +3,6 @@
     
     use App\Manager;
     use App\DAO;
-    use Model\Managers\PlayableCharacterManager;
 
     class PlayableCharacterManager extends Manager{
 
@@ -48,13 +47,13 @@
         
         public function updateCharacter($id, $name, $image, $rarity, $sex, $specie, $faction, $world, $quote, $releaseDate, $introduction, $combatType, $path)
         {
-            // var_dump($releaseDate);die;
-            $sql = "UPDATE ".$this->tableName."
-                    SET id = :id, name = :name, image = :image, rarity = :rarity, sex = :sex, specie = :specie, faction = :faction, world = :world, quote = :quote, releaseDate = :releaseDate, introduction = :introduction, combatType_id = :combatType, path_id = :path
+            // combatType_id = :combatType / 'combatType' => $combatType,
+            $sql = "UPDATE ".$this->tableName." 
+                    SET name = :name, image = :image, rarity = :rarity, sex = :sex, specie = :specie, faction = :faction, world = :world, quote = :quote, releaseDate = :releaseDate, introduction = :introduction, combatType_id = :combatType, path_id = :path
                     WHERE id_".$this->tableName." = :id";
             
             DAO::update($sql, [
-                                // 'id_playableCharacter' => $id,
+                                'id' => $id,
                                 'name' => $name,
                                 'image' => $image,
                                 'rarity' => $rarity,
@@ -65,8 +64,9 @@
                                 'quote' => $quote,
                                 'releaseDate' => $releaseDate,
                                 'introduction' => $introduction,
-                                'combatType_id' => $combatType,
-                                'path_id' => $path,
+                                'combatType' => $combatType,
+                                'path' => $path,
                             ]);
+             
         }
     }   

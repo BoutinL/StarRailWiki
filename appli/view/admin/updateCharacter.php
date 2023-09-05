@@ -55,7 +55,7 @@
 
                         <label for="combatType">Combat type :</label>
                         <select name="combatType"  id="combatType" required>
-                            <option hidden disabled selected value="<?php echo $playableCharacter->getCombatType()->getId(); ?>"><?php echo $playableCharacter->getCombatType()->getType(); ?></option>
+                            <option value="<?php echo $playableCharacter->getCombatType()->getId(); ?>"><?php echo $playableCharacter->getCombatType()->getType(); ?></option>
                             <?php 
                                 foreach($combatTypeList as $combatType){
                                     $id = $combatType->getId();
@@ -67,7 +67,7 @@
 
                         <label for="path">Path :</label>
                         <select name="path" id="path" required>
-                        <option hidden disabled selected value="<?php echo $playableCharacter->getPath()->getId(); ?>"><?php echo $playableCharacter->getPath()->getType(); ?></option>
+                        <option value="<?php echo $playableCharacter->getPath()->getId(); ?>"><?php echo $playableCharacter->getPath()->getType(); ?></option>
                             <?php 
                                 foreach($pathList as $path){
                                     $id = $path->getId();
