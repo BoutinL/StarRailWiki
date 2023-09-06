@@ -22,6 +22,9 @@ ol, ul {
     background-color: rgb(15, 15, 15);
     color: white;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .nav{

@@ -1,6 +1,9 @@
 <?php
     $tracePlayableCharacter = $result["data"]['tracePlayableCharacter'];
     $playableCharacter = $result["data"]['playableCharacter'];
+
+    $links =  '<link rel="stylesheet" href="public/css/styleTracePlayableCharacter.css">'
+
 ?>
 
 <div class="content" style="<?= $playableCharacter->combatTypeCss() ?>">

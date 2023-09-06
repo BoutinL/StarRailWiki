@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Hôte:                         127.0.0.1
+-- Hôte:                         localhost
 -- Version du serveur:           8.0.30 - MySQL Community Server - GPL
 -- SE du serveur:                Win64
 -- HeidiSQL Version:             12.1.0.6537
@@ -38,9 +38,9 @@ CREATE TABLE IF NOT EXISTS `ability` (
   CONSTRAINT `FK-ability_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE,
   CONSTRAINT `FK-ability_tagAbility` FOREIGN KEY (`tagAbility_id`) REFERENCES `tagability` (`id_tagAbility`),
   CONSTRAINT `FK-ability_typeAbility` FOREIGN KEY (`typeAbility_id`) REFERENCES `typeability` (`id_typeAbility`)
-) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.ability : ~6 rows (environ)
+-- Listage des données de la table srw_loic.ability : ~154 rows (environ)
 INSERT INTO `ability` (`id_ability`, `name`, `description`, `energyGeneration`, `energyCost`, `dmg`, `icon`, `playableCharacter_id`, `typeAbility_id`, `tagAbility_id`) VALUES
 	(1, 'Lightning Rush', 'Deals Lightning DMG equal to 50%–110% of Arlan\'s ATK to a single enemy.', 20, 0, 30, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/97f31b5c7f456cadf844b45ee443c93f_4125532999287192258.png', 13, 1, 1),
 	(2, 'Shackle Breaker', 'Consumes Arlan\'s HP equal to 15% of his Max HP to deal Lightning DMG equal to 120%–264% of Arlan\'s ATK to a single enemy. If Arlan does not have sufficient HP, his HP will be reduced to 1 after using his Skill.', 30, 0, 60, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/d8c555f7f9f47b610f2a4b84678df64b_2458479177492742947.png', 13, 2, 1),
@@ -195,8 +195,7 @@ INSERT INTO `ability` (`id_ability`, `name`, `description`, `energyGeneration`, 
 	(151, 'Ever-Burning Amber', 'Increases the Trailblazer\'s DMG Reduction by 40%–52% and gains 1 stack of Magma Will, with a 100% base chance to Taunt all enemies for 1 turn(s).', 30, 0, 0, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/95038947779ade974b114addc516eac5_9048276669569333820.png', 30, 2, 5),
 	(152, '	War-Flaming Lance', 'Deals Fire DMG equal to 50%–110% of the Trailblazer\'s ATK plus 75%–165% of the Trailblazer\'s DEF to all enemies. The next Basic ATK will be automatically enhanced and does not cost Magma Will.', 5, 120, 0, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/ba48a52fd48ec8b6ac4268f25ee25ddb_2209490672658195643.png', 30, 3, 2),
 	(153, '	Treasure of the Architects', 'Each time the Trailblazer is hit, they gain 1 stack of Magma Will for a max of 8 stack(s).\r\nWhen Magma Will has no fewer than 4 stacks, the Trailblazer\'s Basic ATK becomes enhanced, dealing DMG to a single enemy and enemies adjacent to it.\r\nWhen the Trailblazer uses Basic ATK, Skill, or Ultimate, apply a Shield to all allies that absorbs DMG equal to 4%–6.4% of the Trailblazer\'s DEF plus 20–89. The Shield lasts for 2 turn(s).', 0, 0, 0, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/b970b14752922ce1b95f27a4f630d710_146676646089303252.png', 30, 4, 7),
-	(154, 'Call of the Guardian', 'After using Technique, at the start of the next battle, gains a Shield that absorbs DMG equal to 30% of the Trailblazer\'s DEF plus 384 for 1 turn(s).', 0, 0, 0, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/01e8264c9753114882121abd24b25a9a_9048276669569333820.png', 30, 5, 5),
-	(155, 'Name Test', 'Description Test', 0, 0, 0, 'https://placehold.co/120', 31, 1, 1);
+	(154, 'Call of the Guardian', 'After using Technique, at the start of the next battle, gains a Shield that absorbs DMG equal to 30% of the Trailblazer\'s DEF plus 384 for 1 turn(s).', 0, 0, 0, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/01e8264c9753114882121abd24b25a9a_9048276669569333820.png', 30, 5, 5);
 
 -- Listage de la structure de table srw_loic. ascend
 CREATE TABLE IF NOT EXISTS `ascend` (
@@ -246,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `eidolon` (
   PRIMARY KEY (`id_eidolon`),
   KEY `character_id` (`playableCharacter_id`) USING BTREE,
   CONSTRAINT `FK-eidolon_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=182 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table srw_loic.eidolon : ~180 rows (environ)
 INSERT INTO `eidolon` (`id_eidolon`, `nbr`, `name`, `effect`, `icon`, `playableCharacter_id`) VALUES
@@ -468,7 +467,7 @@ CREATE TABLE IF NOT EXISTS `playablecharacter` (
   KEY `path_id` (`path_id`),
   CONSTRAINT `FK-playableCharacter_combatType` FOREIGN KEY (`combatType_id`) REFERENCES `combattype` (`id_combatType`),
   CONSTRAINT `FK-playableCharacter_path` FOREIGN KEY (`path_id`) REFERENCES `path` (`id_path`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table srw_loic.playablecharacter : ~30 rows (environ)
 INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarity`, `sex`, `specie`, `faction`, `world`, `quote`, `releaseDate`, `introduction`, `combatType_id`, `path_id`) VALUES
@@ -501,8 +500,7 @@ INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarit
 	(27, 'Luocha', 'https://expertgamereviews.com/wp-content/uploads/2023/06/Honkai-Star-Rail-Luocha-Splash-Art-1024x877.png', 5, 'Male', '???', 'Intergalactic Merchant Guild', 'The Xianzhou Luofu', 'This coffin isn\'t mine. I was merely entrusted to take the body back to the Luofu.', '2023-06-28', 'A foreign trader who came from beyond the seas, he appears on the Xianzhou Luofu with a huge coffin. With his consummate medical skills, he always rescues people in times of danger. As a merchant, he is registered at the Xianzhou Yuque within the Alliance, and at the Star Unity Mall branch at the North Valley Star within the Interastral Peace Corporation.', 7, 7),
 	(28, 'Yanqing', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Yanqing-Splash-Art-1024x877.png', 5, 'Male', '???', 'Cloud Knights', 'The Xianzhou Luofu', 'I only called you \'teacher\' because I admire your skill in this area. Don\'t expect me to start taking it easy on you.', '2023-04-26', 'The youngest lieutenant of the Xianzhou Alliance\'s Cloud Knights on board the Xianzhou Luofu, and General Jing Yuan\'s retainer. A swordsman gifted with the art of swordplay and war who has a prodigious interest in swords and always collects them from the Artisanship Commission.', 3, 2),
 	(29, 'Trailblazer', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/7e3dcd2464edfca47e45ee7f0b53f32b_1711910135236400099.gif', 5, 'Female / Male', '???', 'Astral Express', 'Astral Express', 'When there is the chance to make a choice, make one that you know you won\'t regret...', '2023-04-26', 'They are awakened during the opening events of the game by Kafka and Silver Wolf, who leave them to be found by March 7th and Dan Heng on Herta Space Station during the Antimatter Legion\'s invasion. The player gets to choose either Stelle (female) or Caelus (male), along with their Receptacle Codename.', 1, 1),
-	(30, 'Trailblazer', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/c74eb9c6d1c028fc9813c87612c84a3e_5924273427451673630.gif', 5, 'Female / Male', '???', 'Astral Express', 'Astral Express', 'When there is the chance to make a choice, make one that you know you won\'t regret...', '2023-04-26', 'They are awakened during the opening events of the game by Kafka and Silver Wolf, who leave them to be found by March 7th and Dan Heng on Herta Space Station during the Antimatter Legion\'s invasion. The player gets to choose either Stelle (female) or Caelus (male), along with their Receptacle Codename.', 2, 6),
-	(31, 'Name Test', 'https://placehold.co/1024x877', 5, '', '', '', '', '', '2023-09-04', '', 2, 2);
+	(30, 'Trailblazer', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/c74eb9c6d1c028fc9813c87612c84a3e_5924273427451673630.gif', 5, 'Female / Male', '???', 'Astral Express', 'Astral Express', 'When there is the chance to make a choice, make one that you know you won\'t regret...', '2023-04-26', 'They are awakened during the opening events of the game by Kafka and Silver Wolf, who leave them to be found by March 7th and Dan Heng on Herta Space Station during the Antimatter Legion\'s invasion. The player gets to choose either Stelle (female) or Caelus (male), along with their Receptacle Codename.', 2, 6);
 
 -- Listage de la structure de table srw_loic. tagability
 CREATE TABLE IF NOT EXISTS `tagability` (
@@ -536,9 +534,9 @@ CREATE TABLE IF NOT EXISTS `trace` (
   KEY `ascension_id` (`ascend_id`) USING BTREE,
   CONSTRAINT `FK-trace_ascension` FOREIGN KEY (`ascend_id`) REFERENCES `ascend` (`id_ascend`),
   CONSTRAINT `FK-trace_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.trace : ~0 rows (environ)
+-- Listage des données de la table srw_loic.trace : ~13 rows (environ)
 INSERT INTO `trace` (`id_trace`, `name`, `effect`, `icon`, `ascend_id`, `playableCharacter_id`) VALUES
 	(1, 'DMG Boost: Wind', 'Wind DMG increases by 3.2%', NULL, 1, 5),
 	(2, ' Hidden Dragon', 'When current HP percentage is 50% or lower, reduces the chance of being attacked by enemies.', NULL, 3, 5),
@@ -565,7 +563,7 @@ CREATE TABLE IF NOT EXISTS `trailblazer` (
   PRIMARY KEY (`id_trailblazer`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.trailblazer : ~0 rows (environ)
+-- Listage des données de la table srw_loic.trailblazer : ~2 rows (environ)
 INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `dateRegister`, `role`) VALUES
 	(1, 'admin@admin.fr', 'admin', '$2y$10$lHnQ5WhncortI53C6ELAieP6wBYV7r67mWajL2pLfSMWezyx7g1M.', '2023-09-01 21:18:13', 'ROLE_ADMIN'),
 	(2, 'user@user.fr', 'user', '$2y$10$DTMyjO5x4.NNR5XhU4/zsuBlWjr8xhyACatfLscEq20fhmrYKSx/y', '2023-09-02 22:50:45', 'ROLE_MEMBER');
