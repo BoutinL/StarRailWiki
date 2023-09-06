@@ -646,7 +646,6 @@ use Model\Managers\TraceManager;
                     if ($playableCharacter !== false  && $name !== false && $effect !== false && $nbr !== false && $image !== false ) {
                         $eidolonManager = new EidolonManager();
                         $eidolonManager->updateEidolon($id, $playableCharacter, $name, $nbr, $effect, $image);
-                        die;
                         $this->redirectTo("admin", "updateEidolonView");
                     } else {
                         $this->redirectTo("security", "viewProfile");

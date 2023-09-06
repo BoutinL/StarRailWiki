@@ -68,7 +68,7 @@
                     </div>
                     <div class="input-not-required">
                         <label for="image-urlEidolon">Image url :</label>
-                        <input type="text" name="image-urlEidolon" value="<?= $eidolon->getIcon(); ?>" id="image-urlEidolon" placeholder="https://star-rail-image-url.png">
+                        <input type="text" name="imageUrlEidolon" value="<?= $eidolon->getIcon(); ?>" id="image-urlEidolon" placeholder="https://star-rail-image-url.png">
                     </div>
                 </form>
                 <input class="add-submit" type="submit" form="updateEidolon" name="submitEidolon" value="Update <?= $eidolon->getName(); ?>">
