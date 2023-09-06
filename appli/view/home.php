@@ -1,3 +1,7 @@
-<h1>Star Rail Wiki</h1>
-
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ut nemo quia voluptas numquam, itaque ipsa soluta ratione eum temporibus aliquid, facere rerum in laborum debitis labore aliquam ullam cumque.</p>
+<?php
+    $links =  '<link rel="stylesheet" href="public/css/styleHome.css">'
+?>
+<section class="homepage">
+    <h1>Star Rail Wiki</h1>
+    <p>Homepage of my application</p>
+</section>

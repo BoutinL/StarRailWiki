@@ -1,0 +1,92 @@
+/* Character List */
+
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgb(36, 36, 36);
+    margin: 2rem;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    border-radius: 30px;
+    border: solid 5px;  
+}
+
+.card-link{
+    margin: 1.3rem;
+    border-radius: 30px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    transition: transform 0.5s;
+}
+
+.card-link:hover{
+    transform: scale(1.08);
+    box-shadow: 0 1px 15px 2px rgb(255, 255, 255);
+}
+
+.card{
+    
+    /* inside shadow box change depending of the character's rarity */
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, rgba(148, 93, 211, 0.26) 0px 18px 36px 0px inset; */
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, rgba(212, 202, 54, 0.5) 0px 18px 36px 0px inset; */
+    width: 15rem;
+    height: auto;
+    border-radius: 30px;
+    background-color: rgb(16, 16, 16);
+    /* Center character image inside the card */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list-character-name{
+    padding: 1rem;
+}
+
+.card-img{
+    max-height: 30rem;
+    object-fit: cover;
+}
+
+/* Scroll to top */
+
+html {
+    scroll-behavior:smooth;
+}
+
+main {
+    position: relative;
+}
+
+.scroll-container {
+    position: absolute;
+    top: 0;
+    right:45px;
+    height: 100%;
+}
+
+.scroll-container:before {
+    display: block;
+    height: 100vh;
+    pointer-events: none;
+}
+
+.scroll-container a {
+    position: sticky;
+    top: 87vh;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.circle{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(82, 82, 82);;
+}

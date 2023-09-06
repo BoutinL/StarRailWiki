@@ -2,7 +2,7 @@
     $tracePlayableCharacter = $result["data"]['tracePlayableCharacter'];
     $playableCharacter = $result["data"]['playableCharacter'];
 
-    $links =  '<link rel="stylesheet" href="public/css/styleTracePlayableCharacter.css">'
+    $links =  '<link rel="stylesheet" href="public/css/wiki/styleTracePlayableCharacter.css">'
 
 ?>
 
