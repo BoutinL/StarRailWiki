@@ -48,5 +48,25 @@
             DAO::delete($sql, ['id' => $id]);
         }
 
+        public function updateTrace($id, $playableCharacter, $name, $effect, $ascend, $image)
+        {
+
+            // exemple for character combatType_id = :combatType / 'combatType' => $combatType,
+            $sql = "UPDATE ".$this->tableName." 
+                    SET playableCharacter_id = :playableCharacterTrace,
+                    name = :nameTrace,
+                    effect = :effectTrace,
+                    ascend_id = :ascendTrace,
+                    icon = :imageUrlTrace
+                    WHERE id_".$this->tableName." = :id";
+                        DAO::update($sql, [
+                                'id' => $id,
+                                'playableCharacterTrace' => $playableCharacter,
+                                'nameTrace' => $name,
+                                'effectTrace' => $effect,
+                                'ascendTrace' => $ascend,
+                                'imageUrlTrace' => $image
+                            ]);  
+        }
 
     }

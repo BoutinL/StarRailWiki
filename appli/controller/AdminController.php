@@ -641,12 +641,80 @@ use Model\Managers\TraceManager;
                     $name = filter_input(INPUT_POST, "nameEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $nbr = filter_input(INPUT_POST, "nbrEidolon", FILTER_SANITIZE_NUMBER_INT);
                     $effect = filter_input(INPUT_POST, "effectEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $image = filter_input(INPUT_POST, "image-urlEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-urlEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
+                    $image = filter_input(INPUT_POST, "imageUrlEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-urlEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
 
                     if ($playableCharacter !== false  && $name !== false && $effect !== false && $nbr !== false && $image !== false ) {
                         $eidolonManager = new EidolonManager();
                         $eidolonManager->updateEidolon($id, $playableCharacter, $name, $nbr, $effect, $image);
                         $this->redirectTo("admin", "updateEidolonView");
+                    } else {
+                        $this->redirectTo("security", "viewProfile");
+                    }
+
+                }
+            }
+        }
+
+        public function updateTraceView(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            $traceManager = new TraceManager();
+
+            $traceList = $traceManager->getTrace();
+
+            return [
+                "view" => VIEW_DIR."admin/updateTraceSelect.php",
+                "data" => [
+                    "traceList" => $traceList
+                ]
+            ];
+            
+        }
+
+        public function updateTraceSelect(){
+            $this->restrictTo("ROLE_ADMIN");
+
+            $id = filter_input(INPUT_POST,"trace", FILTER_VALIDATE_INT);
+            if (isset($_POST['submit'])) {
+                if ((!empty($_POST['trace']))) {
+                    $traceManager = new TraceManager();
+                    $playableCharacterManager = new PlayableCharacterManager();
+                    $ascendManager = new AscendManager();
+
+                    $trace = $traceManager->findOneById($id);
+                    $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
+                    $ascendList = $ascendManager->getAscend();
+            
+                    return [
+                        "view" => VIEW_DIR."admin/updateTrace.php",
+                        "data" => [
+                            "trace" => $trace,
+                            "playableCharacterList" => $playableCharacterList,
+                            "ascendList" => $ascendList
+                        ]
+                    ];
+                }
+            }
+        }
+
+        public function updateTrace($id){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            if (isset($_POST['submitTrace'])) {
+                // Check if all required input arnt empty
+                if ((!empty($_POST['playableCharacterTrace'])) && (!empty($_POST['nameTrace'])) && (!empty($_POST['effectTrace'])) && (!empty($_POST['ascendTrace']))) {
+                    // Sanitaze all input from the form
+                    $playableCharacter = filter_input(INPUT_POST, "playableCharacterTrace", FILTER_SANITIZE_NUMBER_INT);
+                    $name = filter_input(INPUT_POST, "nameTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $effect = filter_input(INPUT_POST, "effectTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $ascend = filter_input(INPUT_POST, "ascendTrace", FILTER_SANITIZE_NUMBER_INT);
+                    $image = filter_input(INPUT_POST, "imageUrlTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "imageUrlTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
+
+                    if ($playableCharacter !== false  && $name !== false && $effect !== false && $ascend !== false && $image !== false ) {
+                        $traceManager = new traceManager();
+                        // Be carefull, the order matter
+                        $traceManager->updateTrace($id, $playableCharacter, $name, $effect, $ascend, $image);
+                        $this->redirectTo("admin", "updateTraceView");
                     } else {
                         $this->redirectTo("security", "viewProfile");
                     }
