@@ -47,4 +47,25 @@
             DAO::delete($sql, ['id' => $id]);
         }
 
+        public function updateEidolon($id, $playableCharacter, $name, $nbr, $effect, $image)
+        {
+            // exemple for character combatType_id = :combatType / 'combatType' => $combatType,
+            $sql = "UPDATE ".$this->tableName." 
+                    SET playableCharacter_id = :playableCharacterEidolon,
+                    name = :nameEidolon,
+                    nbr = :nbrEidolon,
+                    effect = :effectEidolon,
+                    icon = :image-urlEidolon
+                    WHERE id_".$this->tableName." = :id";
+                    
+            DAO::update($sql, [
+                                'id' => $id,
+                                'playableCharacterEidolon' => $playableCharacter,
+                                'nameEidolon' => $name,
+                                'nbrEidolon' => $nbr,
+                                'effectEidolon' => $effect,
+                                'image-urlEidolon' => $image
+                            ]);  
+        }
+
     }

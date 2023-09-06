@@ -573,7 +573,7 @@ use Model\Managers\TraceManager;
                     $energyGeneration = filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) ? $energyGeneration = filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) : 0;
                     $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) ? $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) : 0;
                     $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) ? $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) : 0;
-                    $image = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/1024x877";
+                    $image = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
                     $typeAbility = filter_input(INPUT_POST, "typeAbility", FILTER_SANITIZE_NUMBER_INT);
                     $tagAbility = filter_input(INPUT_POST, "tagAbility", FILTER_SANITIZE_NUMBER_INT);
 
@@ -583,6 +583,71 @@ use Model\Managers\TraceManager;
                         $abilityManager->updateAbility($id, $playableCharacter, $name, $description, $energyGeneration, $energyCost, $dmg, $image, $typeAbility, $tagAbility);
                         // die;
                         $this->redirectTo("admin", "updateAbilityView");
+                    } else {
+                        $this->redirectTo("security", "viewProfile");
+                    }
+
+                }
+            }
+        }
+
+        public function updateEidolonView(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            $eidolonManager = new EidolonManager();
+
+            $eidolonList = $eidolonManager->getEidolon();
+
+            return [
+                "view" => VIEW_DIR."admin/updateEidolonSelect.php",
+                "data" => [
+                    "eidolonList" => $eidolonList
+                ]
+            ];
+            
+        }
+
+        public function updateEidolonSelect(){
+            $this->restrictTo("ROLE_ADMIN");
+
+            $id = filter_input(INPUT_POST,"eidolon", FILTER_VALIDATE_INT);
+            if (isset($_POST['submit'])) {
+                if ((!empty($_POST['eidolon']))) {
+                    $eidolonManager = new EidolonManager();
+                    $playableCharacterManager = new PlayableCharacterManager;
+
+                    $eidolon = $eidolonManager->findOneById($id);
+                    $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
+            
+                    return [
+                        "view" => VIEW_DIR."admin/updateEidolon.php",
+                        "data" => [
+                            "eidolon" => $eidolon,
+                            "playableCharacterList" => $playableCharacterList,
+                        ]
+                    ];
+                }
+            }
+        }
+
+        public function updateEidolon($id){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            if (isset($_POST['submitEidolon'])) {
+                // Check if all required input arnt empty
+                if ((!empty($_POST['playableCharacterEidolon'])) && (!empty($_POST['nameEidolon'])) && (!empty($_POST['effectEidolon'])) && (!empty($_POST['nbrEidolon']))) {
+                    // Sanitaze all input from the form
+                    $playableCharacter = filter_input(INPUT_POST, "playableCharacterEidolon", FILTER_SANITIZE_NUMBER_INT);
+                    $name = filter_input(INPUT_POST, "nameEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $nbr = filter_input(INPUT_POST, "nbrEidolon", FILTER_SANITIZE_NUMBER_INT);
+                    $effect = filter_input(INPUT_POST, "effectEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $image = filter_input(INPUT_POST, "image-urlEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-urlEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
+
+                    if ($playableCharacter !== false  && $name !== false && $effect !== false && $nbr !== false && $image !== false ) {
+                        $eidolonManager = new EidolonManager();
+                        $eidolonManager->updateEidolon($id, $playableCharacter, $name, $nbr, $effect, $image);
+                        die;
+                        $this->redirectTo("admin", "updateEidolonView");
                     } else {
                         $this->redirectTo("security", "viewProfile");
                     }

@@ -51,7 +51,8 @@
             // exemple for character combatType_id = :combatType / 'combatType' => $combatType,
             $sql = "UPDATE ".$this->tableName." 
                     SET playableCharacter_id = :playableCharacter,
-                    name = :name, description = :description,
+                    name = :name,
+                    description = :description,
                     energyGeneration = :energyGeneration,
                     energyCost = :energyCost,
                     dmg = :dmg,
@@ -59,7 +60,6 @@
                     typeAbility_id = :typeAbility,
                     tagAbility_id = :tagAbility
                     WHERE id_".$this->tableName." = :id";
-                    // var_dump($tagAbility);die;
                     
             DAO::update($sql, [
                                 'id' => $id,
