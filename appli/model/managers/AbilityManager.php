@@ -48,10 +48,18 @@
 
         public function updateAbility($id, $playableCharacter, $name, $description, $energyGeneration, $energyCost, $dmg, $image, $typeAbility, $tagAbility)
         {
-            // combatType_id = :combatType / 'combatType' => $combatType,
+            // exemple for character combatType_id = :combatType / 'combatType' => $combatType,
             $sql = "UPDATE ".$this->tableName." 
-                    SET playableCharacter = :playableCharacter, name = :name, description = :description, energyGeneration = :energyGeneration, energyCost = :energyCost, dmg = :dmg, image = :icon, typeAbility = :typeAbility, tagAbility = :tagAbility
+                    SET playableCharacter_id = :playableCharacter,
+                    name = :name, description = :description,
+                    energyGeneration = :energyGeneration,
+                    energyCost = :energyCost,
+                    dmg = :dmg,
+                    icon = :image,
+                    typeAbility_id = :typeAbility,
+                    tagAbility_id = :tagAbility
                     WHERE id_".$this->tableName." = :id";
+                    // var_dump($tagAbility);die;
                     
             DAO::update($sql, [
                                 'id' => $id,
@@ -61,9 +69,9 @@
                                 'energyGeneration' => $energyGeneration,
                                 'energyCost' => $energyCost,
                                 'dmg' => $dmg,
-                                'icon' => $image,
+                                'image' => $image,
                                 'typeAbility' => $typeAbility,
-                                'tagAbility' => $tagAbility
+                                'tagAbility' => $tagAbility,
                             ]);  
         }
 

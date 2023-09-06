@@ -574,15 +574,14 @@ use Model\Managers\TraceManager;
                     $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) ? $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) : 0;
                     $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) ? $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) : 0;
                     $image = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/1024x877";
-                    $typeAbility = filter_input(INPUT_POST, "typebility", FILTER_SANITIZE_NUMBER_INT);
+                    $typeAbility = filter_input(INPUT_POST, "typeAbility", FILTER_SANITIZE_NUMBER_INT);
                     $tagAbility = filter_input(INPUT_POST, "tagAbility", FILTER_SANITIZE_NUMBER_INT);
 
-
-                    // !== false so if empty still work 
-                    if ($playableCharacter !== false  && $name !== false && $description !== false && $energyGeneration && $energyCost && $dmg && $image !== false && $typeAbility !== false && $tagAbility) {
+                    if ($playableCharacter !== false  && $name !== false && $description !== false && $energyGeneration !== false || $energyGeneration === 0 && $energyCost !==false || $energyCost === 0 && $dmg !==false || $dmg === 0 && $image !== false && $typeAbility !== false && $tagAbility !== false) {
+                        // var_dump($tagAbility);die;
                         $abilityManager = new AbilityManager();
                         $abilityManager->updateAbility($id, $playableCharacter, $name, $description, $energyGeneration, $energyCost, $dmg, $image, $typeAbility, $tagAbility);
-                        // var_dump($id);die;
+                        // die;
                         $this->redirectTo("admin", "updateAbilityView");
                     } else {
                         $this->redirectTo("security", "viewProfile");

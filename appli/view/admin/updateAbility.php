@@ -3,6 +3,8 @@
     $playableCharacterList = $result['data']['playableCharacterList'];
     $typeAbilityList = $result['data']['typeAbilityList'];
     $tagAbilityList = $result['data']['tagAbilityList'];
+
+    // var_dump( $typeAbilityList->current()->getType());die;
 ?>
 
 <div class="content">
