@@ -1,6 +1,5 @@
-/* CSS for ALL */
-
 /* Reset CSS */
+
 html {
     box-sizing: border-box;
     font-size: 1rem;
@@ -15,7 +14,6 @@ ol, ul {
     margin: 0;
     padding: 0;
 }
-/* Reset CSS fin */
 
 /* Layout */
 
@@ -56,6 +54,7 @@ ol, ul {
     color: white;  
     transition: transform 0.5s;
 }
+
 .nav-links:hover{
     background: -webkit-linear-gradient(#3a7bc0, #e9cf9a);
     -webkit-background-clip: text;
@@ -81,4 +80,3 @@ ol, ul {
     background-color: rgb(36, 36, 36);
     width: 100%;
 }
-
