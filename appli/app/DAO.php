@@ -88,7 +88,7 @@
          */
         public static function select($sql, $params = null, bool $multiple = true):?array
         {
-            try{
+            try{ 
                 $stmt = self::$bdd->prepare($sql);
                 $stmt->execute($params);
               

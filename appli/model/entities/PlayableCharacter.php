@@ -195,25 +195,25 @@
                 $result = "";
                 switch ($this->combatType->getType()) {
                 case "Physical":
-                        $result = '<img src="public/img/physical.png" alt="Combat Type Physical">';
+                        $result = '<img src="public/img/combatTypes/physical.png" alt="Combat Type Physical">';
                         break;
                 case "Fire":
-                        $result = '<img src="public/img/fire.png" alt="Combat Type Fire">';
+                        $result = '<img src="public/img/combatTypes/fire.png" alt="Combat Type Fire">';
                         break;
                 case "Ice":
-                        $result = '<img src="public/img/ice.png" alt="Combat Type Ice">';
+                        $result = '<img src="public/img/combatTypes/ice.png" alt="Combat Type Ice">';
                         break;
                 case "Lightning":
-                        $result = '<img src="public/img/lightning.png" alt="Combat Type Lightning">';
+                        $result = '<img src="public/img/combatTypes/lightning.png" alt="Combat Type Lightning">';
                         break;
                 case "Wind":
-                        $result = '<img src="public/img/wind.png" alt="Combat Type Wind">';
+                        $result = '<img src="public/img/combatTypes/wind.png" alt="Combat Type Wind">';
                         break;
                 case "Quantum":
-                        $result = '<img src="public/img/quantum.png" alt="Combat Type Quantum">';
+                        $result = '<img src="public/img/combatTypes/quantum.png" alt="Combat Type Quantum">';
                         break;
                 case "Imaginary":
-                        $result = '<img src="public/img/imaginary.png" alt="Combat Type Imaginary">';
+                        $result = '<img src="public/img/combatTypes/imaginary.png" alt="Combat Type Imaginary">';
                         break;
                 }
                 return $result;
@@ -225,25 +225,25 @@
                 $result = "";
                 switch ($this->path->getType()) {
                 case "Destruction":
-                        $result = '<img src="public/img/destruction.png" alt="Path Destruction">';
+                        $result = '<img src="public/img/paths/destruction.png" alt="Path Destruction">';
                         break;
                 case "Hunt":
-                        $result = '<img src="public/img/hunt.png" alt="Path Hunt">';
+                        $result = '<img src="public/img/paths/hunt.png" alt="Path Hunt">';
                         break;
                 case "Erudition":
-                        $result = '<img src="public/img/erudition.png" alt="Path Erudition">';
+                        $result = '<img src="public/img/paths/erudition.png" alt="Path Erudition">';
                         break;
                 case "Harmony":
-                        $result = '<img src="public/img/harmony.png" alt="Path Harmony">';
+                        $result = '<img src="public/img/paths/harmony.png" alt="Path Harmony">';
                         break;
                 case "Nihility":
-                        $result = '<img src="public/img/nihility.png" alt="Path Nihility">';
+                        $result = '<img src="public/img/paths/nihility.png" alt="Path Nihility">';
                         break;
                 case "Preservation":
-                        $result = '<img src="public/img/preservation.png" alt="Path Preservation">';
+                        $result = '<img src="public/img/paths/preservation.png" alt="Path Preservation">';
                         break;
                 case "Abundance":
-                        $result = '<img src="public/img/abundance.png" alt="Path Abundance">';
+                        $result = '<img src="public/img/paths/abundance.png" alt="Path Abundance">';
                         break;
                 }
                 return $result;

@@ -15,18 +15,26 @@
         <a class="link-details" href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
     </section>
     <section class="trace-container">
-        <?php foreach($tracePlayableCharacter as $trace){?>
-            <table class="trace-details table-sizing">
-                <tr>
-                    <td rowspan="2" class="center"><img src="<?= $trace->getIcon() ?>" alt="<?=$trace->getName()?> Icon" /></td>
-                    <td><?= $trace->getName() ?></td>
-                    <td>Lvl: <?= $trace->getAscend()->getCapLvl() ?></td>
-                    <td>Ascend: <?= $trace->getAscend()->getNbr() ?></td>
-                </tr>
-                <tr>
-                    <td colspan="3"><?= $trace->getEffect() ?></td>
-                </tr>
-            </table>
-        <?php } ?>
+        <?php 
+            if($tracePlayableCharacter) {
+                foreach($tracePlayableCharacter as $trace){?>
+                <table class="trace-details table-sizing">
+                    <tr>
+                        <td rowspan="2" class="center"><img src="<?= $trace->getIcon() ?>" alt="<?=$trace->getName()?> Icon" /></td>
+                        <td><?= $trace->getName() ?></td>
+                        <td>Lvl: <?= $trace->getAscend()->getCapLvl() ?></td>
+                        <td>Ascend: <?= $trace->getAscend()->getNbr() ?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><?= $trace->getEffect() ?></td>
+                    </tr>
+                </table>
+            <?php }
+            } else { 
+                        echo "<p>There's no data yet !</p>"; 
+                        echo "<figure>
+                                <img class='' src='' alt='' />
+                            </figure>";
+                    } ?>
     </section>
 </div>

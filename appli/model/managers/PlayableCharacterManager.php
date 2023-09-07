@@ -38,6 +38,21 @@
         
         }
 
+        public function getOrderBy($idCombatType, $idPath)
+        {
+            $sql =  "SELECT id_playableCharacter, name, image, rarity, sex, specie, faction, world, quote, releaseDate, introduction, combatType_id, path_id
+                    FROM " .$this->tableName ."
+                    WHERE combatType_id = :idCombatType AND path_id = :idPath";
+                    
+                    return $this->getMultipleResults(
+                        DAO::select($sql, [
+                            "idCombatType" => $idCombatType,
+                            "idPath" => $idPath
+                        ]), 
+                        $this->className
+                    );
+        }
+
         public function deleteCharacter($id){
             $sql = "DELETE FROM " . $this->tableName . "
                     WHERE id_" . $this->tableName . " = :id";

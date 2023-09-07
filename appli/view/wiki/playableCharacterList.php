@@ -7,31 +7,30 @@
     // var_dump($combatTypeList->current()->getType());die;
 ?>
 <div class="content">
-    <form class="order-list" id="orderList" action="" method="POST">
-        <span>Order by</span>
+    <form class="order-list" id="orderList" action="index.php?ctrl=wiki&action=orderBy" method="POST">
         <section class="order-combatType">
-            <label for="combatType">Combat Type</label>
+            <label class="tall-font" for="combatType">Combat Type</label>
             <?php 
                 foreach($combatTypeList as $combatType){
                     $id = $combatType->getId();
                     $name = $combatType->getType();
                     echo "<span>$name</span>";
-                    echo "<input type='radio' id='combatType' name='orderParamCombatType' value='$id'/>";
+                    echo "<input type='radio' id='combatType' name='idCombatType' value='$id' required/>";
                 }
             ?>  
         </section>
         <section class="order-path">
-            <label for="path">Path</label>
+            <label class="tall-font" for="path">Path</label>
             <?php 
                 foreach($pathList as $path){
                     $id = $path->getId();
                     $name = $path->getType();
                     echo "<span>$name</span>";
-                    echo "<input type='radio' id='path' name='orderParamPath' value='$id'/>";
+                    echo "<input type='radio' id='path' name='idPath' value='$id' required/>";
                 }
             ?>  
         </section>
-        <input type="submit" name="orderList" value="Research">
+        <input type="submit" name="submitOrder" value="Research">
     </form>
     <section class="card-container">
         <?php foreach($playableCharacterList as $character){ ?>

@@ -1,15 +1,15 @@
 <?php
 
-    namespace Controller;
+namespace Controller;
 
-    use App\Session;
-    use App\AbstractController;
-    use App\ControllerInterface;
-    use Model\Managers\PlayableCharacterManager;
-    use Model\Managers\PathManager;
-    use Model\Managers\CombatTypeManager;
-    use Model\Managers\AbilityManager;
-    use Model\Managers\TraceManager;
+use App\Session;
+use App\AbstractController;
+use App\ControllerInterface;
+use Model\Managers\PlayableCharacterManager;
+use Model\Managers\PathManager;
+use Model\Managers\CombatTypeManager;
+use Model\Managers\AbilityManager;
+use Model\Managers\TraceManager;
     use Model\Managers\EidolonManager;
     
     class WikiController extends AbstractController implements ControllerInterface{
@@ -22,21 +22,50 @@
 
             $combatTypeList = $combatTypeManager->getCombatType();
             $pathList = $pathManager->getPath();
-
+            
             return [
                 "view" => VIEW_DIR."wiki/playableCharacterList.php",
                 "data" => [
-                    "playableCharacterList" => $playableCharacterManager->findAll(["releaseDate", "ASC"]),
+                    "playableCharacterList" => $playableCharacterManager->findAll(["name", "ASC"]),
                     "combatTypeList" => $combatTypeList,
                     "pathList" => $pathList
                 ]
-            ];
-        
+            ];  
         }
 
-        public function biographyPlayableCharacter($id)
+        public function orderBy()
         {
+            if (isset($_POST['submitOrder'])) {
+        
+                if ((!empty($_POST['idCombatType'])) && (!empty($_POST['idPath']))) {
+                    
+                    $idCombatType = filter_input(INPUT_POST, "idCombatType", FILTER_SANITIZE_NUMBER_INT);
+                    $idPath = filter_input(INPUT_POST, "idPath", FILTER_SANITIZE_NUMBER_INT);
+                    
+                    if ($idCombatType !== false  && $idPath !== false) {
 
+                        $playableCharacterManager = new PlayableCharacterManager();
+                        $combatTypeManager = new CombatTypeManager();
+                        $pathManager = new PathManager();
+
+                        $combatTypeList = $combatTypeManager->getCombatType();
+                        $pathList = $pathManager->getPath();
+
+                        return [
+                            "view" => VIEW_DIR."wiki/playableCharacterList.php",
+                            "data" => [
+                                "playableCharacterList" => $playableCharacterManager->getOrderBy($idCombatType, $idPath),
+                                "combatTypeList" => $combatTypeList,
+                                "pathList" => $pathList
+                            ]
+                        ];
+                    }
+                }
+            }
+        }
+
+        public function biographyPlayableCharacter($id){
+                
             $biographyPlayableCharacterManager = new PlayableCharacterManager();
             $pathManager = new PathManager();
             $combatTypeManager = new CombatTypeManager();
@@ -45,15 +74,18 @@
             $path = $pathManager->findOneById($id);
             $combatType = $combatTypeManager->findOneById($id);
 
-            return [
-                "view" => VIEW_DIR."wiki/biographyPlayableCharacter.php",
-                "data" => [
-                    "biographyPlayableCharacter" => $biographyPlayableCharacter,
-                    "path" => $path,
-                    "combatType" => $combatType
-                ]
-            ];
-        
+            if($biographyPlayableCharacter) {
+                return [
+                    "view" => VIEW_DIR."wiki/biographyPlayableCharacter.php",
+                    "data" => [
+                        "biographyPlayableCharacter" => $biographyPlayableCharacter,
+                        "path" => $path,
+                        "combatType" => $combatType
+                    ]
+                ];
+            } else {
+                $this->redirectTo("wiki", "characterList");
+            }
         }
 
         public function abilityPlayableCharacter($id)
@@ -90,9 +122,10 @@
                     "eidolonPlayableCharacter" => $eidolonPlayableCharacter,
                     // Character data
                     "playableCharacter" => $playableCharacter,
-                ]
-            ];
-        }
+                    ]
+                ];
+            }
+            
 
         public function tracePlayableCharacter($id)
         {

@@ -2,28 +2,34 @@
 
 .content{
     display: inline-flex;
+    min-width: 99vw;
 }
 
 .order-list{
-    background-color: rgb(16, 16, 16);
+    background-color: rgb(19, 19, 19)   ;
     width: 15%;
     max-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space;
-    padding-left: 1rem;
+    padding-left: 2rem;
     position:sticky;
-    top: 0;
-    margin-top: 3rem;
+    top: 5rem;
+    text-align: center;
+}
+
+.tall-font{
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: -webkit-linear-gradient(#95c3e2, #e9cf9a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .order-combatType, .order-path{
     display: flex;
     flex-direction: column;
-    align-items: start;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    justify-content: center;
 }
 
 .card-container{
@@ -44,20 +50,14 @@
     border-radius: 30px;
     text-decoration: none;
     color: white;
-    display: block;
-    transition: transform 0.5s;
 }
 
-.card-link:hover{
-    transform: scale(1.08);
-    box-shadow: 0 1px 15px 2px rgb(255, 255, 255);
-}
 
 .card{
     
     /* inside shadow box change depending of the character's rarity */
     /* box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, rgba(148, 93, 211, 0.26) 0px 18px 36px 0px inset; */
-    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, rgba(212, 202, 54, 0.5) 0px 18px 36px 0px inset; */
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, rgba(230, 186, 42, 0.151) 0px 18px 36px 0px inset; */
     width: 15rem;
     height: auto;
     border-radius: 30px;
@@ -67,6 +67,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: transform 0.5s;
+}
+
+.card:hover{
+    transform: scale(1.08);
+    box-shadow: 0 1px 15px 2px rgb(255, 255, 255);
 }
 
 .list-character-name{
@@ -74,7 +80,7 @@
 }
 
 .card-img{
-    max-height: 20rem;
+    max-height: 25rem;
     object-fit: cover;
 }
 
@@ -91,19 +97,18 @@ main {
 .scroll-container {
     position: absolute;
     top: 150px;
-    right:55px;
+    right:50px;
     height: 92%;
 }
 
 .scroll-container:before {
     display: block;
-    height: 100vh;
     pointer-events: none;
 }
 
 .scroll-container a {
     position: sticky;
-    top: 87vh;
+    top: 90vh;
     cursor: pointer;
     text-decoration: none;
 }

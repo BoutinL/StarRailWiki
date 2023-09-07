@@ -20,8 +20,8 @@ ol, ul {
 /* Layout */
 
 .main{
-    background-color: rgb(15, 15, 15);
-    color: white;
+    background-color: rgb(19, 19, 19);
+    color:  white;
     min-height: 100vh;
     /* Footer always at bottom of pages */
     display: flex;
@@ -53,7 +53,17 @@ ol, ul {
 .nav-links{
     font-size: 1.9rem;
     text-decoration: none;
-    color: white;
+    color: white;  
+    transition: transform 0.5s;
+}
+.nav-links:hover{
+    background: -webkit-linear-gradient(#3a7bc0, #e9cf9a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links:hover{
+    transform: scale(1.08);
 }
 
 .icon-nav{
@@ -66,6 +76,7 @@ ol, ul {
     padding-top: 2rem;
     padding-bottom: 2rem;
     display: flex;
+    color: white;
     justify-content: center;
     background-color: rgb(36, 36, 36);
     width: 100%;
