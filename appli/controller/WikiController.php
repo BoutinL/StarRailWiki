@@ -16,13 +16,19 @@
 
         public function index()
         {
-
             $playableCharacterManager = new PlayableCharacterManager();
+            $combatTypeManager = new CombatTypeManager();
+            $pathManager = new PathManager();
+
+            $combatTypeList = $combatTypeManager->getCombatType();
+            $pathList = $pathManager->getPath();
 
             return [
                 "view" => VIEW_DIR."wiki/playableCharacterList.php",
                 "data" => [
-                    "playableCharacterList" => $playableCharacterManager->findAll(["releaseDate", "ASC"])
+                    "playableCharacterList" => $playableCharacterManager->findAll(["releaseDate", "ASC"]),
+                    "combatTypeList" => $combatTypeList,
+                    "pathList" => $pathList
                 ]
             ];
         
