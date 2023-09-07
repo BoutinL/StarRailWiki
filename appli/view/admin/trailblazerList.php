@@ -1,4 +1,6 @@
 <?php
+    $links =  '<link rel="stylesheet" href="public/css/admin/styleTrailblazerList.css">';
+
     $trailblazerList = $result["data"]['trailblazerList'];
 ?>
 

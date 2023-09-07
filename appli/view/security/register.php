@@ -1,3 +1,7 @@
+<?php
+    $links =  '<link rel="stylesheet" href="public/css/security/styleRegister.css">'
+?>
+
 <div class="form-container">
     <form class="form-content" action="index.php?ctrl=security&action=register" method="POST">
             <label>

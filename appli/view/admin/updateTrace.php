@@ -1,4 +1,6 @@
 <?php
+    $links =  '<link rel="stylesheet" href="public/css/admin/styleAdminCRUD.css">';
+
     $trace = $result['data']['trace'];
     $playableCharacterList = $result['data']['playableCharacterList'];
     $ascendList = $result['data']['ascendList'];

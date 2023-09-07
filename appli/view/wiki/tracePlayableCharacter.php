@@ -14,21 +14,19 @@
         <a class="link-details <?= $playableCharacter->combatTypeCssLink() ?>" href="index.php?ctrl=wiki&action=tracePlayableCharacter&id=<?= $playableCharacter->getId() ?>">Trace</a>
         <a class="link-details" href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
     </section>
-    <section class="ascend-content">
-        <div class="trace-container">
-            <?php foreach($tracePlayableCharacter as $trace){?>
-                <table class="trace-details table-sizing">
-                    <tr>
-                        <td rowspan="2" class="center"><img src="<?= $trace->getIcon() ?>" alt="<?=$trace->getName()?> Icon" /></td>
-                        <td><?= $trace->getName() ?></td>
-                        <td>Lvl: <?= $trace->getAscend()->getCapLvl() ?></td>
-                        <td>Ascend: <?= $trace->getAscend()->getNbr() ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3"><?= $trace->getEffect() ?></td>
-                    </tr>
-                </table>
-            <?php } ?>
-        </div>
+    <section class="trace-container">
+        <?php foreach($tracePlayableCharacter as $trace){?>
+            <table class="trace-details table-sizing">
+                <tr>
+                    <td rowspan="2" class="center"><img src="<?= $trace->getIcon() ?>" alt="<?=$trace->getName()?> Icon" /></td>
+                    <td><?= $trace->getName() ?></td>
+                    <td>Lvl: <?= $trace->getAscend()->getCapLvl() ?></td>
+                    <td>Ascend: <?= $trace->getAscend()->getNbr() ?></td>
+                </tr>
+                <tr>
+                    <td colspan="3"><?= $trace->getEffect() ?></td>
+                </tr>
+            </table>
+        <?php } ?>
     </section>
 </div>

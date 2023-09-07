@@ -2,8 +2,14 @@
     $playableCharacterList = $result["data"]['playableCharacterList'];
     $links =  '<link rel="stylesheet" href="public/css/wiki/stylePlayableCharacterList.css">'
 ?>
-<section class="card-container">
-
+<div class="content">
+    <form class="order-list">
+        <div>
+            <input type="radio" id="contactChoice1" name="contact" value="email" />
+            <label for="contactChoice1">Email</label>
+        </div>
+    </form>
+    <section class="card-container">
         <?php foreach($playableCharacterList as $character){ ?>
             <a class="card-link" href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $character->getId() ?>">
                 <div class="card">
@@ -19,8 +25,8 @@
                 </div>
             </a>
         <?php } ?>
-
-</section>
+    </section>
+</div>
 <div class="scroll-container">
     <a href="#top"><i class="fa-solid fa-arrow-up circle" style="color: #ffffff;"></i></a>
 </div>

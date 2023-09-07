@@ -1,4 +1,6 @@
 <?php
+    $links =  '<link rel="stylesheet" href="public/css/admin/styleAdminCRUD.css">';
+
     $abilityList = $result['data']['abilityList'];
 ?>
 

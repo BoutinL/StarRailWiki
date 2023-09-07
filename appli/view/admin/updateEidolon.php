@@ -1,4 +1,6 @@
 <?php
+    $links =  '<link rel="stylesheet" href="public/css/admin/styleAdminCRUD.css">';
+
     $eidolon = $result['data']['eidolon'];
     $playableCharacterList = $result['data']['playableCharacterList'];
 ?>

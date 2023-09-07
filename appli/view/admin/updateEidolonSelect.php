@@ -1,6 +1,7 @@
 <?php
-    $eidolonList = $result['data']['eidolonList'];
+    $links =  '<link rel="stylesheet" href="public/css/admin/styleAdminCRUD.css">';
 
+    $eidolonList = $result['data']['eidolonList'];
 ?>
 
 <div class="content">

@@ -1,6 +1,7 @@
 <?php
-    $playableCharacterList = $result['data']['playableCharacterList'];
+    $links =  '<link rel="stylesheet" href="public/css/admin/styleAdminCRUD.css">';
 
+    $playableCharacterList = $result['data']['playableCharacterList'];
 ?>
 
 <div class="content">

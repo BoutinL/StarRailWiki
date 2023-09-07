@@ -1,4 +1,6 @@
 <?php
+    $links =  '<link rel="stylesheet" href="public/css/admin/styleAdminCRUD.css">';
+    
     $combatTypeList = $result['data']['combatTypeList'];
     $pathList = $result['data']['pathList'];
     // var_dump($combatTypeList->current());die;

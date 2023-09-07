@@ -1,5 +1,7 @@
 <?php
     $trailblazer = $result['data']['trailblazer'];
+
+    $links =  '<link rel="stylesheet" href="public/css/security/styleViewProfile.css">'
 ?>
 
 <div class="content">

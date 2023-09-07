@@ -1,6 +1,8 @@
 <?php
     $eidolonPlayableCharacter = $result["data"]['eidolonPlayableCharacter'];
     $playableCharacter = $result["data"]['playableCharacter'];
+
+    $links =  '<link rel="stylesheet" href="public/css/wiki/styleEidolonPlayableCharacter.css">'
 ?>
 
 <div class="content" style="<?= $playableCharacter->combatTypeCss() ?>">
@@ -11,20 +13,19 @@
         <a class="link-details" href="index.php?ctrl=wiki&action=tracePlayableCharacter&id=<?= $playableCharacter->getId() ?>">Trace</a>
         <a class="link-details" href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
     </section>
-    <section class="ascend-content">
-        <div class="eidolon-container">
-            <?php foreach($eidolonPlayableCharacter as $eidolon){?>
-                <table class="eidolon-details table-sizing">
-                    <tr>
-                        <td rowspan="2" class="center"><img src="<?= $eidolon->getIcon() ?>" alt="<?=$eidolon->getName()?> Icon" /></td>
-                        <td class="eidolon-nbr"><?= $eidolon->getNbr() ?></td>
-                        <td class="eidolon-name "><?= $eidolon->getName() ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><?= $eidolon->getEffect() ?></td>
-                    </tr>
-                </table>
-            <?php } ?>
-        </div>
+    <section class="eidolon-container">
+        <?php foreach($eidolonPlayableCharacter as $eidolon){?>
+            <table class="eidolon-details table-sizing">
+                <tr>
+                    <td rowspan="2" class="center"><img src="<?= $eidolon->getIcon() ?>" alt="<?=$eidolon->getName()?> Icon" /></td>
+                    <td class="eidolon-nbr"><?= $eidolon->getNbr() ?></td>
+                    <td class="eidolon-name "><?= $eidolon->getName() ?></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><?= $eidolon->getEffect() ?></td>
+                </tr>
+            </table>
+        <?php } ?>
     </section>
+
 </div>

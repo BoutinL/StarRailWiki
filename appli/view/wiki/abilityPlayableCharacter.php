@@ -1,6 +1,7 @@
 <?php
     $abilitiesPlayableCharacter = $result["data"]['abilitiesPlayableCharacter'];
     $playableCharacter = $result["data"]['playableCharacter'];
+    $links =  '<link rel="stylesheet" href="public/css/wiki/styleAbilityPlayableCharacter.css">'
 ?>
 
 <div class="content" style="<?= $playableCharacter->combatTypeCss() ?>">

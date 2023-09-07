@@ -1,5 +1,6 @@
 <?php
     $biographyPlayableCharacter = $result["data"]['biographyPlayableCharacter'];
+    $links =  '<link rel="stylesheet" href="public/css/wiki/styleBiographyPlayableCharacter.css">'
 ?>
 
 <div class="content" style="<?= $biographyPlayableCharacter->combatTypeCss() ?>">
@@ -14,7 +15,7 @@
         <figure class="portrait">
             <img class="splash-art" src="<?= $biographyPlayableCharacter->getImage() ?>" alt="<?=$biographyPlayableCharacter->getName()?> splash art" />
         </figure>
-        <div class="biography-container">
+        <section class="biography-container">
             <div class="bio-content">
                 <h2 class="bio-character-name"><strong><?= $biographyPlayableCharacter->getName() ?></strong></h2>
                 <span> 

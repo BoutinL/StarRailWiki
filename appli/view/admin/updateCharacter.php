@@ -1,4 +1,6 @@
 <?php
+    $links =  '<link rel="stylesheet" href="public/css/admin/styleAdminCRUD.css">';
+
     $playableCharacter = $result['data']['playableCharacter'];
     $combatTypeList = $result['data']['combatTypeList'];
     $pathList = $result['data']['pathList'];
