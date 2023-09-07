@@ -14,18 +14,27 @@
         <a class="link-details" href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
     </section>
     <section class="eidolon-container">
-        <?php foreach($eidolonPlayableCharacter as $eidolon){?>
-            <table class="eidolon-details table-sizing">
-                <tr>
-                    <td rowspan="2" class="center"><img src="<?= $eidolon->getIcon() ?>" alt="<?=$eidolon->getName()?> Icon" /></td>
-                    <td class="eidolon-nbr"><?= $eidolon->getNbr() ?></td>
-                    <td class="eidolon-name "><?= $eidolon->getName() ?></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><?= $eidolon->getEffect() ?></td>
-                </tr>
-            </table>
-        <?php } ?>
+        <?php 
+            if($eidolonPlayableCharacter){
+                foreach($eidolonPlayableCharacter as $eidolon){?>
+                    <table class="eidolon-details table-sizing">
+                        <tr>
+                            <td rowspan="2" class="center"><img src="<?= $eidolon->getIcon() ?>" alt="<?=$eidolon->getName()?> Icon" /></td>
+                            <td class="eidolon-nbr"><?= $eidolon->getNbr() ?></td>
+                            <td class="eidolon-name "><?= $eidolon->getName() ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><?= $eidolon->getEffect() ?></td>
+                        </tr>
+                    </table>
+                <?php }
+                } else { 
+                echo "<div class='container-error-msg'>";
+                    echo "<figure class='container-msg-emote'>
+                            <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/hook-sad.png' alt='emote sad hook' />
+                        </figure>";
+                    echo "<p class='error-msg'>We're sorry but there's no data yet !</p>"; 
+                echo "</div>";
+            } ?>
     </section>
-
 </div>

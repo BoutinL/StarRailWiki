@@ -13,22 +13,31 @@
         <a class="link-details" href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
     </section>
     <section class="abilities-content">
-        <?php foreach($abilitiesPlayableCharacter as $ability){ ?>
-            <table class="ability-details table-sizing">
-                <tr>
-                    <td rowspan="2" class="center"><img src="<?= $ability->getIcon() ?>" alt="<?=$ability->getName()?> Icon" /></td>
-                    <td><?= $ability->getTypeAbility()->getType()?></td>
-                    <td><?= $ability->getName() ?></td>
-                    <td>Energy Cost: <?= $ability->getEnergyCost() ?></td>
-                    <td>Energy Generation: <?= $ability->getEnergyGeneration() ?></td>
-                    <td>Dammage: <?= $ability->getDmg() ?></td>
-                    <td><?= $ability->getTagAbility()->getType() ?></td>
-                </tr>
-                <tr>
-                    <td colspan="6"><?= $ability->getDescription() ?></td>
-                </tr>
-            </table>
-        <?php } ?>
+        <?php if ($abilitiesPlayableCharacter){ 
+            foreach($abilitiesPlayableCharacter as $ability){ ?>
+                <table class="ability-details table-sizing">
+                    <tr>
+                        <td rowspan="2" class="center"><img src="<?= $ability->getIcon() ?>" alt="<?=$ability->getName()?> Icon" /></td>
+                        <td><?= $ability->getTypeAbility()->getType()?></td>
+                        <td><?= $ability->getName() ?></td>
+                        <td>Energy Cost: <?= $ability->getEnergyCost() ?></td>
+                        <td>Energy Generation: <?= $ability->getEnergyGeneration() ?></td>
+                        <td>Dammage: <?= $ability->getDmg() ?></td>
+                        <td><?= $ability->getTagAbility()->getType() ?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6"><?= $ability->getDescription() ?></td>
+                    </tr>
+                </table>
+            <?php }
+            } else { 
+                echo "<div class='container-error-msg'>";
+                    echo "<figure class='container-msg-emote'>
+                            <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/hook-sad.png' alt='emote sad hook' />
+                        </figure>";
+                    echo "<p class='error-msg'>We're sorry but there's no data yet !</p>"; 
+                echo "</div>";
+            } ?>
     </section>
 </div>
 

@@ -5,12 +5,12 @@ namespace Controller;
 use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
-use Model\Managers\PlayableCharacterManager;
 use Model\Managers\PathManager;
-use Model\Managers\CombatTypeManager;
-use Model\Managers\AbilityManager;
 use Model\Managers\TraceManager;
-    use Model\Managers\EidolonManager;
+use Model\Managers\AbilityManager;
+use Model\Managers\CombatTypeManager;
+use Model\Managers\PlayableCharacterManager;
+use Model\Managers\EidolonManager;
     
     class WikiController extends AbstractController implements ControllerInterface{
 
@@ -96,15 +96,19 @@ use Model\Managers\TraceManager;
             $abilitiesPlayableCharacter = $abilitiesPlayableCharacterManager->getAbilitiesByPlayableCharacterId($id);
             $playableCharacter = $playableCharacterManager->findOneById($id);
 
-            return [
-                "view" => VIEW_DIR."wiki/abilityPlayableCharacter.php",
-                "data" => [
-                    // Abilities data
-                    "abilitiesPlayableCharacter" => $abilitiesPlayableCharacter, 
-                    // Character data
-                    "playableCharacter" => $playableCharacter,
-                ]
-            ];
+            if($playableCharacter) {
+                return [
+                    "view" => VIEW_DIR."wiki/abilityPlayableCharacter.php",
+                    "data" => [
+                        // Abilities data
+                        "abilitiesPlayableCharacter" => $abilitiesPlayableCharacter, 
+                        // Character data
+                        "playableCharacter" => $playableCharacter,
+                    ]
+                ];
+            } else {
+                $this->redirectTo("wiki", "characterList");
+            }
         }
 
         public function eidolonPlayableCharacter($id)
@@ -115,15 +119,19 @@ use Model\Managers\TraceManager;
             $eidolonPlayableCharacter = $eidolonPlayableCharacterManager->getEidolonByPlayableCharacterId($id);
             $playableCharacter = $playableCharacterManager->findOneById($id);
 
-            return [
-                "view" => VIEW_DIR."wiki/eidolonPlayableCharacter.php",
-                "data" => [
-                    // eidolon data
-                    "eidolonPlayableCharacter" => $eidolonPlayableCharacter,
-                    // Character data
-                    "playableCharacter" => $playableCharacter,
-                    ]
-                ];
+            if($playableCharacter) {
+                return [
+                    "view" => VIEW_DIR."wiki/eidolonPlayableCharacter.php",
+                    "data" => [
+                        // eidolon data
+                        "eidolonPlayableCharacter" => $eidolonPlayableCharacter,
+                        // Character data
+                        "playableCharacter" => $playableCharacter,
+                        ]
+                    ];
+                } else {
+                    $this->redirectTo("wiki", "characterList");
+                }
             }
             
 
@@ -135,14 +143,18 @@ use Model\Managers\TraceManager;
             $tracePlayableCharacter = $tracePlayableCharacterManager->getTraceByPlayableCharacterId($id);
             $playableCharacter = $playableCharacterManager->findOneById($id);
 
-            return [
-                "view" => VIEW_DIR."wiki/tracePlayableCharacter.php",
-                "data" => [
-                    // Trace data
-                    "tracePlayableCharacter" => $tracePlayableCharacter,
-                    // Character data
-                    "playableCharacter" => $playableCharacter,
-                ]
-            ];
+            if($playableCharacter) {
+                return [
+                    "view" => VIEW_DIR."wiki/tracePlayableCharacter.php",
+                    "data" => [
+                        // Trace data
+                        "tracePlayableCharacter" => $tracePlayableCharacter,
+                        // Character data
+                        "playableCharacter" => $playableCharacter,
+                    ]
+                ];
+            } else {
+                $this->redirectTo("wiki", "characterList");
+            }
         }
     }

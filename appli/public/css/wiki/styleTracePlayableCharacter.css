@@ -61,7 +61,7 @@ td, tr, th{
 }
 
 .trace-container{
-    margin: 2rem
+    margin: 2rem;
 }
 
 .trace-nbr{
@@ -71,4 +71,27 @@ td, tr, th{
 
 .trace-name{
     width: 95%;
+}
+
+/* error msg */
+
+.container-error-msg{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.container-msg-emote{
+    width: 15%;
+}
+
+.error-msg-emote{
+
+
+}
+
+.error-msg{
+    width: 20%;
+    font-size: 1.5rem;
 }
