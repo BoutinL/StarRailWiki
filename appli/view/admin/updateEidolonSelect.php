@@ -10,7 +10,7 @@
             <ul>
                 <li class="deroulant"><a href="#">Account Gestion &ensp;</a>
                     <ul class="sous">
-                    <li><a href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>">Profile</a></li>
+                    <li><a href="index.php?ctrl=security&action=viewProfile>">Profile</a></li>
                     <li><a href="index.php?ctrl=admin&action=trailblazerList">User List</a></li>
                     </ul>
                 </li>

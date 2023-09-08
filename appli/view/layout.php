@@ -25,7 +25,7 @@
             <header>
                 <nav class="nav">
                     <div class="nav-left" id="nav-left">
-                        <a class="nav-links" href="http://localhost/StarRailWiki/appli/"><img class="icon-nav" src="/StarRailWiki/appli/public/img/Honkai-Star-Rail-icon.png" alt="Home Star rail icon" /></a>
+                        <a class="nav-links" href="index.php?ctrl=home&action=index"><img class="icon-nav" src="/StarRailWiki/appli/public/img/Honkai-Star-Rail-icon.png" alt="Home Star rail icon" /></a>
                         <a class="nav-links" href="index.php?ctrl=wiki&action=characterList">Character List</a>
                         <a class="nav-links" href="">Topic List</a>
                         <a class="nav-links" href="">Banners</a>
@@ -35,7 +35,7 @@
                         
                         if(App\Session::getUser()){
                             ?>
-                            <a class="nav-links" href="index.php?ctrl=security&action=viewProfile&id=<?= App\Session::getUser()->getId() ?>"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
+                            <a class="nav-links" href="index.php?ctrl=security&action=viewProfile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
                             <a class="nav-links" href="index.php?ctrl=security&action=logout">Logout</a>
                             <?php
                         }

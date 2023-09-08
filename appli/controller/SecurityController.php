@@ -55,7 +55,7 @@ class HomeController extends AbstractController implements ControllerInterface
             if ($email && $password) {
                 $dbUser = $trailblazerManager->findOneByEmail($email);
                 if ($dbUser && password_verify($password, $dbUser->getPassword())) {
-                    // if password correct do that
+                    // if correct password do that
                     Session::setUser($dbUser);
                     $this->redirectTo('wiki', 'playableCharacterList');
                 } else {
@@ -70,8 +70,24 @@ class HomeController extends AbstractController implements ControllerInterface
             "data" => []
         ];
     }
+    
+    public function viewProfile()
+    {
+        if(Session::getUser()) {
+            $userId = Session::getUser()->getId();
+            $trailblazerManager = new TrailblazerManager();
+            $trailblazer = $trailblazerManager->findOneById($userId);
 
-
+            return [
+                "view" => VIEW_DIR . "security/viewProfile.php",
+                "data" => ["trailblazer" => $trailblazer]
+            ];
+            
+        } else {
+            $this->redirectTo("security", "login");
+        }
+    }
+    
     private static function getPasswordHash($password)
     {
         return password_hash($password, PASSWORD_DEFAULT);
@@ -88,23 +104,4 @@ class HomeController extends AbstractController implements ControllerInterface
         ];
     }
 
-    public function viewProfile($id)
-    {
-        $trailblazerManager = new TrailblazerManager();
-        $trailblazer = $trailblazerManager->findOneById($id);
-        // var_dump($trailblazer);die;
-        if ($trailblazer) {
-            return [
-                "view" => VIEW_DIR . "security/viewProfile.php",
-                "data" => ["trailblazer" => $trailblazer]
-            ];
-        } else {
-            // when user doesnt exist
-            // redirect somewhere / return error
-            return [
-                "view" => VIEW_DIR . "security/login.php",
-                "data" => []
-            ];
-        }
-    }
 }

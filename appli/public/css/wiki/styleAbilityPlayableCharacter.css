@@ -82,8 +82,7 @@ td, tr, th{
 }
 
 .error-msg-emote{
-
-
+    width: 80%;
 }
 
 .error-msg{

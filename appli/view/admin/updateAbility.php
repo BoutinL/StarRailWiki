@@ -49,7 +49,7 @@
             
             <div class ="form-admin-container">
                 <h1>Update <?= $ability->getName(); ?></h1>
-                <form class="form" id="updateAbility" action="index.php?ctrl=admin&action=updateAbility&id=<?= $ability->getId() ?>" method="POST">
+                <form class="form" id="updateAbility" action="index.php?ctrl=admin&action=updateAbility" method="POST">
                     <div class="input-required">
                         <label for="playableCharacter">Character's ability :</label>
                         <select name="playableCharacter" id="playableCharacter" required>
