@@ -7,7 +7,6 @@ use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\PathManager;
 use Model\Managers\TraceManager;
-use Model\Managers\ReviewManager;
 use Model\Managers\CommentManager;
 use Model\Managers\AbilityManager;
 use Model\Managers\EidolonManager;
@@ -162,21 +161,16 @@ use Model\Managers\PlayableCharacterManager;
 
         public function reviewPlayableCharacter($id)
         {
-            $reviewManager = new ReviewManager();
             $commentManager = new CommentManager();
             $playableCharacterManager = new PlayableCharacterManager();
-
-            $reviewPlayableCharacter = $reviewManager->getReviewByPlayableCharacterId($id);
-            $commentPlayableCharacter = $commentManager->getCommentByPlayableCharacterId($id);
+            
+            $commentPlayableCharacter = $commentManager->getCommentByPlayableCharacter($id);
             $playableCharacter = $playableCharacterManager->findOneById($id);
-
             if($playableCharacter) {
                 return [
                     "view" => VIEW_DIR."wiki/reviewPlayableCharacter.php",
                     "data" => [
-                        // review data
-                        "reviewPlayableCharacter" => $reviewPlayableCharacter,
-                        // review data
+                        // comments data
                         "commentPlayableCharacter" => $commentPlayableCharacter,
                         // Character data
                         "playableCharacter" => $playableCharacter,
@@ -184,6 +178,32 @@ use Model\Managers\PlayableCharacterManager;
                 ];
             } else {
                 $this->redirectTo("wiki", "characterList");
+            }
+        }
+
+        public function addComment($id){
+            if (isset($_POST['submitComment'])) {
+                if(Session::getUser()){
+                    // Check if all required input arnt empty
+
+                    if ((!empty($_POST['comment']))) {
+                        // Sanitaze all input from the form
+                        $comment = filter_input(INPUT_POST, "comment", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                        // var_dump($comment);die;
+                        if ($comment) {
+                            $commentManager = new CommentManager();
+                            $commentManager->add([
+                                "text" => $comment,
+                                "playableCharacter_id" => $id,
+                                "trailblazer_id" => Session::getUser()->getId()
+                            ]);
+                            $this->redirectTo("wiki", "reviewPlayableCharacter", $id);
+                        } else {
+                            $this->redirectTo("wiki", "playableCharacterList");
+                        }
+
+                    }
+                }
             }
         }
     }

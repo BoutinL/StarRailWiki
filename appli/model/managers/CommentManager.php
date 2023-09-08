@@ -13,12 +13,13 @@
             parent::connect();
         }
 
-        public function getCommentByPlayableCharacterId($id){
+        public function getCommentByPlayableCharacter($id){
 
             $sql = "SELECT c.*
             FROM " .$this->tableName. " c
-            INNER JOIN review r ON r.id_review = c.review_id
-            WHERE c.review_id = :id";
+            INNER JOIN playablecharacter p ON p.id_playablecharacter = c.playablecharacter_id
+            WHERE c.playableCharacter_id = :id
+            ORDER BY dateCreate DESC";
 
             return $this->getMultipleResults(
                 DAO::select($sql, ["id"=>$id]), 
