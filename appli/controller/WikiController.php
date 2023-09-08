@@ -7,11 +7,13 @@ use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\PathManager;
 use Model\Managers\TraceManager;
+use Model\Managers\ReviewManager;
+use Model\Managers\CommentManager;
 use Model\Managers\AbilityManager;
+use Model\Managers\EidolonManager;
 use Model\Managers\CombatTypeManager;
 use Model\Managers\PlayableCharacterManager;
-use Model\Managers\EidolonManager;
-    
+
     class WikiController extends AbstractController implements ControllerInterface{
 
         public function index()
@@ -149,6 +151,33 @@ use Model\Managers\EidolonManager;
                     "data" => [
                         // Trace data
                         "tracePlayableCharacter" => $tracePlayableCharacter,
+                        // Character data
+                        "playableCharacter" => $playableCharacter,
+                    ]
+                ];
+            } else {
+                $this->redirectTo("wiki", "characterList");
+            }
+        }
+
+        public function reviewPlayableCharacter($id)
+        {
+            $reviewManager = new ReviewManager();
+            $commentManager = new CommentManager();
+            $playableCharacterManager = new PlayableCharacterManager();
+
+            $reviewPlayableCharacter = $reviewManager->getReviewByPlayableCharacterId($id);
+            $commentPlayableCharacter = $commentManager->getCommentByPlayableCharacterId($id);
+            $playableCharacter = $playableCharacterManager->findOneById($id);
+
+            if($playableCharacter) {
+                return [
+                    "view" => VIEW_DIR."wiki/reviewPlayableCharacter.php",
+                    "data" => [
+                        // review data
+                        "reviewPlayableCharacter" => $reviewPlayableCharacter,
+                        // review data
+                        "commentPlayableCharacter" => $commentPlayableCharacter,
                         // Character data
                         "playableCharacter" => $playableCharacter,
                     ]

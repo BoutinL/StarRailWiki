@@ -9,7 +9,7 @@
         <a class="link-details" href="index.php?ctrl=wiki&action=abilityPlayableCharacter&id=<?= $biographyPlayableCharacter->getId() ?>">Abilities</a>
         <a class="link-details" href="index.php?ctrl=wiki&action=eidolonPlayableCharacter&id=<?= $biographyPlayableCharacter->getId() ?>">Eidolon</a>
         <a class="link-details" href="index.php?ctrl=wiki&action=tracePlayableCharacter&id=<?= $biographyPlayableCharacter->getId() ?>">Trace</a>
-        <a class="link-details" href="index.php?ctrl=wiki&action=reviewsPlayableCharacter">Reviews</a>
+        <a class="link-details" href="index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $biographyPlayableCharacter->getId() ?>">Review</a>
     </section>
     <section class="introduction">
         <figure class="portrait">

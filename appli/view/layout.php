@@ -55,7 +55,7 @@
             </main>
         </div>
         <footer>
-            <p class="footer">&copy; 2023 - Star Rail Wiki - <a href="">Rules </a> - <a href="">Legal Notice</a></p>
+            <p class="footer">&copy; 2023 - Star Rail Wiki - <a href=""> Rules </a> - <a href="index.php?ctrl=legality&action=legalNotice"> Legal Notice </a></p>
             <!--<button id="ajaxbtn">Surprise en Ajax !</button> -> cliqué <span id="nbajax">0</span> fois-->
         </footer>
     </div>
