@@ -240,11 +240,11 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `text` text NOT NULL,
   `dateCreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `trailblazer_id` int NOT NULL DEFAULT '0',
-  `review_id` int DEFAULT NULL,
+  `playableCharacter_id` int NOT NULL,
   PRIMARY KEY (`id_comment`),
   KEY `trailblazer_id` (`trailblazer_id`),
-  KEY `review_id` (`review_id`),
-  CONSTRAINT `FK-comment_review` FOREIGN KEY (`review_id`) REFERENCES `review` (`id_review`),
+  KEY `playableCharacter_id` (`playableCharacter_id`),
+  CONSTRAINT `FK-comment_playableCharacter_id` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`),
   CONSTRAINT `FK-comment_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -483,7 +483,7 @@ CREATE TABLE IF NOT EXISTS `playablecharacter` (
   KEY `path_id` (`path_id`),
   CONSTRAINT `FK-playableCharacter_combatType` FOREIGN KEY (`combatType_id`) REFERENCES `combattype` (`id_combatType`),
   CONSTRAINT `FK-playableCharacter_path` FOREIGN KEY (`path_id`) REFERENCES `path` (`id_path`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table srw_loic.playablecharacter : ~30 rows (environ)
 INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarity`, `sex`, `specie`, `faction`, `world`, `quote`, `releaseDate`, `introduction`, `combatType_id`, `path_id`) VALUES
@@ -517,18 +517,6 @@ INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarit
 	(28, 'Yanqing', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Yanqing-Splash-Art-1024x877.png', 5, 'Male', '???', 'Cloud Knights', 'The Xianzhou Luofu', 'I only called you \'teacher\' because I admire your skill in this area. Don\'t expect me to start taking it easy on you.', '2023-04-26', 'The youngest lieutenant of the Xianzhou Alliance\'s Cloud Knights on board the Xianzhou Luofu, and General Jing Yuan\'s retainer. A swordsman gifted with the art of swordplay and war who has a prodigious interest in swords and always collects them from the Artisanship Commission.', 3, 2),
 	(29, 'Trailblazer', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/7e3dcd2464edfca47e45ee7f0b53f32b_1711910135236400099.gif', 5, 'Female / Male', '???', 'Astral Express', 'Astral Express', 'When there is the chance to make a choice, make one that you know you won\'t regret...', '2023-04-26', 'They are awakened during the opening events of the game by Kafka and Silver Wolf, who leave them to be found by March 7th and Dan Heng on Herta Space Station during the Antimatter Legion\'s invasion. The player gets to choose either Stelle (female) or Caelus (male), along with their Receptacle Codename.', 1, 1),
 	(30, 'Trailblazer', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/c74eb9c6d1c028fc9813c87612c84a3e_5924273427451673630.gif', 5, 'Female / Male', '???', 'Astral Express', 'Astral Express', 'When there is the chance to make a choice, make one that you know you won\'t regret...', '2023-04-26', 'They are awakened during the opening events of the game by Kafka and Silver Wolf, who leave them to be found by March 7th and Dan Heng on Herta Space Station during the Antimatter Legion\'s invasion. The player gets to choose either Stelle (female) or Caelus (male), along with their Receptacle Codename.', 2, 6);
-
--- Listage de la structure de table srw_loic. review
-CREATE TABLE IF NOT EXISTS `review` (
-  `id_review` int NOT NULL AUTO_INCREMENT,
-  `rating` int DEFAULT NULL,
-  `playableCharacter_id` int NOT NULL,
-  PRIMARY KEY (`id_review`),
-  KEY `playableCharacter_id` (`playableCharacter_id`),
-  CONSTRAINT `FK-review_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Listage des données de la table srw_loic.review : ~0 rows (environ)
 
 -- Listage de la structure de table srw_loic. tagability
 CREATE TABLE IF NOT EXISTS `tagability` (
@@ -564,7 +552,7 @@ CREATE TABLE IF NOT EXISTS `trace` (
   CONSTRAINT `FK-trace_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.trace : ~0 rows (environ)
+-- Listage des données de la table srw_loic.trace : ~13 rows (environ)
 INSERT INTO `trace` (`id_trace`, `name`, `effect`, `icon`, `ascend_id`, `playableCharacter_id`) VALUES
 	(1, 'DMG Boost: Wind', 'Wind DMG increases by 3.2%', NULL, 1, 5),
 	(2, ' Hidden Dragon', 'When current HP percentage is 50% or lower, reduces the chance of being attacked by enemies.', NULL, 3, 5),
@@ -591,7 +579,7 @@ CREATE TABLE IF NOT EXISTS `trailblazer` (
   PRIMARY KEY (`id_trailblazer`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.trailblazer : ~0 rows (environ)
+-- Listage des données de la table srw_loic.trailblazer : ~2 rows (environ)
 INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `dateRegister`, `role`) VALUES
 	(1, 'admin@admin.fr', 'admin', '$2y$10$lHnQ5WhncortI53C6ELAieP6wBYV7r67mWajL2pLfSMWezyx7g1M.', '2023-09-01 21:18:13', 'ROLE_ADMIN'),
 	(2, 'user@user.fr', 'user', '$2y$10$DTMyjO5x4.NNR5XhU4/zsuBlWjr8xhyACatfLscEq20fhmrYKSx/y', '2023-09-02 22:50:45', 'ROLE_MEMBER');

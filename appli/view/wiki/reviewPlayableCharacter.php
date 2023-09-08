@@ -22,9 +22,9 @@
                     if($commentPlayableCharacter) {
                         foreach($commentPlayableCharacter as $comment){
                             echo "<div class='container-comment'>";
-                            echo "<span> ".$comment->getTrailblazer()->getUsername()."</span>";
+                            echo "<span> ".$comment->getTrailblazer()->getUsername()."</span> - ";
                             echo "<span> ".$comment->getDateCreateFormat()."</span>";
-                            echo "<p> ".$comment->getText()."</p>";
+                            echo "<p class='comment-text'> ".$comment->getText()."</p>";
                             echo "</div>";
                         }
                     } else { 
@@ -37,15 +37,19 @@
                     }
                 ?>
             <form action="index.php?ctrl=wiki&action=addComment&id=<?= $playableCharacter->getId() ?>" method="POST">
-                <label for="comment">What do you think about <?= $playableCharacter->getName() ?></label>
+                <label for="comment">Your opinion on <?= $playableCharacter->getName() ?></label>
                 <textarea rows="" cols="" name="comment" id="comment" placeholder="Write a comment"  required></textarea>
                 <input type="submit" name="submitComment" value="Submit">
             </form>
             </div>
         </div>
         <div class="rating-box">
-            <p>ahhh</p>
-            <p>aaaa</p>
+            <span>5/5</span>
+            <form action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
+                <label for="rate"> Rating <?= $playableCharacter->getName() ?></label>
+                <input type="number" name="rate" id="rate" required></input>
+                <input type="submit" name="submitRate" value="Submit">
+            </form>
         </div>
     </div>
 </div>
