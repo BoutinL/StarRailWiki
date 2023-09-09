@@ -5,12 +5,13 @@
 
         public function index(){}
         
-        public function redirectTo($ctrl = null, $action = null, $id = null){
+        public function redirectTo($ctrl = null, $action = null, $id = null, $page = null){
 
             if($ctrl != "home"){
                 $url = $ctrl ? "?ctrl=".$ctrl : "";
                 $url.= $action ? "&action=".$action : "";
                 $url.= $id ? "&id=".$id : "";
+                $url.= $page ? "/?page=".$page : "";
             }
             else $url = "/";
             header("Location: $url");

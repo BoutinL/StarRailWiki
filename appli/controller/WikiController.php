@@ -161,16 +161,16 @@ use Model\Managers\PlayableCharacterManager;
 
         public function reviewPlayableCharacter($id)
         {
-            $commentManager = new CommentManager();
-            $playableCharacterManager = new PlayableCharacterManager();
-            
             // For pagination, to find on wich page are we
             if(isset($_GET['page']) && !empty($_GET['page'])){
                 $currentPage = (int)strip_tags($_GET['page']);
+                // var_dump($currentPage);die;
             } else {
                 $currentPage = 1;
             }
-
+            $commentManager = new CommentManager();
+            $playableCharacterManager = new PlayableCharacterManager();
+            
             $nbrComments = $commentManager->getCommentsNbr($id);
             // get nbr of comments
             $intNbrComments = $nbrComments["nbrComments"];
@@ -178,7 +178,7 @@ use Model\Managers\PlayableCharacterManager;
             $commentByPage = 5;
             $intCommentByPage = intval($commentByPage);
             // calcul nbr of page
-            $pages = ceil($intNbrComments / $intCommentByPage);
+            $pages = (int)ceil($intNbrComments / $intCommentByPage);
             // first page comment
             // $firstCommentByPage = ($currentPage * $intCommentByPage) - $intCommentByPage;
             $firstCommentByPage = ($currentPage * $intCommentByPage) - $intCommentByPage;
@@ -194,8 +194,10 @@ use Model\Managers\PlayableCharacterManager;
                         "commentPlayableCharacter" => $commentPlayableCharacter,
                         // Character data
                         "playableCharacter" => $playableCharacter,
-                        // // nbr of comments for pagination
-                        // "nbrComments" => $nbrComments
+                        // nbr of pages
+                        "pages" => $pages,
+                        // current page
+                        "currentPage" => $currentPage
                     ]
                 ];
             } else {
@@ -223,7 +225,6 @@ use Model\Managers\PlayableCharacterManager;
                         } else {
                             $this->redirectTo("wiki", "playableCharacterList");
                         }
-
                     }
                 }
             }

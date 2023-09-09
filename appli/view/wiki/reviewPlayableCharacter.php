@@ -1,10 +1,10 @@
 <?php
     $links =  '<link rel="stylesheet" href="public/css/wiki/styleReviewPlayableCharacter.css">';
     $commentPlayableCharacter = $result["data"]['commentPlayableCharacter'];
-    $playableCharacter = $result["data"]['playableCharacter'];    
-
-
-?>
+    $playableCharacter = $result["data"]['playableCharacter'];
+    $pages = $result["data"]['pages'];
+    $currentPage = $result["data"]['currentPage'];
+    ?>
 
 <div class="content" style="<?= $playableCharacter->combatTypeCss() ?>">
     <section class="navbar-details" style="<?= $playableCharacter->combatTypeCssBis() ?>">
@@ -27,6 +27,21 @@
                             echo "<p class='comment-text'> ".$comment->getText()."</p>";
                             echo "</div>";
                         }
+                        ?>
+                        <div class='pagination-box'>
+                            <ul class='pagination'>
+                                <li class="link-details <?= ($currentPage == 1) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage - 1 ?>' ><</a></li>
+                                <?php
+                                    for($page = 1; $page <= $pages; $page++){?>
+                                        <li class="link-details <?= ($currentPage == $page) ? $playableCharacter->combatTypeCssLink() : '' ?>">
+                                            <a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $page ?>'><?= $page ?></a>
+                                        </li>
+                                    <?php }
+                                ?>
+                                <li class="link-details <?= ($currentPage == $pages) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage + 1 ?>'>></a></li>
+                            </ul>
+                        </div>
+                        <?php
                     } else { 
                         echo "<div class='container-error-msg'>";
                             echo "<figure class='container-msg-emote'>
