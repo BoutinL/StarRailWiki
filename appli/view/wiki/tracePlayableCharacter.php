@@ -33,7 +33,7 @@
             } else { 
                 echo "<div class='container-error-msg'>";
                     echo "<figure class='container-msg-emote'>
-                            <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/march-crying.png' alt='emote sad hook' />
+                            <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/march-crying.png' alt='emote march crying' />
                         </figure>";
                     echo "<p class='error-msg'>We're sorry but there's no data yet !</p>"; 
                 echo "</div>";

@@ -12,16 +12,30 @@
         public function __construct(){
             parent::connect();
         }
-
-        public function getCommentByPlayableCharacter($id){
+        
+        public function getCommentByPlayableCharacter($id, $intFirstCommentByPage, $intCommentByPage){
 
             $sql = "SELECT c.*
             FROM " .$this->tableName. " c
             INNER JOIN playablecharacter p ON p.id_playablecharacter = c.playablecharacter_id
             WHERE c.playableCharacter_id = :id
-            ORDER BY dateCreate DESC";
-
+            ORDER BY dateCreate DESC LIMIT ".$intFirstCommentByPage.", ".$intCommentByPage;
+            // var_dump($intCommentByPage);die;
             return $this->getMultipleResults(
+                DAO::select($sql, [
+                    "id" => $id
+                ]), 
+                $this->className
+            );
+        }
+
+        public function getCommentsNbr($id){
+
+            $sql = "SELECT COUNT(*) AS nbrComments
+            FROM " .$this->tableName. " c
+            WHERE c.playableCharacter_id = :id";
+
+            return $this->getSingleScalarResult(
                 DAO::select($sql, ["id"=>$id]), 
                 $this->className
             );

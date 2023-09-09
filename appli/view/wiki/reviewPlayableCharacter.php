@@ -1,9 +1,9 @@
 <?php
     $links =  '<link rel="stylesheet" href="public/css/wiki/styleReviewPlayableCharacter.css">';
-
     $commentPlayableCharacter = $result["data"]['commentPlayableCharacter'];
-    $playableCharacter = $result["data"]['playableCharacter'];
-    // var_dump($commentPlayableCharacter);die;
+    $playableCharacter = $result["data"]['playableCharacter'];    
+
+
 ?>
 
 <div class="content" style="<?= $playableCharacter->combatTypeCss() ?>">
@@ -22,34 +22,40 @@
                     if($commentPlayableCharacter) {
                         foreach($commentPlayableCharacter as $comment){
                             echo "<div class='container-comment'>";
-                            echo "<span> ".$comment->getTrailblazer()->getUsername()."</span> - ";
+                            echo "<span> ".$comment->getTrailblazer()->getUsername()."</span>";
                             echo "<span> ".$comment->getDateCreateFormat()."</span>";
                             echo "<p class='comment-text'> ".$comment->getText()."</p>";
                             echo "</div>";
                         }
                     } else { 
                         echo "<div class='container-error-msg'>";
-                        echo "<figure class='container-msg-emote'>
-                        <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/march-crying.png' alt='emote sad hook' />
-                        </figure>";
-                        echo "<p class='error-msg'>There's no comment yet... </p>"; 
+                            echo "<figure class='container-msg-emote'>
+                                    <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/hook-sad.png' alt='emote sad hook' />
+                                </figure>";
+                            echo "<p class='error-msg'>There's no comment yet... </p>"; 
                         echo "</div>";
                     }
                 ?>
-            <form action="index.php?ctrl=wiki&action=addComment&id=<?= $playableCharacter->getId() ?>" method="POST">
-                <label for="comment">Your opinion on <?= $playableCharacter->getName() ?></label>
-                <textarea rows="" cols="" name="comment" id="comment" placeholder="Write a comment"  required></textarea>
-                <input type="submit" name="submitComment" value="Submit">
-            </form>
             </div>
+            <?php if(App\Session::getUser()){ ?>
+                <form action="index.php?ctrl=wiki&action=addComment&id=<?= $playableCharacter->getId() ?>" method="POST">
+                    <label class="label-comment" for="comment">Your opinion on <?= $playableCharacter->getName() ?></label>
+                    <div class="comment-split-label-text">
+                        <textarea style="<?= $playableCharacter->combatTypeCss() ?>" name="comment" id="comment" placeholder="Write a comment"  required></textarea>
+                        <input class="submit-btn" type="submit" name="submitComment" value="Submit">
+                    </div>
+                </form>
+            <?php } ?>
         </div>
         <div class="rating-box">
             <span>5/5</span>
-            <form action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
-                <label for="rate"> Rating <?= $playableCharacter->getName() ?></label>
-                <input type="number" name="rate" id="rate" required></input>
-                <input type="submit" name="submitRate" value="Submit">
-            </form>
+            <?php if(App\Session::getUser()){ ?>
+                <form action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
+                    <label for="rate"> Rating <?= $playableCharacter->getName() ?></label>
+                    <input  type="number" name="rate" id="rate" required></input>
+                    <input type="submit" name="submitRate" value="Submit">
+                </form>
+            <?php } ?>
         </div>
     </div>
-</div>
+</div> 

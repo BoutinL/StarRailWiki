@@ -164,7 +164,27 @@ use Model\Managers\PlayableCharacterManager;
             $commentManager = new CommentManager();
             $playableCharacterManager = new PlayableCharacterManager();
             
-            $commentPlayableCharacter = $commentManager->getCommentByPlayableCharacter($id);
+            // For pagination, to find on wich page are we
+            if(isset($_GET['page']) && !empty($_GET['page'])){
+                $currentPage = (int)strip_tags($_GET['page']);
+            } else {
+                $currentPage = 1;
+            }
+
+            $nbrComments = $commentManager->getCommentsNbr($id);
+            // get nbr of comments
+            $intNbrComments = $nbrComments["nbrComments"];
+            // nbr of comments to display by page
+            $commentByPage = 5;
+            $intCommentByPage = intval($commentByPage);
+            // calcul nbr of page
+            $pages = ceil($intNbrComments / $intCommentByPage);
+            // first page comment
+            // $firstCommentByPage = ($currentPage * $intCommentByPage) - $intCommentByPage;
+            $firstCommentByPage = ($currentPage * $intCommentByPage) - $intCommentByPage;
+            $intFirstCommentByPage = intval($firstCommentByPage);
+            // var_dump($firstCommentByPage);die;
+            $commentPlayableCharacter = $commentManager->getCommentByPlayableCharacter($id, $intFirstCommentByPage, $intCommentByPage);
             $playableCharacter = $playableCharacterManager->findOneById($id);
             if($playableCharacter) {
                 return [
@@ -174,6 +194,8 @@ use Model\Managers\PlayableCharacterManager;
                         "commentPlayableCharacter" => $commentPlayableCharacter,
                         // Character data
                         "playableCharacter" => $playableCharacter,
+                        // // nbr of comments for pagination
+                        // "nbrComments" => $nbrComments
                     ]
                 ];
             } else {
