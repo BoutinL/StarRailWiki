@@ -16,7 +16,6 @@
         private static $dbname = 'srw_loic';
         private static $dbuser = 'root';
         private static $dbpass = '';
-
         private static $bdd;
 
         /**
