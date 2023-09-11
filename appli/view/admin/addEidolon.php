@@ -60,13 +60,24 @@
                         </select>
                         
                         <label for="nbrEidolon">Number :</label>
-                        <input type="number" name="nbrEidolon" id="nbrEidolon" required>
+                        <div class="nbrEidolon-radio">
+                            <?php
+                                for($nbrEidolon = 1; $nbrEidolon <= 6; $nbrEidolon++){
+                                    echo "
+                                    <label for='nbrEidolon'>
+                                        ".$nbrEidolon."
+                                        <input type='radio' id='".$nbrEidolon."' name='nbrEidolon' value='".$nbrEidolon."' required/>
+                                    </label>
+                                    ";
+                                }
+                            ?>
+                        </div>
                         
                         <label for="nameEidolon">Name :</label>
                         <input type="text" name="nameEidolon" id="nameEidolon" placeholder="Enter Eidolon name" required>
                         
                         <label for="effectEidolon">Effect :</label>
-                        <input type="text" name="effectEidolon" id="effectEidolon" placeholder="What's the effect of that Eidolon" required>
+                        <textarea rows="10" type="text" name="effectEidolon" id="effectEidolon" placeholder="What's the effect of that Eidolon" required></textarea>
                     </div>
                     <div class="input-not-required">
                         <label for="image-urlEidolon">Image url :</label>

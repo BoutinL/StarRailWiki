@@ -64,7 +64,7 @@
                         <input type="text" name="name" id="name" placeholder="Enter Ability name" required>
 
                         <label for="description">description :</label>
-                        <input type="text" name="description" id="description" placeholder="What's the effect of that ability" required>
+                        <textarea rows="10" name="description" id="description" placeholder="What's the effect of that ability" required></textarea>
 
                         <label for="typeAbility">Ability Type :</label>
                         <select name="typeAbility" id="typeAbility" required>

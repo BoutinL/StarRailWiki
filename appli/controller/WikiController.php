@@ -183,7 +183,7 @@ use Model\Managers\PlayableCharacterManager;
             // $firstCommentByPage = ($currentPage * $intCommentByPage) - $intCommentByPage;
             $firstCommentByPage = ($currentPage * $intCommentByPage) - $intCommentByPage;
             $intFirstCommentByPage = intval($firstCommentByPage);
-            // var_dump($firstCommentByPage);die;
+            
             $commentPlayableCharacter = $commentManager->getCommentByPlayableCharacter($id, $intFirstCommentByPage, $intCommentByPage);
             $playableCharacter = $playableCharacterManager->findOneById($id);
             if($playableCharacter) {

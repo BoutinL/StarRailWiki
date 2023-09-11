@@ -64,7 +64,7 @@
                         <input type="text" name="nameTrace" id="nameTrace" required>
 
                         <label for="effectTrace">Effect :</label>
-                        <input type="text" name="effectTrace" id="effectTrace" placeholder="What's the effect of that Eidolon" required>
+                        <textarea rows="10" name="effectTrace" id="effectTrace" placeholder="What's the effect of that trace" required></textarea>
 
                         <label for="ascendTrace">Level of ascension :</label>
                         <select name="ascendTrace" id="ascendTrace">

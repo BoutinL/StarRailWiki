@@ -14,7 +14,7 @@
             </label>
             <label>
                 <b>Password</b>
-                <input type="password" placeholder="Entrer password" name="password" required>
+                <input type="password" placeholder="Minimum 8 characters, at least one letter and one number" name="password"  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
             </label>
             <label>
                 <b>Comfirm password</b>

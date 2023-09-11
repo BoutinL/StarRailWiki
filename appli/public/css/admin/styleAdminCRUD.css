@@ -63,7 +63,7 @@ nav > ul li:hover .sous{
     border-radius: 30px;
 }
 
-/* Add */
+/* CRUD */
 
 .content{
     background-color: rgb(36, 36, 36);
@@ -86,11 +86,36 @@ nav > ul li:hover .sous{
     justify-content: space-around;
 }
 
+.rarity-radio, .nbrEidolon-radio {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: center;
+}
+
+.rarity-radio label {
+    flex: 1;
+    text-align: center;
+    margin-bottom: 5px; /* Espacement entre les labels et les inputs, ajustez selon vos préférences */
+}
+
+.rarity-radio input[type="radio"] {
+    display: block; /* Pour garantir que les radios sont en-dessous des labels */
+    margin-top: 5px;
+}
+
 .input-required, .input-not-required{
     width: 40%;
 }
 
-input, select{
+.label-select{
+    min-width:fit-content;
+    display: flex;
+    align-self: center;
+    font-size: 1.2rem;
+}
+
+input, textarea, select{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -98,8 +123,12 @@ input, select{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    resize: none;
 }
 
-.add-submit{
-    width: 30%; 
+.select-input{
+    width: 50%;
+}
+.add-submit, .update-submit{
+    width: 20%; 
 }

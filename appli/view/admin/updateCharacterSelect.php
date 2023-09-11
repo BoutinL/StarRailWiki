@@ -44,7 +44,7 @@
             <div class ="form-admin-container">
                 <h1>Update a character</h1>
                 <form class="form" id="updateCharacterSelect" action="index.php?ctrl=admin&action=updateCharacterSelect" method="POST">
-                <label for="playableCharacter">Character to update :</label>
+                <label class="label-select" for="playableCharacter">Character to update :</label>
                     <select name="playableCharacter" id="playableCharacter" required>
                         <option hidden disabled selected>--Chose a character--</option>
                         <?php 
@@ -55,7 +55,7 @@
                             }
                         ?>
                     </select>
-                    <input class="add-submit" type="submit" form="updateCharacterSelect" name="submit" value="Select">
+                    <input class="update-submit" type="submit" form="updateCharacterSelect" name="submit" value="Select">
                 </form>
             </div>
         <?php endif; 

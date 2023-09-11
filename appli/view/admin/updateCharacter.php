@@ -52,8 +52,42 @@
                         <label for="name">Name :</label>
                         <input type="text" name="name" id="name" value="<?php  echo $playableCharacter->getName(); ?>" placeholder="Enter Character name" required>
 
-                        <label for="rarity">Rarity :</label>
-                        <input type="number" name="rarity" id="rarity" value="<?php  echo $playableCharacter->getRarity(); ?>" placeholder="4 or 5" required>
+                        <?php 
+                            // To display the right input radio radio while updating
+                            $rarity = $playableCharacter->getRarity();
+                            if($rarity == 4){
+                                echo "
+                                    <label for='rarity'>Rarity :</label>
+                                    <div class='rarity-radio'>
+                                        <label for='rarity'>
+                                            4 Stars
+                                            <input type='radio' id='4' name='rarity' value='4' required checked/>
+                                        </label>
+                                        <label for='rarity'>
+                                            5 Stars
+                                            <input type='radio' id='5' name='rarity' value='5' required/>
+                                        </label>
+                                    </div>
+                                ";
+                            } else {
+                                echo "
+                                    <label for='rarity'>Rarity :</label>
+                                    <div class='rarity-radio'>
+                                        <label for='rarity'>
+                                            4 Stars
+                                            <input type='radio' id='4' name='rarity' value='4' required/>
+                                        </label>
+                                        <label for='rarity'>
+                                            5 Stars
+                                            <input type='radio' id='5' name='rarity' value='5' required checked/>
+                                        </label>
+                                    </div>
+                                ";
+                            }
+                        ?>
+
+                        <!-- <label for="rarity">Rarity :</label>
+                        <input type="number" name="rarity" id="rarity" value="<?php  echo $playableCharacter->getRarity(); ?>" placeholder="4 or 5" required> -->
 
                         <label for="combatType">Combat type :</label>
                         <select name="combatType"  id="combatType" required>
@@ -102,7 +136,7 @@
                         <input type="text" name="quote" id="quote" value="<?php  echo $playableCharacter->getQuote(); ?>" placeholder="A sentence the character often say">
 
                         <label for="introduction">Introduction :</label>
-                        <input type="text" name="introduction" id="introduction" value="<?php  echo $playableCharacter->getIntroduction(); ?>" placeholder="Something about the character">
+                        <textarea rows="10" name="introduction" id="introduction" placeholder="Something about the character"><?php  echo $playableCharacter->getIntroduction(); ?></textarea>
                     </div>
                 </form>
                 <input class="add-submit" type="submit" form="updateCharacter" name="submit" value="Update <?= $playableCharacter->getName(); ?>">

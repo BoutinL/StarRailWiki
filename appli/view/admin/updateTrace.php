@@ -64,7 +64,7 @@
                         <input type="text" name="nameTrace" value="<?= $trace->getName(); ?>" id="nameTrace" placeholder="Enter trace name" required>
                         
                         <label for="effectTrace">Effect :</label>
-                        <input type="text" name="effectTrace" value="<?= $trace->getEffect(); ?>" id="effectTrace" placeholder="What's the effect of that trace" required>
+                        <textarea rows="10" name="effectTrace" id="effectTrace" placeholder="What's the effect of that trace" required><?= $trace->getEffect(); ?></textarea>
                         
                         <label for="ascendTrace">Lvl cap :</label>
                         <select name="ascendTrace" id="ascendTrace" required>

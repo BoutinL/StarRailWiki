@@ -67,7 +67,7 @@
                         <input type="text" name="name" value="<?php  echo $ability->getName(); ?>" id="name" placeholder="Enter Ability name" required>
 
                         <label for="description">description :</label>
-                        <input type="text" name="description" value="<?php  echo $ability->getDescription(); ?>" id="description" placeholder="What's the effect of that ability" required>
+                        <textarea rows="10" name="description" id="description" placeholder="What's the effect of that ability" required><?php  echo $ability->getDescription(); ?></textarea>
 
                         <label for="typeAbility">Ability Type :</label>
                         <select name="typeAbility" id="typeAbility" required>

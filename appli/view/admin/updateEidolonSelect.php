@@ -44,7 +44,7 @@
             <div class ="form-admin-container">
                 <h1>Update an eidolon</h1>
                 <form class="form" id="updateEidolonSelect" action="index.php?ctrl=admin&action=updateEidolonSelect" method="POST">
-                <label for="eidolon">Eidolon to update :</label>
+                <label class="label-select" for="eidolon">Eidolon to update :</label>
                     <select name="eidolon" id="eidolon" required>
                         <option hidden disabled selected>--Chose an eidolon--</option>
                         <?php 
@@ -55,7 +55,7 @@
                             }
                         ?>
                     </select>
-                    <input class="add-submit" type="submit" form="updateEidolonSelect" name="submit" value="Select">
+                    <input class="update-submit" type="submit" form="updateEidolonSelect" name="submit" value="Select">
                 </form>
             </div>
         <?php endif; 

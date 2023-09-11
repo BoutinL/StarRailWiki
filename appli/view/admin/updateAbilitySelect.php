@@ -44,8 +44,8 @@
             <div class ="form-admin-container">
                 <h1>Update an ability</h1>
                 <form class="form" id="updateAbilitySelect" action="index.php?ctrl=admin&action=updateAbilitySelect" method="POST">
-                <label for="ability">Ability to update :</label>
-                    <select name="ability" id="ability" required>
+                <label class="label-select" for="ability">Ability to update :</label>
+                    <select class="update-input" name="ability" id="ability" required>
                         <option hidden disabled selected>--Chose an ability--</option>
                         <?php 
                             foreach($abilityList as $ability){
@@ -55,7 +55,7 @@
                             }
                         ?>
                     </select>
-                    <input class="add-submit" type="submit" form="updateAbilitySelect" name="submit" value="Select">
+                    <input class="update-submit" type="submit" form="updateAbilitySelect" name="submit" value="Select">
                 </form>
             </div>
         <?php endif; 

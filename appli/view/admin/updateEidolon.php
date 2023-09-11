@@ -59,14 +59,30 @@
                             ?>
                         </select>
                         
+                        <!-- update -->
                         <label for="nbrEidolon">Number :</label>
-                        <input type="number" name="nbrEidolon" value="<?= $eidolon->getNbr(); ?>" id="nbrEidolon" required>
-                        
+                        <div class="nbrEidolon-radio">
+                            <?php
+                                for($nbrEidolon = 1; $nbrEidolon <= 6; $nbrEidolon++){
+                                    echo "<label for='nbrEidolon'>";
+                                        $eidolonNbr = $eidolon->getNbr();
+                                        if($eidolonNbr == $nbrEidolon){
+                                            echo "$eidolonNbr";
+                                            echo "<input type='radio' id='".$eidolonNbr."' name='nbrEidolon' value='".$eidolonNbr."' checked required/>";
+                                        } else {
+                                            echo "$nbrEidolon";
+                                            echo "<input type='radio' id='".$nbrEidolon."' name='nbrEidolon' value='".$nbrEidolon."' required/>";
+                                        }
+                                    echo "</label>";
+                                }
+                                ?>
+                        </div>
+
                         <label for="nameEidolon">Name :</label>
                         <input type="text" name="nameEidolon" value="<?= $eidolon->getName(); ?>" id="nameEidolon" placeholder="Enter Eidolon name" required>
                         
                         <label for="effectEidolon">Effect :</label>
-                        <input type="text" name="effectEidolon" value="<?= $eidolon->getEffect(); ?>" id="effectEidolon" placeholder="What's the effect of that Eidolon" required>
+                        <textarea rows="10" name="effectEidolon" id="effectEidolon" placeholder="What's the effect of that Eidolon" required><?= $eidolon->getEffect(); ?></textarea>
                     </div>
                     <div class="input-not-required">
                         <label for="imageUrlEidolon">Image url :</label>

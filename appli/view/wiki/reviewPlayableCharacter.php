@@ -33,8 +33,8 @@
                                 <li class="link-details <?= ($currentPage == 1) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage - 1 ?>' ><</a></li>
                                 <?php
                                     for($page = 1; $page <= $pages; $page++){?>
-                                        <li class="link-details <?= ($currentPage == $page) ? $playableCharacter->combatTypeCssLink() : '' ?>">
-                                            <a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $page ?>'><?= $page ?></a>
+                                        <li class="link-details">
+                                            <a class="<?= ($currentPage == $page) ? $playableCharacter->combatTypeCssLink() : '' ?>" href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $page ?>'><?= $page ?></a>
                                         </li>
                                     <?php }
                                 ?>
