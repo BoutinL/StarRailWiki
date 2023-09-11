@@ -44,7 +44,7 @@
             <div class ="form-admin-container">
                 <h1>Delete an eidolon</h1>
                 <form class="form" id="deleteEidolon" action="index.php?ctrl=admin&action=deleteEidolon" method="POST">
-                <label for="eidolon">Eidolon to delete :</label>
+                <label class="label-select" for="eidolon">Eidolon to delete :</label>
                     <select name="eidolon" id="eidolon" required>
                         <option hidden disabled selected>--Choose an Eidolon--</option>
                         <?php 

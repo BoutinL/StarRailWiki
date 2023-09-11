@@ -12,6 +12,7 @@ use Model\Managers\AbilityManager;
 use Model\Managers\EidolonManager;
 use Model\Managers\CombatTypeManager;
 use Model\Managers\PlayableCharacterManager;
+use Model\Managers\RatingManager;
 
     class WikiController extends AbstractController implements ControllerInterface{
 
@@ -161,32 +162,40 @@ use Model\Managers\PlayableCharacterManager;
 
         public function reviewPlayableCharacter($id)
         {
-            // For pagination, to find on wich page are we
+            // For Pagination, to find on wich page we are
             if(isset($_GET['page']) && !empty($_GET['page'])){
                 $currentPage = (int)strip_tags($_GET['page']);
                 // var_dump($currentPage);die;
             } else {
                 $currentPage = 1;
             }
+
             $commentManager = new CommentManager();
-            $playableCharacterManager = new PlayableCharacterManager();
             
-            $nbrComments = $commentManager->getCommentsNbr($id);
             // get nbr of comments
+            $nbrComments = $commentManager->getCommentsNbr($id);
             $intNbrComments = $nbrComments["nbrComments"];
             // nbr of comments to display by page
             $commentByPage = 5;
             $intCommentByPage = intval($commentByPage);
-            // calcul nbr of page
+            // calcul nbr of pages
             $pages = (int)ceil($intNbrComments / $intCommentByPage);
             // first page comment
             // $firstCommentByPage = ($currentPage * $intCommentByPage) - $intCommentByPage;
             $firstCommentByPage = ($currentPage * $intCommentByPage) - $intCommentByPage;
             $intFirstCommentByPage = intval($firstCommentByPage);
             
+            // For comments / pagination
             $commentPlayableCharacter = $commentManager->getCommentByPlayableCharacter($id, $intFirstCommentByPage, $intCommentByPage);
+            
+            // For Rating
+            $ratingManager = new RatingManager();
+            $statsRate = $ratingManager->getRatingOfCharacter($id);
+
+            // used to load informations of the page
+            $playableCharacterManager = new PlayableCharacterManager();
             $playableCharacter = $playableCharacterManager->findOneById($id);
-            if($playableCharacter) {
+            if($playableCharacter){
                 return [
                     "view" => VIEW_DIR."wiki/reviewPlayableCharacter.php",
                     "data" => [
@@ -197,7 +206,9 @@ use Model\Managers\PlayableCharacterManager;
                         // nbr of pages
                         "pages" => $pages,
                         // current page
-                        "currentPage" => $currentPage
+                        "currentPage" => $currentPage,
+                        // nbr of rating / final rate
+                        "statsRate" => $statsRate
                     ]
                 ];
             } else {

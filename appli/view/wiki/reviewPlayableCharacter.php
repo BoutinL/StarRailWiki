@@ -1,9 +1,13 @@
 <?php
     $links =  '<link rel="stylesheet" href="public/css/wiki/styleReviewPlayableCharacter.css">';
     $commentPlayableCharacter = $result["data"]['commentPlayableCharacter'];
+    // Comments side
     $playableCharacter = $result["data"]['playableCharacter'];
     $pages = $result["data"]['pages'];
     $currentPage = $result["data"]['currentPage'];
+    // Rating side
+    $statsRate = $result["data"]['statsRate'];
+    // var_dump($statsRate->current());die;
     ?>
 
 <div class="content" style="<?= $playableCharacter->combatTypeCss() ?>">
@@ -63,7 +67,8 @@
             <?php } ?>
         </div>
         <div class="rating-box">
-            <span>5/5</span>
+            <span><?= $statsRate["finalRate"] ?></span>
+            <span><?= $statsRate["nbrOfRating"] ?></span>
             <?php if(App\Session::getUser()){ ?>
                 <form action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
                     <label for="rate"> Rating <?= $playableCharacter->getName() ?></label>

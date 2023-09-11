@@ -131,4 +131,5 @@ input, textarea, select{
 }
 .add-submit, .update-submit{
     width: 20%; 
+    cursor: pointer;
 }

@@ -4,7 +4,6 @@ namespace Model\Entities;
 
 use App\Entity;
 use DateTime;
-use Model\Managers\CommentManager;
 
 final class Comment extends Entity
 {

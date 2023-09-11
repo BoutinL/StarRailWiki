@@ -44,7 +44,7 @@
             <div class ="form-admin-container">
                 <h1>Delete an ability</h1>
                 <form class="form" id="deleteAbility" action="index.php?ctrl=admin&action=deleteAbility" method="POST">
-                <label for="ability">Ability to delete :</label>
+                <label class="label-select" for="ability">Ability to delete :</label>
                     <select name="ability" id="ability" required>
                         <option hidden disabled selected>--Choose an ability--</option>
                         <?php 

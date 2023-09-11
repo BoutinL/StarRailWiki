@@ -69,6 +69,7 @@
 
 .comment-text{
     overflow-wrap: break-word;
+    text-align: justify;    
 }
 
 .rating-box{
@@ -112,10 +113,6 @@ form {
 
 .pagination li a:hover {
     text-decoration: underline;
-}
-
-.label-comment{
-
 }
 
 textarea {

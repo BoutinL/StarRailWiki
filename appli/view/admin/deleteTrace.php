@@ -44,7 +44,7 @@
             <div class ="form-admin-container">
                 <h1>Delete a Trace</h1>
                 <form class="form" id="deleteTrace" action="index.php?ctrl=admin&action=deleteTrace" method="POST">
-                <label for="trace">Trace to delete :</label>
+                <label class="label-select" for="trace">Trace to delete :</label>
                     <select name="trace" id="trace" required>
                         <option hidden disabled selected>--Choose a Trace--</option>
                         <?php 

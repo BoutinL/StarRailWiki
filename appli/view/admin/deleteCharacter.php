@@ -44,7 +44,7 @@
             <div class ="form-admin-container">
                 <h1>Delete a playable character</h1>
                 <form class="form" id="deleteCharacter" action="index.php?ctrl=admin&action=deleteCharacter" method="POST">
-                <label for="playableCharacter">Character to delete :</label>
+                <label class="label-select" for="playableCharacter">Character to delete :</label>
                         <select name="playableCharacter" id="playableCharacter" required>
                             <option hidden disabled selected>--Choose a character--</option>
                             <?php 
