@@ -244,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`id_comment`),
   KEY `trailblazer_id` (`trailblazer_id`),
   KEY `playableCharacter_id` (`playableCharacter_id`),
-  CONSTRAINT `FK-comment_playableCharacter_id` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`),
+  CONSTRAINT `FK-comment_playableCharacter_id` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE,
   CONSTRAINT `FK-comment_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -325,7 +325,7 @@ INSERT INTO `eidolon` (`id_eidolon`, `nbr`, `name`, `effect`, `icon`, `playableC
 	(58, 4, 'Hit Where It Hurts', 'When Talent is triggered, DMG increases by 10%.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/87dbeeb8980a35626a7477a51113741c_4336635309391699200.png', 15),
 	(59, 5, 'Cuss Big or Cuss Nothing', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/e3547f7c51d2c93a27c09d826a5c63e0_826024787053386357.png', 15),
 	(60, 6, 'No One Can Betray Me', 'After using Ultimate, this character\'s ATK increases by 25% for 1 turn(s).', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/bb96544142a620b1130e99a74e82e6f1_8769843336475300403.png', 15),
-	(61, 1, 'Early to Bed, Early to Rise', 'Enhanced Skill deals 20% increased DMG.', NULL, 16),
+	(61, 1, 'Early to Bed, Early to Rise', 'Enhanced Skill deals 20% increased DMG.', '', 16),
 	(62, 2, 'Happy Tummy, Happy Body', 'Extends the duration of Burn caused by Skill by 1 turn(s).', NULL, 16),
 	(63, 3, 'Don\'t Be Picky, Nothing\'s Icky', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', NULL, 16),
 	(64, 4, 'It\'s Okay to Not Know', 'When Talent is triggered, there is a 100% base chance to Burn enemies adjacent to the target enemy, equivalent to that of Skill.', NULL, 16),
@@ -529,9 +529,12 @@ CREATE TABLE IF NOT EXISTS `rating` (
   KEY `trailblazer_id` (`trailblazer_id`),
   CONSTRAINT `FK-rating_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`),
   CONSTRAINT `FK-rating_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.rating : ~0 rows (environ)
+-- Listage des données de la table srw_loic.rating : ~2 rows (environ)
+INSERT INTO `rating` (`id_rate`, `rate`, `playableCharacter_id`, `trailblazer_id`) VALUES
+	(1, 5, 7, 1),
+	(2, 3, 7, 2);
 
 -- Listage de la structure de table srw_loic. tagability
 CREATE TABLE IF NOT EXISTS `tagability` (

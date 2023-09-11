@@ -54,6 +54,9 @@
 .splash-art{
     width: 60rem;
     border-radius: 100%;
+    filter: blur(5px); /* Ajustez le rayon du flou selon vos besoins */
+    object-fit: cover; /* Ajustez le comportement de l'image */
+    object-position: center;
 }
 
 .biography-container{

@@ -73,6 +73,9 @@ td, tr, th{
     width: 95%;
 }
 
+.center{
+    text-align: center;
+}
 /* error msg */
 
 .container-error-msg{

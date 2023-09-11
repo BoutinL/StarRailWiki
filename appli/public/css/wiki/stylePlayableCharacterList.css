@@ -54,9 +54,6 @@
 
 .card{
     
-    /* inside shadow box change depending of the character's rarity */
-    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, rgba(148, 93, 211, 0.26) 0px 18px 36px 0px inset; */
-    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, rgba(230, 186, 42, 0.151) 0px 18px 36px 0px inset; */
     width: 15rem;
     height: auto;
     border-radius: 30px;
@@ -69,9 +66,24 @@
     transition: transform 0.5s;
 }
 
+.purple{
+    box-shadow: rgb(0, 0, 0) 0px 30px 60px -12px inset, #ca5dfd 0px 0px px 0px inset;
+}
+
+.gold{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, #ffec70 0px 0px 5px 0px inset;
+}
+
+.purple:hover{
+    box-shadow: 0 1px 15px 2px rgb(255, 255, 255), rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, #ca5dfd 0px 0px 10px 0px inset;
+}
+
+.gold:hover{
+    box-shadow: 0 1px 15px 2px rgb(255, 255, 255), rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, #ffec70 0px 0px 10px 0px inset;
+}
+
 .card:hover{
     transform: scale(1.08);
-    box-shadow: 0 1px 15px 2px rgb(255, 255, 255);
 }
 
 .list-character-name{

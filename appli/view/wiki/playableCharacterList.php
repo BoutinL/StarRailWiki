@@ -35,7 +35,13 @@
     <section class="card-container">
         <?php foreach($playableCharacterList as $character){ ?>
             <a class="card-link" href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $character->getId() ?>">
-                <div class="card">
+            <?php 
+                if($character->getRarity() == 4){
+                    echo "<div class='card purple'>";
+                } else {
+                    echo "<div class='card gold'>";
+                }
+            ?>
                     <h1 class="list-character-name"><strong><?=$character->getName()?></strong></h2>
                     <figure class="card-img-container">
                         <img class="card-img" src="<?=$character->getImage()?>" alt="<?=$character->getName()?> splash art" />
