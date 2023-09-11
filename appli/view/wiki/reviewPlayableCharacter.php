@@ -67,13 +67,29 @@
             <?php } ?>
         </div>
         <div class="rating-box">
-            <span><?= $statsRate["finalRate"] ?></span>
-            <span><?= $statsRate["nbrOfRating"] ?></span>
+            <span class="rate-size"><?= $playableCharacter->getName() ?>'s rating: </span>
+            <div class="rate-star-box">
+                <?php for ($i = 0; $i < $statsRate["finalRate"]; $i++) {
+                    echo '<img class="rate-size" src="/StarRailWiki/appli/public/img/rate_star.png" alt="rate-level">';
+                } ?>
+            <div>
+            <span class="rate-nbr"><?= $statsRate["nbrOfRating"] ?>  people voted</span>
             <?php if(App\Session::getUser()){ ?>
-                <form action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
-                    <label for="rate"> Rating <?= $playableCharacter->getName() ?></label>
-                    <input  type="number" name="rate" id="rate" required></input>
-                    <input type="submit" name="submitRate" value="Submit">
+                <form id="addRate" action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
+                        <label for="rate">Rate <?= $playableCharacter->getName() ?> :</label>
+                        <div class="rate-radio">
+                            <?php
+                                for($rate = 1; $rate <= 5; $rate++){
+                                    echo "
+                                    <label for='rate'>
+                                        ".$rate."
+                                        <input type='radio' id='".$rate."' name='rate' value='".$rate."' required/>
+                                    </label>
+                                    ";
+                                }
+                            ?>
+                        </div>
+                        <input class="submit-btn" type="submit" name="submitRate" value="Submit">
                 </form>
             <?php } ?>
         </div>

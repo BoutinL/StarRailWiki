@@ -133,6 +133,37 @@ textarea {
     border-radius: 30px;
 }
 
+.rate-radio {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.rate-radio label {
+    width: 20%; /* Ajustez la largeur en fonction de vos besoins */
+}
+
+.rate-radio input[type="radio"] {
+    display: block;
+    margin: 0 auto;
+}
+
+.rating-box {
+    text-align: center; /* Centre le contenu horizontalement dans la div */
+}
+
+.rate-size {
+    display: inline-block; /* Met les images en ligne horizontalement */
+    margin: 0 5px; /* Espacement entre les images (ajustez selon vos besoins) */
+}
+
+.rate-size, .rate-nbr {
+    margin: 1rem; /* Espacement entre les spans */
+    width: 15%;
+    display: inline-block; /* Met les images en ligne horizontalement */
+    margin: 0 5px; /* Espacement entre les images (ajustez selon vos besoins) */
+}
+
 /* error msg */
 
 .container-error-msg{

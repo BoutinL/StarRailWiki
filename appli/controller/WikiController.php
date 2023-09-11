@@ -220,7 +220,6 @@ use Model\Managers\RatingManager;
             if (isset($_POST['submitComment'])) {
                 if(Session::getUser()){
                     // Check if all required input arnt empty
-
                     if ((!empty($_POST['comment']))) {
                         // Sanitaze all input from the form
                         $comment = filter_input(INPUT_POST, "comment", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -229,6 +228,30 @@ use Model\Managers\RatingManager;
                             $commentManager = new CommentManager();
                             $commentManager->add([
                                 "text" => $comment,
+                                "playableCharacter_id" => $id,
+                                "trailblazer_id" => Session::getUser()->getId()
+                            ]);
+                            $this->redirectTo("wiki", "reviewPlayableCharacter", $id);
+                        } else {
+                            $this->redirectTo("wiki", "playableCharacterList");
+                        }
+                    }
+                }
+            }
+        }
+        
+        public function addRate($id){
+            if (isset($_POST['submitRate'])) {
+                if(Session::getUser()){
+                    // Check if all required input arnt empty
+                    if ((!empty($_POST['rate']))) {
+                        // Sanitaze all input from the form
+                        $rate = filter_input(INPUT_POST, "comment", FILTER_SANITIZE_NUMBER_INT);
+                        // var_dump($rate);die;
+                        if ($rate) {
+                            $ratingManager = new RatingManager();
+                            $ratingManager->add([
+                                "rate" => $rate,
                                 "playableCharacter_id" => $id,
                                 "trailblazer_id" => Session::getUser()->getId()
                             ]);
