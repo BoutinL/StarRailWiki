@@ -499,7 +499,7 @@ INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarit
 	(10, 'Gepard', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Gepard-Splash-Art-1024x877.png', 5, 'Male', 'Human', 'Silvermane Guards', 'Jarilo-VI', 'Loyalty isn\'t an inherent value of humans. As such, the recipient of that loyalty also needs to be worthy.', '2023-04-26', 'He is the captain of the Silvermane Guards and belongs to the noble Landau family in Belobog, responsible for the city\'s defenses and maintaining peace.', 3, 6),
 	(11, 'Bronya', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Bronya-Splash-Art-1024x877.png', 5, 'Female', 'Human', 'Supreme Guardian', 'Jarilo-VI', 'This place is always part of our homeland, even when it has been corroded by Fragmentum. Silvermane Guards will never turn their backs on their home.', '2023-04-26', 'She is the commander of the Silvermane Guards and the current (nineteenth) Supreme Guardian of Belobog. Originally from the Underworld and from the same orphanage as Seele, she was picked from a handful of children to become the next Supreme Guardian, and was then adopted by Cocolia.', 5, 4),
 	(12, 'Silver Wolf', 'https://expertgamereviews.com/wp-content/uploads/2023/06/Honkai-Star-Rail-Silver-Wolf-Splash-Art-1024x877.png', 5, 'Female', 'Human', 'Stellaron Hunter', 'Punklorde', 'Can you let me have some fun this time?', '2023-06-07', 'A member of the Stellaron Hunters and a genius hacker. Silver Wolf has mastered the skill known as "aether editing," which can be used to tamper with the data of reality. Hence, she always views the universe as a massive immersive simulation game and is eager to clear the stages awaiting ahead.', 6, 5),
-	(13, 'Arlan', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Arlan-Splash-Art-1024x877.png', 5, 'Male', 'Human', 'Herta Space Station', 'Herta Space Station', 'I\'m proud of my wounds. They\'re a reminder of being able to protect everyone.', '2023-04-26', 'He is the head of Herta Space Station\'s security department, often seen with a dog named Peppy.', 4, 1),
+	(13, 'Arlan', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Arlan-Splash-Art-1024x877.png', 4, 'Male', 'Human', 'Herta Space Station', 'Herta Space Station', 'I&#039;m proud of my wounds. They&#039;re a reminder of being able to protect everyone.', '2023-04-26', 'He is the head of Herta Space Station&#039;s security department, often seen with a dog named Peppy.', 4, 1),
 	(14, 'Asta', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Asta-Splash-Art-1024x877.png', 4, 'Female', 'Human', 'Herta Space Station', 'Herta Space Station', 'The \'tortoise\' galaxies are those that slooowly give birth to new stars. The ones that use up their fuel reserves in an instant, are the \'hare\' galaxies.', '2023-04-26', 'She is the inquisitive lead astronomer responsible for handling the Herta Space Station\'s affairs, including managing the staff and responding to the Intelligentsia Guild.', 2, 4),
 	(15, 'Herta', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Herta-Splash-Art-1024x877.png', 4, 'Female', 'Human', 'Genius Society', 'The Blue', 'I\'m already perfect, so what else should I do?', '2023-04-26', 'She is the master of the eponymous Herta Space Station, who appears in the form of a puppet she modeled after her younger self. She is also an emanator of Nous the Erudition.', 3, 3),
 	(16, 'Hook', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Hook-Splash-Art-1024x877.png', 4, 'Female', 'Human', 'The Moles', 'Jarilo-VI', 'Who am I? Heh, I\'m the boss around here, you can call me... Pitch-Dark Hook the Great!', '2023-04-26', 'The self-proclaimed boss of The Moles adventure squad and Fersman\'s adopted daughter. She views life as an opportunity for freedom and countless adventures.', 2, 1),
@@ -520,21 +520,18 @@ INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarit
 
 -- Listage de la structure de table srw_loic. rating
 CREATE TABLE IF NOT EXISTS `rating` (
-  `id_rate` int NOT NULL AUTO_INCREMENT,
+  `id_rating` int NOT NULL AUTO_INCREMENT,
   `rate` int NOT NULL,
   `playableCharacter_id` int NOT NULL,
   `trailblazer_id` int NOT NULL,
-  PRIMARY KEY (`id_rate`),
+  PRIMARY KEY (`id_rating`) USING BTREE,
   KEY `playableCharacter_id` (`playableCharacter_id`),
   KEY `trailblazer_id` (`trailblazer_id`),
   CONSTRAINT `FK-rating_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`),
   CONSTRAINT `FK-rating_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.rating : ~2 rows (environ)
-INSERT INTO `rating` (`id_rate`, `rate`, `playableCharacter_id`, `trailblazer_id`) VALUES
-	(1, 5, 7, 1),
-	(2, 3, 7, 2);
+-- Listage des données de la table srw_loic.rating : ~0 rows (environ)
 
 -- Listage de la structure de table srw_loic. tagability
 CREATE TABLE IF NOT EXISTS `tagability` (
@@ -597,10 +594,10 @@ CREATE TABLE IF NOT EXISTS `trailblazer` (
   PRIMARY KEY (`id_trailblazer`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.trailblazer : ~2 rows (environ)
+-- Listage des données de la table srw_loic.trailblazer : ~1 rows (environ)
 INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `dateRegister`, `role`) VALUES
-	(1, 'admin@admin.fr', 'admin', '$2y$10$lHnQ5WhncortI53C6ELAieP6wBYV7r67mWajL2pLfSMWezyx7g1M.', '2023-09-01 21:18:13', 'ROLE_ADMIN'),
-	(2, 'user@user.fr', 'user', '$2y$10$DTMyjO5x4.NNR5XhU4/zsuBlWjr8xhyACatfLscEq20fhmrYKSx/y', '2023-09-02 22:50:45', 'ROLE_MEMBER');
+	(1, 'admin@admin.fr', 'admin', '$2y$10$JtompmQllYSqNPQa0D1lCuDiCLDXBORQJf4gU8o2sPWgPP9RNbDta', '2023-09-12 15:17:57', 'ROLE_ADMIN'),
+	(2, 'user@user.fr', 'user', '$2y$10$YY8W2JZrK6UckS4oxKfYQOsxUzOhHXnoEVXh.4Nk4ENiu210Q7z26', '2023-09-12 15:21:09', 'ROLE_MEMBER');
 
 -- Listage de la structure de table srw_loic. typeability
 CREATE TABLE IF NOT EXISTS `typeability` (

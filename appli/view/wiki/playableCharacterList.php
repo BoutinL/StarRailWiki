@@ -33,27 +33,36 @@
         <input type="submit" name="submitOrder" value="Research">
     </form>
     <section class="card-container">
-        <?php foreach($playableCharacterList as $character){ ?>
-            <a class="card-link" href="index.php?ctrl=wiki&action=biographyPlayableCharacter&id=<?= $character->getId() ?>">
-            <?php 
-                if($character->getRarity() == 4){
-                    echo "<div class='card purple'>";
-                } else {
-                    echo "<div class='card gold'>";
-                }
-            ?>
-                    <h1 class="list-character-name"><strong><?=$character->getName()?></strong></h2>
-                    <figure class="card-img-container">
-                        <img class="card-img" src="<?=$character->getImage()?>" alt="<?=$character->getName()?> splash art" />
+        <?php
+            if($playableCharacterList){
+                foreach($playableCharacterList as $character){ 
+                    echo"<a class='card-link' href='index.php?ctrl=wiki&action=biographyPlayableCharacter&id=".$character->getId()."'>";
+                    if($character->getRarity() == 4){
+                        echo "<div class='card purple'>";
+                    } else {
+                        echo "<div class='card gold'>";
+                    }
+                    echo "<h1 class='list-character-name'><strong>".$character->getName()."</strong></h1>";
+                    echo "<figure class='card-img-container'>
+                        <img class='card-img' src='".$character->getImage()."' alt='".$character->getName()." splash art' />
                     </figure>
-                    <span class="rarity-container">
-                        <?php for ($i = 0; $i < $character->getRarity(); $i++) {
-                            echo '<img src="public/img/level_star.png' . '" alt="rarity level">';
-                        }?>
-                    </span>
+                    <span class='rarity-container'>";
+                    for ($i = 0; $i < $character->getRarity(); $i++) {
+                        echo '<img src="public/img/level_star.png' . '" alt="rarity level">';
+                    }
+                    echo "</span>
                 </div>
-            </a>
-        <?php } ?>
+            </a>";
+                } 
+            } else {
+                echo "<div class='container-error-msg'>";
+                    echo "<figure class='container-msg-emote'>
+                            <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/pela-curious.webp' alt='emote pela wondering' />
+                        </figure>";
+                    echo "<p class='error-msg'>There's no corresponding character...</p>"; 
+                echo "</div>";
+            }
+        ?>
     </section>
 </div>
 <div class="scroll-container">

@@ -73,9 +73,11 @@ nav > ul li:hover .sous{
 
 .profile-container{
     width: 100%;
-    display: flex;
-    justify-content: center;;
+    min-height: 50vh;
     background-color: rgb(36, 36, 36);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .table-profile{

@@ -1,8 +1,9 @@
 .form-container{
+    width: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 70vh;
 }
 
 .form-content{
@@ -25,3 +26,4 @@ input, select{
     border-radius: 4px;
     box-sizing: border-box;
 }
+
