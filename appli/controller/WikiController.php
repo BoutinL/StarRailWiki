@@ -191,6 +191,7 @@ use Model\Managers\RatingManager;
             // For Rating
             $ratingManager = new RatingManager();
             $statsRate = $ratingManager->getRatingOfCharacter($id);
+            $ratings = $ratingManager->getRatingByTrailblazer(Session::getUser()->getId(), $id);
 
             // used to load informations of the page
             $playableCharacterManager = new PlayableCharacterManager();
@@ -208,7 +209,9 @@ use Model\Managers\RatingManager;
                         // current page
                         "currentPage" => $currentPage,
                         // nbr of rating / final rate
-                        "statsRate" => $statsRate
+                        "statsRate" => $statsRate,
+                        // user rate
+                        "ratings" => $ratings
                     ]
                 ];
             } else {
@@ -246,8 +249,7 @@ use Model\Managers\RatingManager;
                     // Check if all required input arnt empty
                     if ((!empty($_POST['rate']))) {
                         // Sanitaze all input from the form
-                        $rate = filter_input(INPUT_POST, "comment", FILTER_SANITIZE_NUMBER_INT);
-                        // var_dump($rate);die;
+                        $rate = filter_input(INPUT_POST, "rate", FILTER_SANITIZE_NUMBER_INT);
                         if ($rate) {
                             $ratingManager = new RatingManager();
                             $ratingManager->add([

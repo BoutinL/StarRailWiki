@@ -7,7 +7,9 @@
     $currentPage = $result["data"]['currentPage'];
     // Rating side
     $statsRate = $result["data"]['statsRate'];
-    // var_dump($statsRate->current());die;
+    // Ratings of user
+    $ratings = $result["data"]['ratings'];
+    // var_dump($ratings);die;
     ?>
 
 <div class="content" style="<?= $playableCharacter->combatTypeCss() ?>">
@@ -84,7 +86,7 @@
                 echo "</div>";
             }
             ?>
-            <?php if(App\Session::getUser()){ ?>
+            <?php if(App\Session::getUser() && !$ratings){ ?>
                 <form class="form-rate" id="addRate" action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
                     <fieldset class="field-rate">
                         <legend class="title-rating"> Rate <?= $playableCharacter->getName() ?> </legend>

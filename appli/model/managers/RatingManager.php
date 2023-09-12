@@ -25,4 +25,19 @@
             );
         
         }
+
+        public function getRatingByTrailblazer($idTrailblazer, $idPlayableCharacter){
+
+            $sql = "SELECT *
+            FROM " .$this->tableName. " r
+            WHERE r.trailblazer_id = :idTrailblazer AND r.playableCharacter_id = :idPlayableCharacter";
+
+            return $this->getOneOrNullResult(
+                DAO::select($sql, [
+                    'idTrailblazer' => $idTrailblazer,
+                    'idPlayableCharacter' => $idPlayableCharacter
+                ], false),
+                $this->className
+            );
+        }
     }
