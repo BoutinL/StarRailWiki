@@ -191,7 +191,7 @@ use Model\Managers\RatingManager;
             // For Rating
             $ratingManager = new RatingManager();
             $statsRate = $ratingManager->getRatingOfCharacter($id);
-            $ratings = $ratingManager->getRatingByTrailblazer(Session::getUser()->getId(), $id);
+            $rateUser = $ratingManager->getRatingByTrailblazer(Session::getUser()->getId(), $id);
 
             // used to load informations of the page
             $playableCharacterManager = new PlayableCharacterManager();
@@ -211,7 +211,7 @@ use Model\Managers\RatingManager;
                         // nbr of rating / final rate
                         "statsRate" => $statsRate,
                         // user rate
-                        "ratings" => $ratings
+                        "rateUser" => $rateUser
                     ]
                 ];
             } else {
@@ -265,4 +265,8 @@ use Model\Managers\RatingManager;
                 }
             }
         }
+
+        // public function updateRate($id){
+            
+        // }
     }

@@ -8,8 +8,7 @@
     // Rating side
     $statsRate = $result["data"]['statsRate'];
     // Ratings of user
-    $ratings = $result["data"]['ratings'];
-    // var_dump($ratings);die;
+    $rateUser = $result["data"]['rateUser'];
     ?>
 
 <div class="content" style="<?= $playableCharacter->combatTypeCss() ?>">
@@ -86,7 +85,7 @@
                 echo "</div>";
             }
             ?>
-            <?php if(App\Session::getUser() && !$ratings){ ?>
+            <?php if(App\Session::getUser() && !$rateUser){ ?>
                 <form class="form-rate" id="addRate" action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
                     <fieldset class="field-rate">
                         <legend class="title-rating"> Rate <?= $playableCharacter->getName() ?> </legend>
@@ -103,7 +102,25 @@
                     </fieldset>
                     <input class="submit-btn" type="submit" name="submitRate" value="Submit">
                 </form>
-            <?php } ?>
+            <?php }else {
+                echo "<form class='form-rate' id='submitUpdateRate' action='index.php?ctrl=wiki&action=updateRate&id=<?= ".$playableCharacter->getId()."' method='POST'>
+                    <fieldset class='field-rate'>
+                        <legend class='title-rating'> Rate ".$playableCharacter->getName()."</legend>";
+                        for($rate = 1; $rate <= 5; $rate++){
+                            echo "<label class='input-radio-container' for='rate'>
+                                ".$rate." star";
+                                $userRate = $rateUser->getRate();
+                                if( $userRate == $rate){
+                                    echo "<input type='radio' id='".$userRate."' name='rate' value='".$userRate."' checked required/>";
+                                } else {
+                                    echo "<input type='radio' id='".$rate."' name='rate' value='".$rate."' required/>";
+                                }
+                            echo "</label>";
+                        }
+                    echo "</fieldset>
+                    <input class='submit-btn' type='submit' name='submitUpdateRate' value='Submit'>
+                </form>";
+            } ?>
         </div>
     </div>
 </div> 
