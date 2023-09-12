@@ -24,6 +24,7 @@
         <div class="reviews-box">
             <div class="review-display">
                 <?php 
+                    // Display comment if theres data
                     if($commentPlayableCharacter) {
                         foreach($commentPlayableCharacter as $comment){
                             echo "<div class='container-comment'>";
@@ -47,6 +48,7 @@
                             </ul>
                         </div>
                         <?php
+                        // If theres no data, display that
                     } else { 
                         echo "<div class='container-error-msg'>";
                             echo "<figure class='container-msg-emote'>
@@ -57,6 +59,7 @@
                     }
                 ?>
             </div>
+            <!-- Display form comment if user connected -->
             <?php if(App\Session::getUser()){ ?>
                 <form action="index.php?ctrl=wiki&action=addComment&id=<?= $playableCharacter->getId() ?>" method="POST">
                     <label class="label-comment" for="comment">Your opinion on <?= $playableCharacter->getName() ?></label>
@@ -68,6 +71,7 @@
             <?php } ?>
         </div>
         <div class="rating-box">
+            <!-- Display  rate if the character have at least one-->
             <?php if($statsRate["nbrOfRating"] != 0) { ?>
                 <span class="rate-size title-rating"><?= $playableCharacter->getName() ?>'s rating</span>
                 <div class="rate-star-box">
@@ -76,6 +80,7 @@
                     } ?>
                 <div>
                 <span class="rate-nbr"><?= $statsRate["nbrOfRating"] ?>  people voted</span>
+            <!-- If theres no rate, display error msg -->
             <?php } else {
                 echo "<div class='container-error-msg'>";
                     echo "<figure class='container-msg-emote'>
@@ -83,9 +88,9 @@
                         </figure>";
                     echo "<p class='error-msg'>There's no rating yet... </p>"; 
                 echo "</div>";
-            }
-            ?>
-            <?php if(App\Session::getUser() && !$rateUser){ ?>
+            } 
+            // If user connected and he hasnt rate that character yet display form to rate
+            if(App\Session::getUser() && !$rateUser){ ?>
                 <form class="form-rate" id="addRate" action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
                     <fieldset class="field-rate">
                         <legend class="title-rating"> Rate <?= $playableCharacter->getName() ?> </legend>
@@ -102,8 +107,9 @@
                     </fieldset>
                     <input class="submit-btn" type="submit" name="submitRate" value="Submit">
                 </form>
-            <?php }else {
-                echo "<form class='form-rate' id='submitUpdateRate' action='index.php?ctrl=wiki&action=updateRate&id=<?= ".$playableCharacter->getId()."' method='POST'>
+            <!-- If user connected has already rate that character show the update form -->
+            <?php } else if(App\Session::getUser() && $rateUser){
+                echo "<form class='form-rate' id='submitUpdateRate' action='index.php?ctrl=wiki&action=updateRate&id=".$playableCharacter->getId()."' method='POST'>
                     <fieldset class='field-rate'>
                         <legend class='title-rating'> Rate ".$playableCharacter->getName()."</legend>";
                         for($rate = 1; $rate <= 5; $rate++){

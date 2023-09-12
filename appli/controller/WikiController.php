@@ -191,7 +191,7 @@ use Model\Managers\RatingManager;
             // For Rating
             $ratingManager = new RatingManager();
             $statsRate = $ratingManager->getRatingOfCharacter($id);
-            $rateUser = $ratingManager->getRatingByTrailblazer(Session::getUser()->getId(), $id);
+            $rateUser = (Session::getUser()) ? $ratingManager->getRatingByTrailblazer(Session::getUser()->getId(), $id) : null;
 
             // used to load informations of the page
             $playableCharacterManager = new PlayableCharacterManager();
@@ -247,7 +247,7 @@ use Model\Managers\RatingManager;
             if (isset($_POST['submitRate'])) {
                 if(Session::getUser()){
                     // Check if all required input arnt empty
-                    if ((!empty($_POST['rate']))) {
+                    if (!empty($_POST['rate'])) {
                         // Sanitaze all input from the form
                         $rate = filter_input(INPUT_POST, "rate", FILTER_SANITIZE_NUMBER_INT);
                         if ($rate) {
@@ -266,7 +266,22 @@ use Model\Managers\RatingManager;
             }
         }
 
-        // public function updateRate($id){
-            
-        // }
+        public function updateRate($id){
+            if(isset($_POST['submitUpdateRate'])) {
+                if(Session::getUser()){
+                    if(!empty($_POST['rate'])){
+                        $rate = filter_input(INPUT_POST, "rate", FILTER_SANITIZE_NUMBER_INT);
+                        if($rate !== null){
+                            $idTrailblazer = Session::getUser()->getId();
+                            $ratingManager = new RatingManager();
+                            $ratingManager->updateRate($id, $idTrailblazer, $rate);
+                            
+                            $this->redirectTo("wiki", "reviewPlayableCharacter", $id);
+                        } else {
+                            $this->redirectTo("wiki", "biographyPlayableCharacter", $id);
+                        }
+                    }
+                }
+            }
+        }
     }

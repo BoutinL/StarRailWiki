@@ -40,4 +40,17 @@
                 $this->className
             );
         }
+
+        public function updateRate($id, $idTrailblazer, $rate){
+            // var_dump($id);die;
+            $sql = "UPDATE ".$this->tableName."
+                    SET rate = :rate
+                    WHERE playableCharacter_id = :id AND trailblazer_id = :idTrailblazer";
+
+            DAO::update($sql, [
+                    'id' => $id,
+                    'idTrailblazer' => $idTrailblazer,
+                    'rate' => $rate
+                ]);
+        }
     }
