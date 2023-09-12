@@ -67,13 +67,23 @@
             <?php } ?>
         </div>
         <div class="rating-box">
-            <span class="rate-size title-rating"><?= $playableCharacter->getName() ?>'s rating</span>
-            <div class="rate-star-box">
-                <?php for ($i = 0; $i < $statsRate["finalRate"]; $i++) {
-                    echo '<img class="rate-size rate-img" src="/StarRailWiki/appli/public/img/rate_star.png" alt="rate-level">';
-                } ?>
-            <div>
-            <span class="rate-nbr"><?= $statsRate["nbrOfRating"] ?>  people voted</span>
+            <?php if($statsRate["nbrOfRating"] != 0) { ?>
+                <span class="rate-size title-rating"><?= $playableCharacter->getName() ?>'s rating</span>
+                <div class="rate-star-box">
+                    <?php for ($i = 0; $i < $statsRate["finalRate"]; $i++) {
+                        echo '<img class="rate-size rate-img" src="/StarRailWiki/appli/public/img/rate_star.png" alt="rate-level">';
+                    } ?>
+                <div>
+                <span class="rate-nbr"><?= $statsRate["nbrOfRating"] ?>  people voted</span>
+            <?php } else {
+                echo "<div class='container-error-msg'>";
+                    echo "<figure class='container-msg-emote'>
+                            <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/gepard-ashamed.webp' alt='emote gepard shame' />
+                        </figure>";
+                    echo "<p class='error-msg'>There's no rating yet... </p>"; 
+                echo "</div>";
+            }
+            ?>
             <?php if(App\Session::getUser()){ ?>
                 <form class="form-rate" id="addRate" action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
                     <fieldset class="field-rate">
