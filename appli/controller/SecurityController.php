@@ -127,6 +127,9 @@ class HomeController extends AbstractController implements ControllerInterface
             $id = Session::getUser()->getId();
             $trailblazerManager = new TrailblazerManager();
             $trailblazerManager->deleteProfile($id);
+            $categ = 'success';
+            $msg ="Your account was successfully deleted" ;
+            Session::addFlash($categ, $msg);
             $trailblazer = null;
             Session::setUser($trailblazer);
 

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/vnd.icon" href="/StarRailWiki/appli/public/img/level_star.png">
     <link rel="stylesheet" href="public/css/style.css">
+    <!-- Dynamic css -->
     <?php 
         $links = (isset($links)) ? $links : null;
         echo $links;
@@ -20,7 +21,7 @@
 <body>
     <div class="main" id="wrapper"> 
         <div id="mainpage">
-            <!-- c'est ici que les messages (erreur ou succès) s'affichent-->
+            <!-- Where error / succes are display -->
             <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
             <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
             <header>
