@@ -44,34 +44,41 @@
                 </li>
             </ul>
         </nav>
-        <table class="userlist-container table-profile">
-            <tr>
-
-                <th>Id</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>DateRegister</th>
-            </tr>
-            <?php foreach ($trailblazerList as $trailblazer) { ?>
-                <tr>
-                    <td class="center"><?= $trailblazer->getId() ?></td>
-                    <td class="center"><?= $trailblazer->getUsername() ?></td>
-                    <td class="center"><?= $trailblazer->getEmail() ?></td>
-                    <td class="center"><?= $trailblazer->getDateRegister() ?></td>
-                    <td class="center"></td>
-                </tr>
-            <?php } ?>    
-        </table>
-        <div class='pagination-box'>
-            <ul class='pagination'>
-                <li class="link-details <?= ($currentPage == 1) ? 'disabled' : '' ?>"><a href='index.php?ctrl=admin&action=trailblazerList&page=<?= $currentPage - 1 ?>' ><</a></li>
-                <?php for($page = 1; $page <= $pages; $page++){?>
-                    <li class="link-details">
-                        <a class="<?= ($currentPage == $page) ? "active" : '' ?>" href='index.php?ctrl=admin&action=trailblazerList&page=<?= $page ?>'><?= $page ?></a>
-                    </li>
-                <?php } ?>
-                <li class="link-details <?= ($currentPage == $pages) ? 'disabled' : '' ?>"><a href='index.php?ctrl=admin&action=trailblazerList&page=<?= $currentPage + 1 ?>'>></a></li>
-            </ul>
-        </div>
-    <?php } ?>
+        <?php if($trailblazerList){ ?>
+                <table class="userlist-container table-profile">
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>DateRegister</th>
+                    </tr>
+                    <?php foreach ($trailblazerList as $trailblazer){ ?>
+                        <tr>
+                            <td class="center"><?= $trailblazer->getId() ?></td>
+                            <td class="center"><?= $trailblazer->getUsername() ?></td>
+                            <td class="center"><?= $trailblazer->getEmail() ?></td>
+                            <td class="center"><?= $trailblazer->getDateRegister() ?></td>
+                        </tr>
+                    <?php } ?>   
+                </table>
+                <div class="pagination-box">
+                    <ul class="pagination">
+                        <li class="link-details <?= ($currentPage == 1) ? 'disabled' : '' ?>"><a href="index.php?ctrl=admin&action=trailblazerList&page=<?= $currentPage - 1 ?>"><</a></li>
+                        <?php for($page = 1; $page <= $pages; $page++){ ?>
+                            <li class="link-details">
+                                <a class="<?= ($currentPage == $page) ? 'active' : ''?>" href="index.php?ctrl=admin&action=trailblazerList&page=<?= $page ?>"><?= $page ?></a>
+                            </li>
+                        <?php } ?>
+                        <li class="<?= ($currentPage == $pages) ? 'disabled' : 'link-details'?>"><a href="index.php?ctrl=admin&action=trailblazerList&page=<?= $currentPage + 1?>">></a></li>
+                    </ul>
+                </div>
+            <?php } else { ?>
+                <div class='container-error-msg'>
+                    <figure class='container-msg-emote'>
+                        <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/gepard-ashamed' alt='' />
+                    </figure>
+                    <p class='error-msg'>We're sorry but there's no data yet !</p> 
+                </div>
+            <?php } 
+    } ?>
 </div>

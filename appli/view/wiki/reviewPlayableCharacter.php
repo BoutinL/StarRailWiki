@@ -50,12 +50,12 @@
                         <?php
                         // If theres no data, display that
                     } else { 
-                        echo "<div class='container-error-msg'>";
-                            echo "<figure class='container-msg-emote'>
-                                    <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/hook-sad.png' alt='emote sad hook' />
-                                </figure>";
-                            echo "<p class='error-msg'>There's no comment yet... </p>"; 
-                        echo "</div>";
+                        echo "<div class='container-error-msg'>
+                            <figure class='container-msg-emote'>
+                                <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/hook-sad.png' alt='emote sad hook' />
+                            </figure>
+                            <p class='error-msg'>There's no comment yet... </p>
+                        </div>";
                     }
                 ?>
             </div>
