@@ -63,5 +63,9 @@
                 <td><?= $trailblazer->getDateRegister() ?></td>
             </tr>
         </table>
+        <div>
+            <input type="button" value="Retrieve my password">
+            <input type="button" value="Delete my account">
+        </div>
     <?php } else { echo "<h1>No user connected</h1>"; } ?>
 </div>
