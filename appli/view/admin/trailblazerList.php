@@ -75,9 +75,9 @@
             <?php } else { ?>
                 <div class='container-error-msg'>
                     <figure class='container-msg-emote'>
-                        <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/gepard-ashamed' alt='' />
+                        <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/danHeng-surprised.png' alt='emote Dan Heng surprise !' />
                     </figure>
-                    <p class='error-msg'>We're sorry but there's no data yet !</p> 
+                    <p class='error-msg'>There's...no member ?</p> 
                 </div>
             <?php } 
     } ?>
