@@ -35,6 +35,12 @@
 
         public static function getUser(){
             return (isset($_SESSION['user'])) ? $_SESSION['user'] : false;
+            $ban = 'ROLE_BAN';
+            $role = $_SESSION['user']->getRole();
+            if($role !== $ban){
+            } else {
+                return false;
+            }
         }
 
         public static function isAdmin(){

@@ -24,6 +24,8 @@ use Model\Managers\TraceManager;
                 "view" => VIEW_DIR."home.php"
             ];
         }
+
+        // Modération
         
         public function trailblazerList(){
             $this->restrictTo("ROLE_ADMIN");
@@ -63,6 +65,17 @@ use Model\Managers\TraceManager;
                 ]
             ];
         }
+
+        public function deleteUser($id){
+            $this->restrictTo("ROLE_ADMIN");
+        }
+
+        public function banUser($id){
+            $this->restrictTo("ROLE_ADMIN");
+            
+        }
+
+        // CRUD Character
 
         public function addCharacterView(){
             $this->restrictTo("ROLE_ADMIN");
@@ -133,170 +146,6 @@ use Model\Managers\TraceManager;
             }
         }
 
-        public function addAbilityView(){
-            $this->restrictTo("ROLE_ADMIN");
-
-            $playableCharacterManager = new PlayableCharacterManager();
-            $typeAbilityManager = new TypeAbilityManager();
-            $tagAbilityManager = new TagAbilityManager();
-
-            $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
-            $typeAbilityList = $typeAbilityManager->getTypeAbility();
-            $tagAbilityList = $tagAbilityManager->getTagAbility();
-
-            return [
-                "view" => VIEW_DIR."admin/addAbility.php",
-                "data" => [
-                    "playableCharacterList" => $playableCharacterList,
-                    "typeAbilityList" => $typeAbilityList,
-                    "tagAbilityList" => $tagAbilityList
-                ]
-            ];
-        }
-
-        public function addAbility(){
-            $this->restrictTo("ROLE_ADMIN");
-            
-            if (isset($_POST['submit'])) {
-                // Check if all required input arnt empty
-                if ((!empty($_POST['name'])) && (!empty($_POST['description'])) && (!empty($_POST['playableCharacter'])) && (!empty($_POST['typeAbility'])) && (!empty($_POST['tagAbility']))) {
-                    
-
-                    // Sanitaze all input from the form
-                    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    
-                    $energyGeneration = filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) : 0; 
-                    $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) : 0;
-                    $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) : 0;
-
-                    $icon = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
-                    $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
-                    $typeAbility = filter_input(INPUT_POST, "typeAbility", FILTER_SANITIZE_NUMBER_INT);
-                    $tagAbility = filter_input(INPUT_POST, "tagAbility", FILTER_SANITIZE_NUMBER_INT);
-
-                    if ($name !== false && $description !== false && $playableCharacter && isset($energyGeneration)  && isset($energyCost) && isset($dmg) && $icon !== false && $typeAbility !== false && $tagAbility !== false) {
-
-                        $abilityManager = new AbilityManager();
-                        $abilityManager->add([
-                            "name" => $name,
-                            "description" => $description,
-                            "energyGeneration" => $energyGeneration,
-                            "energyCost" => $energyCost,
-                            "dmg" => $dmg,
-                            "icon" => $icon,
-                            "playableCharacter_id" => $playableCharacter,
-                            "typeAbility_id" => $typeAbility,
-                            "tagAbility_id" => $tagAbility
-                        ]);
-                        $this->redirectTo("admin", "addAbilityView");
-                    } else {
-                        $this->redirectTo("wiki", "playableCharacterList");
-                    }
-
-                }
-            }
-        }
-
-        public function addEidolonView(){
-            $this->restrictTo("ROLE_ADMIN");
-
-            $playableCharacterManager = new PlayableCharacterManager();
-
-            $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
-            // var_dump($ascendList->current());die;
-            return [
-                "view" => VIEW_DIR."admin/addEidolon.php",
-                "data" => [
-                    "playableCharacterList" => $playableCharacterList
-                ]
-            ];
-        }
-
-        public function addEidolon(){
-            $this->restrictTo("ROLE_ADMIN");
-            
-            if (isset($_POST['submitEidolon'])) {
-                // Check if all required input arnt empty
-                if ((!empty($_POST['nameEidolon'])) && (!empty($_POST['effectEidolon'])) && (!empty($_POST['playableCharacterEidolon'])) && (!empty($_POST['nbrEidolon']))) {
-                    
-                    // Sanitaze all input from the form
-                    $name = filter_input(INPUT_POST, "nameEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $effect = filter_input(INPUT_POST, "effectEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $nbr = filter_input(INPUT_POST, "nbrEidolon", FILTER_SANITIZE_NUMBER_INT); 
-                    $playableCharacter = filter_input(INPUT_POST, "playableCharacterEidolon", FILTER_SANITIZE_NUMBER_INT);
-                    $icon = filter_input(INPUT_POST, "image-urlEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
-
-                    if ($name !== false && $effect !== false && $nbr !== false && $playableCharacter !== false && $icon !== false) {
-                        // var_dump("$icon");die;
-                        $eidolonManager = new EidolonManager();
-                        $eidolonManager->add([
-                            "name" => $name,
-                            "effect" => $effect,
-                            "nbr" => $nbr,
-                            "playableCharacter_id" => $playableCharacter,
-                            "icon" => $icon,
-                        ]);
-                        $this->redirectTo("admin", "addEidolonView");
-                    } else {
-                        $this->redirectTo("wiki", "playableCharacterList");
-                    }
-
-                }
-            }
-        }
-
-        public function addTraceView(){
-            $this->restrictTo("ROLE_ADMIN");
-
-            $playableCharacterManager = new PlayableCharacterManager();
-            $ascendManager = new AscendManager();
-
-            $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
-            $ascendList = $ascendManager->getAscend();
-            // var_dump($ascendList->current());die;
-            return [
-                "view" => VIEW_DIR."admin/addTrace.php",
-                "data" => [
-                    "playableCharacterList" => $playableCharacterList,
-                    "ascendList" => $ascendList,
-                ]
-            ];
-        }
-        
-        public function addTrace(){
-            $this->restrictTo("ROLE_ADMIN");
-            
-            if (isset($_POST['submitTrace'])) {
-                // Check if all required input arnt empty
-                if ((!empty($_POST['nameTrace'])) && (!empty($_POST['effectTrace'])) && (!empty($_POST['playableCharacterTrace'])) && (!empty($_POST['ascendTrace']))) {
-                    
-                    // Sanitaze all input from the form
-                    $name = filter_input(INPUT_POST, "nameTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $effect = filter_input(INPUT_POST, "effectTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $ascend_id = filter_input(INPUT_POST, "ascendTrace", FILTER_SANITIZE_NUMBER_INT); 
-                    $playableCharacter = filter_input(INPUT_POST, "playableCharacterTrace", FILTER_SANITIZE_NUMBER_INT);
-                    $icon = filter_input(INPUT_POST, "image-urlTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
-
-                    if ($name !== false && $effect !== false && $ascend_id !== false && $playableCharacter !== false && $icon !== false) {
-                        // var_dump("$icon");die;
-                        $traceManager = new TraceManager();
-                        $traceManager->add([
-                            "name" => $name,
-                            "effect" => $effect,
-                            "ascend_id" => $ascend_id,
-                            "playableCharacter_id" => $playableCharacter,
-                            "icon" => $icon,
-                        ]);
-                        $this->redirectTo("admin", "addTraceView");
-                    } else {
-                        $this->redirectTo("wiki", "playableCharacterList");
-                    }
-
-                }
-            }
-        }
-
         public function deleteCharacterView(){
             $this->restrictTo("ROLE_ADMIN");
             
@@ -331,128 +180,6 @@ use Model\Managers\TraceManager;
                         $this->redirectTo("wiki", "playableCharacterList");
                     } else {
                         $this->redirectTo("admin", "deleteCharacterView");
-                    }
-
-                }
-
-            }
-        }
-
-        public function deleteAbilityView(){
-            $this->restrictTo("ROLE_ADMIN");
-            
-            $abilityManager = new AbilityManager();
-
-            $abilityList = $abilityManager->getAbilities();
-
-            // var_dump($ascendList->current());die;
-            return [
-                "view" => VIEW_DIR."admin/deleteAbility.php",
-                "data" => [
-                    "abilityList" => $abilityList
-                ]
-            ];
-            
-        }
-
-        public function deleteAbility(){
-            $this->restrictTo("ROLE_ADMIN");
-            
-            if (isset($_POST['submit'])) {
-                // Check if all required input arnt empty
-                if ((!empty($_POST['ability']))) {
-                    
-                    // Sanitaze all input from the form
-                    $ability = filter_input(INPUT_POST, "ability", FILTER_SANITIZE_NUMBER_INT);
-
-                    if ($ability !== false) {
-                        $abilityManager = new AbilityManager();
-                        $abilityManager->deleteAbility($ability);
-
-                        $this->redirectTo("admin", "deleteAbilityView");
-                    } else {
-                        $this->redirectTo("wiki", "playableCharacterList");
-                    }
-
-                }
-
-            }
-        }
-
-        public function deleteEidolonView(){
-            $this->restrictTo("ROLE_ADMIN");
-            
-            $eidolonManager = new EidolonManager();
-
-            $eidolonList = $eidolonManager->getEidolon();
-
-            // var_dump($ascendList->current());die;
-            return [
-                "view" => VIEW_DIR."admin/deleteEidolon.php",
-                "data" => [
-                    "eidolonList" => $eidolonList
-                ]
-            ];
-            
-        }
-
-        public function deleteEidolon(){
-            $this->restrictTo("ROLE_ADMIN");
-            
-            if (isset($_POST['submit'])) {
-                // Check if all required input arnt empty
-                if ((!empty($_POST['eidolon']))) {
-                    
-                    // Sanitaze all input from the form
-                    $eidolon = filter_input(INPUT_POST, "eidolon", FILTER_SANITIZE_NUMBER_INT);
-
-                    if ($eidolon !== false) {
-                        $eidolonManager = new EidolonManager();
-                        $eidolonManager->deleteEidolon($eidolon);
-
-                        $this->redirectTo("admin", "deleteEidolonView");
-                    } else {
-                        $this->redirectTo("wiki", "playableCharacterList");
-                    }
-
-                }
-
-            }
-        }
-
-        public function deleteTraceView(){
-            $this->restrictTo("ROLE_ADMIN");
-            
-            $traceManager = new TraceManager();
-
-            $traceList = $traceManager->getTrace();
-
-            return [
-                "view" => VIEW_DIR."admin/deleteTrace.php",
-                "data" => [
-                    "traceList" => $traceList
-                ]
-            ];
-            
-        }
-
-        public function deleteTrace(){
-            $this->restrictTo("ROLE_ADMIN");
-            
-            if (isset($_POST['submit'])) {
-                // Check if all required input arnt empty
-                if ((!empty($_POST['trace']))) {
-                    
-                    // Sanitaze all input from the form
-                    $trace = filter_input(INPUT_POST, "trace", FILTER_SANITIZE_NUMBER_INT);
-
-                    if ($trace !== false) {
-                        $traceManager = new TraceManager();
-                        $traceManager->deleteTrace($trace);
-
-                        $this->redirectTo("admin", "deleteTraceView");
-                    } else {
-                        $this->redirectTo("wiki", "playableCharacterList");
                     }
 
                 }
@@ -538,6 +265,114 @@ use Model\Managers\TraceManager;
             }
         }
 
+        // Ability CRUD 
+
+        public function addAbilityView(){
+            $this->restrictTo("ROLE_ADMIN");
+
+            $playableCharacterManager = new PlayableCharacterManager();
+            $typeAbilityManager = new TypeAbilityManager();
+            $tagAbilityManager = new TagAbilityManager();
+
+            $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
+            $typeAbilityList = $typeAbilityManager->getTypeAbility();
+            $tagAbilityList = $tagAbilityManager->getTagAbility();
+
+            return [
+                "view" => VIEW_DIR."admin/addAbility.php",
+                "data" => [
+                    "playableCharacterList" => $playableCharacterList,
+                    "typeAbilityList" => $typeAbilityList,
+                    "tagAbilityList" => $tagAbilityList
+                ]
+            ];
+        }
+
+        public function addAbility(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            if (isset($_POST['submit'])) {
+                // Check if all required input arnt empty
+                if ((!empty($_POST['name'])) && (!empty($_POST['description'])) && (!empty($_POST['playableCharacter'])) && (!empty($_POST['typeAbility'])) && (!empty($_POST['tagAbility']))) {
+                    
+
+                    // Sanitaze all input from the form
+                    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    
+                    $energyGeneration = filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) : 0; 
+                    $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) : 0;
+                    $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) : 0;
+
+                    $icon = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
+                    $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
+                    $typeAbility = filter_input(INPUT_POST, "typeAbility", FILTER_SANITIZE_NUMBER_INT);
+                    $tagAbility = filter_input(INPUT_POST, "tagAbility", FILTER_SANITIZE_NUMBER_INT);
+
+                    if ($name !== false && $description !== false && $playableCharacter && isset($energyGeneration)  && isset($energyCost) && isset($dmg) && $icon !== false && $typeAbility !== false && $tagAbility !== false) {
+
+                        $abilityManager = new AbilityManager();
+                        $abilityManager->add([
+                            "name" => $name,
+                            "description" => $description,
+                            "energyGeneration" => $energyGeneration,
+                            "energyCost" => $energyCost,
+                            "dmg" => $dmg,
+                            "icon" => $icon,
+                            "playableCharacter_id" => $playableCharacter,
+                            "typeAbility_id" => $typeAbility,
+                            "tagAbility_id" => $tagAbility
+                        ]);
+                        $this->redirectTo("admin", "addAbilityView");
+                    } else {
+                        $this->redirectTo("wiki", "playableCharacterList");
+                    }
+
+                }
+            }
+        }
+
+        public function deleteAbilityView(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            $abilityManager = new AbilityManager();
+
+            $abilityList = $abilityManager->getAbilities();
+
+            // var_dump($ascendList->current());die;
+            return [
+                "view" => VIEW_DIR."admin/deleteAbility.php",
+                "data" => [
+                    "abilityList" => $abilityList
+                ]
+            ];
+            
+        }
+
+        public function deleteAbility(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            if (isset($_POST['submit'])) {
+                // Check if all required input arnt empty
+                if ((!empty($_POST['ability']))) {
+                    
+                    // Sanitaze all input from the form
+                    $ability = filter_input(INPUT_POST, "ability", FILTER_SANITIZE_NUMBER_INT);
+
+                    if ($ability !== false) {
+                        $abilityManager = new AbilityManager();
+                        $abilityManager->deleteAbility($ability);
+
+                        $this->redirectTo("admin", "deleteAbilityView");
+                    } else {
+                        $this->redirectTo("wiki", "playableCharacterList");
+                    }
+
+                }
+
+            }
+        }
+
         public function updateAbilityView(){
             $this->restrictTo("ROLE_ADMIN");
             
@@ -615,6 +450,56 @@ use Model\Managers\TraceManager;
             }
         }
 
+        // Eidolon CRUD
+
+        public function addEidolonView(){
+            $this->restrictTo("ROLE_ADMIN");
+
+            $playableCharacterManager = new PlayableCharacterManager();
+
+            $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
+            // var_dump($ascendList->current());die;
+            return [
+                "view" => VIEW_DIR."admin/addEidolon.php",
+                "data" => [
+                    "playableCharacterList" => $playableCharacterList
+                ]
+            ];
+        }
+
+        public function addEidolon(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            if (isset($_POST['submitEidolon'])) {
+                // Check if all required input arnt empty
+                if ((!empty($_POST['nameEidolon'])) && (!empty($_POST['effectEidolon'])) && (!empty($_POST['playableCharacterEidolon'])) && (!empty($_POST['nbrEidolon']))) {
+                    
+                    // Sanitaze all input from the form
+                    $name = filter_input(INPUT_POST, "nameEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $effect = filter_input(INPUT_POST, "effectEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $nbr = filter_input(INPUT_POST, "nbrEidolon", FILTER_SANITIZE_NUMBER_INT); 
+                    $playableCharacter = filter_input(INPUT_POST, "playableCharacterEidolon", FILTER_SANITIZE_NUMBER_INT);
+                    $icon = filter_input(INPUT_POST, "image-urlEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
+
+                    if ($name !== false && $effect !== false && $nbr !== false && $playableCharacter !== false && $icon !== false) {
+                        // var_dump("$icon");die;
+                        $eidolonManager = new EidolonManager();
+                        $eidolonManager->add([
+                            "name" => $name,
+                            "effect" => $effect,
+                            "nbr" => $nbr,
+                            "playableCharacter_id" => $playableCharacter,
+                            "icon" => $icon,
+                        ]);
+                        $this->redirectTo("admin", "addEidolonView");
+                    } else {
+                        $this->redirectTo("wiki", "playableCharacterList");
+                    }
+
+                }
+            }
+        }
+
         public function updateEidolonView(){
             $this->restrictTo("ROLE_ADMIN");
             
@@ -631,6 +516,47 @@ use Model\Managers\TraceManager;
             
         }
 
+        public function deleteEidolonView(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            $eidolonManager = new EidolonManager();
+
+            $eidolonList = $eidolonManager->getEidolon();
+
+            // var_dump($ascendList->current());die;
+            return [
+                "view" => VIEW_DIR."admin/deleteEidolon.php",
+                "data" => [
+                    "eidolonList" => $eidolonList
+                ]
+            ];
+            
+        }
+
+        public function deleteEidolon(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            if (isset($_POST['submit'])) {
+                // Check if all required input arnt empty
+                if ((!empty($_POST['eidolon']))) {
+                    
+                    // Sanitaze all input from the form
+                    $eidolon = filter_input(INPUT_POST, "eidolon", FILTER_SANITIZE_NUMBER_INT);
+
+                    if ($eidolon !== false) {
+                        $eidolonManager = new EidolonManager();
+                        $eidolonManager->deleteEidolon($eidolon);
+
+                        $this->redirectTo("admin", "deleteEidolonView");
+                    } else {
+                        $this->redirectTo("wiki", "playableCharacterList");
+                    }
+
+                }
+
+            }
+        }
+        
         public function updateEidolonSelect(){
             $this->restrictTo("ROLE_ADMIN");
 
@@ -676,6 +602,99 @@ use Model\Managers\TraceManager;
                     }
 
                 }
+            }
+        }
+
+        // Trace CRUD
+
+        public function addTraceView(){
+            $this->restrictTo("ROLE_ADMIN");
+
+            $playableCharacterManager = new PlayableCharacterManager();
+            $ascendManager = new AscendManager();
+
+            $playableCharacterList = $playableCharacterManager->getPlayableCharacter();
+            $ascendList = $ascendManager->getAscend();
+            // var_dump($ascendList->current());die;
+            return [
+                "view" => VIEW_DIR."admin/addTrace.php",
+                "data" => [
+                    "playableCharacterList" => $playableCharacterList,
+                    "ascendList" => $ascendList,
+                ]
+            ];
+        }
+        
+        public function addTrace(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            if (isset($_POST['submitTrace'])) {
+                // Check if all required input arnt empty
+                if ((!empty($_POST['nameTrace'])) && (!empty($_POST['effectTrace'])) && (!empty($_POST['playableCharacterTrace'])) && (!empty($_POST['ascendTrace']))) {
+                    
+                    // Sanitaze all input from the form
+                    $name = filter_input(INPUT_POST, "nameTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $effect = filter_input(INPUT_POST, "effectTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    $ascend_id = filter_input(INPUT_POST, "ascendTrace", FILTER_SANITIZE_NUMBER_INT); 
+                    $playableCharacter = filter_input(INPUT_POST, "playableCharacterTrace", FILTER_SANITIZE_NUMBER_INT);
+                    $icon = filter_input(INPUT_POST, "image-urlTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
+
+                    if ($name !== false && $effect !== false && $ascend_id !== false && $playableCharacter !== false && $icon !== false) {
+                        // var_dump("$icon");die;
+                        $traceManager = new TraceManager();
+                        $traceManager->add([
+                            "name" => $name,
+                            "effect" => $effect,
+                            "ascend_id" => $ascend_id,
+                            "playableCharacter_id" => $playableCharacter,
+                            "icon" => $icon,
+                        ]);
+                        $this->redirectTo("admin", "addTraceView");
+                    } else {
+                        $this->redirectTo("wiki", "playableCharacterList");
+                    }
+
+                }
+            }
+        }
+
+        public function deleteTraceView(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            $traceManager = new TraceManager();
+
+            $traceList = $traceManager->getTrace();
+
+            return [
+                "view" => VIEW_DIR."admin/deleteTrace.php",
+                "data" => [
+                    "traceList" => $traceList
+                ]
+            ];
+            
+        }
+
+        public function deleteTrace(){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            if (isset($_POST['submit'])) {
+                // Check if all required input arnt empty
+                if ((!empty($_POST['trace']))) {
+                    
+                    // Sanitaze all input from the form
+                    $trace = filter_input(INPUT_POST, "trace", FILTER_SANITIZE_NUMBER_INT);
+
+                    if ($trace !== false) {
+                        $traceManager = new TraceManager();
+                        $traceManager->deleteTrace($trace);
+
+                        $this->redirectTo("admin", "deleteTraceView");
+                    } else {
+                        $this->redirectTo("wiki", "playableCharacterList");
+                    }
+
+                }
+
             }
         }
 
@@ -746,4 +765,5 @@ use Model\Managers\TraceManager;
                 }
             }
         }
+
     }
