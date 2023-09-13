@@ -104,4 +104,36 @@ class HomeController extends AbstractController implements ControllerInterface
         ];
     }
 
+    public function deleteProfileComfirmation()
+    {
+        if(Session::getUser()) {
+            $userId = Session::getUser()->getId();
+            $trailblazerManager = new TrailblazerManager();
+            $trailblazer = $trailblazerManager->findOneById($userId);
+
+            return [
+                "view" => VIEW_DIR . "security/deleteProfileComfirmation.php",
+                "data" => ["trailblazer" => $trailblazer]
+            ];
+            
+        } else {
+            $this->redirectTo("security", "login");
+        }
+    }
+
+    public function deleteProfile()
+    {
+        if(Session::getUser()) {
+            $id = Session::getUser()->getId();
+            $trailblazerManager = new TrailblazerManager();
+            $trailblazerManager->deleteProfile($id);
+            $trailblazer = null;
+            Session::setUser($trailblazer);
+
+            $this->redirectTo("home", "index");
+        } else {
+            $this->redirectTo("security", "login");
+        }
+    }
+
 }

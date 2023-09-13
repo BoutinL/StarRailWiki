@@ -42,30 +42,12 @@
         </nav>
     <?php } 
     if (isset($trailblazer)) { ?>
-        <table class="profile-container table-profile">
-            <tr>
-                <th colspan="2">Profile</th>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td><?= $trailblazer->getUsername() ?></td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td><?= $trailblazer->getEmail() ?></td>
-            </tr>
-            <tr>
-                <th>Role</th>
-                <td><?= $trailblazer->getRole() ?></td>
-            </tr>
-            <tr>
-                <th>Date register</th>
-                <td><?= $trailblazer->getDateRegister() ?></td>
-            </tr>
-        </table>
-        <div>
-            <input type="button" value="Retrieve my password">
-            <a href="index.php?ctrl=security&action=deleteProfileComfirmation">Delete my account</a>
+        <div class="profile-container">
+            <span>Do you really want to delete your account ?</span>
+            <div>
+                <a class="" href="index.php?ctrl=security&action=deleteProfile">Comfirm</a>
+                <a class="" href="index.php?ctrl=security&action=viewProfile">Cancel</a>
+            </div>
         </div>
     <?php } else { echo "<h1>No user connected</h1>"; } ?>
 </div>
