@@ -32,20 +32,15 @@
                     </div>
                     <div class="nav-right" id="nav-right">
                     <?php
-                        
                         if(App\Session::getUser()){
                             ?>
                             <a class="nav-links" href="index.php?ctrl=security&action=viewProfile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
-                            <a class="nav-links" href="index.php?ctrl=security&action=logout"><span class="fa-solid fa-right-from-bracket"></span>&nbsp;Logout</a>
+                            <a class="nav-links-exit" href="index.php?ctrl=security&action=logout"><span class="fa-solid fa-right-from-bracket"></span>&nbsp;Logout</a>
                             <?php
-                        }
-                        else{
-                            ?>
-                            <a class="nav-links" href="index.php?ctrl=security&action=login">Login</a>
-                            <a class="nav-links" href="index.php?ctrl=security&action=register">Register</a>
-                        <?php
-                        }
-                    ?>
+                        } else { ?>
+                                <a class="nav-links" href="index.php?ctrl=security&action=login">Login</a>
+                                <a class="nav-links" href="index.php?ctrl=security&action=register">Register</a>
+                        <?php } ?>
                     </div>
                 </nav>
             </header>

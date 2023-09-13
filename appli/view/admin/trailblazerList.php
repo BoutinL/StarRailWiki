@@ -2,6 +2,10 @@
     $links =  '<link rel="stylesheet" href="public/css/admin/styleTrailblazerList.css">';
 
     $trailblazerList = $result["data"]['trailblazerList'];
+
+    // pagination side
+    $pages = $result["data"]['pages'];
+    $currentPage = $result["data"]['currentPage'];
 ?>
 
 <div class="content">
@@ -42,20 +46,32 @@
         </nav>
         <table class="userlist-container table-profile">
             <tr>
+
+                <th>Id</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>DateRegister</th>
-                <th>Role</th>
             </tr>
             <?php foreach ($trailblazerList as $trailblazer) { ?>
                 <tr>
+                    <td class="center"><?= $trailblazer->getId() ?></td>
                     <td class="center"><?= $trailblazer->getUsername() ?></td>
                     <td class="center"><?= $trailblazer->getEmail() ?></td>
                     <td class="center"><?= $trailblazer->getDateRegister() ?></td>
-                    <td class="center"><?= $trailblazer->getRole() ?></td>
                     <td class="center"></td>
                 </tr>
             <?php } ?>    
         </table>
+        <div class='pagination-box'>
+            <ul class='pagination'>
+                <li class="link-details <?= ($currentPage == 1) ? 'disabled' : '' ?>"><a href='index.php?ctrl=admin&action=trailblazerList&page=<?= $currentPage - 1 ?>' ><</a></li>
+                <?php for($page = 1; $page <= $pages; $page++){?>
+                    <li class="link-details">
+                        <a class="<?= ($currentPage == $page) ? "active" : '' ?>" href='index.php?ctrl=admin&action=trailblazerList&page=<?= $page ?>'><?= $page ?></a>
+                    </li>
+                <?php } ?>
+                <li class="link-details <?= ($currentPage == $pages) ? 'disabled' : '' ?>"><a href='index.php?ctrl=admin&action=trailblazerList&page=<?= $currentPage + 1 ?>'>></a></li>
+            </ul>
+        </div>
     <?php } ?>
 </div>

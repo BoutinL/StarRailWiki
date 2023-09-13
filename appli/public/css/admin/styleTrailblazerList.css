@@ -93,3 +93,39 @@ td, tr, th{
     padding: 0.5rem;
     width: 12%;
 }
+
+/* pagination */
+
+.pagination {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination li.disabled a {
+    pointer-events: none;
+    color: #999;
+}
+
+.pagination li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.pagination li a:hover {
+    text-decoration: underline;
+}
+
+.active{
+    background: -webkit-linear-gradient(#3a7bc0, #e9cf9a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

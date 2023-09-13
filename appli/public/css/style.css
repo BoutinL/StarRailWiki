@@ -48,9 +48,7 @@ ol, ul {
     align-items: center; 
 }
 
-
-
-.nav-links{
+.nav-links, .nav-links-exit{
     font-size: 1.9rem;
     text-decoration: none;
     color: white;  
@@ -61,9 +59,11 @@ ol, ul {
     background: -webkit-linear-gradient(#3a7bc0, #e9cf9a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    transform: scale(1.08);
 }
 
-.nav-links:hover{
+.nav-links-exit:hover{
+    color: rgb(255, 48, 48);
     transform: scale(1.08);
 }
 

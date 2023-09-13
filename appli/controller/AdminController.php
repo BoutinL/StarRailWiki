@@ -5,7 +5,6 @@ namespace Controller;
 use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
-use Model\Entities\PlayableCharacter;
 use Model\Managers\PathManager;
 use Model\Managers\AscendManager;
 use Model\Managers\AbilityManager;
@@ -29,13 +28,38 @@ use Model\Managers\TraceManager;
         public function trailblazerList(){
             $this->restrictTo("ROLE_ADMIN");
 
-            $manager = new TrailblazerManager();
-            $trailblazerList = $manager->findAll(['dateRegister', 'DESC']);
+            // For Pagination, to find on wich page we are
+            if(isset($_GET['page']) && !empty($_GET['page'])){
+                $currentPage = (int)strip_tags($_GET['page']);
+            } else {
+                $currentPage = 1;
+            }
+
+            $trailblazerManager = new TrailblazerManager();
+            
+            // get nbr of users
+            $nbrUsers = $trailblazerManager->getUsersNbr();
+            $intNbrUsers = $nbrUsers["nbrUsers"];
+            // nbr of users to display by page
+            $UsersByPage = 6;
+            $intUsersByPage = intval($UsersByPage);
+            // calcul nbr of pages
+            $pages = (int)ceil($intNbrUsers / $intUsersByPage);
+            // first page comment
+            $firstUserByPage = ($currentPage * $intUsersByPage) - $intUsersByPage;
+            $intFirstUserByPage = intval($firstUserByPage);
+            
+            // For comments / pagination
+            $trailblazerList = $trailblazerManager->getAllUsersButAdmin($intFirstUserByPage, $intUsersByPage);
 
             return [
                 "view" => VIEW_DIR."admin/trailblazerList.php",
                 "data" => [
-                    "trailblazerList" => $trailblazerList
+                    "trailblazerList" => $trailblazerList,
+                    // nbr of pages
+                    "pages" => $pages,
+                    // current page
+                    "currentPage" => $currentPage
                 ]
             ];
         }

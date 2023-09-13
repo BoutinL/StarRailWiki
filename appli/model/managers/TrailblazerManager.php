@@ -61,4 +61,29 @@ class TrailblazerManager extends Manager
             $this->className
         );
     }
+    
+    public function getUsersNbr(){
+
+        $sql = "SELECT COUNT(*) AS nbrUsers
+        FROM " .$this->tableName. " t
+        WHERE t.role = 'ROLE_MEMBER'";
+
+        return $this->getSingleScalarResult(
+            DAO::select($sql), 
+            $this->className
+        );
+    }
+
+    public function getAllUsersButAdmin( $intFirstUserByPage, $intUsersByPage){
+
+        $sql = "SELECT t.id_trailblazer, t.email, t.username, t.dateRegister
+        FROM " .$this->tableName. " t
+        WHERE t.role = 'ROLE_MEMBER'
+        ORDER BY dateRegister DESC LIMIT ".$intFirstUserByPage.", ".$intUsersByPage;
+        return $this->getMultipleResults(
+            DAO::select($sql), 
+            $this->className
+        );
+    }
+
 }

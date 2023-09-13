@@ -102,33 +102,6 @@ form {
     justify-content: space-between;
 }
 
-
-.pagination {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.pagination li {
-    margin: 0 5px;
-}
-
-.pagination li.disabled a {
-    pointer-events: none;
-    color: #999;
-}
-
-.pagination li a {
-    text-decoration: none;
-    color: white;
-}
-
-.pagination li a:hover {
-    text-decoration: underline;
-}
-
 textarea {
     width: 80%;
     height: 10rem;
@@ -175,6 +148,33 @@ textarea {
     margin-bottom   : 1rem;
 }
 
+/* pagination */
+
+.pagination {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination li.disabled a {
+    pointer-events: none;
+    color: #999;
+}
+
+.pagination li a {
+    text-decoration: none;
+    color: white;
+}
+
+.pagination li a:hover {
+    text-decoration: underline;
+}
 
 /* error msg */
 
