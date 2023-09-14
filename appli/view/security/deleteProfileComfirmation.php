@@ -43,6 +43,7 @@
     <?php } 
     if (isset($trailblazer)) { ?>
         <div class="profile-container">
+
             <span>Do you really want to delete your account ?</span>
             <div>
                 <a class="" href="index.php?ctrl=security&action=deleteProfile">Comfirm</a>

@@ -38,6 +38,7 @@
                 $ban = 'ROLE_BAN';
                 $role = $_SESSION['user']->getRole();
                 if($role == $ban){
+                    $trailblazer = null;
                     unset($_SESSION['user']);
                     $categ = 'error';
                     $msg ="Your account have been banned" ;

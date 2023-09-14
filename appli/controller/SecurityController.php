@@ -33,16 +33,38 @@ class HomeController extends AbstractController implements ControllerInterface
                             $passwordHash = self::getPasswordHash($password);
                             // Inject in database
                             $trailblazerManager->add(["username" => $username, "email" => $email, "password" => $passwordHash, "role" => $role]);
+                            $categ = 'success';
+                            $msg ="Account created succesfully" ;
+                            Session::addFlash($categ, $msg);
                             $this->redirectTo("security", "login");
+                        // error msg if password doesnt match confirm password
+                        } else if($password !== $confirmPassword){
+                            $categ = 'error';
+                            $msg ="Password doesnt match the password confirmation" ;
+                            Session::addFlash($categ, $msg);
+                            $this->redirectTo("security", "register");
                         }
+                    // error msg if username already exist 
+                    } else if($trailblazerManager->findOneByUser($username)){
+                        $categ = 'error';
+                        $msg ="Username already exist" ;
+                        Session::addFlash($categ, $msg);
+                        $this->redirectTo("security", "register");
                     }
+                // error msg if email already exist
+                } else if($trailblazerManager->findOneByEmail($email)) {
+                    $categ = 'error';
+                    $msg ="Email already exist" ;
+                    Session::addFlash($categ, $msg);
+                    $this->redirectTo("security", "register");
                 }
             }
+        } else {
+            return [
+                "view" => VIEW_DIR . "security/register.php",
+                "data" => []
+            ];
         }
-        return [
-            "view" => VIEW_DIR . "security/register.php",
-            "data" => []
-        ];
     }
 
     public function login()
@@ -61,13 +83,18 @@ class HomeController extends AbstractController implements ControllerInterface
                     // if correct password do that
                     Session::setUser($dbUser);
                     $this->redirectTo('wiki', 'playableCharacterList');
-                } else {
+                } else if($dbUser && password_verify($password, $dbUser->getPassword()) && $role == $ban) {
                     $trailblazer = null;
                     Session::setUser($trailblazer);
-                    $categ = 'success';
+                    $categ = 'error';
                     $msg ="Your account have been banned" ;
                     Session::addFlash($categ, $msg);
                     $this->redirectTo('home', 'index');
+                } else {
+                    $categ = 'error';
+                    $msg ="Your email or password is wrong" ;
+                    Session::addFlash($categ, $msg);
+                    $this->redirectTo('security', 'login');
                 }
             }
         }
@@ -92,6 +119,52 @@ class HomeController extends AbstractController implements ControllerInterface
             
         } else {
             $this->redirectTo("security", "login");
+        }
+    }
+
+    public function modifyPassword(){
+
+        if (Session::getUser()) {
+            if(isset($_POST['submitModifyPassword'])){
+                $userId = Session::getUser()->getId();
+                $trailblazerManager = new TrailblazerManager();
+    
+                $actualPassword = filter_input(INPUT_POST, 'actualPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $newPassword = filter_input(INPUT_POST, 'newPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $confirmPassword = filter_input(INPUT_POST, 'confirmPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+                // If filters alright
+                if ($actualPassword && $newPassword && $confirmPassword) {
+                    if(password_verify($actualPassword, $userId->getPassword()) && ($newPassword == $confirmPassword) && strlen($newPassword) >= 10){
+                        // Password Hash
+                        $passwordHash = self::getPasswordHash($newPassword);
+                        // Inject in database
+                        $trailblazerManager->add(["password" => $passwordHash]);
+                        // success message 
+                        $categ = 'success';
+                        $msg ="Password modified successfully" ;
+                        Session::addFlash($categ, $msg);
+                        $this->redirectTo("security", "viewProfile");
+                    // error msg if actual password doesnt match what we got in bdd 
+                    } else if(password_verify($actualPassword, $userId->getPassword())){
+                        $categ = 'error';
+                        $msg ="Your actual password doesnt correspond" ;
+                        Session::addFlash($categ, $msg);
+                        $this->redirectTo("security", "modifyPasswordConfirmation");
+                    // error msg if new password doesnt match the confirmation 
+                    } else if($newPassword == $confirmPassword){
+                        $categ = 'error';
+                        $msg ="Your new password doesnt match the confirmation";
+                        Session::addFlash($categ, $msg);
+                        $this->redirectTo("security", "modifyPasswordConfirmation");
+                    }
+                }
+            }
+        } else {
+            return [
+                "view" => VIEW_DIR . "security/login.php",
+                "data" => []
+            ];
         }
     }
     

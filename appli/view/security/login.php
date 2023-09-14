@@ -4,10 +4,14 @@
 
 <div class="form-container">
     <form class="form-content" action="index.php?ctrl=security&action=login" method="post">
-        <label for="email">Email</label>
-        <input type="email" name="email" placeholder="email@email.com" maxlength="50" required />
-        <label for="password">Password</label>
-        <input type="password" name="password" placeholder="password" maxlength="255" required />
+        <label for="email">
+            <b>Email</b>
+            <input type="email" name="email" placeholder="email@email.com" maxlength="50" required />
+        </label>
+        <label for="password">
+            <b>Password</b>
+            <input type="password" name="password" placeholder="password" maxlength="255" required />
+        </label>
         <input class="button" type="submit" value="Login" name="submitLogin" />
     </form>
 </div>

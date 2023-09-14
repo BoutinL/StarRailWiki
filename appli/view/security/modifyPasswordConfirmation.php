@@ -1,7 +1,5 @@
 <?php
-    $trailblazer = $result['data']['trailblazer'];
-
-    $links =  '<link rel="stylesheet" href="public/css/security/styleViewProfile.css">'
+    $links =  '<link rel="stylesheet" href="public/css/security/styleRegister.css">'
 ?>
 
 <div class="content">
@@ -42,30 +40,22 @@
         </nav>
     <?php } 
     if (isset($trailblazer)) { ?>
-        <table class="profile-container table-profile">
-            <tr>
-                <th colspan="2">Profile</th>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td><?= $trailblazer->getUsername() ?></td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td><?= $trailblazer->getEmail() ?></td>
-            </tr>
-            <tr>
-                <th>Role</th>
-                <td><?= $trailblazer->getRole() ?></td>
-            </tr>
-            <tr>
-                <th>Date register</th>
-                <td><?= $trailblazer->getDateRegister() ?></td>
-            </tr>
-        </table>
-        <div>
-            <a href="index.php?ctrl=security&action=modifyPassword">Modify my password</a>
-            <a href="index.php?ctrl=security&action=deleteProfileComfirmation">Delete my account</a>
+        <div class="form-container">
+            <form class="form-content" action="index.php?ctrl=security&action=modifyPassword" method="POST">
+                <label for="actualPassword">
+                    <b>Actual password</b>
+                    <input type="password" placeholder="Your actual password" name="actualPassword" required>
+                </label>
+                <label for="actualPassword">
+                    <b>New password</b>
+                    <input type="password" placeholder="Minimum 10 characters, at least one letter and one number" name="newPassword"  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{10,}$" required>
+                </label>
+                <label for="confirmPassword">
+                    <b>Comfirm password</b>
+                    <input type="password" placeholder="Comfirm password" name="confirmPassword" required>
+                </label>
+                <input type="submit" id='submit' value="Modify" name="submitModifyPassword">
+            </form>
         </div>
     <?php } else { echo "<h1>No user connected</h1>"; } ?>
 </div>
