@@ -1,5 +1,7 @@
 <?php
-    $links =  '<link rel="stylesheet" href="public/css/security/styleRegister.css">'
+    $links =  '<link rel="stylesheet" href="public/css/security/styleRegister.css">';
+    
+    $trailblazer = $result['data']['trailblazer'];
 ?>
 
 <div class="content">

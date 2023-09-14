@@ -122,12 +122,30 @@ class HomeController extends AbstractController implements ControllerInterface
         }
     }
 
+    public function modifyPasswordView()
+    {
+        if(Session::getUser()) {
+            $userId = Session::getUser()->getId();
+            $trailblazerManager = new TrailblazerManager();
+            $trailblazer = $trailblazerManager->findOneById($userId);
+            return [
+                "view" => VIEW_DIR . "security/modifyPasswordConfirmation.php",
+                "data" => ["trailblazer" => $trailblazer]
+            ];
+            
+        } else {
+            $this->redirectTo("security", "login");
+        }
+    }
+
     public function modifyPassword(){
 
         if (Session::getUser()) {
             if(isset($_POST['submitModifyPassword'])){
-                $userId = Session::getUser()->getId();
+                $emailUser = session::getUser()->getEmail();
+                $id = session::getUser()->getId();
                 $trailblazerManager = new TrailblazerManager();
+                $dbUser = $trailblazerManager->findOneByEmail($emailUser);
     
                 $actualPassword = filter_input(INPUT_POST, 'actualPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $newPassword = filter_input(INPUT_POST, 'newPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -135,18 +153,18 @@ class HomeController extends AbstractController implements ControllerInterface
     
                 // If filters alright
                 if ($actualPassword && $newPassword && $confirmPassword) {
-                    if(password_verify($actualPassword, $userId->getPassword()) && ($newPassword == $confirmPassword) && strlen($newPassword) >= 10){
+                    if(password_verify($actualPassword, $dbUser->getPassword()) && ($newPassword == $confirmPassword) && strlen($newPassword) >= 10){
                         // Password Hash
                         $passwordHash = self::getPasswordHash($newPassword);
                         // Inject in database
-                        $trailblazerManager->add(["password" => $passwordHash]);
+                        $trailblazerManager->modifyPassword($id, $passwordHash);
                         // success message 
                         $categ = 'success';
                         $msg ="Password modified successfully" ;
                         Session::addFlash($categ, $msg);
                         $this->redirectTo("security", "viewProfile");
                     // error msg if actual password doesnt match what we got in bdd 
-                    } else if(password_verify($actualPassword, $userId->getPassword())){
+                    } else if(password_verify($actualPassword, $dbUser->getPassword())){
                         $categ = 'error';
                         $msg ="Your actual password doesnt correspond" ;
                         Session::addFlash($categ, $msg);

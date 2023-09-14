@@ -93,4 +93,16 @@ class TrailblazerManager extends Manager
         DAO::delete($sql, ['id' => $id]);
     }
 
+    public function modifyPassword($id, $passwordHash){
+        // combatType_id = :combatType / 'combatType' => $combatType,
+        $sql = "UPDATE ".$this->tableName." 
+                SET password = :passwordHash
+                WHERE id_".$this->tableName." = :id";
+                
+        DAO::update($sql, [
+                            'id' => $id,
+                            'passwordHash' => $passwordHash,
+                        ]);  
+    }
+
 }

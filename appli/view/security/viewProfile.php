@@ -1,7 +1,7 @@
 <?php
-    $trailblazer = $result['data']['trailblazer'];
+$links =  '<link rel="stylesheet" href="public/css/security/styleViewProfile.css">';
 
-    $links =  '<link rel="stylesheet" href="public/css/security/styleViewProfile.css">'
+$trailblazer = $result['data']['trailblazer'];
 ?>
 
 <div class="content">
@@ -64,7 +64,7 @@
             </tr>
         </table>
         <div>
-            <a href="index.php?ctrl=security&action=modifyPassword">Modify my password</a>
+            <a href="index.php?ctrl=security&action=modifyPasswordView">Modify my password</a>
             <a href="index.php?ctrl=security&action=deleteProfileComfirmation">Delete my account</a>
         </div>
     <?php } else { echo "<h1>No user connected</h1>"; } ?>
