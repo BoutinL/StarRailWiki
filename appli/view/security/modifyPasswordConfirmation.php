@@ -58,6 +58,7 @@
                 </label>
                 <input type="submit" id='submit' value="Modify" name="submitModifyPassword">
             </form>
+            <a class="" href="index.php?ctrl=security&action=viewProfile">Cancel</a>
         </div>
     <?php } else { echo "<h1>No user connected</h1>"; } ?>
 </div>

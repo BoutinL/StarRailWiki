@@ -46,7 +46,7 @@
 
             <span>Do you really want to delete your account ?</span>
             <div>
-                <a class="" href="index.php?ctrl=security&action=deleteProfile">Comfirm</a>
+                <a class="" href="index.php?ctrl=security&action=deleteProfile">Confirm</a>
                 <a class="" href="index.php?ctrl=security&action=viewProfile">Cancel</a>
             </div>
         </div>
