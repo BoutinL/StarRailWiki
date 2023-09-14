@@ -54,13 +54,20 @@ class HomeController extends AbstractController implements ControllerInterface
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             if ($email && $password) {
                 $dbUser = $trailblazerManager->findOneByEmail($email);
-                if ($dbUser && password_verify($password, $dbUser->getPassword())) {
+                // If role = Ban unset session
+                $ban = 'ROLE_BAN';
+                $role = $dbUser->getRole();
+                if ($dbUser && password_verify($password, $dbUser->getPassword()) && $role !== $ban) {
                     // if correct password do that
                     Session::setUser($dbUser);
                     $this->redirectTo('wiki', 'playableCharacterList');
                 } else {
-                    // if password not correct do that
-                    $this->redirectTo('security', 'login');
+                    $trailblazer = null;
+                    Session::setUser($trailblazer);
+                    $categ = 'success';
+                    $msg ="Your account have been banned" ;
+                    Session::addFlash($categ, $msg);
+                    $this->redirectTo('home', 'index');
                 }
             }
         }

@@ -34,12 +34,18 @@
         }
 
         public static function getUser(){
-            return (isset($_SESSION['user'])) ? $_SESSION['user'] : false;
-            $ban = 'ROLE_BAN';
-            $role = $_SESSION['user']->getRole();
-            if($role !== $ban){
-            } else {
-                return false;
+            if(isset($_SESSION['user']) && $_SESSION['user'] !== null){
+                $ban = 'ROLE_BAN';
+                $role = $_SESSION['user']->getRole();
+                if($role == $ban){
+                    unset($_SESSION['user']);
+                    $categ = 'error';
+                    $msg ="Your account have been banned" ;
+                    Session::addFlash($categ, $msg);
+                    header("Location: index.php");
+                } else {
+                    return (isset($_SESSION['user'])) ? $_SESSION['user'] : false;
+                }
             }
         }
 
