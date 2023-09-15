@@ -6,19 +6,19 @@
     <form class="form-content" action="index.php?ctrl=security&action=register" method="POST">
             <label for="username">
                 <b>Username</b>
-                <input type="text" placeholder="Enter username" name="username" required>
+                <input type="text" id="username" placeholder="Enter username" name="username" required>
             </label>
             <label for="email">
                 <b>Email</b>
-                <input type="email" placeholder="Enter email" name="email" required>
+                <input type="email" id="email" placeholder="Enter email" name="email" required>
             </label>
             <label for="password">
                 <b>Password</b>
-                <input type="password" placeholder="Minimum 10 characters, at least one letter and one number" name="password"  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{10,}$" required>
+                <input type="password" id="password" placeholder="Minimum 10 characters, at least one letter and one number" name="password"  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{10,}$" required>
             </label>
             <label for="confirmPassword">
                 <b>Confirm password</b>
-                <input type="password" placeholder="Write the same password once again" name="confirmPassword" required>
+                <input type="password" id="confirmPassword" placeholder="Write the same password once again" name="confirmPassword" required>
             </label>
             <input type="submit" id='submit' value="Register" name="submitRegister">
     </form>

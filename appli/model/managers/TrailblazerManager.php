@@ -15,17 +15,6 @@ class TrailblazerManager extends Manager
         parent::connect();
     }
 
-    public function getUserById($id)
-    {
-        $sql = "SELECT t.id_user, t.username, t.email, t.role, t.dateRegister
-                FROM " . $this->tableName . " t
-                WHERE id_user = :id";
-
-        return $this->getOneOrNullResult(
-            DAO::select($sql, ['id' => $id]),
-            $this->className
-        );
-    }
 
     public function findOneByEmail($email)
     {
@@ -76,9 +65,9 @@ class TrailblazerManager extends Manager
 
     public function getAllUsersButAdmin( $intFirstUserByPage, $intUsersByPage){
 
-        $sql = "SELECT t.id_trailblazer, t.email, t.username, t.dateRegister
+        $sql = "SELECT t.id_trailblazer, t.email, t.username, t.dateRegister, t.role
         FROM " .$this->tableName. " t
-        WHERE t.role = 'ROLE_MEMBER'
+        WHERE t.role = 'ROLE_MEMBER' OR t.role = 'ROLE_BAN'
         ORDER BY dateRegister DESC LIMIT ".$intFirstUserByPage.", ".$intUsersByPage;
         return $this->getMultipleResults(
             DAO::select($sql), 

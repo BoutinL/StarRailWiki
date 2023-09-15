@@ -53,7 +53,6 @@ use Model\Managers\TraceManager;
             
             // For comments / pagination
             $trailblazerList = $trailblazerManager->getAllUsersButAdmin($intFirstUserByPage, $intUsersByPage);
-
             return [
                 "view" => VIEW_DIR."admin/trailblazerList.php",
                 "data" => [
@@ -70,10 +69,22 @@ use Model\Managers\TraceManager;
             $this->restrictTo("ROLE_ADMIN");
         }
 
-        public function banUser($id){
+        public function updateRole($id){
             $this->restrictTo("ROLE_ADMIN");
-            
+
+            $trailblazerManager = new TrailblazerManager();
+
+            $trailblazer = $trailblazerManager->findOneById($id);
+            var_dump($trailblazer);die;
+
+            return [
+                "view" => VIEW_DIR."admin/updateRole.php",
+                "data" => [
+                    "trailblazer" => $trailblazer
+                ]
+            ];
         }
+        
 
         // CRUD Character
 

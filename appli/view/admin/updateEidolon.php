@@ -62,20 +62,18 @@
                         <!-- update -->
                         <label for="nbrEidolon">Number :</label>
                         <div class="nbrEidolon-radio">
-                            <?php
-                                for($nbrEidolon = 1; $nbrEidolon <= 6; $nbrEidolon++){
-                                    echo "<label for='nbrEidolon'>";
-                                        $eidolonNbr = $eidolon->getNbr();
-                                        if($eidolonNbr == $nbrEidolon){
-                                            echo "$eidolonNbr";
-                                            echo "<input type='radio' id='".$eidolonNbr."' name='nbrEidolon' value='".$eidolonNbr."' checked required/>";
-                                        } else {
-                                            echo "$nbrEidolon";
-                                            echo "<input type='radio' id='".$nbrEidolon."' name='nbrEidolon' value='".$nbrEidolon."' required/>";
-                                        }
-                                    echo "</label>";
-                                }
-                                ?>
+                            <?php for($nbrEidolon = 1; $nbrEidolon <= 6; $nbrEidolon++){
+                                echo "<label for='nbrEidolon'>";
+                                    $eidolonNbr = $eidolon->getNbr();
+                                    if($eidolonNbr == $nbrEidolon){
+                                        echo "$eidolonNbr";
+                                        echo "<input type='radio' id='".$eidolonNbr."' name='nbrEidolon' value='".$eidolonNbr."' checked required/>";
+                                    } else {
+                                        echo "$nbrEidolon";
+                                        echo "<input type='radio' id='".$nbrEidolon."' name='nbrEidolon' value='".$nbrEidolon."' required/>";
+                                    }
+                                echo "</label>";
+                            }?>
                         </div>
 
                         <label for="nameEidolon">Name :</label>
