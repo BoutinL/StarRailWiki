@@ -21,7 +21,7 @@
 }
 
 /* Marqueur onglet qui s'adapte au combatType */
-.combatTypeCssLinkPhysical{
+.combatTypeCssLinkPhysical:visited {
     color: #b2adad;
 }
 .combatTypeCssLinkFire:visited{
@@ -148,6 +148,60 @@ textarea {
     flex-direction: column;
     margin-bottom   : 1rem;
 }
+
+
+/* CSS */
+.submit-btn {
+    background: linear-gradient(to bottom right, #383838, #838383);
+    border: 0;
+    border-radius: 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 2.5;
+    outline: transparent;
+    padding: 0 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+}
+
+.combatTypeCssPhysical:not([disabled]):focus, .combatTypeCssPhysical:not([disabled]):hover {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem #b2adad, .125rem .125rem 1rem #b2adad;
+}
+
+.combatTypeCssFire:not([disabled]):focus, .combatTypeCssFire:not([disabled]):hover {
+
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem #f84f36, .125rem .125rem 1rem #f84f36;
+}
+
+.combatTypeCssIce:not([disabled]):focus, .combatTypeCssIce:not([disabled]):hover{
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem #47c7fd, .125rem .125rem 1rem #47c7fd;
+}
+
+.combatTypeCssLightning:not([disabled]):focus , .combatTypeCssLightning:not([disabled]):hover{
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem #df54ff, .125rem .125rem 1rem #df54ff;
+}
+
+.combatTypeCssWind:not([disabled]):focus, .combatTypeCssWind:not([disabled]):hover{
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem #46de9d, .125rem .125rem 1rem #46de9d;
+}
+
+.combatTypeCssQuantum:not([disabled]):focus, .combatTypeCssQuantum:not([disabled]):hover{
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem #8880ff, .125rem .125rem 1rem #8880ff;
+}
+
+.combatTypeCssImaginary:not([disabled]):focus, .combatTypeCssQuantum:not([disabled]):hover{
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem #ffeb61, .125rem .125rem 1rem #ffeb61;
+}
+
 
 /* pagination */
 

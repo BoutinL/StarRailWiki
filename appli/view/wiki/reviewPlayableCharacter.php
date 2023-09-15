@@ -28,28 +28,28 @@
                     <label class="label-comment" for="comment">Your opinion on <?= $playableCharacter->getName() ?></label>
                     <div class="split-label-input">
                         <textarea style="<?= $playableCharacter->combatTypeCss() ?>" name="comment" id="comment" placeholder="Write a comment"  required></textarea>
-                        <input class="submit-btn" type="submit" name="submitComment" value="Submit">
+                        <input class="submit-btn <?= $playableCharacter->combatTypeCssHover() ?>"  type="submit" name="submitComment" value="Submit">
                     </div>
                 </form>
             <?php } ?>
             <div class="review-display">
-                <div class='pagination-box'>
-                    <ul class='pagination'>
-                        <li class="link-details <?= ($currentPage == 1) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage - 1 ?>' ><</a></li>
-                        <?php
-                            for($page = 1; $page <= $pages; $page++){?>
-                                <li class="link-details">
-                                    <a class="<?= ($currentPage == $page) ? $playableCharacter->combatTypeCssLink() : '' ?>" href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $page ?>'><?= $page ?></a>
-                                </li>
-                            <?php }
-                        ?>
-                        <li class="link-details <?= ($currentPage == $pages) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage + 1 ?>'>></a></li>
-                    </ul>
-                </div>
                 <?php 
                     // Display comment if theres data
-                    if($commentPlayableCharacter) {
-                        foreach($commentPlayableCharacter as $comment){
+                    if($commentPlayableCharacter) { ?>
+                        <div class='pagination-box'>
+                            <ul class='pagination'>
+                                <li class="link-details <?= ($currentPage == 1) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage - 1 ?>' ><</a></li>
+                                <?php
+                                    for($page = 1; $page <= $pages; $page++){?>
+                                        <li class="link-details">
+                                            <a class="<?= ($currentPage == $page) ? $playableCharacter->combatTypeCssLink() : '' ?>" href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $page ?>'><?= $page ?></a>
+                                        </li>
+                                    <?php }
+                                ?>
+                                <li class="link-details <?= ($currentPage == $pages) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage + 1 ?>'>></a></li>
+                            </ul>
+                        </div>
+                        <?php foreach($commentPlayableCharacter as $comment){
                             if($comment->getTrailblazer() == null){
                                 echo "<div class='container-comment'>";
                                     echo "<span>Deleted user</span>";
@@ -111,7 +111,7 @@
                             }
                         ?>
                     </fieldset>
-                    <input class="submit-btn" type="submit" name="submitRate" value="Submit">
+                    <input class="submit-btn <?= $playableCharacter->combatTypeCssHover() ?>" type="submit" name="submitRate" value="Submit">
                 </form>
             <!-- If user connected has already rate that character show the update form -->
             <?php } else if(App\Session::getUser() && $rateUser){
@@ -130,7 +130,7 @@
                             echo "</label>";
                         }
                     echo "</fieldset>
-                    <input class='submit-btn' type='submit' name='submitUpdateRate' value='Submit'>
+                    <input class='submit-btn ".$playableCharacter->combatTypeCssHover()."' type='submit' name='submitUpdateRate' value='Submit'>
                 </form>";
             } ?>
         </div>

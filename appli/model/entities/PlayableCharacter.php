@@ -332,4 +332,33 @@
                 }
                 return $cssProperties;
         }
+
+        public function combatTypeCssHover(){
+                $cssProperties = "";
+                switch ($this->combatType->getType()) {
+                        case "Physical":
+                                $cssProperties = "combatTypeCssPhysical";
+                                break;
+                        case "Fire":
+                                $cssProperties = "combatTypeCssFire";
+                                break;
+                        case "Ice":
+                                $cssProperties = "combatTypeCssIce";
+                                break;
+                        case "Lightning":
+                                $cssProperties = "combatTypeCssLightning";
+                                break;
+                        case "Wind":
+                                $cssProperties = "combatTypeCssWind";
+                                break;
+                        case "Quantum":
+                                $cssProperties = "combatTypeCssQuantum";
+                                break;
+                        case "Imaginary":
+                                $cssProperties = "combatTypeCssImaginary";
+                                break;
+                }
+                return $cssProperties;
+        }
+
 }
