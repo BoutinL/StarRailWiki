@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Hôte:                         localhost
+-- Hôte:                         127.0.0.1
 -- Version du serveur:           8.0.30 - MySQL Community Server - GPL
 -- SE du serveur:                Win64
 -- HeidiSQL Version:             12.1.0.6537
@@ -239,13 +239,13 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `id_comment` int NOT NULL AUTO_INCREMENT,
   `text` text NOT NULL,
   `dateCreate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `trailblazer_id` int NOT NULL DEFAULT '0',
-  `playableCharacter_id` int NOT NULL,
+  `trailblazer_id` int DEFAULT '0',
+  `playableCharacter_id` int DEFAULT NULL,
   PRIMARY KEY (`id_comment`),
   KEY `trailblazer_id` (`trailblazer_id`),
   KEY `playableCharacter_id` (`playableCharacter_id`),
-  CONSTRAINT `FK-comment_playableCharacter_id` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE,
-  CONSTRAINT `FK-comment_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`)
+  CONSTRAINT `FK-comment_playableCharacter_id` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE SET NULL,
+  CONSTRAINT `FK-comment_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table srw_loic.comment : ~0 rows (environ)
@@ -522,13 +522,13 @@ INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarit
 CREATE TABLE IF NOT EXISTS `rating` (
   `id_rating` int NOT NULL AUTO_INCREMENT,
   `rate` int NOT NULL,
-  `playableCharacter_id` int NOT NULL,
-  `trailblazer_id` int NOT NULL,
+  `playableCharacter_id` int DEFAULT NULL,
+  `trailblazer_id` int DEFAULT NULL,
   PRIMARY KEY (`id_rating`) USING BTREE,
   KEY `playableCharacter_id` (`playableCharacter_id`),
   KEY `trailblazer_id` (`trailblazer_id`),
-  CONSTRAINT `FK-rating_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`),
-  CONSTRAINT `FK-rating_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`)
+  CONSTRAINT `FK-rating_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE SET NULL,
+  CONSTRAINT `FK-rating_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table srw_loic.rating : ~0 rows (environ)
@@ -594,7 +594,7 @@ CREATE TABLE IF NOT EXISTS `trailblazer` (
   PRIMARY KEY (`id_trailblazer`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.trailblazer : ~7 rows (environ)
+-- Listage des données de la table srw_loic.trailblazer : ~0 rows (environ)
 INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `dateRegister`, `role`) VALUES
 	(1, 'admin@admin.fr', 'admin', '$2y$10$JtompmQllYSqNPQa0D1lCuDiCLDXBORQJf4gU8o2sPWgPP9RNbDta', '2023-09-12 15:17:57', 'ROLE_ADMIN'),
 	(2, 'user@user.fr', 'user', '$2y$10$YY8W2JZrK6UckS4oxKfYQOsxUzOhHXnoEVXh.4Nk4ENiu210Q7z26', '2023-09-12 15:21:09', 'ROLE_MEMBER'),

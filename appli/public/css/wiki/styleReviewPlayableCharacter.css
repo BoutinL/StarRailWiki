@@ -79,6 +79,7 @@ h1{
     flex-direction: column;
     align-items: center; /* Centre verticalement les éléments enfants */
     text-align: center; /* Centre le texte horizontalement */
+    margin-bottom: 2rem;
 
 }
 
@@ -97,12 +98,12 @@ form {
 
 }
 .split-label-input{
-    display: inline-flex;
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
 }
 
 textarea {
-    width: 80%;
+    width: 100%;
     height: 10rem;
     padding: 1rem 1rem;
     box-sizing: border-box;
@@ -114,9 +115,10 @@ textarea {
 }
 
 .submit-btn{
-    width: 19%;
+    width: 20%;
     height: 3rem;
     border-radius: 30px;
+    margin-top: 1rem;
 }
 
 .rate-img {
@@ -124,10 +126,10 @@ textarea {
     margin: 0 5px; /* Espacement entre les images (ajustez selon vos besoins) */
 }
 
-.rate-size, .rate-nbr {
+.rate-size, .rate-nbr{
     width: 15%;
+    margin-bottom: 1rem;
 }
-
 
 .title-rating{
     font-size: 1.5rem;
@@ -150,7 +152,7 @@ textarea {
 /* pagination */
 
 .pagination {
-    width: 80%;
+    width: 100%;
     list-style: none;
     padding: 0;
     display: flex;

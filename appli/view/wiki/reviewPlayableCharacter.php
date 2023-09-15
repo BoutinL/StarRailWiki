@@ -50,11 +50,19 @@
                     // Display comment if theres data
                     if($commentPlayableCharacter) {
                         foreach($commentPlayableCharacter as $comment){
-                            echo "<div class='container-comment'>";
-                            echo "<span> ".$comment->getTrailblazer()->getUsername()."</span>";
-                            echo "<span> ".$comment->getDateCreateFormat()."</span>";
-                            echo "<p class='comment-text'> ".$comment->getText()."</p>";
-                            echo "</div>";
+                            if($comment->getTrailblazer() == null){
+                                echo "<div class='container-comment'>";
+                                    echo "<span>Deleted user</span>";
+                                    echo "<span> ".$comment->getDateCreateFormat()."</span>";
+                                    echo "<p class='comment-text'> ".$comment->getText()."</p>";
+                                echo "</div>";
+                            }else{
+                                echo "<div class='container-comment'>";
+                                    echo "<span> ".$comment->getTrailblazer()->getUsername()."</span>";
+                                    echo "<span> ".$comment->getDateCreateFormat()."</span>";
+                                    echo "<p class='comment-text'> ".$comment->getText()."</p>";
+                                echo "</div>";
+                            }
                         }
                     // If theres no data, display that
                     } else { 
@@ -76,7 +84,7 @@
                     <?php for ($i = 0; $i < $statsRate["finalRate"]; $i++) {
                         echo '<img class="rate-size rate-img" src="/StarRailWiki/appli/public/img/rate_star.png" alt="rate-level">';
                     } ?>
-                <div>
+                </div>
                 <span class="rate-nbr"><?= $statsRate["nbrOfRating"] ?>  people voted</span>
             <!-- If theres no rate, display error msg -->
             <?php } else {
