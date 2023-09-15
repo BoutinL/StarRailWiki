@@ -14,3 +14,16 @@ h1, h2{
     -webkit-text-fill-color: transparent;
 }
 
+p{
+    margin: 1rem;
+}
+
+strong{
+    font-size: 1rem;
+}
+a{
+    text-decoration: none;
+    background: -webkit-linear-gradient(#3a7bc0, #e9cf9a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

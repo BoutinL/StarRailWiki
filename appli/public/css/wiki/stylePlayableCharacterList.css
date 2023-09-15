@@ -2,13 +2,12 @@
 
 .content{
     display: inline-flex;
-    min-width: 99vw;
+    min-width:100vw;
 }
 
 .order-list{
     background-color: rgb(19, 19, 19)   ;
     width: 15%;
-    max-height: 100vh;
     display: flex;
     flex-direction: column;
     padding-left: 2rem;
@@ -71,7 +70,7 @@
 }
 
 .gold{
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, #ffec70 0px 0px 5px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, #f7fa51 0px 0px 5px 0px inset;
 }
 
 .purple:hover{
@@ -79,7 +78,7 @@
 }
 
 .gold:hover{
-    box-shadow: 0 1px 15px 2px rgb(255, 255, 255), rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, #ffec70 0px 0px 10px 0px inset;
+    box-shadow: 0 1px 15px 2px rgb(255, 255, 255), rgba(0, 0, 0, 0.25) 0px 30px 60px -12px inset, #f7fa51 0px 0px 10px 0px inset;
 }
 
 .card:hover{
@@ -119,7 +118,6 @@ main {
 
 .scroll-container a {
     position: sticky;
-    top: 90vh;
     cursor: pointer;
     text-decoration: none;
 }

@@ -27,6 +27,13 @@ ol, ul {
     justify-content: space-between;
 }
 
+.link-unstyled {
+    background: -webkit-linear-gradient(#3a7bc0, #e9cf9a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none; /* Suppression de la décoration (soulignement par défaut) */
+}
+
 .nav{
     background-color: rgb(36, 36, 36);
     display: inline-flex;
@@ -68,7 +75,7 @@ ol, ul {
 }
 
 .icon-nav{
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     width: 12rem;
     height: auto;
 }

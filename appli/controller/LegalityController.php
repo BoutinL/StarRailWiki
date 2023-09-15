@@ -26,6 +26,12 @@ use App\ControllerInterface;
             ];
         }
 
+        public function privacyPolice(){
+            return [
+                "view" => VIEW_DIR."legality/privacyPolice.php"
+            ];
+        }
+
         /*public function ajax(){
             $nb = $_GET['nb'];
             $nb++;
