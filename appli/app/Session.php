@@ -1,6 +1,9 @@
 <?php
     namespace App;
 
+    use Model\Managers\TrailblazerManager;
+    use Service\UpdateUser;
+
     class Session{
 
         private static $categories = ['error', 'success'];
@@ -35,10 +38,13 @@
 
         public static function getUser(){
             if(isset($_SESSION['user']) && $_SESSION['user'] !== null){
+                // Update session
+                $updateUser = new UpdateUser($_SESSION['user']);
+                $updateUser->update();
+                // Ban condition
                 $ban = 'ROLE_BAN';
                 $role = $_SESSION['user']->getRole();
                 if($role == $ban){
-                    $trailblazer = null;
                     unset($_SESSION['user']);
                     $categ = 'error';
                     $msg ="Your account have been banned" ;

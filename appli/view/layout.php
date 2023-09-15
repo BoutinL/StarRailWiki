@@ -34,7 +34,7 @@
                     </div>
                     <div class="nav-right" id="nav-right">
                     <?php
-                        if(App\Session::getUser()){
+                        if(App\Session::getUser() && App\Session::getUser() !== null){
                             ?>
                             <a class="nav-links" href="index.php?ctrl=security&action=viewProfile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
                             <a class="nav-links-exit" href="index.php?ctrl=security&action=logout"><span class="fa-solid fa-right-from-bracket"></span>&nbsp;Logout</a>
