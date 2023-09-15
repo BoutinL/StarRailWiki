@@ -55,7 +55,6 @@ h1{
 
 .center{
     text-align: center;
-    margin-top: 1rem;
 }
 
 .reviews-box{
@@ -80,7 +79,7 @@ h1{
     flex-direction: column;
     align-items: center; /* Centre verticalement les éléments enfants */
     text-align: center; /* Centre le texte horizontalement */
-    margin-bottom: 1rem;
+
 }
 
 form {  
@@ -151,6 +150,7 @@ textarea {
 /* pagination */
 
 .pagination {
+    width: 80%;
     list-style: none;
     padding: 0;
     display: flex;
@@ -160,6 +160,7 @@ textarea {
 
 .pagination li {
     margin: 0 5px;
+
 }
 
 .pagination li.disabled a {

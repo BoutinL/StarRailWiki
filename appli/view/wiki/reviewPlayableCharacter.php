@@ -22,43 +22,6 @@
     <h1 class="center">Reviews of <?= $playableCharacter->getName() ?></h1>
     <div class="review-container">
         <div class="reviews-box">
-            <div class="review-display">
-                <?php 
-                    // Display comment if theres data
-                    if($commentPlayableCharacter) {
-                        foreach($commentPlayableCharacter as $comment){
-                            echo "<div class='container-comment'>";
-                            echo "<span> ".$comment->getTrailblazer()->getUsername()."</span>";
-                            echo "<span> ".$comment->getDateCreateFormat()."</span>";
-                            echo "<p class='comment-text'> ".$comment->getText()."</p>";
-                            echo "</div>";
-                        }
-                        ?>
-                        <div class='pagination-box'>
-                            <ul class='pagination'>
-                                <li class="link-details <?= ($currentPage == 1) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage - 1 ?>' ><</a></li>
-                                <?php
-                                    for($page = 1; $page <= $pages; $page++){?>
-                                        <li class="link-details">
-                                            <a class="<?= ($currentPage == $page) ? $playableCharacter->combatTypeCssLink() : '' ?>" href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $page ?>'><?= $page ?></a>
-                                        </li>
-                                    <?php }
-                                ?>
-                                <li class="link-details <?= ($currentPage == $pages) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage + 1 ?>'>></a></li>
-                            </ul>
-                        </div>
-                        <?php
-                        // If theres no data, display that
-                    } else { 
-                        echo "<div class='container-error-msg'>
-                            <figure class='container-msg-emote'>
-                                <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/hook-sad.png' alt='emote sad hook' />
-                            </figure>
-                            <p class='error-msg'>There's no comment yet... </p>
-                        </div>";
-                    }
-                ?>
-            </div>
             <!-- Display form comment if user connected -->
             <?php if(App\Session::getUser()){ ?>
                 <form action="index.php?ctrl=wiki&action=addComment&id=<?= $playableCharacter->getId() ?>" method="POST">
@@ -69,6 +32,41 @@
                     </div>
                 </form>
             <?php } ?>
+            <div class="review-display">
+                <div class='pagination-box'>
+                    <ul class='pagination'>
+                        <li class="link-details <?= ($currentPage == 1) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage - 1 ?>' ><</a></li>
+                        <?php
+                            for($page = 1; $page <= $pages; $page++){?>
+                                <li class="link-details">
+                                    <a class="<?= ($currentPage == $page) ? $playableCharacter->combatTypeCssLink() : '' ?>" href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $page ?>'><?= $page ?></a>
+                                </li>
+                            <?php }
+                        ?>
+                        <li class="link-details <?= ($currentPage == $pages) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage + 1 ?>'>></a></li>
+                    </ul>
+                </div>
+                <?php 
+                    // Display comment if theres data
+                    if($commentPlayableCharacter) {
+                        foreach($commentPlayableCharacter as $comment){
+                            echo "<div class='container-comment'>";
+                            echo "<span> ".$comment->getTrailblazer()->getUsername()."</span>";
+                            echo "<span> ".$comment->getDateCreateFormat()."</span>";
+                            echo "<p class='comment-text'> ".$comment->getText()."</p>";
+                            echo "</div>";
+                        }
+                    // If theres no data, display that
+                    } else { 
+                        echo "<div class='container-error-msg'>
+                            <figure class='container-msg-emote'>
+                                <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/hook-sad.png' alt='emote sad hook' />
+                            </figure>
+                            <p class='error-msg'>There's no comment yet... </p>
+                        </div>";
+                    }
+                ?>
+            </div>
         </div>
         <div class="rating-box">
             <!-- Display  rate if the character have at least one-->
