@@ -68,27 +68,70 @@ nav > ul li:hover .sous{
     background-color: rgb(36, 36, 36);
     margin: 2rem;
     border-radius: 30px;
-    border: solid;  
+    border: solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 38vh;
 }
 
 .profile-container{
     width: 100%;
-    min-height: 50vh;
     background-color: rgb(36, 36, 36);
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 2rem;
 }
 
 .table-profile{
     border-collapse: collapse;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
 }
 
 td, tr, th{
     border-radius: 30px;
     border: 2px solid #4e4e4e;
-    padding: 0.5rem;
-    width: 12%;
+    padding: 1em;
 }
+
+.account-option a.button {
+    display: inline-block;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    background-color: #7c7c7c; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte */
+    border: none;
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Animation de transition pour le changement de couleur au survol */
+}
+
+.account-option a.button:hover {
+    background-color: #9e9e9e; /* Couleur de fond au survol */
+}
+
+.account-option a.button-delete {
+    display: inline-block;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ff00007e; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte */
+    border: none;
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Animation de transition pour le changement de couleur au survol */
+}
+
+.account-option a.button-delete:hover {
+    background-color: #e91717; /* Couleur de fond au survol */
+}
+
+/* Centrer les liens verticalement et horizontalement */
+.account-option {
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+}
+

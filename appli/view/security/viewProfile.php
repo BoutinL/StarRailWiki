@@ -63,9 +63,9 @@ $trailblazer = $result['data']['trailblazer'];
                 <td><?= $trailblazer->getDateRegister() ?></td>
             </tr>
         </table>
-        <div>
-            <a href="index.php?ctrl=security&action=modifyPasswordView">Modify my password</a>
-            <a href="index.php?ctrl=security&action=deleteProfileComfirmation">Delete my account</a>
+        <div class="account-option">
+            <a class="button" href="index.php?ctrl=security&action=modifyPasswordView">Modify my password</a>
+            <a class="button-delete" href="index.php?ctrl=security&action=deleteProfileComfirmation">Delete my account</a>
         </div>
     <?php } else { echo "<h1>No user connected</h1>"; } ?>
 </div>
