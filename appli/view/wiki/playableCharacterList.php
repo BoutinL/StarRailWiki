@@ -4,7 +4,6 @@
     $playableCharacterList = $result["data"]['playableCharacterList'];
     $combatTypeList = $result["data"]["combatTypeList"];
     $pathList = $result["data"]["pathList"];
-    // var_dump($combatTypeList->current()->getType());die;
 ?>
 <div class="content">
     <form class="order-list" id="orderList" action="index.php?ctrl=wiki&action=orderBy" method="POST">

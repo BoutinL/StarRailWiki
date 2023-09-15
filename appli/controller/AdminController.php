@@ -69,13 +69,16 @@ use Model\Managers\TraceManager;
             $this->restrictTo("ROLE_ADMIN");
         }
 
+
+
+
+        
         public function updateRole($id){
             $this->restrictTo("ROLE_ADMIN");
 
             $trailblazerManager = new TrailblazerManager();
 
             $trailblazer = $trailblazerManager->findOneById($id);
-            var_dump($trailblazer);die;
 
             return [
                 "view" => VIEW_DIR."admin/updateRole.php",
@@ -83,6 +86,27 @@ use Model\Managers\TraceManager;
                     "trailblazer" => $trailblazer
                 ]
             ];
+        }
+
+        public function updateRoleConfirm($id){
+            $this->restrictTo("ROLE_ADMIN");
+            if (isset($_POST['roleUser'])) {
+                // Check if all required input arnt empty
+                if ((!empty($_POST['roleUser']))) {
+                    
+                    // Sanitaze all input from the form
+                    $roleUser = filter_input(INPUT_POST, "roleUser", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                    // !== false so if empty still work 
+                    if ($roleUser !== false) {
+                        $trailblazerManager = new TrailblazerManager();
+                        $trailblazerManager->updateRole($id, $roleUser);
+                        $this->redirectTo("admin", "trailblazerList");
+                    } else {
+                        $this->redirectTo("security", "viewProfile");
+                    }
+
+                }
+            }
         }
         
 

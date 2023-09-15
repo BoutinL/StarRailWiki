@@ -89,8 +89,8 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <span class="text-modal">Change the role : </span>
-            <form id='updateRole' action="index.php?ctrl=admin&action=updateRole&id=<?= $id ?>" method="POST">
+            <span id="spanName" class="text-modal">Change the role : </span>
+            <form id='updateRole' action="index.php?ctrl=admin&action=updateRoleConfirm&id=<?= $id ?>" method="POST">
                 <label class="text-modal">Member
                     <input type='radio' id='updateRoleMember' name='roleUser' value='ROLE_MEMBER' required/>
                 </label>
@@ -107,10 +107,13 @@
 </div>
 <script>
     // Get the modal
-    var modal = document.getElementById("myModal");
+    let modal = document.getElementById("myModal");
+
+    // Get form
+    let form = document.getElementById("updateRole");
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    let span = document.getElementsByClassName("close")[0];
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
@@ -125,8 +128,8 @@
     }
 
     function reply_click($idUser)
-    {
+    {   
         modal.style.display = "block";
-        $id = $idUser;
+        form.action="index.php?ctrl=admin&action=updateRoleConfirm&id="+$idUser;
     }
 </script> 

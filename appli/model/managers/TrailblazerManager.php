@@ -40,15 +40,15 @@ class TrailblazerManager extends Manager
         );
     }
 
-    public function retrievePassword($email)
-    {
-        $sql = "SELECT t.password
-        FROM " . $this->tableName . " t
-        WHERE email = :email";
-        return $this->getSingleScalarResult(
-            DAO::select($sql, ['email' => $email], false),
-            $this->className
-        );
+    public function updateRole($id, $roleUser){
+        $sql = "UPDATE ".$this->tableName." 
+        SET role = :roleUser
+        WHERE id_".$this->tableName." = :id";
+        
+        DAO::update($sql, [
+                    'id' => $id,
+                    'roleUser' => $roleUser
+                ]);  
     }
     
     public function getUsersNbr(){
@@ -83,7 +83,7 @@ class TrailblazerManager extends Manager
     }
 
     public function modifyPassword($id, $passwordHash){
-        // combatType_id = :combatType / 'combatType' => $combatType,
+
         $sql = "UPDATE ".$this->tableName." 
                 SET password = :passwordHash
                 WHERE id_".$this->tableName." = :id";
