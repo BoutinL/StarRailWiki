@@ -567,7 +567,7 @@ CREATE TABLE IF NOT EXISTS `trace` (
   CONSTRAINT `FK-trace_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.trace : ~0 rows (environ)
+-- Listage des données de la table srw_loic.trace : ~13 rows (environ)
 INSERT INTO `trace` (`id_trace`, `name`, `effect`, `icon`, `ascend_id`, `playableCharacter_id`) VALUES
 	(1, 'DMG Boost: Wind', 'Wind DMG increases by 3.2%', NULL, 1, 5),
 	(2, ' Hidden Dragon', 'When current HP percentage is 50% or lower, reduces the chance of being attacked by enemies.', NULL, 3, 5),
@@ -594,7 +594,7 @@ CREATE TABLE IF NOT EXISTS `trailblazer` (
   PRIMARY KEY (`id_trailblazer`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.trailblazer : ~0 rows (environ)
+-- Listage des données de la table srw_loic.trailblazer : ~12 rows (environ)
 INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `dateRegister`, `role`) VALUES
 	(1, 'admin@admin.fr', 'admin', '$2y$10$JtompmQllYSqNPQa0D1lCuDiCLDXBORQJf4gU8o2sPWgPP9RNbDta', '2023-09-12 15:17:57', 'ROLE_ADMIN'),
 	(2, 'user@user.fr', 'user', '$2y$10$YY8W2JZrK6UckS4oxKfYQOsxUzOhHXnoEVXh.4Nk4ENiu210Q7z26', '2023-09-12 15:21:09', 'ROLE_MEMBER'),
@@ -607,7 +607,7 @@ INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `d
 	(9, 'user7@user.fr', 'user7', '$2y$10$dwmFHzgNz.f3wUV2UK9hlOIaZ.koLE9S6vyEVRMk2WWvagEZmNDK6', '2023-09-13 10:03:13', 'ROLE_MEMBER'),
 	(10, 'user8@user.fr', 'user8', '$2y$10$rmp9OW6SWf.nyQ8F4lkY3ODrvxsbFwlLogCWDaXgh2EVzHgcXWNRW', '2023-09-13 10:03:32', 'ROLE_MEMBER'),
 	(11, 'user9@user.fr', 'user9', '$2y$10$ZZglVekhPveINd7M85LntuM7TRChrS16dJ5G1iPiahBBCCJJQj5PO', '2023-09-13 10:03:58', 'ROLE_MEMBER'),
-	(12, 'user10@user.fr', 'user10', '$2y$10$ikZS4vNOjxRcVru8yNUs7.VCNAxsMNF3z4./lOZRlGExEHouHgDSS', '2023-09-13 10:04:20', 'ROLE_MEMBER');
+	(12, 'user10@user.fr', 'user10', '$2y$10$ikZS4vNOjxRcVru8yNUs7.VCNAxsMNF3z4./lOZRlGExEHouHgDSS', '2023-09-13 10:04:20', 'ROLE_BAN');
 
 -- Listage de la structure de table srw_loic. typeability
 CREATE TABLE IF NOT EXISTS `typeability` (
