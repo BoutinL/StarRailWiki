@@ -10,7 +10,7 @@
         </label>
         <label for="password">
             <b>Password</b>
-            <input type="password" id="password" name="password" placeholder="password" maxlength="255" required />
+            <input type="password" id="password" name="password" placeholder="Minimum 10 characters, at least one letter and one number" maxlength="255" required />
         </label>
         <input class="button" type="submit" value="Login" name="submitLogin" />
     </form>

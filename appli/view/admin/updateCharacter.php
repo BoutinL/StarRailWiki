@@ -139,7 +139,7 @@
                         <textarea rows="10" name="introduction" id="introduction" placeholder="Something about the character"><?php  echo $playableCharacter->getIntroduction(); ?></textarea>
                     </div>
                 </form>
-                <input class="add-submit" type="submit" form="updateCharacter" name="submit" value="Update <?= $playableCharacter->getName(); ?>">
+                <input class="button" type="submit" form="updateCharacter" name="submit" value="Update <?= $playableCharacter->getName(); ?>">
             </div>
         <?php endif; } ?>
 </div>

@@ -2,10 +2,6 @@
     margin: 2rem;
 }
 
-section{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
 
 h1, h2{
     font-size: 1.5rem;
@@ -15,13 +11,14 @@ h1, h2{
 }
 
 p{
-    margin: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 strong{
     font-size: 1rem;
 }
-a{
+.link{
     text-decoration: none;
     background: -webkit-linear-gradient(#3a7bc0, #e9cf9a);
     -webkit-background-clip: text;

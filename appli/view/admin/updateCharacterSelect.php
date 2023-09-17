@@ -55,7 +55,7 @@
                             }
                         ?>
                     </select>
-                    <input class="update-submit" type="submit" form="updateCharacterSelect" name="submit" value="Select">
+                    <input class="button" type="submit" form="updateCharacterSelect" name="submit" value="Select">
                 </form>
             </div>
         <?php endif; 

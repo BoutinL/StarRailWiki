@@ -84,7 +84,7 @@
                         <input type="text" name="image-urlEidolon" id="image-urlEidolon" placeholder="https://star-rail-image-url.png">
                     </div>
                 </form>
-                <input class="add-submit" type="submit" form="addAscendEidolon" name="submitEidolon" value="Add that new Eidolon to a character">
+                <input class="button" type="submit" form="addAscendEidolon" name="submitEidolon" value="Add that new Eidolon to a character">
             </div>
         <?php endif; 
     } ?>

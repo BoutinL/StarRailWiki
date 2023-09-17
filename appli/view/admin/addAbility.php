@@ -63,7 +63,7 @@
                         <label for="name">Name :</label>
                         <input type="text" name="name" id="name" placeholder="Enter Ability name" required>
 
-                        <label for="description">description :</label>
+                        <label for="description">Description :</label>
                         <textarea rows="10" name="description" id="description" placeholder="What's the effect of that ability" required></textarea>
 
                         <label for="typeAbility">Ability Type :</label>
@@ -104,7 +104,7 @@
                         <input type="text" name="image-url" id="image-url" placeholder="https://star-rail-image-url.png">
                     </div>
                 </form>
-                <input class="add-submit" type="submit" form="addAbility" name="submit" value="Add that new ability to a character">
+                <input class="add-submit button" type="submit" form="addAbility" name="submit" value="Add that new ability to a character">
             </div>
         <?php endif; 
     } ?>

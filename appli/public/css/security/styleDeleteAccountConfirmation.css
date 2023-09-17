@@ -62,7 +62,7 @@ nav > ul li:hover .sous{
     border-radius: 30px;
 }
 
-/* View profile for Admin / Users */
+/* View for Admin / Users */
 
 .content{
     background-color: rgb(36, 36, 36);
@@ -119,7 +119,7 @@ nav > ul li:hover .sous{
     justify-content: space-around;
 }
 
-span{
+.main-text{
     font-size: 1.5rem;
 }
 
@@ -127,6 +127,7 @@ span{
     font-size: 1rem;
     color: #494949;
     margin-bottom: 1rem;
+    
 }
 
 /* error msg */

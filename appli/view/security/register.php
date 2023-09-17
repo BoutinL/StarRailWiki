@@ -6,11 +6,11 @@
     <form class="form-content" action="index.php?ctrl=security&action=register" method="POST">
             <label for="username">
                 <b>Username</b>
-                <input type="text" id="username" placeholder="Enter username" name="username" required>
+                <input type="text" id="username" placeholder="Your own username" name="username" required>
             </label>
             <label for="email">
                 <b>Email</b>
-                <input type="email" id="email" placeholder="Enter email" name="email" required>
+                <input type="email" id="email" placeholder="exemple@exemple.com" name="email" required>
             </label>
             <label for="password">
                 <b>Password</b>
@@ -20,6 +20,6 @@
                 <b>Confirm password</b>
                 <input type="password" id="confirmPassword" placeholder="Write the same password once again" name="confirmPassword" required>
             </label>
-            <input type="submit" id='submit' value="Register" name="submitRegister">
+            <input class="button" type="submit" id='submit' value="Register" name="submitRegister">
     </form>
 </div>

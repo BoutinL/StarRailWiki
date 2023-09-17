@@ -129,7 +129,21 @@ input, textarea, select{
 .select-input{
     width: 50%;
 }
-.add-submit, .update-submit{
-    width: 20%; 
+
+.button {
+    display: inline-block;
+    width: 15%;
+    padding: 1rem;
+    background-color: #7c7c7c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #9e9e9e;
 }

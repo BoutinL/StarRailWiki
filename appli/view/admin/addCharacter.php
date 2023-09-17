@@ -113,7 +113,7 @@
                         <textarea rows="10" type="text" name="introduction" id="introduction" placeholder="Something about the character"></textarea>
                     </div>
                 </form>
-                <input class="add-submit" type="submit" form="addCharacter" name="submit" value="Add the new character to the list">
+                <input class="button" type="submit" form="addCharacter" name="submit" value="Add the new character to the list">
             </div>
         <?php endif; } ?>
 </div>

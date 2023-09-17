@@ -2,7 +2,7 @@
 .nav-admin{
     width: 100%;
     margin: 0 auto;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
 }
@@ -74,7 +74,7 @@ nav > ul li:hover .sous{
 .userlist-container{
     width: 100%;
     background-color: rgb(36, 36, 36);
-    min-height: 50vh;
+    min-height: 65vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,20 +82,57 @@ nav > ul li:hover .sous{
 
 .table-profile{
     border-collapse: collapse;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    
 }
 
-td, tr, th{
-    border-radius: 30px;
+td, th{
     border: 2px solid #4e4e4e;
-    padding: 0.5rem;
-    width: 12%;
+    padding: 1rem;
 }
 
 .banned{
     color: rgb(255, 34, 34);
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.5rem;
+    background-color: #7c7c7c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #f07b38;
+} 
+
+.button-delete {
+    display: inline-block;
+    padding: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    background-color: #b11515;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 5.5rem;
+}
+
+.button-delete:hover {
+    background-color: #e91717;
 }
 
 /* pagination */
@@ -138,6 +175,7 @@ td, tr, th{
     color:#e9cf9a !important;
 }
 
+
 /* Modal */
 
 /* The Modal (background) */
@@ -157,17 +195,31 @@ td, tr, th{
 
 /* Modal Content */
 .modal-content {
-    background-color: #fefefe;
+    background-color: #dfdfdf;
     margin: auto;
     padding: 1rem;
     border: 1px solid #888;
     width: 30%;
 }
 
+form{
+    display: flex;
+    justify-content: space-evenly   ;
+}
+
+.input-box{
+    display: inline ;
+}
+label{
+    display: flex;
+    flex-direction: column;
+}
 .text-modal{
     color: #000;
 }
+
 /* The Close Button */
+
 .close {
     color: #aaaaaa;
     float: right;

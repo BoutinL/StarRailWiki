@@ -107,7 +107,7 @@
                         <input type="text" name="image-url" value="<?php  echo $ability->getIcon(); ?>" id="image-url" placeholder="https://star-rail-image-url.png">
                     </div>
                 </form>
-                <input class="add-submit" type="submit" form="updateAbility" name="submit" value="Update">
+                <input class="button" type="submit" form="updateAbility" name="submit" value="Update">
             </div>
         <?php endif; } ?>
 </div>

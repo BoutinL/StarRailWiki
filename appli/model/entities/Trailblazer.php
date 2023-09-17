@@ -84,6 +84,14 @@ final class Trailblazer extends Entity
         $this->dateRegister = $dateRegister;
     }
 
+    // Anti-slash pour faire référence non à une classe mais à la fonction native
+    public function getDateRegisterFormat()
+    {
+            $date = new \DateTime($this->dateRegister);
+            return $date->format("d-m-Y");
+    }
+
+
     public function hasRole($role)
     {
         if ($role == $this->role) {

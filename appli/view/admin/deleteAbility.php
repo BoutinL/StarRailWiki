@@ -55,7 +55,7 @@
                             }
                         ?>
                     </select>
-                    <input class="add-submit" type="submit" form="deleteAbility" name="submit" value="Delete">
+                    <input class="button" type="submit" form="deleteAbility" name="submit" value="Delete">
                 </form>
             </div>
         <?php endif; 

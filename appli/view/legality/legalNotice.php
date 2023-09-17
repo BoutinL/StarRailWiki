@@ -4,9 +4,7 @@
 <div class="content">
     <h1>Legal Notice</h1>
 
-    <p><strong>Website Owner:</strong> [Your Name or Organization]</p>
-    <p><strong>Address:</strong> [Your Address]</p>
-    <p><strong>Email:</strong> <a href="mailto:srw@mail.com">srw@mail.com</a></p>
+    <p><strong>Email:</strong> <a class="link" href="mailto:srw@mail.com">srw@mail.com</a></p>
 
     <p><strong>Purpose of the Website:</strong> The website <strong>Star Rail Wiki</strong> is an educational wiki dedicated to providing information, resources, and content related to Honkai Star Rail, a property owned by miHoYo or Hoyoverse. Our primary objective is to promote learning and knowledge sharing within this domain.</p>
 
@@ -18,9 +16,9 @@
 
     <p><strong>External Links:</strong> This website may contain links to other websites. We are not responsible for the content or privacy policies of these third-party sites.</p>
 
-    <p><strong>Data Collection:</strong> We may collect personal information, such as email addresses, only with the consent of users. We are committed to safeguarding the privacy of our visitors in accordance with our <a href="privacy-policy.html">privacy policy</a>.</p>
+    <p><strong>Data Collection:</strong> We may collect personal information, such as email addresses, only with the consent of users. We are committed to safeguarding the privacy of our visitors in accordance with our <a class="link" href="privacy-policy.html">privacy policy</a>.</p>
 
-    <p><strong>Contact:</strong> If you have any questions regarding this legal notice or our website, please contact us at <a href="mailto:srw@mail.com">srw@mail.com</a>.</p>
+    <p><strong>Contact:</strong> If you have any questions regarding this legal notice or our website, please contact us at <a class="link" href="mailto:srw@mail.com">srw@mail.com</a>.</p>
 
     <p>This legal notice was last updated on 16/09/2023.</p>
 </div>

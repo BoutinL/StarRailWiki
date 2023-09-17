@@ -84,7 +84,7 @@
                         <input type="text" name="imageUrlTrace" value="<?= $trace->getIcon(); ?>" id="imageUrlTrace" placeholder="https://star-rail-image-url.png">
                     </div>
                 </form>
-                <input class="add-submit" type="submit" form="updateTrace" name="submitTrace" value="Update <?= $trace->getName(); ?>">
+                <input class="button" type="submit" form="updateTrace" name="submitTrace" value="Update <?= $trace->getName(); ?>">
             </div>
         <?php endif; 
     } ?>

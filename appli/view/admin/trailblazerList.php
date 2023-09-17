@@ -51,16 +51,16 @@
                     <th>Username</th>
                     <th>Email</th>
                     <th>DateRegister</th>
-                    <th>Role</th>
+                    <th>State</th>
                 </tr>
                 <?php foreach ($trailblazerList as $trailblazer){ ?>
                     <tr>
-                        <td class="center"><?= $trailblazer->getId() ?></td>
-                        <td class="center"><?= $trailblazer->getUsername() ?></td>
-                        <td class="center"><?= $trailblazer->getEmail() ?></td>
-                        <td class="center"><?= $trailblazer->getDateRegister() ?></td>
-                        <td class="center <?= ($trailblazer->getRole() == 'ROLE_BAN') ? 'banned' : ''; ?>"><?= $trailblazer->getRole() ?><button onClick="reply_click(<?= $trailblazer->getId() ?>)" id="modifyRoleBtn">Modify</button></td>
-                        <td class="center"><a href="index.php?ctrl=admin&action=deleteUser&id=<?= $trailblazer->getId() ?>">Delete</a></td>
+                        <td><?= $trailblazer->getId() ?></td>
+                        <td><?= $trailblazer->getUsername() ?></td>
+                        <td><?= $trailblazer->getEmail() ?></td>
+                        <td><?= $trailblazer->getDateRegisterFormat() ?></td>
+                        <td class="column <?= ($trailblazer->getRole() == 'ROLE_BAN') ? 'banned' : ''; ?>"><?= $trailblazer->getRole() ?><button class="button" onClick="reply_click(<?= $trailblazer->getId() ?>)" id="modifyRoleBtn">Modify</button></td>
+                        <td><a class="button-delete" href="index.php?ctrl=admin&action=deleteUser&id=<?= $trailblazer->getId() ?>">Delete</a></td>
                     </tr>
                     <?php } ?>   
                 </table>
@@ -91,16 +91,18 @@
             <span class="close">&times;</span>
             <span id="spanName" class="text-modal">Change the role : </span>
             <form id='updateRole' action="index.php?ctrl=admin&action=updateRoleConfirm&id=<?= $id ?>" method="POST">
-                <label class="text-modal">Member
-                    <input type='radio' id='updateRoleMember' name='roleUser' value='ROLE_MEMBER' required/>
-                </label>
-                <label class="text-modal">Admin
-                    <input type='radio' id='updateRoleAdmin' name='roleUser' value='ROLE_ADMIN' required/>
-                </label>
-                <label class="text-modal">Ban
-                    <input type='radio' id='updateRoleBan' name='roleUser' value='ROLE_BAN' required/>
-                </label>
-                <input class="add-submit" type="submit" form="updateRole" name="updateRole" value="Confirm">
+                <div class="input-box">
+                    <label class="text-modal">Member
+                        <input type='radio' id='updateRoleMember' name='roleUser' value='ROLE_MEMBER' required/>
+                    </label>
+                    <label class="text-modal">Admin
+                        <input type='radio' id='updateRoleAdmin' name='roleUser' value='ROLE_ADMIN' required/>
+                    </label>
+                    <label class="text-modal">Ban
+                        <input type='radio' id='updateRoleBan' name='roleUser' value='ROLE_BAN' required/>
+                    </label>
+                </div>
+                <input class="button" type="submit" form="updateRole" name="updateRole" value="Confirm">
             </form>
         </div>
     </div>

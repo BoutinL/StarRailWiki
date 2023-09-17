@@ -69,40 +69,51 @@ class HomeController extends AbstractController implements ControllerInterface
 
     public function login()
     {
-        $trailblazerManager = new TrailblazerManager();
+    $trailblazerManager = new TrailblazerManager();
 
-        if (isset($_POST['submitLogin'])) {
-            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
-            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            if ($email && $password) {
-                $dbUser = $trailblazerManager->findOneByEmail($email);
-                // If role = Ban unset session
-                $ban = 'ROLE_BAN';
+    if (isset($_POST['submitLogin'])) {
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
+        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if ($email && $password) {
+            $dbUser = $trailblazerManager->findOneByEmail($email);
+            // If role = Ban unset session
+            $ban = 'ROLE_BAN';
+            // Verify if object
+            if ($dbUser && is_object($dbUser)) {
                 $role = $dbUser->getRole();
-                if ($dbUser && password_verify($password, $dbUser->getPassword()) && $role !== $ban) {
+                
+                if (password_verify($password, $dbUser->getPassword()) && $role !== $ban) {
                     // if correct password do that
                     Session::setUser($dbUser);
                     $this->redirectTo('wiki', 'playableCharacterList');
-                } else if($dbUser && password_verify($password, $dbUser->getPassword()) && $role == $ban) {
+                } elseif (password_verify($password, $dbUser->getPassword()) && $role == $ban) {
                     $trailblazer = null;
                     Session::setUser($trailblazer);
                     $categ = 'error';
-                    $msg ="Your account have been banned" ;
+                    $msg = "Your account has been banned";
                     Session::addFlash($categ, $msg);
                     $this->redirectTo('home', 'index');
                 } else {
                     $categ = 'error';
-                    $msg ="Your email or password is wrong" ;
+                    $msg = "Your email or password is wrong";
                     Session::addFlash($categ, $msg);
                     $this->redirectTo('security', 'login');
                 }
+            } else {
+                // Gérer le cas où $dbUser n'est pas un objet (non trouvé)
+                $categ = 'error';
+                $msg = "User not found";
+                Session::addFlash($categ, $msg);
+                $this->redirectTo('security', 'login');
             }
         }
-        return [
-            "view" => VIEW_DIR . "security/login.php",
-            "data" => []
-        ];
     }
+    return [
+        "view" => VIEW_DIR . "security/login.php",
+        "data" => []
+    ];
+}
+
     
     public function viewProfile()
     {
