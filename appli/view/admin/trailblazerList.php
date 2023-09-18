@@ -107,7 +107,7 @@
         </div>
     </div>
 </div>
-<!--  Modal  -->
+<!--  Modal delete confirmation  -->
 <div id="modalDelete" class="modal">
     <div class="modal-content">
         <span class="closeDelete">&times;</span>

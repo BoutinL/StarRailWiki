@@ -6,15 +6,16 @@ use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\PathManager;
+use Model\Managers\TraceManager;
 use Model\Managers\AscendManager;
 use Model\Managers\AbilityManager;
+use Model\Managers\EidolonManager;
 use Model\Managers\CombatTypeManager;
 use Model\Managers\TagAbilityManager;
 use Model\Managers\TrailblazerManager;
 use Model\Managers\TypeAbilityManager;
 use Model\Managers\PlayableCharacterManager;
-use Model\Managers\EidolonManager;
-use Model\Managers\TraceManager;
+use Model\Managers\CommentManager;
 
     class AdminController extends AbstractController implements ControllerInterface{
 
@@ -97,6 +98,16 @@ use Model\Managers\TraceManager;
             }
         }
         
+        public function deleteComment($id){
+            $this->restrictTo("ROLE_ADMIN");
+            
+            $commentManager = new CommentManager();
+            $comment = $commentManager->findOneById($id);
+
+            $commentManager->deleteComment($id);
+
+            $this->redirectTo("wiki", "reviewPlayableCharacter", $comment->getPlayableCharacter()->getId());
+        }
 
         // CRUD Character
 

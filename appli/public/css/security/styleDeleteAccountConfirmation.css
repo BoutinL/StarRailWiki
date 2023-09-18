@@ -74,7 +74,9 @@ nav > ul li:hover .sous{
     min-height: 38vh;
     justify-content: center;
     align-items: center;
-    margin: 2rem;}
+    margin: 2rem;
+    padding: 2rem;
+}
 
 .account-option a.button {
     display: inline-block;
@@ -112,11 +114,11 @@ nav > ul li:hover .sous{
     background-color: #e91717; /* Couleur de fond au survol */
 }
 
-/* Centrer les liens verticalement et horizontalement */
 .account-option {
     width: 30%;
     display: flex;
     justify-content: space-around;
+
 }
 
 .main-text{

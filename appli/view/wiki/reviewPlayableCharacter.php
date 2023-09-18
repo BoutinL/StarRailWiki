@@ -50,26 +50,55 @@
                             </ul>
                         </div>
                         <?php foreach($commentPlayableCharacter as $comment){
+
+
+                            // If comment from a deleted user
                             if($comment->getTrailblazer() == null){
-                                echo "<div class='container-comment'>";
-                                    echo "<span>Deleted user</span>";
-                                    echo "<span> ".$comment->getDateCreateFormat()."</span>";
-                                    echo "<p class='comment-text'> ".$comment->getText()."</p>";
+                                echo "<div class='container-comment'>
+                                    <span>Deleted user</span>
+                                    <span> ".$comment->getDateCreateFormat()."</span>";
+                                if(App\Session::isAdmin()){ 
+                                    echo "<i class='fa-solid fa-xmark' onClick='reply_click_delete(".$comment->getId().")' style='color: #e31616;'></i>";
+                                }
+                                echo "<p class='comment-text'> ".$comment->getText()."</p>
+                                    </div>";
+                            } else {
+                                echo "<div class='container-comment'>
+                                    <span> ".$comment->getTrailblazer()->getUsername()."</span>";
                                     if(App\Session::isAdmin()){
-                                        echo "<div class='admin-box'>
-                                            <i class='fa-solid fa-xmark' style='color: #e31616;'></i>
-                                            <i class='fa-solid fa-ban' style='color: #e31616;'></i>
-                                        </div>";
+                                        echo "<i class='fa-solid fa-ban' onClick='reply_click(".$comment->getTrailblazer()->getId().", ".$comment->getPlayableCharacter()->getId().")' style='color: #e31616;'></i>";
                                     }
-                                echo "</div>";
-                            }else{
-                                echo "<div class='container-comment'>";
-                                    echo "<span> ".$comment->getTrailblazer()->getUsername()."</span>";
                                     echo "<span> ".$comment->getDateCreateFormat()."</span>";
-                                    echo "<p class='comment-text'> ".$comment->getText()."</p>";
-                                echo "</div>";
+                                    if(App\Session::isAdmin()){
+                                        echo "<i class='fa-solid fa-xmark' onClick='reply_click_delete(".$comment->getId().")' style='color: #e31616;'></i>";
+                                    }
+                                    echo "<p class='comment-text'> ".$comment->getText()."</p>
+                                </div>";
+                                // Modal change role confirmation
+                                echo '<div id="myModal" class="modal">
+                                    <div class="modal-content">
+                                        <span class="close">&times;</span>
+                                        <span id="spanName" class="text-modal">Change the role : </span>
+                                        <form id="updateRole" action="index.php?ctrl=admin&action=updateRoleConfirm&id='.$comment->getTrailblazer()->getId().'" method="POST">
+                                            <div class="input-box">
+                                                <label class="text-modal">Member
+                                                    <input type="radio" id="updateRoleMember" name="roleUser" value="ROLE_MEMBER" required/>
+                                                </label>
+                                                <label class="text-modal">Ban
+                                                    <input type="radio" id="updateRoleBan" name="roleUser" value="ROLE_BAN" required/>
+                                                </label>
+                                            </div>
+                                            <div class="confirm-box">
+                                                <input class="button-delete" type="submit" form="updateRole" name="updateRole" value="Confirm">
+                                                <a class="button-cancel" href="index.php?ctrl=wiki&action=reviewPlayableCharacter&id='.$playableCharacter->getId().'">Cancel</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>';
                             }
                         }
+
+
                     // If theres no data, display that
                     } else { 
                         echo "<div class='container-error-msg'>
@@ -83,6 +112,8 @@
             </div>
         </div>
         <div class="rating-box">
+
+
             <!-- If user connected and he hasnt rate that character yet display form to rate -->
             <?php if(App\Session::getUser() && !$rateUser){ ?>
                 <form class="form-rate" id="addRate" action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
@@ -91,17 +122,20 @@
                         <?php
                             for($rate = 1; $rate <= 5; $rate++){
                                 echo "
-                                <label class='input-radio-container' for='rate'>
+                                <label class='input-radio-container'>
                                     ".$rate." star
                                     <input type='radio' id='".$rate."' name='rate' value='".$rate."' required/>
                                 </label>
                                 ";
                             }
+                            
                         ?>
                     </fieldset>
                     <input class="submit-btn <?= $playableCharacter->combatTypeCssHover() ?>" type="submit" name="submitRate" value="Submit">
                 </form>
-            <!-- If user connected has already rate that character show the update form -->
+
+
+            <!-- If a connected user has already rate that character -> show the update form -->
             <?php } else if(App\Session::getUser() && $rateUser){
                 echo "<form class='form-rate' id='submitUpdateRate' action='index.php?ctrl=wiki&action=updateRate&id=".$playableCharacter->getId()."' method='POST'>
                     <fieldset class='field-rate'>
@@ -128,7 +162,9 @@
                     } ?>
                 </div>
                 <span class="rate-nbr"><?= $statsRate["nbrOfRating"] ?>  people voted</span>
-            <!-- If theres no rate, display error msg -->
+            
+            
+                <!-- If theres no rate, display error msg -->
             <?php } else {
                 echo "<div class='container-error-msg'>";
                     echo "<figure class='container-msg-emote'>
@@ -139,4 +175,66 @@
             } ?>
         </div>
     </div>
-</div> 
+</div>
+
+
+<!--  Modal delete confirmation  -->
+<div id="modalDelete" class="modal">
+    <div class="modal-content">
+        <span id="spanDelete" class="closeDelete">&times;</span>
+        <span id="spanName" class="text-modal">Do you really want to delete that comment ?</span>
+        <div class="confirm-box">
+            <!-- href= completed by js -->
+            <a class="button-delete-confirm" href="">Delete</a>
+            <a class="button-cancel" href="index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>">Cancel</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // modal for delete
+    let modalDelete = document.getElementById("modalDelete");
+    let spanDelete = document.getElementById("spanDelete");
+    
+    spanDelete.onclick = function() {
+        modalDelete.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modalDelete) {
+            modalDelete.style.display = "none";
+        }
+    }
+    
+    function reply_click_delete(idUser)
+    {   
+        modalDelete.style.display = "block";
+        
+        let buttonDeleteConfirm = document.querySelector(".button-delete-confirm");
+
+        buttonDeleteConfirm.href = "index.php?ctrl=admin&action=deleteComment&id="+idUser;
+    }
+
+
+    // Modal ban
+    let modal = document.getElementById("myModal");
+    // Get 
+    let form = document.getElementById("updateRole");
+    // Get the <span> element that closes the modal
+    let span = document.getElementsByClassName("close")[0];
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    function reply_click(id, idPlayableCharacter)
+    {   
+        modal.style.display = "block";
+
+        form.action="index.php?ctrl=admin&action=updateRoleConfirm&id="+id;
+    }
+</script> 
