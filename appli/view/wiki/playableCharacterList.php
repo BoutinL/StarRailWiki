@@ -8,24 +8,24 @@
 <div class="content">
     <form class="order-list" id="orderList" action="index.php?ctrl=wiki&action=orderBy" method="POST">
         <section class="order-combatType">
-            <label class="tall-font" for="combatType">Combat Type</label>
+            <label class="tall-font">Combat Type</label>
             <?php 
                 foreach($combatTypeList as $combatType){
                     $id = $combatType->getId();
                     $name = $combatType->getType();
                     echo "<span>$name</span>";
-                    echo "<input type='radio' id='combatType' name='idCombatType' value='$id' required/>";
+                    echo "<input type='radio' id='combatType".$id."' name='idCombatType' value='$id' required/>";
                 }
             ?>  
         </section>
         <section class="order-path">
-            <label class="tall-font" for="path">Path</label>
+            <label class="tall-font">Path</label>
             <?php 
                 foreach($pathList as $path){
                     $id = $path->getId();
                     $name = $path->getType();
                     echo "<span>$name</span>";
-                    echo "<input type='radio' id='path' name='idPath' value='$id' required/>";
+                    echo "<input type='radio' id='path".$id."' name='idPath' value='$id' required/>";
                 }
             ?>  
         </section>

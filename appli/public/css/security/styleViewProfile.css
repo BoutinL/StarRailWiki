@@ -130,8 +130,9 @@ td, tr, th{
 
 /* Centrer les liens verticalement et horizontalement */
 .account-option {
-    width: 20%;
+    width: 55%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
 }
 

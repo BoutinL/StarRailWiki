@@ -60,7 +60,7 @@
                         <td><?= $trailblazer->getEmail() ?></td>
                         <td><?= $trailblazer->getDateRegisterFormat() ?></td>
                         <td class="column <?= ($trailblazer->getRole() == 'ROLE_BAN') ? 'banned' : ''; ?>"><?= $trailblazer->getRole() ?><button class="button" onClick="reply_click(<?= $trailblazer->getId() ?>)" id="modifyRoleBtn">Modify</button></td>
-                        <td><a class="button-delete" href="index.php?ctrl=admin&action=deleteUser&id=<?= $trailblazer->getId() ?>">Delete</a></td>
+                        <td><a class="button-delete" onClick="reply_click_delete(<?= $trailblazer->getId() ?> , '<?= $trailblazer->getUsername() ?>' )" id="deleteProfileBtn">Delete</a></td>
                     </tr>
                     <?php } ?>   
                 </table>
@@ -107,31 +107,63 @@
         </div>
     </div>
 </div>
+<!--  Modal  -->
+<div id="modalDelete" class="modal">
+    <div class="modal-content">
+        <span class="closeDelete">&times;</span>
+        <span id="spanName" class="text-modal">Do you really want to delete </span><span class='username text-modal'></span>
+        <div class="confirm-box">
+            <a class="button-delete-confirm" href="">Delete</a>
+            <a class="button-cancel" href="index.php?ctrl=admin&action=trailblazerList">Cancel</a>
+        </div>
+    </div>
+</div>
+</div>
+
 <script>
     // Get the modal
     let modal = document.getElementById("myModal");
-
-    // Get form
+    // Get 
     let form = document.getElementById("updateRole");
-
     // Get the <span> element that closes the modal
     let span = document.getElementsByClassName("close")[0];
-
+    let spanDelete = document.getElementsByClassName("closeDelete")[0];
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
     }
-
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
-
-    function reply_click($idUser)
+    function reply_click(idUser)
     {   
         modal.style.display = "block";
-        form.action="index.php?ctrl=admin&action=updateRoleConfirm&id="+$idUser;
+        form.action="index.php?ctrl=admin&action=updateRoleConfirm&id="+idUser;
+    }
+    
+    // Second modal for delete
+    let modalDelete = document.getElementById("modalDelete");
+    
+    spanDelete.onclick = function() {
+        modalDelete.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modalDelete) {
+            modalDelete.style.display = "none";
+        }
+    }
+    
+    function reply_click_delete(idUser, username)
+    {   
+        modalDelete.style.display = "block";
+        
+        let buttonDeleteConfirm = document.querySelector(".button-delete-confirm");
+        let usernameText = modalDelete.querySelector(".username")
+        usernameText.innerHTML = username
+
+        buttonDeleteConfirm.href = "index.php?ctrl=admin&action=deleteProfile&id="+idUser;
     }
 </script> 

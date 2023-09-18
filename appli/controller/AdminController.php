@@ -65,27 +65,15 @@ use Model\Managers\TraceManager;
             ];
         }
 
-        public function deleteUser($id){
-            $this->restrictTo("ROLE_ADMIN");
-        }
-
-
-
-
-        
-        public function updateRole($id){
+        public function deleteProfile($id){
             $this->restrictTo("ROLE_ADMIN");
 
-            $trailblazerManager = new TrailblazerManager();
+            $trailblazerManager = new TrailblazerManager;
 
-            $trailblazer = $trailblazerManager->findOneById($id);
+            $trailblazerManager->deleteProfile($id);
 
-            return [
-                "view" => VIEW_DIR."admin/updateRole.php",
-                "data" => [
-                    "trailblazer" => $trailblazer
-                ]
-            ];
+            $this->redirectTo("admin","trailblazerList");
+
         }
 
         public function updateRoleConfirm($id){

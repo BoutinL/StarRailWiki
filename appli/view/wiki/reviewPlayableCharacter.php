@@ -77,26 +77,8 @@
             </div>
         </div>
         <div class="rating-box">
-            <!-- Display  rate if the character have at least one-->
-            <?php if($statsRate["nbrOfRating"] != 0) { ?>
-                <span class="rate-size title-rating"><?= $playableCharacter->getName() ?>'s rating</span>
-                <div class="rate-star-box">
-                    <?php for ($i = 0; $i < $statsRate["finalRate"]; $i++) {
-                        echo '<img class="rate-size rate-img" src="/StarRailWiki/appli/public/img/rate_star.png" alt="rate-level">';
-                    } ?>
-                </div>
-                <span class="rate-nbr"><?= $statsRate["nbrOfRating"] ?>  people voted</span>
-            <!-- If theres no rate, display error msg -->
-            <?php } else {
-                echo "<div class='container-error-msg'>";
-                    echo "<figure class='container-msg-emote'>
-                            <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/gepard-ashamed.webp' alt='emote gepard shame' />
-                        </figure>";
-                    echo "<p class='error-msg'>There's no rating yet... </p>"; 
-                echo "</div>";
-            } 
-            // If user connected and he hasnt rate that character yet display form to rate
-            if(App\Session::getUser() && !$rateUser){ ?>
+            <!-- If user connected and he hasnt rate that character yet display form to rate -->
+            <?php if(App\Session::getUser() && !$rateUser){ ?>
                 <form class="form-rate" id="addRate" action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
                     <fieldset class="field-rate">
                         <legend class="title-rating"> Rate <?= $playableCharacter->getName() ?> </legend>
@@ -130,8 +112,24 @@
                             echo "</label>";
                         }
                     echo "</fieldset>
-                    <input class='submit-btn ".$playableCharacter->combatTypeCssHover()."' type='submit' name='submitUpdateRate' value='Submit'>
+                    <input class='submit-btn ".$playableCharacter->combatTypeCssHover()."' type='submit' name='submitUpdateRate' value='Modify'>
                 </form>";
+            } 
+            if($statsRate["nbrOfRating"] != 0) { ?>
+                <div class="rate-star-box">
+                    <?php for ($i = 0; $i < $statsRate["finalRate"]; $i++) {
+                        echo '<img class="rate-size rate-img" src="/StarRailWiki/appli/public/img/rate_star.png" alt="rate-level">';
+                    } ?>
+                </div>
+                <span class="rate-nbr"><?= $statsRate["nbrOfRating"] ?>  people voted</span>
+            <!-- If theres no rate, display error msg -->
+            <?php } else {
+                echo "<div class='container-error-msg'>";
+                    echo "<figure class='container-msg-emote'>
+                            <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/gepard-ashamed.webp' alt='emote gepard shame' />
+                        </figure>";
+                    echo "<p class='error-msg'>There's no rating yet... </p>"; 
+                echo "</div>";
             } ?>
         </div>
     </div>
