@@ -55,6 +55,12 @@
                                     echo "<span>Deleted user</span>";
                                     echo "<span> ".$comment->getDateCreateFormat()."</span>";
                                     echo "<p class='comment-text'> ".$comment->getText()."</p>";
+                                    if(App\Session::isAdmin()){
+                                        echo "<div class='admin-box'>
+                                            <i class='fa-solid fa-xmark' style='color: #e31616;'></i>
+                                            <i class='fa-solid fa-ban' style='color: #e31616;'></i>
+                                        </div>";
+                                    }
                                 echo "</div>";
                             }else{
                                 echo "<div class='container-comment'>";
