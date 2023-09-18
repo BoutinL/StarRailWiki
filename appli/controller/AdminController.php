@@ -98,16 +98,47 @@ use Model\Managers\CommentManager;
             }
         }
         
+        // A MODIFIER 
+        // A MODIFIER 
+        // A MODIFIER 
+        // A MODIFIER 
+        // A MODIFIER 
+        // A MODIFIER 
         public function deleteComment($id){
-            $this->restrictTo("ROLE_ADMIN");
-            
-            $commentManager = new CommentManager();
-            $comment = $commentManager->findOneById($id);
+            $this->restrictTo("ROLE_MEMBER", "ROLE_USER");
+            $roleAdmin = "ROLE_ADMIN";
+            if(Session::getUser()->getId() == $id->getTrailblazer()->getId()){
+                $commentManager = new CommentManager();
+                $comment = $commentManager->findOneById($id);
+    
+                $commentManager->deleteComment($id);
 
-            $commentManager->deleteComment($id);
+                $categ = 'success';
+                $msg ="Your comment was deleted" ;
+                Session::addFlash($categ, $msg);
+    
+                $this->redirectTo("wiki", "reviewPlayableCharacter", $comment->getPlayableCharacter()->getId());
+            } else if($id == null ){
+                $categ = 'error';
+                $msg ="You dont have the right to access that url" ;
+                Session::addFlash($categ, $msg);
+                $this->redirectTo("wiki", "playableCharacterList");
+            } else if(Session::getUser()->getRole() == $roleAdmin){
+                $commentManager = new CommentManager();
+                $comment = $commentManager->findOneById($id);
+    
+                $commentManager->deleteComment($id);
 
-            $this->redirectTo("wiki", "reviewPlayableCharacter", $comment->getPlayableCharacter()->getId());
+                $categ = 'success';
+                $msg ="The comment was deleted" ;
+                Session::addFlash($categ, $msg);
+            }
         }
+        // A MODIFIER 
+        // A MODIFIER 
+        // A MODIFIER 
+        // A MODIFIER 
+
 
         // CRUD Character
 

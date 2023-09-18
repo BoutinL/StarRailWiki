@@ -69,7 +69,7 @@
                                         echo "<i class='fa-solid fa-ban' onClick='reply_click(".$comment->getTrailblazer()->getId().", ".$comment->getPlayableCharacter()->getId().")' style='color: #e31616;'></i>";
                                     }
                                     echo "<span> ".$comment->getDateCreateFormat()."</span>";
-                                    if(App\Session::isAdmin()){
+                                    if(App\Session::isAdmin() OR App\Session::getUser()->getId() == $comment->getTrailblazer()->getId()){
                                         echo "<i class='fa-solid fa-xmark' onClick='reply_click_delete(".$comment->getId().")' style='color: #e31616;'></i>";
                                     }
                                     echo "<p class='comment-text'> ".$comment->getText()."</p>
