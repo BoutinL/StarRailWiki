@@ -2,7 +2,6 @@
 
 .content{
     display: inline-flex;
-    min-width:100vw;
 }
 
 .order-list{

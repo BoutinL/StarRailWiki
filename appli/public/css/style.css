@@ -21,7 +21,6 @@ ol, ul {
     background-color: rgb(19, 19, 19);
     color:  white;
     min-height: 100vh;
-    min-width: 100vw;
     /* Footer always at bottom of pages */
     display: flex;
     flex-direction: column;

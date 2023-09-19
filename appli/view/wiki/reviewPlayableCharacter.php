@@ -20,176 +20,167 @@
         <a class="link-details <?= $playableCharacter->combatTypeCssLink() ?>" href="index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>">Review</a>
     </section>
     <h1 class="center">Reviews of <?= $playableCharacter->getName() ?></h1>
-    <div class="review-container">
-        <div class="reviews-box">
-            <!-- Display form comment if user connected -->
-            <?php if(App\Session::getUser()){ ?>
-                <form action="index.php?ctrl=wiki&action=addComment&id=<?= $playableCharacter->getId() ?>" method="POST">
-                    <label class="label-comment" for="comment">Your opinion on <?= $playableCharacter->getName() ?></label>
-                    <div class="split-label-input">
-                        <textarea style="<?= $playableCharacter->combatTypeCss() ?>" name="comment" id="comment" placeholder="Write a comment"  required></textarea>
-                        <input class="submit-btn <?= $playableCharacter->combatTypeCssHover() ?>"  type="submit" name="submitComment" value="Submit">
-                    </div>
-                </form>
-            <?php } ?>
-            <div class="review-display">
-                <?php 
-                    // Display comment if theres data
-                    if($commentPlayableCharacter) { ?>
-                        <div class='pagination-box'>
-                            <ul class='pagination'>
-                                <li class="link-details <?= ($currentPage == 1) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage - 1 ?>' ><</a></li>
-                                <?php
-                                    for($page = 1; $page <= $pages; $page++){?>
-                                        <li class="link-details">
-                                            <a class="<?= ($currentPage == $page) ? $playableCharacter->combatTypeCssLink() : '' ?>" href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $page ?>'><?= $page ?></a>
-                                        </li>
-                                    <?php }
-                                ?>
-                                <li class="link-details <?= ($currentPage == $pages) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage + 1 ?>'>></a></li>
-                            </ul>
-                        </div>
-                        <?php foreach($commentPlayableCharacter as $comment){
-
-
-                            // If comment from a deleted user
-                            if($comment->getTrailblazer() == null){
-                                echo "<div class='container-comment'>
-                                    <span>Deleted user</span>
-                                    <span> ".$comment->getDateCreateFormat()."</span>";
-                                if(App\Session::isAdmin()){ 
-                                    echo "<i class='fa-solid fa-xmark' onClick='reply_click_delete(".$comment->getId().")' style='color: #e31616;'></i>";
+    <div class="review-content">
+            <div class="rating-box">
+                <!-- If user connected and he hasnt rate that character yet display form to rate -->
+                <?php if(App\Session::getUser() && !$rateUser){ ?>
+                    <form class="form-rate" id="addRate" action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
+                        <fieldset class="field-rate">
+                            <legend class="title-rating"> Rate <?= $playableCharacter->getName() ?> </legend>
+                            <?php
+                                for($rate = 1; $rate <= 5; $rate++){
+                                    echo "
+                                    <label class='input-radio-container'>
+                                        ".$rate." star
+                                        <input type='radio' id='".$rate."' name='rate' value='".$rate."' required/>
+                                    </label>
+                                    ";
                                 }
-                                echo "<p class='comment-text'> ".$comment->getText()."</p>
-                                    </div>";
-                            } else {
-                                echo "<div class='container-comment'>
-                                    <span> ".$comment->getTrailblazer()->getUsername()."</span>";
-                                    if(App\Session::isAdmin()){
-                                        echo "<i class='fa-solid fa-ban' onClick='reply_click(".$comment->getTrailblazer()->getId().", ".$comment->getPlayableCharacter()->getId().")' style='color: #e31616;'></i>";
+                                
+                            ?>
+                        </fieldset>
+                        <input class="submit-btn <?= $playableCharacter->combatTypeCssHover() ?>" type="submit" name="submitRate" value="Submit">
+                    </form>
+        
+        
+                <!-- If a connected user has already rate that character -> show the update form -->
+                <?php } else if(App\Session::getUser() && $rateUser){
+                    echo "<form class='form-rate' id='submitUpdateRate' action='index.php?ctrl=wiki&action=updateRate&id=".$playableCharacter->getId()."' method='POST'>
+                        <fieldset class='field-rate'>
+                            <legend class='title-rating'> Rate ".$playableCharacter->getName()."</legend>";
+                            for($rate = 1; $rate <= 5; $rate++){
+                                echo "<label class='input-radio-container' for='rate'>
+                                    ".$rate." star";
+                                    $userRate = $rateUser->getRate();
+                                    if( $userRate == $rate){
+                                        echo "<input type='radio' id='".$userRate."' name='rate' value='".$userRate."' checked required/>";
+                                    } else {
+                                        echo "<input type='radio' id='".$rate."' name='rate' value='".$rate."' required/>";
                                     }
-                                    echo "<span> ".$comment->getDateCreateFormat()."</span>";
-                                    if(App\Session::isAdmin() OR App\Session::getUser()->getId() == $comment->getTrailblazer()->getId()){
+                                echo "</label>";
+                            }
+                        echo "</fieldset>
+                        <input class='submit-btn ".$playableCharacter->combatTypeCssHover()."' type='submit' name='submitUpdateRate' value='Modify'>
+                    </form>";
+                } 
+                if($statsRate["nbrOfRating"] != 0) { ?>
+                    <div class="rate-star-box">
+                        <?php for ($i = 0; $i < $statsRate["finalRate"]; $i++) {
+                            echo '<img class="rate-size rate-img" src="/StarRailWiki/appli/public/img/rate_star.png" alt="rate-level">';
+                        } ?>
+                    </div>
+                    <span class="rate-nbr"><?= $statsRate["nbrOfRating"] ?>  people voted</span>
+                
+                
+                    <!-- If theres no rate, display error msg -->
+                <?php } else {
+                    echo "<div class='container-error-msg'>";
+                        echo "<figure class='container-msg-emote'>
+                                <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/gepard-ashamed.webp' alt='emote gepard shame' />
+                            </figure>";
+                        echo "<p class='error-msg'>There's no rating yet... </p>"; 
+                    echo "</div>";
+                } ?>
+            </div>
+            <div class="reviews-box">
+                <!-- Display form comment if user connected -->
+                <?php if(App\Session::getUser()){ ?>
+                    <form action="index.php?ctrl=wiki&action=addComment&id=<?= $playableCharacter->getId() ?>" method="POST">
+                        <label class="label-comment" for="comment">Your opinion on <?= $playableCharacter->getName() ?></label>
+                        <div class="split-label-input">
+                            <textarea style="<?= $playableCharacter->combatTypeCss() ?>" name="comment" id="comment" placeholder="Write a comment"  required></textarea>
+                            <input class="submit-btn <?= $playableCharacter->combatTypeCssHover() ?>"  type="submit" name="submitComment" value="Submit">
+                        </div>
+                    </form>
+                <?php } ?>
+                <div class="review-display">
+                    <?php 
+                        // Display comment if theres data
+                        if($commentPlayableCharacter) { ?>
+                            <div class='pagination-box'>
+                                <ul class='pagination'>
+                                    <li class="link-details <?= ($currentPage == 1) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage - 1 ?>' ><</a></li>
+                                    <?php
+                                        for($page = 1; $page <= $pages; $page++){?>
+                                            <li class="link-details">
+                                                <a class="<?= ($currentPage == $page) ? $playableCharacter->combatTypeCssLink() : '' ?>" href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $page ?>'><?= $page ?></a>
+                                            </li>
+                                        <?php }
+                                    ?>
+                                    <li class="link-details <?= ($currentPage == $pages) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage + 1 ?>'>></a></li>
+                                </ul>
+                            </div>
+                            <?php foreach($commentPlayableCharacter as $comment){
+                                // If comment from a deleted user
+                                if($comment->getTrailblazer() == null){
+                                    echo "<div class='container-comment'>
+                                        <span>Deleted user</span>
+                                        <span> ".$comment->getDateCreateFormat()."</span>";
+                                    if(App\Session::isAdmin()){ 
                                         echo "<i class='fa-solid fa-xmark' onClick='reply_click_delete(".$comment->getId().")' style='color: #e31616;'></i>";
                                     }
                                     echo "<p class='comment-text'> ".$comment->getText()."</p>
-                                </div>";
-                                // Modal change role confirmation
-                                echo '<div id="myModal" class="modal">
-                                    <div class="modal-content">
-                                        <span class="close">&times;</span>
-                                        <span id="spanName" class="text-modal">Change the role : </span>
-                                        <form id="updateRole" action="index.php?ctrl=admin&action=updateRoleConfirm&id='.$comment->getTrailblazer()->getId().'" method="POST">
-                                            <div class="input-box">
-                                                <label class="text-modal">Member
-                                                    <input type="radio" id="updateRoleMember" name="roleUser" value="ROLE_MEMBER" required/>
-                                                </label>
-                                                <label class="text-modal">Ban
-                                                    <input type="radio" id="updateRoleBan" name="roleUser" value="ROLE_BAN" required/>
-                                                </label>
-                                            </div>
-                                            <div class="confirm-box">
-                                                <input class="button-delete" type="submit" form="updateRole" name="updateRole" value="Confirm">
-                                                <a class="button-cancel" href="index.php?ctrl=wiki&action=reviewPlayableCharacter&id='.$playableCharacter->getId().'">Cancel</a>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>';
+                                        </div>";
+                                } else {
+                                    echo "<div class='container-comment'>
+                                        <span> ".$comment->getTrailblazer()->getUsername()."</span>";
+                                        if(App\Session::isAdmin()){
+                                            echo "<i class='fa-solid fa-ban' onClick='reply_click(".$comment->getTrailblazer()->getId().", ".$comment->getPlayableCharacter()->getId().")' style='color: #e31616;'></i>";
+                                        }
+                                        echo "<span> ".$comment->getDateCreateFormat()."</span>";
+                                        if(App\Session::isAdmin() OR App\Session::getUser()->getId() == $comment->getTrailblazer()->getId()){
+                                            echo "<i class='fa-solid fa-xmark' onClick='reply_click_delete(".$comment->getId().")' style='color: #e31616;'></i>";
+                                        }
+                                        echo "<p class='comment-text'> ".$comment->getText()."</p>
+                                    </div>";
+                                    // Modal change role confirmation
+                                    echo '<div id="myModal" class="modal">
+                                        <div class="modal-content">
+                                            <span class="close">&times;</span>
+                                            <span id="spanName" class="text-modal">Change the role : </span>
+                                            <form id="updateRole" action="index.php?ctrl=admin&action=updateRoleConfirm&id='.$comment->getTrailblazer()->getId().'" method="POST">
+                                                <div class="input-box">
+                                                    <label class="text-modal">Member
+                                                        <input type="radio" id="updateRoleMember" name="roleUser" value="ROLE_MEMBER" required/>
+                                                    </label>
+                                                    <label class="text-modal">Ban
+                                                        <input type="radio" id="updateRoleBan" name="roleUser" value="ROLE_BAN" required/>
+                                                    </label>
+                                                </div>
+                                                <div class="confirm-box">
+                                                    <input class="button-delete" type="submit" form="updateRole" name="updateRole" value="Confirm">
+                                                    <a class="button-cancel" href="index.php?ctrl=wiki&action=reviewPlayableCharacter&id='.$playableCharacter->getId().'">Cancel</a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>';
+                                }
                             }
+                        // If theres no data, display that
+                        } else { 
+                            echo "<div class='container-error-msg'>
+                                <figure class='container-msg-emote'>
+                                    <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/hook-sad.png' alt='emote sad hook' />
+                                </figure>
+                                <p class='error-msg'>There's no comment yet... </p>
+                            </div>";
                         }
-
-
-                    // If theres no data, display that
-                    } else { 
-                        echo "<div class='container-error-msg'>
-                            <figure class='container-msg-emote'>
-                                <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/hook-sad.png' alt='emote sad hook' />
-                            </figure>
-                            <p class='error-msg'>There's no comment yet... </p>
-                        </div>";
-                    }
-                ?>
+                    ?>
+                </div>
+        </div>
+        <!--  Modal delete confirmation  -->
+        <div id="modalDelete" class="modal">
+            <div class="modal-content">
+                <span id="spanDelete" class="closeDelete">&times;</span>
+                <span id="spanName" class="text-modal">Do you really want to delete that comment ?</span>
+                <div class="confirm-box">
+                    <!-- href= completed by js -->
+                    <a class="button-delete-confirm" href="">Delete</a>
+                    <a class="button-cancel" href="index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>">Cancel</a>
+                </div>
             </div>
         </div>
-        <div class="rating-box">
-
-
-            <!-- If user connected and he hasnt rate that character yet display form to rate -->
-            <?php if(App\Session::getUser() && !$rateUser){ ?>
-                <form class="form-rate" id="addRate" action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
-                    <fieldset class="field-rate">
-                        <legend class="title-rating"> Rate <?= $playableCharacter->getName() ?> </legend>
-                        <?php
-                            for($rate = 1; $rate <= 5; $rate++){
-                                echo "
-                                <label class='input-radio-container'>
-                                    ".$rate." star
-                                    <input type='radio' id='".$rate."' name='rate' value='".$rate."' required/>
-                                </label>
-                                ";
-                            }
-                            
-                        ?>
-                    </fieldset>
-                    <input class="submit-btn <?= $playableCharacter->combatTypeCssHover() ?>" type="submit" name="submitRate" value="Submit">
-                </form>
-
-
-            <!-- If a connected user has already rate that character -> show the update form -->
-            <?php } else if(App\Session::getUser() && $rateUser){
-                echo "<form class='form-rate' id='submitUpdateRate' action='index.php?ctrl=wiki&action=updateRate&id=".$playableCharacter->getId()."' method='POST'>
-                    <fieldset class='field-rate'>
-                        <legend class='title-rating'> Rate ".$playableCharacter->getName()."</legend>";
-                        for($rate = 1; $rate <= 5; $rate++){
-                            echo "<label class='input-radio-container' for='rate'>
-                                ".$rate." star";
-                                $userRate = $rateUser->getRate();
-                                if( $userRate == $rate){
-                                    echo "<input type='radio' id='".$userRate."' name='rate' value='".$userRate."' checked required/>";
-                                } else {
-                                    echo "<input type='radio' id='".$rate."' name='rate' value='".$rate."' required/>";
-                                }
-                            echo "</label>";
-                        }
-                    echo "</fieldset>
-                    <input class='submit-btn ".$playableCharacter->combatTypeCssHover()."' type='submit' name='submitUpdateRate' value='Modify'>
-                </form>";
-            } 
-            if($statsRate["nbrOfRating"] != 0) { ?>
-                <div class="rate-star-box">
-                    <?php for ($i = 0; $i < $statsRate["finalRate"]; $i++) {
-                        echo '<img class="rate-size rate-img" src="/StarRailWiki/appli/public/img/rate_star.png" alt="rate-level">';
-                    } ?>
-                </div>
-                <span class="rate-nbr"><?= $statsRate["nbrOfRating"] ?>  people voted</span>
-            
-            
-                <!-- If theres no rate, display error msg -->
-            <?php } else {
-                echo "<div class='container-error-msg'>";
-                    echo "<figure class='container-msg-emote'>
-                            <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/gepard-ashamed.webp' alt='emote gepard shame' />
-                        </figure>";
-                    echo "<p class='error-msg'>There's no rating yet... </p>"; 
-                echo "</div>";
-            } ?>
-        </div>
     </div>
-</div>
-
-
-<!--  Modal delete confirmation  -->
-<div id="modalDelete" class="modal">
-    <div class="modal-content">
-        <span id="spanDelete" class="closeDelete">&times;</span>
-        <span id="spanName" class="text-modal">Do you really want to delete that comment ?</span>
-        <div class="confirm-box">
-            <!-- href= completed by js -->
-            <a class="button-delete-confirm" href="">Delete</a>
-            <a class="button-cancel" href="index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>">Cancel</a>
-        </div>
-    </div>
-</div>
 
 <script>
     // modal for delete

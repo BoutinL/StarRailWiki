@@ -1,10 +1,24 @@
 /* For every page of a character */
 
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .content{
     background-color: rgb(36, 36, 36);
     margin: 2rem;
     border-radius: 30px;
-    border: solid;  
+    width: 80%; 
+}
+
+.review-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .navbar-details{
@@ -48,9 +62,10 @@
 h1{
     margin: 1rem;
 }
+
 .review-container{
-    display: inline-flex;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .center{
@@ -58,7 +73,7 @@ h1{
 }
 
 .reviews-box{
-    width: 50%;
+    width: 65%;
 }
 
 .container-comment{
@@ -75,18 +90,15 @@ h1{
 }
 
 .rating-box{
-    width: 50%;
+    width: 65%;
     flex-direction: column;
-    align-items: center;
     text-align: center;
-
 }
 
 form {  
     border-radius: 30px;
     margin: 1rem;
     padding: 1rem;
-
 }
 
 .form-rate{
