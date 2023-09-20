@@ -22,6 +22,25 @@
     <h1 class="center">Reviews of <?= $playableCharacter->getName() ?></h1>
     <div class="review-content">
             <div class="rating-box">
+                <?php if($statsRate["nbrOfRating"] != 0) { ?>
+                    <div class="rate-star-box">
+                        <?php for ($i = 0; $i < $statsRate["finalRate"]; $i++) {
+                            echo '<img class="rate-size rate-img" src="/StarRailWiki/appli/public/img/rate_star.png" alt="rate-level">';
+                        } ?>
+                    </div>
+                    <span class="rate-nbr"><?= $statsRate["nbrOfRating"] ?>  people voted</span>
+                
+                
+                    <!-- If theres no rate, display error msg -->
+                <?php } else {
+                    echo "<div class='container-error-msg'>";
+                        echo "<figure class='container-msg-emote'>
+                                <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/gepard-ashamed.webp' alt='emote gepard shame' />
+                            </figure>";
+                        echo "<p class='error-msg'>There's no rating yet... </p>"; 
+                    echo "</div>";
+                } ?>
+
                 <!-- If user connected and he hasnt rate that character yet display form to rate -->
                 <?php if(App\Session::getUser() && !$rateUser){ ?>
                     <form class="form-rate" id="addRate" action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
@@ -62,24 +81,6 @@
                         echo "</fieldset>
                         <input class='submit-btn ".$playableCharacter->combatTypeCssHover()."' type='submit' name='submitUpdateRate' value='Modify'>
                     </form>";
-                } 
-                if($statsRate["nbrOfRating"] != 0) { ?>
-                    <div class="rate-star-box">
-                        <?php for ($i = 0; $i < $statsRate["finalRate"]; $i++) {
-                            echo '<img class="rate-size rate-img" src="/StarRailWiki/appli/public/img/rate_star.png" alt="rate-level">';
-                        } ?>
-                    </div>
-                    <span class="rate-nbr"><?= $statsRate["nbrOfRating"] ?>  people voted</span>
-                
-                
-                    <!-- If theres no rate, display error msg -->
-                <?php } else {
-                    echo "<div class='container-error-msg'>";
-                        echo "<figure class='container-msg-emote'>
-                                <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/gepard-ashamed.webp' alt='emote gepard shame' />
-                            </figure>";
-                        echo "<p class='error-msg'>There's no rating yet... </p>"; 
-                    echo "</div>";
                 } ?>
             </div>
             <div class="reviews-box">
@@ -112,7 +113,7 @@
                             </div>
                             <?php foreach($commentPlayableCharacter as $comment){
                                 // If comment from a deleted user
-                                if($comment->getTrailblazer() == null){
+                                if($comment->getTrailblazer() == null ){
                                     echo "<div class='container-comment'>
                                         <span>Deleted user</span>
                                         <span> ".$comment->getDateCreateFormat()."</span>";
@@ -121,6 +122,12 @@
                                     }
                                     echo "<p class='comment-text'> ".$comment->getText()."</p>
                                         </div>";
+                                } else if(null == App\Session::getUser()){
+                                    echo "<div class='container-comment'>
+                                        <span> ".$comment->getTrailblazer()->getUsername()."</span>
+                                        <span> ".$comment->getDateCreateFormat()."</span>
+                                        <p class='comment-text'> ".$comment->getText()."</p>
+                                    </div>";
                                 } else {
                                     echo "<div class='container-comment'>
                                         <span> ".$comment->getTrailblazer()->getUsername()."</span>";
@@ -128,7 +135,8 @@
                                             echo "<i class='fa-solid fa-ban' onClick='reply_click(".$comment->getTrailblazer()->getId().", ".$comment->getPlayableCharacter()->getId().")' style='color: #e31616;'></i>";
                                         }
                                         echo "<span> ".$comment->getDateCreateFormat()."</span>";
-                                        if(App\Session::isAdmin() OR App\Session::getUser()->getId() == $comment->getTrailblazer()->getId()){
+                                        // if connected and comment id = id in session allow to delete the comment
+                                        if( $comment->getTrailblazer()->getId() == App\Session::getUser()->getId() OR App\Session::isAdmin()){
                                             echo "<i class='fa-solid fa-xmark' onClick='reply_click_delete(".$comment->getId().")' style='color: #e31616;'></i>";
                                         }
                                         echo "<p class='comment-text'> ".$comment->getText()."</p>

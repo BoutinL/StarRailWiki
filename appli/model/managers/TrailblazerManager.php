@@ -40,6 +40,18 @@ class TrailblazerManager extends Manager
         );
     }
 
+    public function findOneByCommentId($id)
+    {
+        $sql = "SELECT t.*
+        FROM " . $this->tableName . " t
+        WHERE id_".$this->tableName." = :id";
+
+        return $this->getOneorNullResult(
+            DAO::select($sql, ['id' => $id], false),
+            $this->className
+        );
+    }
+
     public function updateRole($id, $roleUser){
         $sql = "UPDATE ".$this->tableName." 
         SET role = :roleUser

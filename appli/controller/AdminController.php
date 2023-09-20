@@ -98,19 +98,15 @@ use Model\Managers\CommentManager;
             }
         }
         
-        // A MODIFIER 
-        // A MODIFIER 
-        // A MODIFIER 
-        // A MODIFIER 
-        // A MODIFIER 
-        // A MODIFIER 
         public function deleteComment($id){
-            $this->restrictTo("ROLE_MEMBER", "ROLE_USER");
+            $this->restrictTo("ROLE_ADMIN", "ROLE_MEMBER");
+
+            $commentManager = new CommentManager();
+            $comment = $commentManager->findOneById($id);
             $roleAdmin = "ROLE_ADMIN";
-            if(Session::getUser()->getId() == $id->getTrailblazer()->getId()){
-                $commentManager = new CommentManager();
-                $comment = $commentManager->findOneById($id);
-    
+            // If id in session = user id from the comment id we got as argument
+            if(Session::getUser()->getId() == $comment->getTrailblazer()->getId()){
+
                 $commentManager->deleteComment($id);
 
                 $categ = 'success';
@@ -118,26 +114,24 @@ use Model\Managers\CommentManager;
                 Session::addFlash($categ, $msg);
     
                 $this->redirectTo("wiki", "reviewPlayableCharacter", $comment->getPlayableCharacter()->getId());
-            } else if($id == null ){
+            // If id comment doesnt exist or if user id != id in session 
+            } else if($id == null OR  $comment->getTrailblazer()->getId() !== Session::getUser()->getId() && Session::getUser()->getRole() !== $roleAdmin ){
                 $categ = 'error';
-                $msg ="You dont have the right to access that url" ;
+                $msg ="You dont have the rights" ;
                 Session::addFlash($categ, $msg);
-                $this->redirectTo("wiki", "playableCharacterList");
+
+                $this->redirectTo("wiki", "reviewPlayableCharacter", $comment->getPlayableCharacter()->getId());
+            // If role = admin allow the delete
             } else if(Session::getUser()->getRole() == $roleAdmin){
-                $commentManager = new CommentManager();
-                $comment = $commentManager->findOneById($id);
-    
+
                 $commentManager->deleteComment($id);
 
                 $categ = 'success';
                 $msg ="The comment was deleted" ;
                 Session::addFlash($categ, $msg);
+                $this->redirectTo("wiki", "reviewPlayableCharacter", $comment->getPlayableCharacter()->getId());
             }
         }
-        // A MODIFIER 
-        // A MODIFIER 
-        // A MODIFIER 
-        // A MODIFIER 
 
 
         // CRUD Character
