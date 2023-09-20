@@ -224,25 +224,33 @@ use Model\Managers\CommentManager;
 
         public function deleteCharacter(){
             $this->restrictTo("ROLE_ADMIN");
-            
+            // If submit button pressed do that
             if (isset($_POST['submit'])) {
-                // Check if all required input arnt empty
+                // if the select input isnt empty do that
                 if ((!empty($_POST['playableCharacter']))) {
                     
-                    // Sanitaze all input from the form
+                    // Sanitaze what was selected in that input
                     $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
 
                     if ($playableCharacter !== false) {
                         $playableCharacterManager = new PlayableCharacterManager();
+                        // Then we use the custom methode to delete the character with his id 
                         $playableCharacterManager->deleteCharacter($playableCharacter);
+                        
+                        $categ = 'success';
+                        $msg ="Character delete successfully" ;
+                        Session::addFlash($categ, $msg);
 
                         $this->redirectTo("wiki", "playableCharacterList");
                     } else {
+
+                        $categ = 'error';
+                        $msg ="An error happened" ;
+                        Session::addFlash($categ, $msg);
+
                         $this->redirectTo("admin", "deleteCharacterView");
                     }
-
                 }
-
             }
         }
 
