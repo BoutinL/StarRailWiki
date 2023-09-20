@@ -81,7 +81,8 @@
          * 
          * @param string $sql la chaine de caractère contenant la requête elle-même
          * @param mixed $params=null les paramètres de la requête
-         * @param bool $multiple=true vrai si le résultat est composé de plusieurs enregistrements (défaut), false si un seul résultat doit être récupéré
+         * @param bool $multiple=true vrai si le résultat est composé de plusieurs enregistrements (défaut),
+         * false si un seul résultat doit être récupéré
          * 
          * @return array|null les enregistrements en FETCH_ASSOC ou null si aucun résultat
          */

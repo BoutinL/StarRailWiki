@@ -21,13 +21,14 @@ use Model\Managers\RatingManager;
             $playableCharacterManager = new PlayableCharacterManager();
             $combatTypeManager = new CombatTypeManager();
             $pathManager = new PathManager();
-
+            // List of combat type and path to display
             $combatTypeList = $combatTypeManager->getCombatType();
             $pathList = $pathManager->getPath();
             
             return [
                 "view" => VIEW_DIR."wiki/playableCharacterList.php",
                 "data" => [
+                    // Order the character list in alphabetical and ascending order
                     "playableCharacterList" => $playableCharacterManager->findAll(["name", "ASC"]),
                     "combatTypeList" => $combatTypeList,
                     "pathList" => $pathList
@@ -71,11 +72,12 @@ use Model\Managers\RatingManager;
             $biographyPlayableCharacterManager = new PlayableCharacterManager();
             $pathManager = new PathManager();
             $combatTypeManager = new CombatTypeManager();
-
+            // biography of a character find with his id
             $biographyPlayableCharacter = $biographyPlayableCharacterManager->findOneById($id);
+            // Path and combat type is also displayed in his biography and find with the character id
             $path = $pathManager->findOneById($id);
             $combatType = $combatTypeManager->findOneById($id);
-
+            
             if($biographyPlayableCharacter) {
                 return [
                     "view" => VIEW_DIR."wiki/biographyPlayableCharacter.php",
