@@ -72,7 +72,8 @@ nav > ul li:hover .sous{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%
+    width: 50%;
+
 }
 
 main{
@@ -80,6 +81,7 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 70vh;    
 }
 
 

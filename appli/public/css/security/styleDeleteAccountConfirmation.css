@@ -1,4 +1,20 @@
 /* Nav Admin */
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;    
+}
+
+.content{
+    background-color: rgb(36, 36, 36);
+    margin: 2rem;
+    border-radius: 30px;
+    width: 30%;
+}
+
 .nav-admin{
     width: 100%;
     margin: 0 auto;
@@ -66,7 +82,6 @@ nav > ul li:hover .sous{
 
 .content{
     background-color: rgb(36, 36, 36);
-    margin: 2rem;
     border-radius: 30px;
     border: solid;
     display: flex;
@@ -74,8 +89,7 @@ nav > ul li:hover .sous{
     min-height: 38vh;
     justify-content: center;
     align-items: center;
-    margin: 2rem;
-    padding: 2rem;
+
 }
 
 .account-option a.button {
@@ -115,7 +129,7 @@ nav > ul li:hover .sous{
 }
 
 .account-option {
-    width: 30%;
+    width: 100%;
     display: flex;
     justify-content: space-around;
 
@@ -142,11 +156,11 @@ nav > ul li:hover .sous{
 }
 
 .container-msg-emote{
-    width: 15%;
+    width: 25%;
 }
 
 .error-msg-emote{
-    width: 80%;
+    width: 100%;
 }
 
 .error-msg{

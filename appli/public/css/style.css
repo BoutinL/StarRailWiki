@@ -1,9 +1,10 @@
 /* Reset CSS */
 
-html {
+html, input {
     box-sizing: border-box;
     font-size: 1rem;
     font-family: 'Kanit', sans-serif;
+    font-style: justify;
 }
 
 ol, ul {
