@@ -1,15 +1,16 @@
 <?php
-    namespace Model\Entities;
+        namespace Model\Entities;
 
-    use App\Entity;
+        use App\Entity;
 
-    final class CombatType extends Entity{
+        final class CombatType extends Entity{
 
         private $id;
         private $type;
 
-        public function __construct($data){         
-            $this->hydrate($data);        
+        public function __construct($data)
+        {         
+                $this->hydrate($data);        
         }
 
         // Getter and Setter
@@ -38,4 +39,4 @@
                 return $this;
         }
 
-    }
+}
