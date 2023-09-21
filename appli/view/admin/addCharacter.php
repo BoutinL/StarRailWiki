@@ -3,7 +3,6 @@
     
     $combatTypeList = $result['data']['combatTypeList'];
     $pathList = $result['data']['pathList'];
-    // var_dump($combatTypeList->current());die;
 ?>
 
 <div class="content">
@@ -48,10 +47,10 @@
                 <h1>Add a new character</h1>
                 <form class="form" id="addCharacter" action="index.php?ctrl=admin&action=addCharacter" method="POST">
                     <div class="input-required">
-                        <label for="name">Name :</label>
+                        <label for="name">Name* :</label>
                         <input type="text" name="name" id="name" placeholder="Enter Character name" required>
                         
-                        <label for="rarity">Rarity :</label>
+                        <label for="rarity">Rarity* :</label>
                         <div class="rarity-radio">
                             <label for="rarity">
                                 4 Stars
@@ -63,7 +62,7 @@
                             </label>
                         </div>
 
-                        <label for="combatType">Combat type :</label>
+                        <label for="combatType">Combat type* :</label>
                         <select name="combatType" id="combatType" required>
                             <option hidden disabled selected>--Choose a combat type--</option>
                             <?php 
@@ -75,7 +74,7 @@
                             ?>
                         </select>
 
-                        <label for="path">Path :</label>
+                        <label for="path">Path* :</label>
                         <select name="path" id="path" required>
                             <option hidden disabled selected>--Choose a path--</option>
                             <?php 
@@ -87,7 +86,7 @@
                             ?>
                         </select>
 
-                        <label for="realeaseDate">Release date :</label>
+                        <label for="realeaseDate">Release date* :</label>
                         <input type="date" name="releaseDate" id="releaseDate" required>
                     </div>
                     <div class="input-not-required">

@@ -67,66 +67,74 @@ class HomeController extends AbstractController implements ControllerInterface
         }
     }
 
-    public function login()
-    {
-    $trailblazerManager = new TrailblazerManager();
-
-    if (isset($_POST['submitLogin'])) {
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
-        $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ($email && $password) {
-            $dbUser = $trailblazerManager->findOneByEmail($email);
-            // If role = Ban unset session
-            $ban = 'ROLE_BAN';
-            // Verify if object
-            if ($dbUser && is_object($dbUser)) {
-                $role = $dbUser->getRole();
-                
-                if (password_verify($password, $dbUser->getPassword()) && $role !== $ban) {
-                    // if correct password do that
-                    Session::setUser($dbUser);
-                    $this->redirectTo('wiki', 'playableCharacterList');
-                } elseif (password_verify($password, $dbUser->getPassword()) && $role == $ban) {
-                    $trailblazer = null;
-                    Session::setUser($trailblazer);
-                    $categ = 'error';
-                    $msg = "Your account has been banned";
-                    Session::addFlash($categ, $msg);
-                    $this->redirectTo('home', 'index');
+    public function login() {
+        $trailblazerManager = new TrailblazerManager();
+        // if submit button press
+        if (isset($_POST['submitLogin'])) {
+            // Sanitize all the inputs
+            $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // if theres an email and a password do that
+            if ($email && $password) {
+                // set a variable who gonna contain the user after searching him by his email
+                $dbUser = $trailblazerManager->findOneByEmail($email);
+                // set a variable who gonna contain the banned role to later use it to compare
+                $ban = 'ROLE_BAN';
+                // Verify if object
+                if ($dbUser && is_object($dbUser)) {
+                    // get the role of that account
+                    $role = $dbUser->getRole();
+                    // if correct password and role isnt ban connect the user by setting his session
+                    if (password_verify($password, $dbUser->getPassword()) && $role !== $ban) {
+                        Session::setUser($dbUser);
+                        $this->redirectTo('wiki', 'playableCharacterList');
+                    // if correct password and role ban do that
+                    } else if(password_verify($password, $dbUser->getPassword()) && $role == $ban) {
+                        // set a variable that equal null to set the actual banned accoutn session at null
+                        $trailblazer = null;
+                        Session::setUser($trailblazer);
+                        $categ = 'error';
+                        $msg = "Your account has been banned";
+                        Session::addFlash($categ, $msg);
+                        $this->redirectTo('home', 'index');
+                    // if anything else, display error mail / password wrong
+                    } else {
+                        $categ = 'error';
+                        $msg = "Your email or password is wrong";
+                        Session::addFlash($categ, $msg);
+                        $this->redirectTo('security', 'login');
+                    }
+                // display error if user not found
                 } else {
                     $categ = 'error';
-                    $msg = "Your email or password is wrong";
+                    $msg = "User not found";
                     Session::addFlash($categ, $msg);
                     $this->redirectTo('security', 'login');
                 }
-            } else {
-                // Gérer le cas où $dbUser n'est pas un objet (non trouvé)
-                $categ = 'error';
-                $msg = "User not found";
-                Session::addFlash($categ, $msg);
-                $this->redirectTo('security', 'login');
             }
         }
+        return [
+            "view" => VIEW_DIR . "security/login.php",
+            "data" => []
+        ];
     }
-    return [
-        "view" => VIEW_DIR . "security/login.php",
-        "data" => []
-    ];
-}
 
     
     public function viewProfile()
     {
+        // if theres a session
         if(Session::getUser()) {
+            // get the user id of his session
             $userId = Session::getUser()->getId();
             $trailblazerManager = new TrailblazerManager();
+            // get the date of the user who correspond the id in session
             $trailblazer = $trailblazerManager->findOneById($userId);
 
             return [
                 "view" => VIEW_DIR . "security/viewProfile.php",
                 "data" => ["trailblazer" => $trailblazer]
             ];
-            
+        // if theres no session
         } else {
             $this->redirectTo("security", "login");
         }

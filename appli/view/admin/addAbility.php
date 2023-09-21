@@ -48,7 +48,7 @@
                 <h1>Add a new ability</h1>
                 <form class="form" id="addAbility" action="index.php?ctrl=admin&action=addAbility" method="POST">
                     <div class="input-required">
-                        <label for="playableCharacter">Character's ability :</label>
+                        <label for="playableCharacter">Character's ability* :</label>
                         <select name="playableCharacter" id="playableCharacter" required>
                             <option hidden disabled selected>--Choose a character--</option>
                             <?php 
@@ -60,13 +60,13 @@
                             ?>
                         </select>
 
-                        <label for="name">Name :</label>
+                        <label for="name">Name* :</label>
                         <input type="text" name="name" id="name" placeholder="Enter Ability name" required>
 
-                        <label for="description">Description :</label>
+                        <label for="description">Description* :</label>
                         <textarea rows="10" name="description" id="description" placeholder="What's the effect of that ability" required></textarea>
 
-                        <label for="typeAbility">Ability Type :</label>
+                        <label for="typeAbility">Ability Type* :</label>
                         <select name="typeAbility" id="typeAbility" required>
                             <option hidden disabled selected>--Choose a type ability--</option>
                             <?php 
@@ -78,7 +78,7 @@
                             ?>
                         </select>
 
-                        <label for="tagAbility">Ability Tag :</label>
+                        <label for="tagAbility">Ability Tag* :</label>
                         <select name="tagAbility" id="tagAbility" required>
                             <option hidden disabled selected>--Choose a tag ability--</option>
                             <?php 

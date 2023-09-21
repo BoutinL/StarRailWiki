@@ -47,7 +47,7 @@
                 <h1>Add a new Eidolon</h1>
                 <form class="form" id="addAscendEidolon" action="index.php?ctrl=admin&action=addEidolon" method="POST">
                     <div class="input-required">
-                        <label for="playableCharacterEidolon">Character's Eidolon :</label>
+                        <label for="playableCharacterEidolon">Character's Eidolon* :</label>
                         <select name="playableCharacterEidolon" id="playableCharacterEidolon" required>
                             <option hidden disabled selected>--Choose a character--</option>
                             <?php 
@@ -59,7 +59,7 @@
                             ?>
                         </select>
                         
-                        <label for="nbrEidolon">Number :</label>
+                        <label for="nbrEidolon">Number* :</label>
                         <div class="nbrEidolon-radio">
                             <?php
                                 for($nbrEidolon = 1; $nbrEidolon <= 6; $nbrEidolon++){
@@ -73,13 +73,11 @@
                             ?>
                         </div>
                         
-                        <label for="nameEidolon">Name :</label>
+                        <label for="nameEidolon">Name* :</label>
                         <input type="text" name="nameEidolon" id="nameEidolon" placeholder="Enter Eidolon name" required>
                         
-                        <label for="effectEidolon">Effect :</label>
+                        <label for="effectEidolon">Effect* :</label>
                         <textarea rows="10" type="text" name="effectEidolon" id="effectEidolon" placeholder="What's the effect of that Eidolon" required></textarea>
-                    </div>
-                    <div class="input-not-required">
                         <label for="image-urlEidolon">Image url :</label>
                         <input type="text" name="image-urlEidolon" id="image-urlEidolon" placeholder="https://star-rail-image-url.png">
                     </div>

@@ -99,40 +99,49 @@ use Model\Managers\CommentManager;
         }
         
         public function deleteComment($id){
-            $this->restrictTo("ROLE_ADMIN", "ROLE_MEMBER");
+            //$this->restrictTo("ROLE_ADMIN", "ROLE_MEMBER");
+            if(Session::getUser()) {
+                $commentManager = new CommentManager();
+                $comment = $commentManager->findOneById($id);
 
-            $commentManager = new CommentManager();
-            $comment = $commentManager->findOneById($id);
-            $roleAdmin = "ROLE_ADMIN";
-            // If id in session = user id from the comment id we got as argument
-            if(Session::getUser()->getId() == $comment->getTrailblazer()->getId()){
-
-                $commentManager->deleteComment($id);
-
-                $categ = 'success';
-                $msg ="Your comment was deleted" ;
-                Session::addFlash($categ, $msg);
+                // If role = admin allow the delete
+                if(Session::getUser()->hasRole("ROLE_ADMIN") && $comment ){
+                    
+                    $commentManager->deleteComment($id);
     
-                $this->redirectTo("wiki", "reviewPlayableCharacter", $comment->getPlayableCharacter()->getId());
-            // If id comment doesnt exist or if user id != id in session 
-            } else if($id == null OR  $comment->getTrailblazer()->getId() !== Session::getUser()->getId() && Session::getUser()->getRole() !== $roleAdmin ){
-                $categ = 'error';
-                $msg ="You dont have the rights" ;
-                Session::addFlash($categ, $msg);
+                    $categ = 'success';
+                    $msg ="The comment was deleted" ;
+                    Session::addFlash($categ, $msg);
+                    $this->redirectTo("wiki", "reviewPlayableCharacter", $comment->getPlayableCharacter()->getId());
+                    die;
+                } else {
+                    $categ = 'error';
+                    $msg ="Nothing was found" ;
+                    Session::addFlash($categ, $msg);
+    
+                    $this->redirectTo("wiki", "playableCharacterList");
+                }
+                if(Session::getUser()->hasRole("ROLE_MEMBER")){
+                    // If id in session = user id from the comment id we got as argument
+                    if(Session::getUser()->getId() == $comment->getTrailblazer()->getId()){
 
-                $this->redirectTo("wiki", "reviewPlayableCharacter", $comment->getPlayableCharacter()->getId());
-            // If role = admin allow the delete
-            } else if(Session::getUser()->getRole() == $roleAdmin){
+                        $commentManager->deleteComment($id);
 
-                $commentManager->deleteComment($id);
+                        $categ = 'success';
+                        $msg ="Your comment was deleted" ;
+                        Session::addFlash($categ, $msg);
+            
+                        $this->redirectTo("wiki", "reviewPlayableCharacter", $comment->getPlayableCharacter()->getId());
+                    } else{
+                        $categ = 'error';
+                        $msg ="Nothing was found" ;
+                        Session::addFlash($categ, $msg);
 
-                $categ = 'success';
-                $msg ="The comment was deleted" ;
-                Session::addFlash($categ, $msg);
-                $this->redirectTo("wiki", "reviewPlayableCharacter", $comment->getPlayableCharacter()->getId());
-            }
+                        $this->redirectTo("wiki", "playableCharacterList");
+                    }
+                } 
+            } 
         }
-
 
         // CRUD Character
 
