@@ -2,10 +2,11 @@
         namespace Model\Entities;
 
         use App\Entity;
-
+        // CombatType correspond to the 7 elements
         final class CombatType extends Entity{
 
         private $id;
+        // name of the combatType
         private $type;
 
         public function __construct($data)
@@ -38,5 +39,4 @@
 
                 return $this;
         }
-
 }
