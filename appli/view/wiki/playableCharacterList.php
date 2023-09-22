@@ -33,12 +33,18 @@
     </form>
     <section class="card-container">
         <?php
+            // if theres character in the list 
             if($playableCharacterList){
+                // Loop on them to be able to display each one of them in a dynamic way
                 foreach($playableCharacterList as $character){ 
+                    // make the whole card a link
                     echo"<a class='card-link' href='index.php?ctrl=wiki&action=biographyPlayableCharacter&id=".$character->getId()."'>";
+                        // If character's rarity = 4 display the div with purple border css proprietes
                         if($character->getRarity() == 4){
                             echo "<div class='card purple'>";
-                        } else {
+                        }
+                        // If character's rarity = 5 display the div with golden border css proprietes
+                        if($character->getRarity() == 5){
                             echo "<div class='card gold'>";
                         }
                             echo "<span class='list-character-name'><strong>".$character->getName()."</strong></span>
@@ -46,6 +52,7 @@
                                 <img class='card-img' src='".$character->getImage()."' alt='".$character->getName()." splash art' />
                             </figure>
                             <span class='rarity-container'>";
+                            // add stars until its equal the character's rarity
                             for ($i = 0; $i < $character->getRarity(); $i++) {
                                 echo '<img src="public/img/level_star.png' . '" alt="rarity level">';
                             }
