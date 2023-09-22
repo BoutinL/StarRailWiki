@@ -60,7 +60,7 @@ $trailblazer = $result['data']['trailblazer'];
             </tr>
             <tr>
                 <th>Date register</th>
-                <td><?= $trailblazer->getDateRegister() ?></td>
+                <td><?= $trailblazer->getDateRegisterFormat() ?></td>
             </tr>
         </table>
         <div class="account-option">

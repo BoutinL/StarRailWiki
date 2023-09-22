@@ -240,14 +240,14 @@ use Model\Managers\CommentManager;
                     
                     // Sanitaze what was selected in that input
                     $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
-
+                    
                     if ($playableCharacter !== false) {
                         $playableCharacterManager = new PlayableCharacterManager();
                         // Then we use the custom methode to delete the character with his id 
                         $playableCharacterManager->deleteCharacter($playableCharacter);
                         
                         $categ = 'success';
-                        $msg ="Character delete successfully" ;
+                        $msg ="Character deleted successfully" ;
                         Session::addFlash($categ, $msg);
 
                         $this->redirectTo("wiki", "playableCharacterList");

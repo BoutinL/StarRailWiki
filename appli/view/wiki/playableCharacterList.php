@@ -38,7 +38,7 @@
                 // Loop on them to be able to display each one of them in a dynamic way
                 foreach($playableCharacterList as $character){ 
                     // make the whole card a link
-                    echo"<a class='card-link' href='index.php?ctrl=wiki&action=biographyPlayableCharacter&id=".$character->getId()."'>";
+                    echo "<a class='card-link' href='index.php?ctrl=wiki&action=biographyPlayableCharacter&id=".$character->getId()."'>";
                         // If character's rarity = 4 display the div with purple border css proprietes
                         if($character->getRarity() == 4){
                             echo "<div class='card purple'>";
@@ -52,10 +52,10 @@
                                 <img class='card-img' src='".$character->getImage()."' alt='".$character->getName()." splash art' />
                             </figure>
                             <span class='rarity-container'>";
-                            // add stars until its equal the character's rarity
-                            for ($i = 0; $i < $character->getRarity(); $i++) {
-                                echo '<img src="public/img/level_star.png' . '" alt="rarity level">';
-                            }
+                                // add stars until its equal the character's rarity
+                                for ($i = 0; $i < $character->getRarity(); $i++) {
+                                    echo '<img src="public/img/level_star.png' . '" alt="rarity level">';
+                                }
                             echo "</span>
                         </div>
                     </a>";
@@ -65,7 +65,7 @@
                     <figure class='container-msg-emote'>
                         <img class='error-msg-emote' src='/StarRailWiki/appli/public/img/emotes/pela-curious.webp' alt='emote pela wondering' />
                     </figure>
-                    <p class='error-msg'>There's no corresponding character...</p> 
+                    <p class='error-msg'>There's no character...</p> 
                 </div>";
             }
         ?>
