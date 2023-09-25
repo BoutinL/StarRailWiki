@@ -114,14 +114,7 @@ use Model\Managers\CommentManager;
                     Session::addFlash($categ, $msg);
                     $this->redirectTo("wiki", "reviewPlayableCharacter", $comment->getPlayableCharacter()->getId());
                     die;
-                } else {
-                    $categ = 'error';
-                    $msg ="Nothing was found" ;
-                    Session::addFlash($categ, $msg);
-    
-                    $this->redirectTo("wiki", "playableCharacterList");
-                }
-                if(Session::getUser()->hasRole("ROLE_MEMBER")){
+                } else if(Session::getUser()->hasRole("ROLE_MEMBER")){
                     // If id in session = user id from the comment id we got as argument
                     if(Session::getUser()->getId() == $comment->getTrailblazer()->getId()){
 
@@ -132,14 +125,14 @@ use Model\Managers\CommentManager;
                         Session::addFlash($categ, $msg);
             
                         $this->redirectTo("wiki", "reviewPlayableCharacter", $comment->getPlayableCharacter()->getId());
-                    } else{
-                        $categ = 'error';
-                        $msg ="Nothing was found" ;
-                        Session::addFlash($categ, $msg);
-
-                        $this->redirectTo("wiki", "playableCharacterList");
                     }
-                } 
+                } else {
+                    $categ = 'error';
+                    $msg ="Nothing was found" ;
+                    Session::addFlash($categ, $msg);
+    
+                    $this->redirectTo("wiki", "playableCharacterList");
+                }
             } 
         }
 
