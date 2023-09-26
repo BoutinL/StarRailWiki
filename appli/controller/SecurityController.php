@@ -27,12 +27,17 @@ class HomeController extends AbstractController implements ControllerInterface
                 if (!$trailblazerManager->findOneByEmail($email)) {
                     // If username doesnt exist
                     if (!$trailblazerManager->findOneByUser($username)) {
-                        // If both password are the same and higher than 10
-                        if (($password == $confirmPassword) and strlen($password) >= 10) {
+                        // If both password are the same and higher than 14
+                        if (($password == $confirmPassword) and strlen($password) >= 14) {
                             // Password Hash
                             $passwordHash = self::getPasswordHash($password);
                             // Inject in database
-                            $trailblazerManager->add(["username" => $username, "email" => $email, "password" => $passwordHash, "role" => $role]);
+                            $trailblazerManager->add([
+                                "username" => $username,
+                                "email" => $email,
+                                "password" => $passwordHash,
+                                "role" => $role
+                            ]);
                             $categ = 'success';
                             $msg ="Account created succesfully" ;
                             Session::addFlash($categ, $msg);
@@ -171,7 +176,7 @@ class HomeController extends AbstractController implements ControllerInterface
     
                 // If filters alright
                 if ($actualPassword && $newPassword && $confirmPassword) {
-                    if(password_verify($actualPassword, $dbUser->getPassword()) && ($newPassword == $confirmPassword) && strlen($newPassword) >= 10){
+                    if(password_verify($actualPassword, $dbUser->getPassword()) && ($newPassword == $confirmPassword) && strlen($newPassword) >= 14){
                         // Password Hash
                         $passwordHash = self::getPasswordHash($newPassword);
                         // Inject in database

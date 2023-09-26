@@ -45,9 +45,9 @@
             DAO::delete($sql, ['id' => $id]);
         }
 
-        public function updateAbility($id, $playableCharacter, $name, $description, $energyGeneration, $energyCost, $dmg, $image, $typeAbility, $tagAbility)
+        public function updateAbility($id, $playableCharacter, $name, $description,
+        $energyGeneration, $energyCost, $dmg, $image, $typeAbility, $tagAbility)
         {
-            // exemple for character combatType_id = :combatType / 'combatType' => $combatType,
             $sql = "UPDATE ".$this->tableName." 
                     SET playableCharacter_id = :playableCharacter,
                     name = :name,
@@ -59,7 +59,6 @@
                     typeAbility_id = :typeAbility,
                     tagAbility_id = :tagAbility
                     WHERE id_".$this->tableName." = :id";
-                    
             DAO::update($sql, [
                                 'id' => $id,
                                 'playableCharacter' => $playableCharacter,
@@ -73,5 +72,4 @@
                                 'tagAbility' => $tagAbility,
                             ]);  
         }
-
     }

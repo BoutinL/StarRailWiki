@@ -14,7 +14,7 @@
                 </label>
                 <label for="actualPassword">
                     <b>New password</b>
-                    <input class="input-form" type="password" placeholder="Minimum 10 characters, at least one letter and one number" name="newPassword"  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{10,}$" required>
+                    <input class="input-form" type="password" placeholder="Minimum 14 characters, at least one letter and one number" name="newPassword" required>
                 </label>
                 <label for="confirmPassword">
                     <b>Comfirm password</b>

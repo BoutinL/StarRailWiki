@@ -51,7 +51,6 @@
 
         public static function update($sql, $params){
             try{
-                // var_dump($params);die;
                 $stmt = self::$bdd->prepare($sql);
                 //on renvoie l'état du statement après exécution (true ou false)
                 return $stmt->execute($params);

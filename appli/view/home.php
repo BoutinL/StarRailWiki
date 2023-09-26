@@ -3,5 +3,5 @@
 ?>
 <section class="homepage">
     <h1>Star Rail Wiki</h1>
-    <p>Homepage of my application</p>
+    <p>Welcome on the homepage of my application</p>
 </section>
