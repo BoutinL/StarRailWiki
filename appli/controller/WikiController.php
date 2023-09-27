@@ -228,8 +228,9 @@ use Model\Managers\RatingManager;
                     if ((!empty($_POST['comment']))) {
                         // Sanitaze all input from the form
                         $comment = filter_input(INPUT_POST, "comment", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                        // var_dump($comment);die;
-                        if ($comment) {
+                        $tokenCSRF = filter_input(INPUT_POST, "csrf_token", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                        // var_dump($tokenCSRF);die;
+                        if ($comment && $tokenCSRF == Session::getCSRF()) {
                             $commentManager = new CommentManager();
                             $commentManager->add([
                                 "text" => $comment,
@@ -252,7 +253,8 @@ use Model\Managers\RatingManager;
                     if (!empty($_POST['rate'])) {
                         // Sanitaze all input from the form
                         $rate = filter_input(INPUT_POST, "rate", FILTER_SANITIZE_NUMBER_INT);
-                        if ($rate) {
+                        $tokenCSRF = filter_input(INPUT_POST, "csrf_token", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                        if ($rate && $tokenCSRF == Session::getCSRF()) {
                             $ratingManager = new RatingManager();
                             $ratingManager->add([
                                 "rate" => $rate,

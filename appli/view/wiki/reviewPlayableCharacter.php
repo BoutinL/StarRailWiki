@@ -9,6 +9,9 @@
     $statsRate = $result["data"]['statsRate'];
     // Ratings of user
     $rateUser = $result["data"]['rateUser'];
+
+    $tokenCSRF = $_SESSION['csrf_token'];
+    // var_dump($tokenCSRF);die;
     ?>
 
 <div class="content" style="<?= $playableCharacter->combatTypeCss() ?>">
@@ -58,6 +61,8 @@
                                 
                             ?>
                         </fieldset>
+                        <!-- Token CSRF -->
+                        <input type="hidden" name="csrf_token" value="<?= $tokenCSRF ?>" >
                         <input class="submit-btn <?= $playableCharacter->combatTypeCssHover() ?>" type="submit" name="submitRate" value="Submit">
                     </form>
         
@@ -78,8 +83,9 @@
                                     }
                                 echo "</label>";
                             }
-                        echo "</fieldset>
-                        <input class='submit-btn ".$playableCharacter->combatTypeCssHover()."' type='submit' name='submitUpdateRate' value='Modify'>
+                        echo "</fieldset>";
+                        ?><input type="hidden" name="csrf_token" value="<?= $tokenCSRF ?>" ><?php
+                        echo "<input class='submit-btn ".$playableCharacter->combatTypeCssHover()."' type='submit' name='submitUpdateRate' value='Modify'>
                     </form>";
                 } ?>
             </div>
@@ -90,6 +96,8 @@
                         <label class="label-comment" for="comment">Your opinion on <?= $playableCharacter->getName() ?></label>
                         <div class="split-label-input">
                             <textarea style="<?= $playableCharacter->combatTypeCss() ?>" name="comment" id="comment" placeholder="Write a comment"  required></textarea>
+                            <!-- Token CSRF -->
+                            <input type="hidden" name="csrf_token" value="<?= $tokenCSRF ?>" >
                             <input class="submit-btn <?= $playableCharacter->combatTypeCssHover() ?>"  type="submit" name="submitComment" value="Submit">
                         </div>
                     </form>

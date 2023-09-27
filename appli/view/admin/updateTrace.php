@@ -78,8 +78,6 @@
                                 }
                             ?>
                         </select>
-                    </div>
-                    <div class="input-not-required">
                         <label for="imageUrlTrace">Image url :</label>
                         <input type="text" name="imageUrlTrace" value="<?= $trace->getIcon(); ?>" id="imageUrlTrace" placeholder="https://star-rail-image-url.png">
                     </div>

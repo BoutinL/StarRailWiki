@@ -81,8 +81,7 @@
                         
                         <label for="effectEidolon">Effect :</label>
                         <textarea rows="10" name="effectEidolon" id="effectEidolon" placeholder="What's the effect of that Eidolon" required><?= $eidolon->getEffect(); ?></textarea>
-                    </div>
-                    <div class="input-not-required">
+                        
                         <label for="imageUrlEidolon">Image url :</label>
                         <input type="text" name="imageUrlEidolon" value="<?= $eidolon->getIcon(); ?>" id="imageUrlEidolon" placeholder="https://star-rail-image-url.png">
                     </div>

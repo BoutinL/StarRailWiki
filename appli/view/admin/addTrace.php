@@ -48,7 +48,7 @@
                 <h1>Add a new Trace</h1>
                 <form class="form" id="addAscendTrace" action="index.php?ctrl=admin&action=addTrace" method="POST">
                     <div class="input-required">
-                        <label for="playableCharacterTrace">Character's Trace :</label>
+                        <label for="playableCharacterTrace">Character's Trace* :</label>
                         <select name="playableCharacterTrace" id="playableCharacterTrace" required>
                             <option hidden disabled selected>--Choose a character--</option>
                             <?php 
@@ -60,13 +60,13 @@
                             ?>
                         </select>
 
-                        <label for="nameTrace">Name :</label>
+                        <label for="nameTrace">Name* :</label>
                         <input type="text" name="nameTrace" id="nameTrace" required>
 
-                        <label for="effectTrace">Effect :</label>
+                        <label for="effectTrace">Effect* :</label>
                         <textarea rows="10" name="effectTrace" id="effectTrace" placeholder="What's the effect of that trace" required></textarea>
 
-                        <label for="ascendTrace">Level of ascension :</label>
+                        <label for="ascendTrace">Level of ascension* :</label>
                         <select name="ascendTrace" id="ascendTrace">
                             <option hidden disabled selected>--Choose a level of Ascension--</option>
                             <?php 
@@ -80,8 +80,6 @@
                                 }
                             ?>
                         </select>
-                    </div>
-                    <div class="input-not-required">
                         <label for="image-urlTrace">Image url :</label>
                         <input type="text" name="image-urlTrace" id="image-urlTrace" placeholder="https://star-rail-image-url.png">
                     </div>

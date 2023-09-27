@@ -29,12 +29,28 @@
             return $msg;
         }
 
+        public static function generateTokenCSRF() {
+            // generate a random token of 32 bytes
+            return bin2hex(random_bytes(32));
+
+        }
+
+        public static function getCSRF(){
+            if(isset($_SESSION['csrf_token'])){
+                return (isset($_SESSION['csrf_token'])) ? $_SESSION['csrf_token'] : false;
+            }
+        }
+        
         /**
         *   met un user dans la session (pour le maintenir connecté)
         */
         public static function setUser($user){
             $_SESSION["user"] = $user;
+            if(!isset($_SESSION['csrf_token'])){
+                $_SESSION['csrf_token'] = self::generateTokenCSRF();
+            }
         }
+        
 
         public static function getUser(){
             if(isset($_SESSION['user']) && $_SESSION['user'] !== null){
