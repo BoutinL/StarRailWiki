@@ -27,7 +27,7 @@ class HomeController extends AbstractController implements ControllerInterface
                 if (!$trailblazerManager->findOneByEmail($email)) {
                     // If username doesnt exist
                     if (!$trailblazerManager->findOneByUser($username)) {
-                        // If both password are the same and higher than 14
+                        // If both password are the same and equal/higher than 14
                         if (($password == $confirmPassword) and strlen($password) >= 14) {
                             // Password Hash
                             $passwordHash = self::getPasswordHash($password);

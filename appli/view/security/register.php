@@ -14,7 +14,7 @@
             </label>
             <label for="password">
                 <b>Password</b>
-                <input type="password" id="password" placeholder="Minimum 14 characters, at least one letter and one number" name="password" required>
+                <input type="password" id="password" placeholder="Minimum 14 characters, at least one letter and one number" name="password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{14,}$" required>
             </label>
             <label for="confirmPassword">
                 <b>Confirm password</b>

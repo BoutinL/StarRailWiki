@@ -436,7 +436,7 @@ use Model\Managers\CommentManager;
                     } else {
                         $this->redirectTo("wiki", "playableCharacterList");
                     }
-
+                
                 }
 
             }
