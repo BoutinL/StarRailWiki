@@ -64,12 +64,21 @@ nav > ul li:hover .sous{
 
 /* View profile for Admin / Users */
 
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;    
+}
 .content{
     background-color: rgb(36, 36, 36);
     margin: 2rem;
     border-radius: 30px;
     border: solid;  
+    width: 65%;
 }
+
 
 .userlist-container{
     margin: 2rem;

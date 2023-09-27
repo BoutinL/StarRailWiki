@@ -56,7 +56,7 @@
             </main>
         </div>
         <footer>
-            <span class="footer">&copy; 2023 - Star Rail Wiki - <a class="link-unstyled" href=""> Rules </a> - <a class="link-unstyled" href="index.php?ctrl=legality&action=legalNotice"> Legal Notice </a> - <a class="link-unstyled" href="index.php?ctrl=legality&action=privacyPolice     "> Privacy Police </a></span>
+            <span class="footer">&copy; 2023 - Star Rail Wiki - <a class="link-unstyled" href=""> Rules </a> - <a class="link-unstyled" href="index.php?ctrl=legality&action=legalNotice"> Legal Notice </a> - <a class="link-unstyled" href="index.php?ctrl=legality&action=privacyPolice"> Privacy Police </a></span>
             <!--<button id="ajaxbtn">Surprise en Ajax !</button> -> cliqué <span id="nbajax">0</span> fois-->
         </footer>
     </div>
