@@ -5,9 +5,7 @@
 
 h1, h2{
     font-size: 1.5rem;
-    background: -webkit-linear-gradient(#3a7bc0, #e9cf9a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #e9cf9a;
 }
 
 p{
@@ -20,7 +18,5 @@ strong{
 }
 .link{
     text-decoration: none;
-    background: -webkit-linear-gradient(#3a7bc0, #e9cf9a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #6ba2dd;
 }

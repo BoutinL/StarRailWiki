@@ -20,6 +20,10 @@
                 <b>Confirm password</b>
                 <input type="password" id="confirmPassword" placeholder="Write the same password once again" name="confirmPassword" required>
             </label>
+            <label for="acceptNotice">
+                <b>Do you accept the legal notice ?</b>
+                <input class="left" type="checkbox" id="acceptNotice" name="acceptNotice">
+            </label>
             <input class="button" type="submit" id='submit' value="Register" name="submitRegister">
-    </form>
+        </form>
 </div>

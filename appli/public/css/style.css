@@ -30,9 +30,7 @@ ol, ul {
 
 
 .link-unstyled {
-    background: -webkit-linear-gradient(#3a7bc0, #e9cf9a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #e9cf9a;
     text-decoration: none;
 }
 
@@ -65,9 +63,7 @@ ol, ul {
 }
 
 .nav-links:hover{
-    background: -webkit-linear-gradient(#3a7bc0, #e9cf9a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #6ba2dd;
     transform: scale(1.08);
 }
 
