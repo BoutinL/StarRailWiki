@@ -18,17 +18,19 @@ class HomeController extends AbstractController implements ControllerInterface
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $confirmPassword = filter_input(INPUT_POST, 'confirmPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $acceptNotice = filter_input(INPUT_POST, 'acceptNotice', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $role = "ROLE_MEMBER";
 
             // If filters alright
-            if ($username && $email && $password) {
+            if ($username && $email && $password && $acceptNotice) {
                 $trailblazerManager = new TrailblazerManager();
                 // If email doesnt exist
                 if (!$trailblazerManager->findOneByEmail($email)) {
                     // If username doesnt exist
                     if (!$trailblazerManager->findOneByUser($username)) {
-                        // If both password are the same and equal/higher than 14
-                        if (($password == $confirmPassword) and strlen($password) >= 14) {
+                        // If both password are the same and regex validate 
+                        $regexPattern = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{14,}$/";
+                        if (($password == $confirmPassword) && preg_match($regexPattern, $password)) {
                             // Password Hash
                             $passwordHash = self::getPasswordHash($password);
                             // Inject in database
@@ -46,6 +48,11 @@ class HomeController extends AbstractController implements ControllerInterface
                         } else if($password !== $confirmPassword){
                             $categ = 'error';
                             $msg ="Password doesnt match the password confirmation" ;
+                            Session::addFlash($categ, $msg);
+                            $this->redirectTo("security", "register");
+                        } else if(preg_match($regexPattern, $password) == false){
+                            $categ = 'error';
+                            $msg ="Use the right password format" ;
                             Session::addFlash($categ, $msg);
                             $this->redirectTo("security", "register");
                         }

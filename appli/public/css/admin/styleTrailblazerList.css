@@ -243,15 +243,11 @@ form{
     justify-content: space-evenly   ;
 }
 
-.input-box{
-    display: inline ;
-}
-label{
-    display: flex;
-    flex-direction: column;
-}
+
 .text-modal{
     color: #000;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 /* The Close Button */

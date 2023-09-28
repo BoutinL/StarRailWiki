@@ -50,7 +50,7 @@
                     <div class="input-required">
                         <label for="playableCharacterTrace">Character's Trace:</label>
                         <select name="playableCharacterTrace" id="playableCharacterTrace" required>
-                        <option value="<?php echo $trace->getPlayableCharacter()->getId(); ?>"><?php echo $trace->getPlayableCharacter()->getName() ?></option>
+                        <option hidden value="<?php echo $trace->getPlayableCharacter()->getId(); ?>"><?php echo $trace->getPlayableCharacter()->getName() ?></option>
                             <?php 
                                 foreach($playableCharacterList as $playableCharacter){
                                     $id = $playableCharacter->getId();
@@ -68,7 +68,7 @@
                         
                         <label for="ascendTrace">Lvl cap :</label>
                         <select name="ascendTrace" id="ascendTrace" required>
-                        <option  hidden disabled value="<?php $trace->getId() ?>">Ascend <?= $trace->getAscend()->getNbr() ?> - Lvl <?= $trace->getAscend()->getCapLvl() ?></option>
+                        <option hidden hidden disabled value="<?php $trace->getId() ?>">Ascend <?= $trace->getAscend()->getNbr() ?> - Lvl <?= $trace->getAscend()->getCapLvl() ?></option>
                             <?php 
                                 foreach($ascendList as $ascend){
                                     $nbr = $ascend->getNbr();

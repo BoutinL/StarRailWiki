@@ -53,7 +53,7 @@
                     <div class="input-required">
                         <label for="playableCharacter">Character's ability :</label>
                         <select name="playableCharacter" id="playableCharacter" required>
-                        <option value="<?php echo $ability->getPlayableCharacter()->getId(); ?>"><?php echo $ability->getPlayableCharacter()->getName() ?></option>
+                        <option hidden value="<?php echo $ability->getPlayableCharacter()->getId(); ?>"><?php echo $ability->getPlayableCharacter()->getName() ?></option>
                             <?php 
                                 foreach($playableCharacterList as $playableCharacter){
                                     $id = $playableCharacter->getId();
@@ -71,7 +71,7 @@
 
                         <label for="typeAbility">Ability Type :</label>
                         <select name="typeAbility" id="typeAbility" required>
-                        <option value="<?php echo $ability->getTypeAbility()->getId(); ?>"><?php echo $ability->getTypeAbility()->getType(); ?></option>
+                        <option hidden value="<?php echo $ability->getTypeAbility()->getId(); ?>"><?php echo $ability->getTypeAbility()->getType(); ?></option>
                             <?php 
                                 foreach($typeAbilityList as $typeAbility){
                                     $id = $typeAbility->getId();
@@ -83,7 +83,7 @@
 
                         <label for="tagAbility">Ability Tag :</label>
                         <select name="tagAbility" id="tagAbility" required>
-                        <option value="<?php echo $ability->getTagAbility()->getId(); ?>"><?php echo $ability->getTagAbility()->getType(); ?></option>
+                        <option hidden value="<?php echo $ability->getTagAbility()->getId(); ?>"><?php echo $ability->getTagAbility()->getType(); ?></option>
                             <?php 
                                 foreach($tagAbilityList as $tagAbility){
                                     $id = $tagAbility->getId();

@@ -46,12 +46,12 @@
                 <form class="form" id="updateCharacterSelect" action="index.php?ctrl=admin&action=updateCharacterSelect" method="POST">
                 <label class="label-select" for="playableCharacter">Character to update :</label>
                     <select name="playableCharacter" id="playableCharacter" required>
-                        <option hidden disabled selected>--Chose a character--</option>
+                        <option disabled selected>--Chose a character--</option>
                         <?php 
                             foreach($playableCharacterList as $playableCharacter){
                                 $id = $playableCharacter->getId();
                                 $name = $playableCharacter->getName();
-                                echo "<option value=\"$id\">$id - $name</option>";
+                                echo "<option value=\"$id\" required>$id - $name</option>";
                             }
                         ?>
                     </select>

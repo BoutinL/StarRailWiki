@@ -49,7 +49,7 @@
                     <div class="input-required">
                         <label for="playableCharacterEidolon">Character's Eidolon :</label>
                         <select name="playableCharacterEidolon" id="playableCharacterEidolon" required>
-                        <option value="<?php echo $eidolon->getPlayableCharacter()->getId(); ?>"><?php echo $eidolon->getPlayableCharacter()->getName() ?></option>
+                        <option hidden value="<?php echo $eidolon->getPlayableCharacter()->getId(); ?>"><?php echo $eidolon->getPlayableCharacter()->getName() ?></option>
                             <?php 
                                 foreach($playableCharacterList as $playableCharacter){
                                     $id = $playableCharacter->getId();

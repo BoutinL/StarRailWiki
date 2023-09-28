@@ -86,12 +86,9 @@
                             }
                         ?>
 
-                        <!-- <label for="rarity">Rarity :</label>
-                        <input type="number" name="rarity" id="rarity" value="<?php  echo $playableCharacter->getRarity(); ?>" placeholder="4 or 5" required> -->
-
                         <label for="combatType">Combat type :</label>
                         <select name="combatType"  id="combatType" required>
-                            <option value="<?php echo $playableCharacter->getCombatType()->getId(); ?>"><?php echo $playableCharacter->getCombatType()->getType(); ?></option>
+                            <option hidden value="<?php echo $playableCharacter->getCombatType()->getId(); ?>"><?php echo $playableCharacter->getCombatType()->getType(); ?></option>
                             <?php 
                                 foreach($combatTypeList as $combatType){
                                     $id = $combatType->getId();
@@ -103,7 +100,7 @@
 
                         <label for="path">Path :</label>
                         <select name="path" id="path" required>
-                        <option value="<?php echo $playableCharacter->getPath()->getId(); ?>"><?php echo $playableCharacter->getPath()->getType(); ?></option>
+                        <option hidden value="<?php echo $playableCharacter->getPath()->getId(); ?>"><?php echo $playableCharacter->getPath()->getType(); ?></option>
                             <?php 
                                 foreach($pathList as $path){
                                     $id = $path->getId();

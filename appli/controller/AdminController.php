@@ -294,6 +294,8 @@ use Model\Managers\CommentManager;
                             "pathList" => $pathList
                         ]
                     ];
+                } else {
+                    $this->redirectTo("admin", "updateCharacterView");
                 }
             }
         }
@@ -483,6 +485,8 @@ use Model\Managers\CommentManager;
                             "tagAbilityList" => $tagAbilityList
                         ]
                     ];
+                } else {
+                    $this->redirectTo("admin", "updateAbilityView");
                 }
             }
         }
@@ -645,6 +649,8 @@ use Model\Managers\CommentManager;
                             "playableCharacterList" => $playableCharacterList,
                         ]
                     ];
+                } else {
+                    $this->redirectTo("admin", "updateEidolonView");
                 }
             }
         }
@@ -805,6 +811,8 @@ use Model\Managers\CommentManager;
                             "ascendList" => $ascendList
                         ]
                     ];
+                } else {
+                    $this->redirectTo("admin", "updateTraceView");
                 }
             }
         }

@@ -111,7 +111,7 @@
 <div id="modalDelete" class="modal">
     <div class="modal-content">
         <span class="closeDelete">&times;</span>
-        <span id="spanName" class="text-modal">Do you really want to delete </span><span class='username text-modal'></span>
+        <span id="spanName" class="text-modal">Do you really want to delete: </span><span class='username text-modal'></span>
         <div class="confirm-box">
             <a class="button-delete-confirm" href="">Delete</a>
             <a class="button-cancel" href="index.php?ctrl=admin&action=trailblazerList">Cancel</a>
