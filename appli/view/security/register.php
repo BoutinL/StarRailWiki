@@ -20,9 +20,9 @@
                 <b>Confirm password</b>
                 <input type="password" id="confirmPassword" placeholder="Write the same password once again" name="confirmPassword" required>
             </label>
+            <b>Do you accept the <a class="link-unstyled" href="index.php?ctrl=legality&action=legalNotice"> Legal Notice </a> ?</b>
             <label for="acceptNotice">
-                <b>Do you accept the legal notice ?</b>
-                <input class="left" type="checkbox" id="acceptNotice" name="acceptNotice">
+                <input type="checkbox" id="acceptNotice" name="acceptNotice" value="yes i do">
             </label>
             <input class="button" type="submit" id='submit' value="Register" name="submitRegister">
         </form>

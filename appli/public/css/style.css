@@ -32,6 +32,8 @@ ol, ul {
 .link-unstyled {
     color: #e9cf9a;
     text-decoration: none;
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
 }
 
 .nav{
@@ -81,7 +83,6 @@ ol, ul {
 .footer{
     padding-top: 2rem;
     padding-bottom: 2rem;
-    min-width: 100v<;
     display: flex;
     color: white;
     justify-content: center;

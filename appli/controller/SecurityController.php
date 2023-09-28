@@ -193,7 +193,7 @@ class HomeController extends AbstractController implements ControllerInterface
                         Session::addFlash($categ, $msg);
                         $this->redirectTo("security", "modifyPasswordConfirmation");
                     // error msg if new password doesnt match the confirmation 
-                    } else if($newPassword == $confirmPassword){
+                    } else if($newPassword !== $confirmPassword){
                         $categ = 'error';
                         $msg ="Your new password doesnt match the confirmation";
                         Session::addFlash($categ, $msg);
