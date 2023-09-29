@@ -45,7 +45,7 @@
                 <h1>Delete a playable character</h1>
                 <form class="form" id="deleteCharacter" action="index.php?ctrl=admin&action=deleteCharacter" method="POST">
                 <label class="label-select" for="playableCharacter">Character to delete :</label>
-                        <select name="playableCharacter" id="playableCharacter" required>
+                        <select class="select" name="playableCharacter" id="playableCharacter" required>
                             <option hidden disabled selected>--Choose a character--</option>
                             <?php 
                                 foreach($playableCharacterList as $playableCharacter){
@@ -55,7 +55,7 @@
                                 }
                             ?>
                         </select>
-                        <input class="button" type="submit" form="deleteCharacter" name="submit" value="Delete">
+                        <input class="button-delete" type="submit" form="deleteCharacter" name="submit" value="Delete">
                 </form>
             </div>
         <?php endif; 

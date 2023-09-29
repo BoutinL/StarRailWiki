@@ -107,7 +107,7 @@ nav > ul li:hover .sous{
 }
 
 .account-option a.button:hover {
-    background-color: #9e9e9e; /* Couleur de fond au survol */
+    background-color: #e9cf9a; 
 }
 
 .account-option a.button-delete {
@@ -125,7 +125,7 @@ nav > ul li:hover .sous{
 }
 
 .account-option a.button-delete:hover {
-    background-color: #e91717; /* Couleur de fond au survol */
+    background-color: #e91717; 
 }
 
 .account-option {

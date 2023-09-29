@@ -14,9 +14,9 @@ use App\ControllerInterface;
             ];
         }
 
-        public function wikiRules(){
+        public function rules(){
             return [
-                "view" => VIEW_DIR."rules.php"
+                "view" => VIEW_DIR."legality/rules.php"
             ];
         }
 

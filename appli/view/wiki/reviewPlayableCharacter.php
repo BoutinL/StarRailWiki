@@ -10,9 +10,11 @@
     // Ratings of user
     $rateUser = $result["data"]['rateUser'];
 
-    $tokenCSRF = $_SESSION['csrf_token'];
-    // var_dump($tokenCSRF);die;
-    ?>
+    // if connected get user tokken
+    if(App\Session::getUser()){
+        $tokenCSRF = $_SESSION['csrf_token'];
+    }
+?>
 
 <div class="content" style="<?= $playableCharacter->combatTypeCss() ?>">
     <section class="navbar-details" style="<?= $playableCharacter->combatTypeCssBis() ?>">

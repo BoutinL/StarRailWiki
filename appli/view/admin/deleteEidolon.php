@@ -45,7 +45,7 @@
                 <h1>Delete an eidolon</h1>
                 <form class="form" id="deleteEidolon" action="index.php?ctrl=admin&action=deleteEidolon" method="POST">
                 <label class="label-select" for="eidolon">Eidolon to delete :</label>
-                    <select name="eidolon" id="eidolon" required>
+                    <select class="select" name="eidolon" id="eidolon" required>
                         <option hidden disabled selected>--Choose an Eidolon--</option>
                         <?php 
                             foreach($eidolonList as $eidolon){
@@ -55,7 +55,7 @@
                             }
                         ?>
                     </select>
-                    <input class="button" type="submit" form="deleteEidolon" name="submit" value="Delete">
+                    <input class="button-delete" type="submit" form="deleteEidolon" name="submit" value="Delete">
                 </form>
             </div>
         <?php endif; 

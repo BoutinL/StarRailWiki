@@ -22,7 +22,7 @@ class HomeController extends AbstractController implements ControllerInterface
             $role = "ROLE_MEMBER";
 
             // If filters alright
-            if ($username && $email && $password && $acceptNotice) {
+            if ($username && $email && $password) {
                 $trailblazerManager = new TrailblazerManager();
                 // If email doesnt exist
                 if (!$trailblazerManager->findOneByEmail($email)) {

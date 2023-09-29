@@ -45,7 +45,7 @@
                 <h1>Delete an ability</h1>
                 <form class="form" id="deleteAbility" action="index.php?ctrl=admin&action=deleteAbility" method="POST">
                 <label class="label-select" for="ability">Ability to delete :</label>
-                    <select name="ability" id="ability" required>
+                    <select class="select" name="ability" id="ability" required>
                         <option hidden disabled selected>--Choose an ability--</option>
                         <?php 
                             foreach($abilityList as $ability){
@@ -55,7 +55,7 @@
                             }
                         ?>
                     </select>
-                    <input class="button" type="submit" form="deleteAbility" name="submit" value="Delete">
+                    <input class="button-delete" type="submit" form="deleteAbility" name="submit" value="Delete">
                 </form>
             </div>
         <?php endif; 

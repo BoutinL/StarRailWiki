@@ -22,7 +22,7 @@
         </label>
         <b>Do you accept the <a class="link-unstyled" href="index.php?ctrl=legality&action=legalNotice"> Legal Notice </a> ? Its required to register</b>
         <label for="acceptNotice">
-            <input type="checkbox" id="acceptNotice" name="acceptNotice" value="acceptNotice" >
+            <input type="checkbox" id="acceptNotice" name="acceptNotice" value="acceptNotice" required>
         </label>
         <input class="button" type="submit" id='submit' value="Register" name="submitRegister">
     </form>

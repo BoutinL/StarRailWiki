@@ -244,14 +244,10 @@ use Model\Managers\CommentManager;
                         Session::addFlash($categ, $msg);
 
                         $this->redirectTo("wiki", "playableCharacterList");
-                    } else {
-
-                        $categ = 'error';
-                        $msg ="An error happened" ;
-                        Session::addFlash($categ, $msg);
-
-                        $this->redirectTo("admin", "deleteCharacterView");
                     }
+                    
+                } else {
+                    $this->redirectTo("admin", "deleteCharacterView");
                 }
             }
         }
@@ -439,6 +435,8 @@ use Model\Managers\CommentManager;
                         $this->redirectTo("wiki", "playableCharacterList");
                     }
                 
+                } else {
+                    $this->redirectTo("admin", "deleteAbilityView");
                 }
 
             }
@@ -621,10 +619,10 @@ use Model\Managers\CommentManager;
                         $eidolonManager->deleteEidolon($eidolon);
 
                         $this->redirectTo("admin", "deleteEidolonView");
-                    } else {
-                        $this->redirectTo("wiki", "playableCharacterList");
-                    }
+                    } 
 
+                } else {
+                    $this->redirectTo("admin", "deleteEidolonView");
                 }
 
             }
@@ -764,10 +762,9 @@ use Model\Managers\CommentManager;
                         $traceManager->deleteTrace($trace);
 
                         $this->redirectTo("admin", "deleteTraceView");
-                    } else {
-                        $this->redirectTo("wiki", "playableCharacterList");
-                    }
-
+                    } 
+                } else {
+                    $this->redirectTo("admin", "deleteTraceView");
                 }
 
             }
