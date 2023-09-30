@@ -59,7 +59,7 @@
                             echo "</span>
                         </div>
                     </a>";
-                }
+                } 
             } else {
                 echo "<div class='container-error-msg'>
                     <figure class='container-msg-emote'>

@@ -16,8 +16,10 @@ use Model\Managers\RatingManager;
 
     class WikiController extends AbstractController implements ControllerInterface{
 
+        // Get all character datas 
         public function index()
         {
+            // initiating managers
             $playableCharacterManager = new PlayableCharacterManager();
             $combatTypeManager = new CombatTypeManager();
             $pathManager = new PathManager();
@@ -26,10 +28,13 @@ use Model\Managers\RatingManager;
             $pathList = $pathManager->getPath();
             
             return [
+                // Redirection
                 "view" => VIEW_DIR."wiki/playableCharacterList.php",
+                // Data to display in associative array
                 "data" => [
                     // Order the character list in alphabetical and ascending order
                     "playableCharacterList" => $playableCharacterManager->findAll(["name", "ASC"]),
+                    // List of combat type and path to display
                     "combatTypeList" => $combatTypeList,
                     "pathList" => $pathList
                 ]

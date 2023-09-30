@@ -45,7 +45,7 @@
                 <h1>Update a character</h1>
                 <form class="form" id="updateCharacterSelect" action="index.php?ctrl=admin&action=updateCharacterSelect" method="POST">
                 <label class="label-select" for="playableCharacter">Character to update :</label>
-                    <select name="playableCharacter" id="playableCharacter" required>
+                    <select class="select" name="playableCharacter" id="playableCharacter" required>
                         <option disabled selected>--Chose a character--</option>
                         <?php 
                             foreach($playableCharacterList as $playableCharacter){

@@ -104,7 +104,7 @@
                         <input type="text" name="image-url" id="image-url" placeholder="https://star-rail-image-url.png">
                     </div>
                 </form>
-                <input class="add-submit button" type="submit" form="addAbility" name="submit" value="Add that new ability to a character">
+                <input class="add-submit button" type="submit" form="addAbility" name="submit" value="Add that ability">
             </div>
         <?php endif; 
     } ?>

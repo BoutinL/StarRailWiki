@@ -84,7 +84,7 @@
                         <input type="text" name="image-urlTrace" id="image-urlTrace" placeholder="https://star-rail-image-url.png">
                     </div>
                 </form>
-                <input class="button" type="submit" form="addAscendTrace" name="submitTrace" value="Add that new Trace to a character">
+                <input class="button" type="submit" form="addAscendTrace" name="submitTrace" value="Add that Trace">
             </div>
         <?php endif; 
     } ?>

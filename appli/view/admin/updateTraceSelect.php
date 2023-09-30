@@ -45,7 +45,7 @@
                 <h1>Update a trace</h1>
                 <form class="form" id="updateTraceSelect" action="index.php?ctrl=admin&action=updateTraceSelect" method="POST">
                 <label class="label-select" for="trace">Trace to update :</label>
-                    <select name="trace" id="trace" required>
+                    <select class="select" name="trace" id="trace" required>
                         <option hidden disabled selected>--Choose a trace--</option>
                         <?php 
                             foreach($traceList as $trace){

@@ -45,7 +45,7 @@
                 <h1>Update an eidolon</h1>
                 <form class="form" id="updateEidolonSelect" action="index.php?ctrl=admin&action=updateEidolonSelect" method="POST">
                 <label class="label-select" for="eidolon">Eidolon to update :</label>
-                    <select name="eidolon" id="eidolon" required>
+                    <select class="select" name="eidolon" id="eidolon" required>
                         <option hidden disabled selected>--Chose an eidolon--</option>
                         <?php 
                             foreach($eidolonList as $eidolon){
