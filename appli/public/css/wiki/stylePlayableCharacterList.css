@@ -2,6 +2,7 @@
 
 .content{
     display: inline-flex;
+    width: 100%;
 }
 
 .order-list{
@@ -13,6 +14,7 @@
     position:sticky;
     top: 5rem;
     text-align: center;
+    width: 10vw;
 }
 
 .tall-font{
@@ -40,7 +42,7 @@
     padding-top: 2rem;
     border-radius: 30px;
     border: solid 5px;  
-    width: 87vw;
+    width: 90vw;
 }
 
 .card-link{

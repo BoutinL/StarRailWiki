@@ -13,7 +13,7 @@
                 foreach($combatTypeList as $combatType){
                     $id = $combatType->getId();
                     $name = $combatType->getType();
-                    echo "<span>$name</span>";
+                    echo "<label for='combatType".$id."'>$name</label>";
                     echo "<input type='radio' id='combatType".$id."' name='idCombatType' value='$id' required/>";
                 }
             ?>  
@@ -24,7 +24,7 @@
                 foreach($pathList as $path){
                     $id = $path->getId();
                     $name = $path->getType();
-                    echo "<span>$name</span>";
+                    echo "<label for='path".$id."'>$name</label>";
                     echo "<input type='radio' id='path".$id."' name='idPath' value='$id' required/>";
                 }
             ?>  

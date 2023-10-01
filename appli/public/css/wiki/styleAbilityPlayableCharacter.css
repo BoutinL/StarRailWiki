@@ -27,26 +27,26 @@ main{
     color: white;
 }
 
-/* Marqueur onglet qui s'adapte au combatType */
+/* change the color of the tile to match the combatType */
 .combatTypeCssLinkPhysical{
     color: #b2adad;
 }
-.combatTypeCssLinkFire:visited{
+.combatTypeCssLinkFire{
     color: #f84f36
 }
-.combatTypeCssLinkIce:visited{
+.combatTypeCssLinkIce{
     color: #47c7fd;
 }
-.combatTypeCssLinkLightning:visited{
+.combatTypeCssLinkLightning{
     color: #df54ff;
 }
-.combatTypeCssLinkWind:visited{
+.combatTypeCssLinkWind{
     color: #46de9d;
 }
-.combatTypeCssLinkQuantum:visited{
+.combatTypeCssLinkQuantum{
     color: #8880ff;
 }
-.combatTypeCssLinkImaginary:visited{
+.combatTypeCssLinkImaginary{
     color: #ffeb61;
 }
 

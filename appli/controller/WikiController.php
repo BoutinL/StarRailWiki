@@ -43,10 +43,11 @@ use Model\Managers\RatingManager;
 
         public function orderBy()
         {
+            // if submit pressed keep going
             if (isset($_POST['submitOrder'])) {
-        
+                // if the input combatType and Path isnt empty keep going
                 if ((!empty($_POST['idCombatType'])) && (!empty($_POST['idPath']))) {
-                    
+                    // Sanitize inputs
                     $idCombatType = filter_input(INPUT_POST, "idCombatType", FILTER_SANITIZE_NUMBER_INT);
                     $idPath = filter_input(INPUT_POST, "idPath", FILTER_SANITIZE_NUMBER_INT);
                     
@@ -55,7 +56,7 @@ use Model\Managers\RatingManager;
                         $playableCharacterManager = new PlayableCharacterManager();
                         $combatTypeManager = new CombatTypeManager();
                         $pathManager = new PathManager();
-
+                        // List of CombatType and Path
                         $combatTypeList = $combatTypeManager->getCombatType();
                         $pathList = $pathManager->getPath();
 
