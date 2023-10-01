@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `ability` (
   CONSTRAINT `FK-ability_typeAbility` FOREIGN KEY (`typeAbility_id`) REFERENCES `typeability` (`id_typeAbility`)
 ) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.ability : ~8 rows (environ)
+-- Listage des données de la table srw_loic.ability : ~154 rows (environ)
 INSERT INTO `ability` (`id_ability`, `name`, `description`, `energyGeneration`, `energyCost`, `dmg`, `icon`, `playableCharacter_id`, `typeAbility_id`, `tagAbility_id`) VALUES
 	(1, 'Lightning Rush', 'Deals Lightning DMG equal to 50%–110% of Arlan\'s ATK to a single enemy.', 20, 0, 30, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/97f31b5c7f456cadf844b45ee443c93f_4125532999287192258.png', 13, 1, 1),
 	(2, 'Shackle Breaker', 'Consumes Arlan\'s HP equal to 15% of his Max HP to deal Lightning DMG equal to 120%–264% of Arlan\'s ATK to a single enemy. If Arlan does not have sufficient HP, his HP will be reduced to 1 after using his Skill.', 30, 0, 60, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/d8c555f7f9f47b610f2a4b84678df64b_2458479177492742947.png', 13, 2, 1),
@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   CONSTRAINT `FK-comment_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1 COMMENT='character comment';
 
--- Listage des données de la table srw_loic.comment : ~7 rows (environ)
+-- Listage des données de la table srw_loic.comment : ~8 rows (environ)
 INSERT INTO `comment` (`id_comment`, `text`, `dateCreate`, `trailblazer_id`, `playableCharacter_id`) VALUES
 	(7, 'a', '2023-09-19 15:41:35', 2, 5),
 	(8, 'aaaaaaaaaaaaaaaaaaaaaaaa', '2023-09-19 15:48:04', 2, 5),
@@ -269,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `eidolon` (
   PRIMARY KEY (`id_eidolon`),
   KEY `character_id` (`playableCharacter_id`) USING BTREE,
   CONSTRAINT `FK-eidolon_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=latin1 COMMENT='eidolon = own passive skill tree';
+) ENGINE=InnoDB AUTO_INCREMENT=182 DEFAULT CHARSET=latin1 COMMENT='eidolon = own passive skill tree';
 
 -- Listage des données de la table srw_loic.eidolon : ~180 rows (environ)
 INSERT INTO `eidolon` (`id_eidolon`, `nbr`, `name`, `effect`, `icon`, `playableCharacter_id`) VALUES
@@ -491,15 +491,15 @@ CREATE TABLE IF NOT EXISTS `playablecharacter` (
   KEY `path_id` (`path_id`),
   CONSTRAINT `FK-playableCharacter_combatType` FOREIGN KEY (`combatType_id`) REFERENCES `combattype` (`id_combatType`),
   CONSTRAINT `FK-playableCharacter_path` FOREIGN KEY (`path_id`) REFERENCES `path` (`id_path`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.playablecharacter : ~30 rows (environ)
+-- Listage des données de la table srw_loic.playablecharacter : ~31 rows (environ)
 INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarity`, `sex`, `specie`, `faction`, `world`, `quote`, `releaseDate`, `introduction`, `combatType_id`, `path_id`) VALUES
 	(1, 'Himeko', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Himeko-Splash-Art-1024x877.png', 5, 'Female', 'Human', 'The Nameless', 'Astal Express', 'Alright, crew! This world is the target of our next trailblazing expedition!', '2023-04-26', 'An adventurous scientist who encountered and repaired a stranded train as a child, she now ventures across the universe with the Astral Express as its navigator. She is also an Emanator of the Trailblaze.', 2, 3),
 	(2, 'March 7th', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-March-7th-Splash-Art-1024x877.png', 4, 'Female', '???', 'The Nameless', 'Astral Express', 'Well would you listen to that! I saved everyone without causing any trouble! You\'re pretty awesome, March 7th!', '2023-04-26', 'An enthusiastic girl who was saved from eternal ice by the Astral Express Crew, and has the unique ability of being able to use "Six-Phased Ice." When she awoke, she knew nothing of herself or her past, and decided to name herself after the date of her rebirth, "March 7th." She takes many photos using her camera in hopes of discovering a memento from her past.', 3, 6),
 	(3, 'Blade', 'https://expertgamereviews.com/wp-content/uploads/2023/07/Honkai-Star-Rail-Blade-Splash-Art-1024x877.png', 5, 'Male', 'Xianzhou Native', 'Stellaron Hunter', '???', 'When will death come for me? My patience is wearing thin.', '2023-07-19', 'A member of the Stellaron Hunters and a swordsman who abandoned his body to become a blade. He pledges loyalty to Destiny\'s Slave and possesses a terrifying self-healing ability.', 5, 1),
 	(4, 'Kafka', 'https://expertgamereviews.com/wp-content/uploads/2023/08/Honkai-Star-Rail-Kafka-Splash-Art-768x658.png', 5, 'Female', 'Human', 'Stellaron Hunter', 'Pteruges-V', 'You won\'t remember a thing except me.', '2023-08-09', 'A member of the Stellaron Hunters who is calm, collected, and beautiful. Her record on the wanted list of the Interastral Peace Corporation only lists her name and her hobby. People have always imagined her to be elegant, respectable, and in pursuit of things of beauty even in combat.', 4, 5),
-	(5, 'Dan Heng', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Dan-Heng-Splash-Art-1024x877.png', 4, 'Male', 'Vidyadhara', 'The Nameless', 'The Xianzhou Luofu', 'Even as we speak, farewells are happening throughout the universe. The grief that we share is real, but there\'s nothing special about it.', '2023-04-26', 'The cold and reserved train guard and archivist of the Astral Express. Wielding a spear named Cloud-Piercer, he joined the Express crew to escape his secluded past.', 5, 2),
+	(5, 'Dan Heng', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Dan-Heng-Splash-Art-1024x877.png', 4, 'Male', 'Vidyadhara', 'The Nameless', 'The Xianzhou Luofu', 'Even as we speak, farewells are happening throughout the universe. The grief that we share is real, but there&#039;s nothing special about it.', '2023-04-26', 'The cold and reserved train guard and archivist of the Astral Express. Wielding a spear named Cloud-Piercer, he joined the Express crew to escape his secluded past.', 5, 2),
 	(6, 'Welt', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Welt-Splash-Art-1024x877.png', 5, 'Male', 'Human', 'The Nameless', 'Astral Express', 'The galaxy is vast beyond compare, containing an infinite number of possibilities. An individual\'s fate shouldn\'t be limited to a single path ordained by heaven', '2023-04-26', 'An animator by trade, Welt is a seasoned member of the Astral Express Crew and the former sovereign of Anti-Entropy who has saved Earth from annihilation time and time again. He inherited the name of the world, "Welt."', 7, 5),
 	(7, 'Bailu', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Bailu-Splash-Art-1024x877.png', 5, 'Female', 'Vidyadhara', 'Alchemy Commission', 'The Xianzhou Luofu', 'Lunch is like medicine — it has to have the right balance of ingredients. Two smoked patties and a cup of milk tea is a great way to heal your heart and lift your spirits!', '2023-04-26', 'The vivacious High Elder of the Vidyadhara, also known as the "Healer Lady" in the Xianzhou Luofu who always tries to escape from the Alchemy Commission. Although her skills and knowledge in medicine know no bounds, she often prescribes unconventional remedies.', 4, 7),
 	(8, 'Jing Yuan', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Jing-Yuan-Splash-Art-1024x877.png', 5, 'Male', 'Xianzhou Native', 'Cloud Knights', 'The Xianzhou Luofu', 'A truly masterful chess player has no brilliant moves. People clamor excitedly over displays of extreme cunning, forgetting to worry about the overall dangers of the situation.', '2023-05-17', 'He is one of the seven Arbiter-Generals of the Xianzhou Alliance\'s Cloud Knights, and one of the Six Charioteers of the Xianzhou Luofu. Although he appears lazy, Jing Yuan has been a general on the Luofu for centuries, an amount of time exceeding most of his peers. This can be attributed to his wisdom and attention to routine measures, with Jing Yuan preferring to be preventive rather than corrective.', 4, 3),
@@ -524,7 +524,9 @@ INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarit
 	(27, 'Luocha', 'https://expertgamereviews.com/wp-content/uploads/2023/06/Honkai-Star-Rail-Luocha-Splash-Art-1024x877.png', 5, 'Male', '???', 'Intergalactic Merchant Guild', 'The Xianzhou Luofu', 'This coffin isn\'t mine. I was merely entrusted to take the body back to the Luofu.', '2023-06-28', 'A foreign trader who came from beyond the seas, he appears on the Xianzhou Luofu with a huge coffin. With his consummate medical skills, he always rescues people in times of danger. As a merchant, he is registered at the Xianzhou Yuque within the Alliance, and at the Star Unity Mall branch at the North Valley Star within the Interastral Peace Corporation.', 7, 7),
 	(28, 'Yanqing', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Yanqing-Splash-Art-1024x877.png', 5, 'Male', '???', 'Cloud Knights', 'The Xianzhou Luofu', 'I only called you \'teacher\' because I admire your skill in this area. Don\'t expect me to start taking it easy on you.', '2023-04-26', 'The youngest lieutenant of the Xianzhou Alliance\'s Cloud Knights on board the Xianzhou Luofu, and General Jing Yuan\'s retainer. A swordsman gifted with the art of swordplay and war who has a prodigious interest in swords and always collects them from the Artisanship Commission.', 3, 2),
 	(29, 'Trailblazer', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/7e3dcd2464edfca47e45ee7f0b53f32b_1711910135236400099.gif', 5, 'Female / Male', '???', 'Astral Express', 'Astral Express', 'When there is the chance to make a choice, make one that you know you won\'t regret...', '2023-04-26', 'They are awakened during the opening events of the game by Kafka and Silver Wolf, who leave them to be found by March 7th and Dan Heng on Herta Space Station during the Antimatter Legion\'s invasion. The player gets to choose either Stelle (female) or Caelus (male), along with their Receptacle Codename.', 1, 1),
-	(30, 'Trailblazer', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/c74eb9c6d1c028fc9813c87612c84a3e_5924273427451673630.gif', 5, 'Female / Male', '???', 'Astral Express', 'Astral Express', 'When there is the chance to make a choice, make one that you know you won\'t regret...', '2023-04-26', 'They are awakened during the opening events of the game by Kafka and Silver Wolf, who leave them to be found by March 7th and Dan Heng on Herta Space Station during the Antimatter Legion\'s invasion. The player gets to choose either Stelle (female) or Caelus (male), along with their Receptacle Codename.', 2, 6);
+	(30, 'Trailblazer', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/c74eb9c6d1c028fc9813c87612c84a3e_5924273427451673630.gif', 5, 'Female / Male', '???', 'Astral Express', 'Astral Express', 'When there is the chance to make a choice, make one that you know you won\'t regret...', '2023-04-26', 'They are awakened during the opening events of the game by Kafka and Silver Wolf, who leave them to be found by March 7th and Dan Heng on Herta Space Station during the Antimatter Legion\'s invasion. The player gets to choose either Stelle (female) or Caelus (male), along with their Receptacle Codename.', 2, 6),
+	(34, 'Imbibitor Lunae', 'https://expertgamereviews.com/wp-content/uploads/2023/08/Honkai-Star-Rail-Imbibitor-Lunae-Splash-Art-1536x1536.png', 5, 'Male', 'Vidyadhara', 'The Nameless', 'The Xianzhou Luofu', 'I am nobody&#039;s shadow', '2023-09-29', 'Dan Heng&#039;s true Vidyadharian form, revealed after accepting the residual powers of the previous incarnation of the Imbibitor Lunae.\r\nBy accepting the majestic horns that sit proudly atop his skull, he also accepted the merits and faults that are attributed to this person.\r\nHowever, he was never really himself.', 7, 1),
+	(35, 'Lynx', 'https://expertgamereviews.com/wp-content/uploads/2023/09/Honkai-Star-Rail-Lynx-Splash-Art-1024x841.png', 4, 'Female', 'Human', 'Landeau Family', 'Belobog', 'In the Landau family, things are simple: If you wanna do something, go do it.', '2023-09-29', 'The youngest daughter of the Landau Family, she is a renowned environmental explorer albeit an introverted girl.', 6, 7);
 
 -- Listage de la structure de table srw_loic. rating
 CREATE TABLE IF NOT EXISTS `rating` (
@@ -539,7 +541,7 @@ CREATE TABLE IF NOT EXISTS `rating` (
   CONSTRAINT `FK-rating_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COMMENT='character rating';
 
--- Listage des données de la table srw_loic.rating : ~4 rows (environ)
+-- Listage des données de la table srw_loic.rating : ~2 rows (environ)
 INSERT INTO `rating` (`id_rating`, `rate`, `playableCharacter_id`, `trailblazer_id`) VALUES
 	(1, 3, 13, 2),
 	(2, 3, 5, 2),
@@ -605,9 +607,9 @@ CREATE TABLE IF NOT EXISTS `trailblazer` (
   `dateRegister` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `role` varchar(20) NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id_trailblazer`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COMMENT='trailblazer = user';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COMMENT='trailblazer = user';
 
--- Listage des données de la table srw_loic.trailblazer : ~13 rows (environ)
+-- Listage des données de la table srw_loic.trailblazer : ~12 rows (environ)
 INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `dateRegister`, `role`) VALUES
 	(1, 'admin@admin.fr', 'admin', '$2y$10$JtompmQllYSqNPQa0D1lCuDiCLDXBORQJf4gU8o2sPWgPP9RNbDta', '2023-09-12 15:17:57', 'ROLE_ADMIN'),
 	(2, 'user@user.fr', 'user', '$2y$10$YY8W2JZrK6UckS4oxKfYQOsxUzOhHXnoEVXh.4Nk4ENiu210Q7z26', '2023-09-12 15:21:09', 'ROLE_MEMBER'),
@@ -621,7 +623,8 @@ INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `d
 	(10, 'user8@user.fr', 'user8', '$2y$10$rmp9OW6SWf.nyQ8F4lkY3ODrvxsbFwlLogCWDaXgh2EVzHgcXWNRW', '2023-09-13 10:03:32', 'ROLE_MEMBER'),
 	(11, 'user9@user.fr', 'user9', '$2y$10$ZZglVekhPveINd7M85LntuM7TRChrS16dJ5G1iPiahBBCCJJQj5PO', '2023-09-13 10:03:58', 'ROLE_MEMBER'),
 	(12, 'user10@user.fr', 'user10', '$2y$10$ikZS4vNOjxRcVru8yNUs7.VCNAxsMNF3z4./lOZRlGExEHouHgDSS', '2023-09-13 10:04:20', 'ROLE_MEMBER'),
-	(13, 'test@test.fr', 'test', '$2y$10$CjiNpnzLSEpwMwx8I0G0a.5xXmjlu.6cAHhG0u4pTYU6LfWFDGSJa', '2023-09-20 18:21:28', 'ROLE_MEMBER');
+	(13, 'test@test.fr', 'test', '$2y$10$CjiNpnzLSEpwMwx8I0G0a.5xXmjlu.6cAHhG0u4pTYU6LfWFDGSJa', '2023-09-20 18:21:28', 'ROLE_MEMBER'),
+	(14, 'Regex@Regex.fr', 'Regex', '$2y$10$RbKV1K/K31bSb6ZdIc0LD.vTfEixGhnsW3s5ybiN7BfDIOzdyzJu.', '2023-09-29 09:05:26', 'ROLE_MEMBER');
 
 -- Listage de la structure de table srw_loic. typeability
 CREATE TABLE IF NOT EXISTS `typeability` (
