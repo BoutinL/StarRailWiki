@@ -38,9 +38,9 @@ CREATE TABLE IF NOT EXISTS `ability` (
   CONSTRAINT `FK-ability_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE,
   CONSTRAINT `FK-ability_tagAbility` FOREIGN KEY (`tagAbility_id`) REFERENCES `tagability` (`id_tagAbility`),
   CONSTRAINT `FK-ability_typeAbility` FOREIGN KEY (`typeAbility_id`) REFERENCES `typeability` (`id_typeAbility`)
-) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.ability : ~154 rows (environ)
+-- Listage des données de la table srw_loic.ability : ~155 rows (environ)
 INSERT INTO `ability` (`id_ability`, `name`, `description`, `energyGeneration`, `energyCost`, `dmg`, `icon`, `playableCharacter_id`, `typeAbility_id`, `tagAbility_id`) VALUES
 	(1, 'Lightning Rush', 'Deals Lightning DMG equal to 50%–110% of Arlan\'s ATK to a single enemy.', 20, 0, 30, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/97f31b5c7f456cadf844b45ee443c93f_4125532999287192258.png', 13, 1, 1),
 	(2, 'Shackle Breaker', 'Consumes Arlan\'s HP equal to 15% of his Max HP to deal Lightning DMG equal to 120%–264% of Arlan\'s ATK to a single enemy. If Arlan does not have sufficient HP, his HP will be reduced to 1 after using his Skill.', 30, 0, 60, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/d8c555f7f9f47b610f2a4b84678df64b_2458479177492742947.png', 13, 2, 1),
@@ -246,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   KEY `playableCharacter_id` (`playableCharacter_id`),
   CONSTRAINT `FK-comment_playableCharacter_id` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE SET NULL,
   CONSTRAINT `FK-comment_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1 COMMENT='character comment';
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1 COMMENT='character comment';
 
 -- Listage des données de la table srw_loic.comment : ~8 rows (environ)
 INSERT INTO `comment` (`id_comment`, `text`, `dateCreate`, `trailblazer_id`, `playableCharacter_id`) VALUES
@@ -255,8 +255,13 @@ INSERT INTO `comment` (`id_comment`, `text`, `dateCreate`, `trailblazer_id`, `pl
 	(16, 'a', '2023-09-25 15:34:35', 3, 13),
 	(17, 'a', '2023-09-25 15:34:36', 3, 13),
 	(18, 'a', '2023-09-25 15:34:38', 3, 13),
-	(19, 'a', '2023-09-25 15:34:39', 3, 13),
-	(20, 'a', '2023-09-25 15:34:40', 3, 13);
+	(24, 'a', '2023-10-02 16:07:07', 1, 3),
+	(26, 'Pretty Nice support ', '2023-10-02 16:38:37', 2, 19),
+	(27, 'Great debuff in AOE who can froze and she can also delete an ennemie buff.', '2023-10-02 16:41:21', 3, 19),
+	(28, 'It&#039;s sucrose but its icy !', '2023-10-02 16:42:29', 5, 19),
+	(30, 'Did you see all those ruler on her ?', '2023-10-02 16:46:02', 6, 19),
+	(31, 'Snezhnayan Sucrose &lt;3', '2023-10-02 16:56:25', 6, 19),
+	(32, 'Fun fact: Pela shares her name with a Russian singer.', '2023-10-02 16:58:06', 7, 19);
 
 -- Listage de la structure de table srw_loic. eidolon
 CREATE TABLE IF NOT EXISTS `eidolon` (
@@ -269,11 +274,11 @@ CREATE TABLE IF NOT EXISTS `eidolon` (
   PRIMARY KEY (`id_eidolon`),
   KEY `character_id` (`playableCharacter_id`) USING BTREE,
   CONSTRAINT `FK-eidolon_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=182 DEFAULT CHARSET=latin1 COMMENT='eidolon = own passive skill tree';
+) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=latin1 COMMENT='eidolon = own passive skill tree';
 
--- Listage des données de la table srw_loic.eidolon : ~180 rows (environ)
+-- Listage des données de la table srw_loic.eidolon : ~181 rows (environ)
 INSERT INTO `eidolon` (`id_eidolon`, `nbr`, `name`, `effect`, `icon`, `playableCharacter_id`) VALUES
-	(1, 1, 'Chilhood', 'After "Victory Rush" is triggered, Himeko\'s SPD increases by 20% for 2 turn(s).', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/5055f0d7efe7a6a0a7ab8643326c85d9_7226258822720332319.png', 1),
+	(1, 1, 'Chilhood', 'After &quot;Victory Rush&quot; is triggered, Himeko&#039;s SPD increases by 20% for 2 turn(s).', 'https://placehold.co/120', 1),
 	(2, 2, 'Convergence', 'Deals 15% more DMG to enemies whose HP percentage is 50% or less.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/9c81b39d06d7b2e4f218d273e1f70eec_244646985592578051.png', 1),
 	(3, 3, 'Poised', 'Skill Lv. +2, up to a maximum of Lv. 15 / Basic ATK Lv. +1, up to a maximum of Lv. 10.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/11d2ae7bbded23ca045ba40f3e63d970_1518491488393966864.png', 1),
 	(4, 4, 'Dedication', 'When Himeko\'s Skill inflicts Weakness Break on an enemy, she gains 1 extra point(s) of Charge.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/706e50425fc52e5611db2eab1f605c1e_6006020162466853659.png', 1),
@@ -452,7 +457,13 @@ INSERT INTO `eidolon` (`id_eidolon`, `nbr`, `name`, `effect`, `icon`, `playableC
 	(177, 3, 'Trail-Blazing Blueprint', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', NULL, 30),
 	(178, 4, 'Nation-Building Oath', 'At the start of the battle, immediately gains 4 stack(s) of Magma Will.', NULL, 30),
 	(179, 5, 'Spirit-Warming Flame', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nBasic ATK Lv. +1, up to a maximum of Lv. 10.', NULL, 30),
-	(180, 6, 'City-Forging Bulwarks', 'After the Trailblazer use enhanced Basic ATK or Ultimate, their DEF increases by 10%. Stacks up to 3 time(s).', NULL, 30);
+	(180, 6, 'City-Forging Bulwarks', 'After the Trailblazer use enhanced Basic ATK or Ultimate, their DEF increases by 10%. Stacks up to 3 time(s).', NULL, 30),
+	(182, 1, 'Tethered to Sky', 'Increases the number of stackable Righteous Heart stacks by 4, and 1 extra stack of Righteous Heart will be gained for each hit per attack.', 'https://upload-static.hoyoverse.com/hoyolab-wiki/2023/08/29/5308864/7c50e1dbb73fb77529a9d0b4d98e6a9b_4424735184798908603.png', 34),
+	(183, 2, 'Imperium On Cloud Nine', 'After using his Ultimate, Dan Heng &bull; Imbibitor Lunae&rsquo;s action is Advanced Forward by 100% and gains 1 extra Squama Sacrosancta.', 'https://upload-static.hoyoverse.com/hoyolab-wiki/2023/08/29/5308864/3be4649293d2c15c902f61da27262049_7692325986320222195.png', 34),
+	(184, 3, 'Clothed in Clouds', 'Skill Lv. +2, up to a maximum of Lv. 15.\r\nBasic Attack Lv. +1, up to a maximum of Lv. 10.', 'https://upload-static.hoyoverse.com/hoyolab-wiki/2023/08/29/5308864/791def382d8ada379b26c2fd20155289_8444363807045104051.png', 34),
+	(185, 4, 'Zephyr&rsquo;s Bliss', 'Buffs provided by Dominating Roar persists until the end of this character&rsquo;s turn.', 'https://upload-static.hoyoverse.com/hoyolab-wiki/2023/08/29/5308864/70b23fb70ccd1a3b0c698415b7bceac5_8609869026460881078.png', 34),
+	(186, 5, 'Fall is the Pride', 'Ultimate Lv. +2, up to a maximum of Lv. 15.\r\nTalent Lv. +2, up to a maximum of Lv. 15.', 'https://upload-static.hoyoverse.com/hoyolab-wiki/2023/08/29/5308864/79f5c9e5da8aae4a37726695e7aa50b9_4714515111451806885.png', 34),
+	(187, 6, 'Reign, Returned', 'After any other ally uses their Ultimate, the Imaginary RES PEN of Dan Heng &bull; Imbibitor Lunae&rsquo;s next Fulgurant Leap attack increases by 20%, up to 3 stacks.', 'https://upload-static.hoyoverse.com/hoyolab-wiki/2023/08/29/5308864/0f2a3c431a2cc65453e8b5ee7567dc80_5013622427037426215.png', 34);
 
 -- Listage de la structure de table srw_loic. path
 CREATE TABLE IF NOT EXISTS `path` (
@@ -539,14 +550,15 @@ CREATE TABLE IF NOT EXISTS `rating` (
   KEY `trailblazer_id` (`trailblazer_id`),
   CONSTRAINT `FK-rating_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE SET NULL,
   CONSTRAINT `FK-rating_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COMMENT='character rating';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COMMENT='character rating';
 
 -- Listage des données de la table srw_loic.rating : ~2 rows (environ)
 INSERT INTO `rating` (`id_rating`, `rate`, `playableCharacter_id`, `trailblazer_id`) VALUES
 	(1, 3, 13, 2),
 	(2, 3, 5, 2),
 	(3, 5, 13, 4),
-	(4, 1, 13, 3);
+	(4, 1, 13, 3),
+	(5, 4, 19, 1);
 
 -- Listage de la structure de table srw_loic. tagability
 CREATE TABLE IF NOT EXISTS `tagability` (
@@ -584,19 +596,19 @@ CREATE TABLE IF NOT EXISTS `trace` (
 
 -- Listage des données de la table srw_loic.trace : ~13 rows (environ)
 INSERT INTO `trace` (`id_trace`, `name`, `effect`, `icon`, `ascend_id`, `playableCharacter_id`) VALUES
-	(1, 'DMG Boost: Wind', 'Wind DMG increases by 3.2%', NULL, 1, 5),
-	(2, ' Hidden Dragon', 'When current HP percentage is 50% or lower, reduces the chance of being attacked by enemies.', NULL, 3, 5),
-	(3, ' ATK Boost', 'ATK increases by 4.0%', NULL, 3, 5),
-	(4, 'DMG Boost: Wind', 'Wind DMG increases by 3.2%', NULL, 4, 5),
-	(5, ' DEF Boost', 'DEF increases by 5.0%', NULL, 4, 5),
-	(6, ' Faster Than Light', 'After launching an attack, there is a 50% fixed chance to increase own SPD by 20% for 2 turn(s).', NULL, 5, 5),
-	(7, ' DMG Boost: Wind', 'Wind DMG increases by 4.8%', NULL, 5, 5),
-	(8, ' ATK Boost', 'ATK increases by 6.0%', NULL, 6, 5),
-	(9, ' DMG Boost: Wind', 'Wind DMG increases by 4.8%', NULL, 6, 5),
-	(10, ' High Gale', 'Basic ATK deals 40% more DMG to Slowed enemies.', NULL, 7, 5),
-	(11, ' DEF Boost', 'DEF increases by 7.5%', NULL, 7, 5),
-	(12, ' ATK Boost', 'ATK increases by 8.0%', NULL, 8, 5),
-	(13, ' DMG Boost: Wind', 'Wind DMG increases by 6.4%', NULL, 9, 5);
+	(1, 'DMG Boost: Wind', 'Wind DMG increases by 3.2%', 'https://placehold.co/120', 1, 5),
+	(2, ' Hidden Dragon', 'When current HP percentage is 50% or lower, reduces the chance of being attacked by enemies.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/90717cfd9f80c8f7da1913efd7922faf_8541600586783944355.png', 1, 5),
+	(3, ' ATK Boost', 'ATK increases by 4.0%', 'https://placehold.co/120', 1, 5),
+	(4, 'DMG Boost: Wind', 'Wind DMG increases by 3.2%', 'https://placehold.co/120', 4, 5),
+	(5, ' DEF Boost', 'DEF increases by 5.0%', 'https://placehold.co/120', 4, 5),
+	(6, ' Faster Than Light', 'After launching an attack, there is a 50% fixed chance to increase own SPD by 20% for 2 turn(s).', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/f8a8f367540bae16644a5adfbd760d84_900783470661715446.png', 1, 5),
+	(7, ' DMG Boost: Wind', 'Wind DMG increases by 4.8%', 'https://placehold.co/120', 5, 5),
+	(8, ' ATK Boost', 'ATK increases by 6.0%', 'https://placehold.co/120', 6, 5),
+	(9, ' DMG Boost: Wind', 'Wind DMG increases by 4.8%', 'https://placehold.co/120', 6, 5),
+	(10, ' High Gale', 'Basic ATK deals 40% more DMG to Slowed enemies.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/a34543c8ce465367fa5f5549229c142d_2604362486441655805.png', 1, 5),
+	(11, ' DEF Boost', 'DEF increases by 7.5%', 'https://placehold.co/120', 7, 5),
+	(12, ' ATK Boost', 'ATK increases by 8.0%', 'https://placehold.co/120', 8, 5),
+	(13, ' DMG Boost: Wind', 'Wind DMG increases by 6.4%', 'https://placehold.co/120', 9, 5);
 
 -- Listage de la structure de table srw_loic. trailblazer
 CREATE TABLE IF NOT EXISTS `trailblazer` (

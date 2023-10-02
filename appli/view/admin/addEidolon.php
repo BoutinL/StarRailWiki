@@ -78,8 +78,8 @@
                         
                         <label for="effectEidolon">Effect* :</label>
                         <textarea rows="10" type="text" name="effectEidolon" id="effectEidolon" placeholder="What's the effect of that Eidolon" required></textarea>
-                        <label for="image-urlEidolon">Image url :</label>
-                        <input type="text" name="image-urlEidolon" id="image-urlEidolon" placeholder="https://star-rail-image-url.png">
+                        <label for="imageUrlEidolon">Image url :</label>
+                        <input type="text" name="imageUrlEidolon" id="imageUrlEidolon" placeholder="https://star-rail-image-url.png">
                     </div>
                 </form>
                 <input class="button" type="submit" form="addAscendEidolon" name="submitEidolon" value="Add that Eidolon">

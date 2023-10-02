@@ -102,8 +102,9 @@ use Model\Managers\RatingManager;
         {
             $abilitiesPlayableCharacterManager = new AbilityManager();
             $playableCharacterManager = new PlayableCharacterManager();
-
+            // Abilities of a character found by his id
             $abilitiesPlayableCharacter = $abilitiesPlayableCharacterManager->getAbilitiesByPlayableCharacterId($id);
+            // Data of a character found by his id
             $playableCharacter = $playableCharacterManager->findOneById($id);
 
             if($playableCharacter) {

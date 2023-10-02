@@ -548,10 +548,9 @@ use Model\Managers\CommentManager;
                     $effect = filter_input(INPUT_POST, "effectEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $nbr = filter_input(INPUT_POST, "nbrEidolon", FILTER_SANITIZE_NUMBER_INT); 
                     $playableCharacter = filter_input(INPUT_POST, "playableCharacterEidolon", FILTER_SANITIZE_NUMBER_INT);
-                    $icon = filter_input(INPUT_POST, "image-urlEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
+                    $icon = filter_input(INPUT_POST, "imageUrlEidolon", FILTER_VALIDATE_URL) ? filter_input(INPUT_POST, "imageUrlEidolon", FILTER_VALIDATE_URL) : "https://placehold.co/120";
 
                     if ($name !== false && $effect !== false && $nbr !== false && $playableCharacter !== false && $icon !== false) {
-                        // var_dump("$icon");die;
                         $eidolonManager = new EidolonManager();
                         $eidolonManager->add([
                             "name" => $name,
@@ -560,8 +559,14 @@ use Model\Managers\CommentManager;
                             "playableCharacter_id" => $playableCharacter,
                             "icon" => $icon,
                         ]);
+                        $categ = 'success';
+                        $msg ="Successfully added" ;
+                        Session::addFlash($categ, $msg);
                         $this->redirectTo("admin", "addEidolonView");
                     } else {
+                        $categ = 'error';
+                        $msg ="Not added" ;
+                        Session::addFlash($categ, $msg);
                         $this->redirectTo("wiki", "playableCharacterList");
                     }
 
@@ -592,7 +597,6 @@ use Model\Managers\CommentManager;
 
             $eidolonList = $eidolonManager->getEidolon();
 
-            // var_dump($ascendList->current());die;
             return [
                 "view" => VIEW_DIR."admin/deleteEidolon.php",
                 "data" => [
@@ -662,7 +666,7 @@ use Model\Managers\CommentManager;
                     $name = filter_input(INPUT_POST, "nameEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $nbr = filter_input(INPUT_POST, "nbrEidolon", FILTER_SANITIZE_NUMBER_INT);
                     $effect = filter_input(INPUT_POST, "effectEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $image = filter_input(INPUT_POST, "imageUrlEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-urlEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
+                    $image = filter_input(INPUT_POST, "imageUrlEidolon", FILTER_VALIDATE_URL) ? filter_input(INPUT_POST, "imageUrlEidolon", FILTER_VALIDATE_URL) : "https://placehold.co/120";
 
                     if ($playableCharacter !== false  && $name !== false && $effect !== false && $nbr !== false && $image !== false ) {
                         $eidolonManager = new EidolonManager();
