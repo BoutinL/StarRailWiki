@@ -56,14 +56,15 @@
                     effect = :effectEidolon,
                     icon = :imageUrlEidolon
                     WHERE id_".$this->tableName." = :id";
-                        DAO::update($sql, [
-                                'id' => $id,
-                                'playableCharacterEidolon' => $playableCharacter,
-                                'nameEidolon' => $name,
-                                'nbrEidolon' => $nbr,
-                                'effectEidolon' => $effect,
-                                'imageUrlEidolon' => $image
-                            ]);  
+
+            DAO::update($sql, [
+                    'id' => $id,
+                    'playableCharacterEidolon' => $playableCharacter,
+                    'nameEidolon' => $name,
+                    'nbrEidolon' => $nbr,
+                    'effectEidolon' => $effect,
+                    'imageUrlEidolon' => $image
+                ]);  
         }
 
     }

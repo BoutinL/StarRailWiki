@@ -461,8 +461,8 @@ use Model\Managers\CommentManager;
         public function updateAbilitySelect(){
             $this->restrictTo("ROLE_ADMIN");
 
-            $id = filter_input(INPUT_POST,"ability", FILTER_VALIDATE_INT);
             if (isset($_POST['submit'])) {
+                $id = filter_input(INPUT_POST,"ability", FILTER_VALIDATE_INT);
                 if ((!empty($_POST['ability']))) {
                     $abilityManager = new AbilityManager;
                     $playableCharacterManager = new PlayableCharacterManager;
@@ -494,8 +494,8 @@ use Model\Managers\CommentManager;
             
             if (isset($_POST['submit'])) {
                 // Check if all required input arnt empty
+
                 if ((!empty($_POST['playableCharacter'])) && (!empty($_POST['name'])) && (!empty($_POST['description'])) && (!empty($_POST['typeAbility'])) && (!empty($_POST['tagAbility']))) {
-                    
                     // Sanitaze all input from the form
                     $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
                     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -506,12 +506,10 @@ use Model\Managers\CommentManager;
                     $image = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
                     $typeAbility = filter_input(INPUT_POST, "typeAbility", FILTER_SANITIZE_NUMBER_INT);
                     $tagAbility = filter_input(INPUT_POST, "tagAbility", FILTER_SANITIZE_NUMBER_INT);
-
+                    
                     if ($playableCharacter !== false  && $name !== false && $description !== false && $energyGeneration !== false || $energyGeneration === 0 && $energyCost !==false || $energyCost === 0 && $dmg !==false || $dmg === 0 && $image !== false && $typeAbility !== false && $tagAbility !== false) {
-                        // var_dump($tagAbility);die;
                         $abilityManager = new AbilityManager();
                         $abilityManager->updateAbility($id, $playableCharacter, $name, $description, $energyGeneration, $energyCost, $dmg, $image, $typeAbility, $tagAbility);
-                        // die;
                         $this->redirectTo("admin", "updateAbilityView");
                     } else {
                         $this->redirectTo("security", "viewProfile");
