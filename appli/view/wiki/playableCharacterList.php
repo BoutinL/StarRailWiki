@@ -60,6 +60,7 @@
                         </div>
                     </a>";
                 } 
+            // If $playableCharacterList is empty display error message
             } else {
                 echo "<div class='container-error-msg'>
                     <figure class='container-msg-emote'>

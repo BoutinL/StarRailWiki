@@ -28,8 +28,9 @@
 
         public function getRatingByTrailblazer($idTrailblazer, $idPlayableCharacter){
 
-            $sql = "SELECT *
+            $sql = "SELECT r.id_rating, r.rate
             FROM " .$this->tableName. " r
+            INNER JOIN trailblazer t ON t.id_trailblazer = r.trailblazer_id
             WHERE r.trailblazer_id = :idTrailblazer AND r.playableCharacter_id = :idPlayableCharacter";
 
             return $this->getOneOrNullResult(

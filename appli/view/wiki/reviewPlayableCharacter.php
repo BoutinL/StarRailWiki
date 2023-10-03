@@ -34,9 +34,7 @@
                         } ?>
                     </div>
                     <span class="rate-nbr"><?= $statsRate["nbrOfRating"] ?>  people voted</span>
-                
-                
-                    <!-- If theres no rate, display error msg -->
+                <!-- If theres no rate, display error msg -->
                 <?php } else {
                     echo "<div class='container-error-msg'>";
                         echo "<figure class='container-msg-emote'>
@@ -45,7 +43,7 @@
                         echo "<p class='error-msg'>There's no rating yet... </p>"; 
                     echo "</div>";
                 } ?>
-
+                
                 <!-- If user connected and he hasnt rate that character yet display form to rate -->
                 <?php if(App\Session::getUser() && !$rateUser){ ?>
                     <form class="form-rate" id="addRate" action="index.php?ctrl=wiki&action=addRate&id=<?= $playableCharacter->getId() ?>" method="POST">
@@ -67,7 +65,6 @@
                         <input type="hidden" name="csrf_token" value="<?= $tokenCSRF ?>" >
                         <input class="submit-btn <?= $playableCharacter->combatTypeCssHover() ?>" type="submit" name="submitRate" value="Submit">
                     </form>
-        
         
                 <!-- If a connected user has already rate that character -> show the update form -->
                 <?php } else if(App\Session::getUser() && $rateUser){
