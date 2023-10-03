@@ -183,7 +183,8 @@ class HomeController extends AbstractController implements ControllerInterface
     
                 // If filters alright
                 if ($actualPassword && $newPassword && $confirmPassword) {
-                    if(password_verify($actualPassword, $dbUser->getPassword()) && ($newPassword == $confirmPassword) && strlen($newPassword) >= 14){
+                    $regexPattern = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{14,}$/";
+                    if(password_verify($actualPassword, $dbUser->getPassword()) && ($newPassword == $confirmPassword) && preg_match($regexPattern, $newPassword)){
                         // Password Hash
                         $passwordHash = self::getPasswordHash($newPassword);
                         // Inject in database

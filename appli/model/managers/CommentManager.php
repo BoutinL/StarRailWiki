@@ -20,7 +20,7 @@
             INNER JOIN playablecharacter p ON p.id_playablecharacter = c.playablecharacter_id
             WHERE c.playableCharacter_id = :id
             ORDER BY dateCreate DESC LIMIT ".$intFirstCommentByPage.", ".$intCommentByPage;
-            // var_dump($intCommentByPage);die;
+
             return $this->getMultipleResults(
                 DAO::select($sql, [
                     "id" => $id

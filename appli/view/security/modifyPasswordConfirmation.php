@@ -14,11 +14,11 @@
                 </label>
                 <label for="actualPassword">
                     <b>New password</b>
-                    <input class="input-form" type="password" placeholder="Minimum 14 characters, at least one upper and lower caractere and one number" name="newPassword" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{14,}$" required>
+                    <input class="input-form" type="password" placeholder="Min 14 character, at least one upper and lower caractere and one number" name="newPassword" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{14,}$" required>
                 </label>
                 <label for="confirmPassword">
                     <b>Comfirm password</b>
-                    <input class="input-form" type="password" placeholder="Comfirm password" name="confirmPassword" required>
+                    <input class="input-form" type="password" placeholder="Your new password again" name="confirmPassword" required>
                 </label>
                 <div class="option" >
                     <input class="button-modify" type="submit" id='submit' value="Modify" name="submitModifyPassword">

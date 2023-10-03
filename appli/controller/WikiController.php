@@ -174,13 +174,10 @@ use Model\Managers\RatingManager;
             // For Pagination, to find on wich page we are
             if(isset($_GET['page']) && !empty($_GET['page'])){
                 $currentPage = (int)strip_tags($_GET['page']);
-                // var_dump($currentPage);die;
             } else {
                 $currentPage = 1;
             }
-
             $commentManager = new CommentManager();
-            
             // get nbr of comments
             $nbrComments = $commentManager->getCommentsNbr($id);
             $intNbrComments = $nbrComments["nbrComments"];
@@ -190,10 +187,8 @@ use Model\Managers\RatingManager;
             // calcul nbr of pages
             $pages = (int)ceil($intNbrComments / $intCommentByPage);
             // first page comment
-            // $firstCommentByPage = ($currentPage * $intCommentByPage) - $intCommentByPage;
             $firstCommentByPage = ($currentPage * $intCommentByPage) - $intCommentByPage;
             $intFirstCommentByPage = intval($firstCommentByPage);
-            
             // For comments / pagination
             $commentPlayableCharacter = $commentManager->getCommentByPlayableCharacter($id, $intFirstCommentByPage, $intCommentByPage);
             

@@ -107,15 +107,18 @@
                         if($commentPlayableCharacter) { ?>
                             <div class='pagination-box'>
                                 <ul class='pagination'>
-                                    <li class="link-details <?= ($currentPage == 1) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage - 1 ?>' ><</a></li>
-                                    <?php
-                                        for($page = 1; $page <= $pages; $page++){?>
-                                            <li class="link-details">
-                                                <a class="<?= ($currentPage == $page) ? $playableCharacter->combatTypeCssLink() : '' ?>" href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $page ?>'><?= $page ?></a>
-                                            </li>
-                                        <?php }
-                                    ?>
-                                    <li class="link-details <?= ($currentPage == $pages) ? 'disabled' : '' ?>"><a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage + 1 ?>'>></a></li>
+                                    <li class="link-details <?= ($currentPage == 1) ? 'disabled' : '' ?>">
+                                        <a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage - 1 ?>' ><</a>
+                                    </li>
+                                    <?php for($page = 1; $page <= $pages; $page++){ ?>
+                                        <li class="link-details">
+                                            <a class="<?= ($currentPage == $page) ? $playableCharacter->combatTypeCssLink() : '' ?>" 
+                                            href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $page ?>'><?= $page ?></a>
+                                        </li>
+                                    <?php } ?>
+                                    <li class="link-details <?= ($currentPage == $pages) ? 'disabled' : '' ?>">
+                                        <a href='index.php?ctrl=wiki&action=reviewPlayableCharacter&id=<?= $playableCharacter->getId() ?>&page=<?= $currentPage + 1 ?>'>></a>
+                                    </li>
                                 </ul>
                             </div>
                             <?php foreach($commentPlayableCharacter as $comment){
@@ -211,13 +214,13 @@
         }
     }
     
-    function reply_click_delete(idUser)
+    function reply_click_delete(idComment)
     {   
         modalDelete.style.display = "block";
         
         let buttonDeleteConfirm = document.querySelector(".button-delete-confirm");
 
-        buttonDeleteConfirm.href = "index.php?ctrl=admin&action=deleteComment&id="+idUser;
+        buttonDeleteConfirm.href = "index.php?ctrl=admin&action=deleteComment&id="+idComment;
     }
 
 
