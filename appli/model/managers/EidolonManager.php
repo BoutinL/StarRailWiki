@@ -48,7 +48,6 @@
 
         public function updateEidolon($id, $playableCharacter, $name, $nbr, $effect, $image)
         {
-            // exemple for character combatType_id = :combatType / 'combatType' => $combatType,
             $sql = "UPDATE ".$this->tableName." 
                     SET playableCharacter_id = :playableCharacterEidolon,
                     name = :nameEidolon,

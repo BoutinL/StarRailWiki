@@ -59,7 +59,7 @@
                         <td><?= $trailblazer->getUsername() ?></td>
                         <td><?= $trailblazer->getEmail() ?></td>
                         <td><?= $trailblazer->getDateRegisterFormat() ?></td>
-                        <td class="column <?= ($trailblazer->getRole() == 'ROLE_BAN') ? 'banned' : ''; ?>"><?= $trailblazer->getRole() ?><button class="button" onClick="reply_click(<?= $trailblazer->getId() ?>)" id="modifyRoleBtn">Modify</button></td>
+                        <td class="column <?= ($trailblazer->getRole() == 'ROLE_ADMIN') ? 'admin' : ''; ?> <?= ($trailblazer->getRole() == 'ROLE_BAN') ? 'banned' : ''; ?>"><?= $trailblazer->getRole() ?><button class="button" onClick="reply_click(<?= $trailblazer->getId() ?>)" id="modifyRoleBtn">Modify</button></td>
                         <td><a class="button-delete" onClick="reply_click_delete(<?= $trailblazer->getId() ?> , '<?= $trailblazer->getUsername() ?>' )" id="deleteProfileBtn">Delete</a></td>
                     </tr>
                     <?php } ?>   

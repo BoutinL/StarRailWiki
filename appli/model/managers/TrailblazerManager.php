@@ -75,11 +75,11 @@ class TrailblazerManager extends Manager
         );
     }
 
-    public function getAllUsersButAdmin( $intFirstUserByPage, $intUsersByPage){
+    public function getAllUsers( $intFirstUserByPage, $intUsersByPage){
 
         $sql = "SELECT t.id_trailblazer, t.email, t.username, t.dateRegister, t.role
         FROM " .$this->tableName. " t
-        WHERE t.role = 'ROLE_MEMBER' OR t.role = 'ROLE_BAN'
+
         ORDER BY dateRegister DESC LIMIT ".$intFirstUserByPage.", ".$intUsersByPage;
         return $this->getMultipleResults(
             DAO::select($sql), 

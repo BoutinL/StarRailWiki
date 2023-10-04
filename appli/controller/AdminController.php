@@ -53,7 +53,7 @@ use Model\Managers\CommentManager;
             $intFirstUserByPage = intval($firstUserByPage);
             
             // For comments / pagination
-            $trailblazerList = $trailblazerManager->getAllUsersButAdmin($intFirstUserByPage, $intUsersByPage);
+            $trailblazerList = $trailblazerManager->getAllUsers($intFirstUserByPage, $intUsersByPage);
             return [
                 "view" => VIEW_DIR."admin/trailblazerList.php",
                 "data" => [
@@ -82,11 +82,9 @@ use Model\Managers\CommentManager;
             if (isset($_POST['roleUser'])) {
                 // Check if all required input arnt empty
                 if ((!empty($_POST['roleUser']))) {
-                    
                     // Sanitaze all input from the form
                     $roleUser = filter_input(INPUT_POST, "roleUser", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    // !== false so if empty still work 
-                    if ($roleUser !== false) {
+                    if ($roleUser) {
                         $trailblazerManager = new TrailblazerManager();
                         $trailblazerManager->updateRole($id, $roleUser);
                         $this->redirectTo("admin", "trailblazerList");
@@ -166,7 +164,7 @@ use Model\Managers\CommentManager;
                     
                     // Sanitaze all input from the form
                     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $image = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/1024x877";
+                    $image = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_URL) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_URL) : "https://placehold.co/1024x877";
                     $rarity = filter_input(INPUT_POST, "rarity", FILTER_SANITIZE_NUMBER_INT);
                     $sex = filter_input(INPUT_POST, "sex", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $specie = filter_input(INPUT_POST, "specie", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -371,7 +369,7 @@ use Model\Managers\CommentManager;
                     $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) : 0;
                     $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) ? filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) : 0;
 
-                    $icon = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
+                    $icon = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_URL) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_URL) : "https://placehold.co/120";
                     $playableCharacter = filter_input(INPUT_POST, "playableCharacter", FILTER_SANITIZE_NUMBER_INT);
                     $typeAbility = filter_input(INPUT_POST, "typeAbility", FILTER_SANITIZE_NUMBER_INT);
                     $tagAbility = filter_input(INPUT_POST, "tagAbility", FILTER_SANITIZE_NUMBER_INT);
@@ -503,7 +501,7 @@ use Model\Managers\CommentManager;
                     $energyGeneration = filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) ? $energyGeneration = filter_input(INPUT_POST, "energyGeneration", FILTER_SANITIZE_NUMBER_INT) : 0;
                     $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) ? $energyCost = filter_input(INPUT_POST, "energyCost", FILTER_SANITIZE_NUMBER_INT) : 0;
                     $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) ? $dmg = filter_input(INPUT_POST, "dmg", FILTER_SANITIZE_NUMBER_INT) : 0;
-                    $image = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
+                    $image = filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_URL) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_URL) : "https://placehold.co/120";
                     $typeAbility = filter_input(INPUT_POST, "typeAbility", FILTER_SANITIZE_NUMBER_INT);
                     $tagAbility = filter_input(INPUT_POST, "tagAbility", FILTER_SANITIZE_NUMBER_INT);
                     
@@ -548,7 +546,9 @@ use Model\Managers\CommentManager;
                     $effect = filter_input(INPUT_POST, "effectEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $nbr = filter_input(INPUT_POST, "nbrEidolon", FILTER_SANITIZE_NUMBER_INT); 
                     $playableCharacter = filter_input(INPUT_POST, "playableCharacterEidolon", FILTER_SANITIZE_NUMBER_INT);
-                    $icon = filter_input(INPUT_POST, "imageUrlEidolon", FILTER_VALIDATE_URL) ? filter_input(INPUT_POST, "imageUrlEidolon", FILTER_VALIDATE_URL) : "https://placehold.co/120";
+                    $icon = filter_input(INPUT_POST, "imageUrlEidolon", FILTER_SANITIZE_URL)
+                    ? filter_input(INPUT_POST, "imageUrlEidolon", FILTER_SANITIZE_URL)
+                    : "https://placehold.co/120";
 
                     if ($name !== false && $effect !== false && $nbr !== false && $playableCharacter !== false && $icon !== false) {
                         $eidolonManager = new EidolonManager();
@@ -666,7 +666,7 @@ use Model\Managers\CommentManager;
                     $name = filter_input(INPUT_POST, "nameEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $nbr = filter_input(INPUT_POST, "nbrEidolon", FILTER_SANITIZE_NUMBER_INT);
                     $effect = filter_input(INPUT_POST, "effectEidolon", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $image = filter_input(INPUT_POST, "imageUrlEidolon", FILTER_VALIDATE_URL) ? filter_input(INPUT_POST, "imageUrlEidolon", FILTER_VALIDATE_URL) : "https://placehold.co/120";
+                    $image = filter_input(INPUT_POST, "imageUrlEidolon", FILTER_SANITIZE_URL) ? filter_input(INPUT_POST, "imageUrlEidolon", FILTER_SANITIZE_URL) : "https://placehold.co/120";
 
                     if ($playableCharacter !== false  && $name !== false && $effect !== false && $nbr !== false && $image !== false ) {
                         $eidolonManager = new EidolonManager();
@@ -712,7 +712,7 @@ use Model\Managers\CommentManager;
                     $effect = filter_input(INPUT_POST, "effectTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $ascend_id = filter_input(INPUT_POST, "ascendTrace", FILTER_SANITIZE_NUMBER_INT); 
                     $playableCharacter = filter_input(INPUT_POST, "playableCharacterTrace", FILTER_SANITIZE_NUMBER_INT);
-                    $icon = filter_input(INPUT_POST, "image-urlTrace", FILTER_SANITIZE_FULL_SPECIAL_CHARS) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_FULL_SPECIAL_CHARS) : "https://placehold.co/120";
+                    $icon = filter_input(INPUT_POST, "image-urlTrace", FILTER_SANITIZE_URL) ? filter_input(INPUT_POST, "image-url", FILTER_SANITIZE_URL) : "https://placehold.co/120";
 
                     if ($name !== false && $effect !== false && $ascend_id !== false && $playableCharacter !== false && $icon !== false) {
                         // var_dump("$icon");die;

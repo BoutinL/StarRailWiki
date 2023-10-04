@@ -101,6 +101,9 @@ td, th{
 .banned{
     color: rgb(255, 34, 34);
 }
+.admin{
+    color: #6ba2dd;
+}
 
 .column{
     display: flex;
