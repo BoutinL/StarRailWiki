@@ -12,10 +12,10 @@
         display: flex;
         flex-direction: column;
         height: 30vh;   
-        padding-left: 2rem;
+        padding-left: 1rem;
         position:sticky;
-        top: 5rem;
-        text-align: center;
+        top: 2rem;
+        text-align: left;
         width: 10vw;
     }
 
@@ -30,8 +30,8 @@
     .order-combatType, .order-path{
         display: flex;
         flex-direction: column;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 
     .card-container{
@@ -55,7 +55,6 @@
     }
 
     .card{
-        
         width: 15rem;
         height: auto;
         border-radius: 30px;
@@ -100,8 +99,6 @@
     }
 
     /* Scroll to top */
-
-
 
     html {
         scroll-behavior:smooth;
