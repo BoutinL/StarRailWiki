@@ -44,8 +44,8 @@
         public function getOrderBy($idCombatType, $idPath)
         {
             $sql =  "SELECT id_playableCharacter, name, image,
-                     rarity, sex, specie, faction, world, quote,
-                     releaseDate, introduction, combatType_id, path_id
+                    rarity, sex, specie, faction, world, quote,
+                    releaseDate, introduction, combatType_id, path_id
                     FROM " .$this->tableName ."
                     WHERE combatType_id = :idCombatType AND path_id = :idPath";
                     
