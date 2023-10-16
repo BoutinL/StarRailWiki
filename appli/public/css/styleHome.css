@@ -1,3 +1,28 @@
-.homepage{
-    margin: 2rem;
+
+.homepage {
+    text-align: center;
+}
+
+h1{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+figure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container {
+    border: 2px solid #888;
+    display: inline-block;
+    max-width: 100%;
+    margin: 0 auto; /* Centre horizontalement */
+}
+
+.image-container img {
+    display: block;
+    width: 100%;
+    max-height: 77vh;
 }

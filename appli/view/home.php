@@ -3,5 +3,7 @@
 ?>
 <section class="homepage">
     <h1>Star Rail Wiki</h1>
-    <p>Welcome on the homepage of my application</p>
+    <figure class="image-container">
+        <img src="public/img/deco/Honkai_Star_Rail_Header.webp" alt="header star rail" />
+    </figure>
 </section>

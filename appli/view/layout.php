@@ -29,34 +29,35 @@
             <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
             <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
             <header>
-                <nav class="nav">
-                    <div class="nav-left" id="nav-left">
-                        <a class="nav-links" href="index.php?ctrl=home&action=index"><img class="icon-nav" src="/StarRailWiki/appli/public/img/Honkai-Star-Rail-icon.png" alt="Home Star rail icon" /></a>
-                        <a class="nav-links" href="index.php?ctrl=wiki&action=characterList">Character</a>
-                        <a class="nav-links" href="">Topic</a>
-                        <a class="nav-links" href="">Banners</a>
-                    </div>
-                    <div class="nav-right" id="nav-right">
+            <nav class="nav">
+                <div class="nav-left" id="nav-left">
+                    <a class="nav-links" href="index.php?ctrl=home&action=index"><img class="icon-nav" src="/StarRailWiki/appli/public/img/Honkai-Star-Rail-icon.png" alt="Home Star rail icon" /></a>
+                    <a class="nav-links" href="index.php?ctrl=wiki&action=characterList">Character</a>
+                    <a class="nav-links" href="">Topic</a>
+                    <a class="nav-links" href="">Banners</a>
+                </div>
+                <div class="nav-right" id="nav-right">
                     <?php
-                        if(App\Session::getUser() && App\Session::getUser() !== null){
-                            ?>
-                            <a class="nav-links" href="index.php?ctrl=security&action=viewProfile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
-                            <a class="nav-links-exit" href="index.php?ctrl=security&action=logout"><span class="fa-solid fa-right-from-bracket"></span>&nbsp;Logout</a>
-                            <?php
-                        } else { ?>
-                                <a class="nav-links" href="index.php?ctrl=security&action=login">Login</a>
-                                <a class="nav-links" href="index.php?ctrl=security&action=register">Register</a>
-                        <?php } ?>
-                    </div>
-                </nav>
+                    if(App\Session::getUser() && App\Session::getUser() !== null){
+                        ?>
+                        <a class="nav-links" href="index.php?ctrl=security&action=viewProfile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
+                        <a class="nav-links-exit" href="index.php?ctrl=security&action=logout"><span class="fa-solid fa-right-from-bracket"></span>&nbsp;Logout</a>
+                        <?php
+                    } else { ?>
+                    <a class="nav-links" href="index.php?ctrl=security&action=login">Login</a>
+                    <a class="nav-links" href="index.php?ctrl=security&action=register">Register</a>
+                    <?php } ?>
+                </div>
+                <!-- Ajout du bouton burger -->
+                <div class="burger-menu" id="burger-menu">&#9776;</div>
+            </nav>
             </header>
-            
             <main id="main">
                 <?= $page ?>
             </main>
         </div>
         <footer>
-            <span class="footer">&copy; 2023 - Star Rail Wiki - <a class="link-unstyled" href="index.php?ctrl=legality&action=rules"> Rules </a> - <a class="link-unstyled" href="index.php?ctrl=legality&action=legalNotice"> Legal Notice </a> - <a class="link-unstyled" href="index.php?ctrl=legality&action=privacyPolice"> Privacy Police </a></span>
+            <span class="footer">&copy; 2023 - Star Rail Wiki : <a class="link-unstyled" href="index.php?ctrl=legality&action=rules"> Rules </a> - <a class="link-unstyled" href="index.php?ctrl=legality&action=legalNotice"> Legal Notice </a> - <a class="link-unstyled" href="index.php?ctrl=legality&action=privacyPolice"> Privacy Police </a></span>
             <!--<button id="ajaxbtn">Surprise en Ajax !</button> -> cliqué <span id="nbajax">0</span> fois-->
         </footer>
     </div>
@@ -66,7 +67,6 @@
         crossorigin="anonymous">
     </script>
     <script>
-
         $(document).ready(function(){
             $(".message").each(function(){
                 if($(this).text().length > 0){
@@ -93,6 +93,12 @@
                 content_css: '//www.tiny.cloud/css/codepen.min.css'
             });
         })
+
+        document.getElementById('burger-menu').addEventListener('click', function() {
+            var nav = document.querySelector('.nav');
+            nav.classList.toggle('active');
+        });
+
 
         /*
         $("#ajaxbtn").on("click", function(){

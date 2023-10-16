@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `ability` (
   CONSTRAINT `FK-ability_typeAbility` FOREIGN KEY (`typeAbility_id`) REFERENCES `typeability` (`id_typeAbility`)
 ) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.ability : ~155 rows (environ)
+-- Listage des données de la table srw_loic.ability : ~154 rows (environ)
 INSERT INTO `ability` (`id_ability`, `name`, `description`, `energyGeneration`, `energyCost`, `dmg`, `icon`, `playableCharacter_id`, `typeAbility_id`, `tagAbility_id`) VALUES
 	(1, 'Lightning Rush', 'Deals Lightning DMG equal to 50%–110% of Arlan\'s ATK to a single enemy.', 20, 0, 30, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/97f31b5c7f456cadf844b45ee443c93f_4125532999287192258.png', 13, 1, 1),
 	(2, 'Shackle Breaker', 'Consumes Arlan\'s HP equal to 15% of his Max HP to deal Lightning DMG equal to 120%–264% of Arlan\'s ATK to a single enemy. If Arlan does not have sufficient HP, his HP will be reduced to 1 after using his Skill.', 30, 0, 60, 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/d8c555f7f9f47b610f2a4b84678df64b_2458479177492742947.png', 13, 2, 1),
@@ -246,22 +246,17 @@ CREATE TABLE IF NOT EXISTS `comment` (
   KEY `playableCharacter_id` (`playableCharacter_id`),
   CONSTRAINT `FK-comment_playableCharacter_id` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE SET NULL,
   CONSTRAINT `FK-comment_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1 COMMENT='character comment';
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1 COMMENT='character comment';
 
--- Listage des données de la table srw_loic.comment : ~8 rows (environ)
+-- Listage des données de la table srw_loic.comment : ~7 rows (environ)
 INSERT INTO `comment` (`id_comment`, `text`, `dateCreate`, `trailblazer_id`, `playableCharacter_id`) VALUES
-	(7, 'a', '2023-09-19 15:41:35', 2, 5),
-	(8, 'aaaaaaaaaaaaaaaaaaaaaaaa', '2023-09-19 15:48:04', 2, 5),
-	(16, 'a', '2023-09-25 15:34:35', 3, 13),
-	(17, 'a', '2023-09-25 15:34:36', 3, 13),
-	(18, 'a', '2023-09-25 15:34:38', 3, 13),
-	(24, 'a', '2023-10-02 16:07:07', 1, 3),
-	(26, 'Pretty Nice support ', '2023-10-02 16:38:37', 2, 19),
-	(27, 'Great debuff in AOE who can froze and she can also delete an ennemie buff.', '2023-10-02 16:41:21', 3, 19),
-	(28, 'It&#039;s sucrose but its icy !', '2023-10-02 16:42:29', 5, 19),
-	(30, 'Did you see all those ruler on her ?', '2023-10-02 16:46:02', 6, 19),
-	(31, 'Snezhnayan Sucrose &lt;3', '2023-10-02 16:56:25', 6, 19),
-	(32, 'Fun fact: Pela shares her name with a Russian singer.', '2023-10-02 16:58:06', 7, 19);
+	(1, 'Pretty Nice support ', '2023-10-02 16:38:37', 2, 19),
+	(2, 'Great debuff in AOE who can froze and she can also delete an ennemie buff.', '2023-10-02 16:41:21', 3, 19),
+	(3, 'It&#039;s sucrose but its icy !', '2023-10-02 16:42:29', 5, 19),
+	(4, 'Did you see all those ruler on her ?', '2023-10-02 16:46:02', 6, 19),
+	(5, 'Snezhnayan Sucrose &lt;3', '2023-10-02 16:56:25', 6, 19),
+	(6, 'Fun fact: Pela shares her name with a Russian singer.', '2023-10-02 16:58:06', 7, 19),
+	(33, 'I love her abilities !', '2023-10-14 17:05:57', 1, 7);
 
 -- Listage de la structure de table srw_loic. eidolon
 CREATE TABLE IF NOT EXISTS `eidolon` (
@@ -274,9 +269,9 @@ CREATE TABLE IF NOT EXISTS `eidolon` (
   PRIMARY KEY (`id_eidolon`),
   KEY `character_id` (`playableCharacter_id`) USING BTREE,
   CONSTRAINT `FK-eidolon_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=latin1 COMMENT='eidolon = own passive skill tree';
+) ENGINE=InnoDB AUTO_INCREMENT=189 DEFAULT CHARSET=latin1 COMMENT='eidolon = own passive skill tree';
 
--- Listage des données de la table srw_loic.eidolon : ~181 rows (environ)
+-- Listage des données de la table srw_loic.eidolon : ~180 rows (environ)
 INSERT INTO `eidolon` (`id_eidolon`, `nbr`, `name`, `effect`, `icon`, `playableCharacter_id`) VALUES
 	(1, 1, 'Chilhood', 'After &quot;Victory Rush&quot; is triggered, Himeko&#039;s SPD increases by 20% for 2 turn(s).', 'https://placehold.co/120', 1),
 	(2, 2, 'Convergence', 'Deals 15% more DMG to enemies whose HP percentage is 50% or less.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/9c81b39d06d7b2e4f218d273e1f70eec_244646985592578051.png', 1),
@@ -502,9 +497,9 @@ CREATE TABLE IF NOT EXISTS `playablecharacter` (
   KEY `path_id` (`path_id`),
   CONSTRAINT `FK-playableCharacter_combatType` FOREIGN KEY (`combatType_id`) REFERENCES `combattype` (`id_combatType`),
   CONSTRAINT `FK-playableCharacter_path` FOREIGN KEY (`path_id`) REFERENCES `path` (`id_path`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table srw_loic.playablecharacter : ~31 rows (environ)
+-- Listage des données de la table srw_loic.playablecharacter : ~33 rows (environ)
 INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarity`, `sex`, `specie`, `faction`, `world`, `quote`, `releaseDate`, `introduction`, `combatType_id`, `path_id`) VALUES
 	(1, 'Himeko', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-Himeko-Splash-Art-1024x877.png', 5, 'Female', 'Human', 'The Nameless', 'Astal Express', 'Alright, crew! This world is the target of our next trailblazing expedition!', '2023-04-26', 'An adventurous scientist who encountered and repaired a stranded train as a child, she now ventures across the universe with the Astral Express as its navigator. She is also an Emanator of the Trailblaze.', 2, 3),
 	(2, 'March 7th', 'https://expertgamereviews.com/wp-content/uploads/2023/04/Honkai-Star-Rail-March-7th-Splash-Art-1024x877.png', 4, 'Female', '???', 'The Nameless', 'Astral Express', 'Well would you listen to that! I saved everyone without causing any trouble! You\'re pretty awesome, March 7th!', '2023-04-26', 'An enthusiastic girl who was saved from eternal ice by the Astral Express Crew, and has the unique ability of being able to use "Six-Phased Ice." When she awoke, she knew nothing of herself or her past, and decided to name herself after the date of her rebirth, "March 7th." She takes many photos using her camera in hopes of discovering a memento from her past.', 3, 6),
@@ -537,7 +532,8 @@ INSERT INTO `playablecharacter` (`id_playableCharacter`, `name`, `image`, `rarit
 	(29, 'Trailblazer', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/7e3dcd2464edfca47e45ee7f0b53f32b_1711910135236400099.gif', 5, 'Female / Male', '???', 'Astral Express', 'Astral Express', 'When there is the chance to make a choice, make one that you know you won\'t regret...', '2023-04-26', 'They are awakened during the opening events of the game by Kafka and Silver Wolf, who leave them to be found by March 7th and Dan Heng on Herta Space Station during the Antimatter Legion\'s invasion. The player gets to choose either Stelle (female) or Caelus (male), along with their Receptacle Codename.', 1, 1),
 	(30, 'Trailblazer', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/c74eb9c6d1c028fc9813c87612c84a3e_5924273427451673630.gif', 5, 'Female / Male', '???', 'Astral Express', 'Astral Express', 'When there is the chance to make a choice, make one that you know you won\'t regret...', '2023-04-26', 'They are awakened during the opening events of the game by Kafka and Silver Wolf, who leave them to be found by March 7th and Dan Heng on Herta Space Station during the Antimatter Legion\'s invasion. The player gets to choose either Stelle (female) or Caelus (male), along with their Receptacle Codename.', 2, 6),
 	(34, 'Imbibitor Lunae', 'https://expertgamereviews.com/wp-content/uploads/2023/08/Honkai-Star-Rail-Imbibitor-Lunae-Splash-Art-1536x1536.png', 5, 'Male', 'Vidyadhara', 'The Nameless', 'The Xianzhou Luofu', 'I am nobody&#039;s shadow', '2023-09-29', 'Dan Heng&#039;s true Vidyadharian form, revealed after accepting the residual powers of the previous incarnation of the Imbibitor Lunae.\r\nBy accepting the majestic horns that sit proudly atop his skull, he also accepted the merits and faults that are attributed to this person.\r\nHowever, he was never really himself.', 7, 1),
-	(35, 'Lynx', 'https://expertgamereviews.com/wp-content/uploads/2023/09/Honkai-Star-Rail-Lynx-Splash-Art-1024x841.png', 4, 'Female', 'Human', 'Landeau Family', 'Belobog', 'In the Landau family, things are simple: If you wanna do something, go do it.', '2023-09-29', 'The youngest daughter of the Landau Family, she is a renowned environmental explorer albeit an introverted girl.', 6, 7);
+	(35, 'Lynx', 'https://expertgamereviews.com/wp-content/uploads/2023/09/Honkai-Star-Rail-Lynx-Splash-Art-1024x841.png', 4, 'Female', 'Human', 'Landeau Family', 'Belobog', 'In the Landau family, things are simple: If you wanna do something, go do it.', '2023-09-29', 'The youngest daughter of the Landau Family, she is a renowned environmental explorer albeit an introverted girl.', 6, 7),
+	(36, 'Topaz', 'https://genshinlab.com/wp-content/uploads/2023/09/topaz-and-numby-character_cut_in_front.webp', 5, 'Female', 'Human', 'Interastral Peace Corporation', '', 'Money is a means, not an end. Work should make you happy... That&#039;s the most fundamental principle', '2023-10-14', 'Senior Manager of the Strategic Investment Department in the Interastral Peace Corporation, and leader of the Special Debts Picket Team.\r\n\r\nTopaz&#039;s partner, the Warp Trotter &quot;Numby,&quot; is also capable of acutely perceiving where &quot;riches&quot; are located. It can even perform jobs involving security, debt collection, and actuarial sciences.', 2, 5);
 
 -- Listage de la structure de table srw_loic. rating
 CREATE TABLE IF NOT EXISTS `rating` (
@@ -550,7 +546,7 @@ CREATE TABLE IF NOT EXISTS `rating` (
   KEY `trailblazer_id` (`trailblazer_id`),
   CONSTRAINT `FK-rating_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE SET NULL,
   CONSTRAINT `FK-rating_trailblazer` FOREIGN KEY (`trailblazer_id`) REFERENCES `trailblazer` (`id_trailblazer`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COMMENT='character rating';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COMMENT='character rating';
 
 -- Listage des données de la table srw_loic.rating : ~2 rows (environ)
 INSERT INTO `rating` (`id_rating`, `rate`, `playableCharacter_id`, `trailblazer_id`) VALUES
@@ -558,7 +554,8 @@ INSERT INTO `rating` (`id_rating`, `rate`, `playableCharacter_id`, `trailblazer_
 	(2, 3, 5, 2),
 	(3, 5, 13, 4),
 	(4, 1, 13, 3),
-	(5, 4, 19, 1);
+	(5, 1, 19, 1),
+	(6, 1, 5, 13);
 
 -- Listage de la structure de table srw_loic. tagability
 CREATE TABLE IF NOT EXISTS `tagability` (
@@ -592,23 +589,13 @@ CREATE TABLE IF NOT EXISTS `trace` (
   KEY `ascension_id` (`ascend_id`) USING BTREE,
   CONSTRAINT `FK-trace_ascension` FOREIGN KEY (`ascend_id`) REFERENCES `ascend` (`id_ascend`),
   CONSTRAINT `FK-trace_playableCharacter` FOREIGN KEY (`playableCharacter_id`) REFERENCES `playablecharacter` (`id_playableCharacter`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COMMENT='trace = passive skill tree';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COMMENT='trace = passive skill tree';
 
--- Listage des données de la table srw_loic.trace : ~13 rows (environ)
+-- Listage des données de la table srw_loic.trace : ~3 rows (environ)
 INSERT INTO `trace` (`id_trace`, `name`, `effect`, `icon`, `ascend_id`, `playableCharacter_id`) VALUES
-	(1, 'DMG Boost: Wind', 'Wind DMG increases by 3.2%', 'https://placehold.co/120', 1, 5),
 	(2, ' Hidden Dragon', 'When current HP percentage is 50% or lower, reduces the chance of being attacked by enemies.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/90717cfd9f80c8f7da1913efd7922faf_8541600586783944355.png', 1, 5),
-	(3, ' ATK Boost', 'ATK increases by 4.0%', 'https://placehold.co/120', 1, 5),
-	(4, 'DMG Boost: Wind', 'Wind DMG increases by 3.2%', 'https://placehold.co/120', 4, 5),
-	(5, ' DEF Boost', 'DEF increases by 5.0%', 'https://placehold.co/120', 4, 5),
 	(6, ' Faster Than Light', 'After launching an attack, there is a 50% fixed chance to increase own SPD by 20% for 2 turn(s).', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/f8a8f367540bae16644a5adfbd760d84_900783470661715446.png', 1, 5),
-	(7, ' DMG Boost: Wind', 'Wind DMG increases by 4.8%', 'https://placehold.co/120', 5, 5),
-	(8, ' ATK Boost', 'ATK increases by 6.0%', 'https://placehold.co/120', 6, 5),
-	(9, ' DMG Boost: Wind', 'Wind DMG increases by 4.8%', 'https://placehold.co/120', 6, 5),
-	(10, ' High Gale', 'Basic ATK deals 40% more DMG to Slowed enemies.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/a34543c8ce465367fa5f5549229c142d_2604362486441655805.png', 1, 5),
-	(11, ' DEF Boost', 'DEF increases by 7.5%', 'https://placehold.co/120', 7, 5),
-	(12, ' ATK Boost', 'ATK increases by 8.0%', 'https://placehold.co/120', 8, 5),
-	(13, ' DMG Boost: Wind', 'Wind DMG increases by 6.4%', 'https://placehold.co/120', 9, 5);
+	(10, ' High Gale', 'Basic ATK deals 40% more DMG to Slowed enemies.', 'https://upload-static.hoyoverse.com/hoyowiki/2023/02/21/a34543c8ce465367fa5f5549229c142d_2604362486441655805.png', 1, 5);
 
 -- Listage de la structure de table srw_loic. trailblazer
 CREATE TABLE IF NOT EXISTS `trailblazer` (
@@ -619,7 +606,7 @@ CREATE TABLE IF NOT EXISTS `trailblazer` (
   `dateRegister` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `role` varchar(20) NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id_trailblazer`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1 COMMENT='trailblazer = user';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 COMMENT='trailblazer = user';
 
 -- Listage des données de la table srw_loic.trailblazer : ~12 rows (environ)
 INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `dateRegister`, `role`) VALUES
@@ -635,8 +622,7 @@ INSERT INTO `trailblazer` (`id_trailblazer`, `email`, `username`, `password`, `d
 	(10, 'user8@user.fr', 'user8', '$2y$10$rmp9OW6SWf.nyQ8F4lkY3ODrvxsbFwlLogCWDaXgh2EVzHgcXWNRW', '2023-09-13 10:03:32', 'ROLE_MEMBER'),
 	(11, 'user9@user.fr', 'user9', '$2y$10$ZZglVekhPveINd7M85LntuM7TRChrS16dJ5G1iPiahBBCCJJQj5PO', '2023-09-13 10:03:58', 'ROLE_MEMBER'),
 	(12, 'user10@user.fr', 'user10', '$2y$10$ikZS4vNOjxRcVru8yNUs7.VCNAxsMNF3z4./lOZRlGExEHouHgDSS', '2023-09-13 10:04:20', 'ROLE_MEMBER'),
-	(13, 'test@test.fr', 'test', '$2y$10$CjiNpnzLSEpwMwx8I0G0a.5xXmjlu.6cAHhG0u4pTYU6LfWFDGSJa', '2023-09-20 18:21:28', 'ROLE_MEMBER'),
-	(14, 'Regex@Regex.fr', 'Regex', '$2y$10$RbKV1K/K31bSb6ZdIc0LD.vTfEixGhnsW3s5ybiN7BfDIOzdyzJu.', '2023-09-29 09:05:26', 'ROLE_MEMBER');
+	(13, 'test@test.fr', 'test', '$2y$10$CjiNpnzLSEpwMwx8I0G0a.5xXmjlu.6cAHhG0u4pTYU6LfWFDGSJa', '2023-09-20 18:21:28', 'ROLE_MEMBER');
 
 -- Listage de la structure de table srw_loic. typeability
 CREATE TABLE IF NOT EXISTS `typeability` (
