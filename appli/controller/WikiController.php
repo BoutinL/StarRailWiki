@@ -78,7 +78,7 @@ use Model\Managers\RatingManager;
             $biographyPlayableCharacterManager = new PlayableCharacterManager();
             $pathManager = new PathManager();
             $combatTypeManager = new CombatTypeManager();
-            // biography of a character find with his id
+            // data of a character find with his id
             $biographyPlayableCharacter = $biographyPlayableCharacterManager->findOneById($id);
             // Path and combat type is also displayed in his biography and find with the character id
             $path = $pathManager->findOneById($id);
