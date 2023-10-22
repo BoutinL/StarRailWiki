@@ -28,8 +28,9 @@
         }
 
         public function getPlayableCharacterById($id){
-
-            $sql = "SELECT id_playableCharacter, name, image, rarity, sex, specie, faction, world, quote, releaseDate, introduction, combatType_id, path_id
+            $sql = "SELECT id_playableCharacter, name, image,
+            rarity, sex, specie, faction, world, quote, releaseDate,
+            introduction, combatType_id, path_id
             FROM " .$this->tableName. "
             WHERE id_playableCharacter = :id";
 
@@ -37,7 +38,6 @@
                 DAO::select($sql, ['id' => $id]), 
                 $this->className
             );
-        
         }
 
         // Display only character with the same CombatType and Path

@@ -147,6 +147,13 @@ textarea {
     text-align: start;
 }
 
+.input-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px; /* Ajustez la largeur selon vos besoins */
+  }
+
 .input-radio-container{
     display: flex;
     flex-direction: column;
